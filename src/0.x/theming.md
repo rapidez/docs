@@ -27,21 +27,21 @@ Keep in mind the output of these directives are cached! So after changing a conf
 ### `@config`
 
 Get a config value for the current store scope with optionally a fallback, example:
-```blade
+```php
 @config('general/locale/timezone', 'Europe/Amsterdam')
 ```
 
 ### `@block`
 
 Get the block contents for the current store scope:
-```blade
+```php
 @block('your_block_identifier')
 ```
 
 ### `@widget`
 
 Get the widget contents for the current store scope:
-```blade
+```php
 @widget('location', 'type', 'handle', $entityId)
 ```
 Have a look at the [current widget locations](https://github.com/rapidez/core/search?l=Blade&q=widget) we've added by default and the widget tables in the database to see how the parameters work.

@@ -98,7 +98,7 @@ docker exec rapidez_magento magerun2 indexer:reindex
 ```
 Edit the `.env`
 
-```dotenv
+```php
 MAGENTO_URL=http://localhost:1234
 DB_PORT=3307
 DB_DATABASE=magento
