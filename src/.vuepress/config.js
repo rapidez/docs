@@ -16,7 +16,8 @@ module.exports = {
   head: [
     ['meta', { name: 'theme-color', content: '#27AE60' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600&display=swap', rel: 'stylesheet', type: 'text/css' }]
   ],
 
   /**
@@ -34,6 +35,10 @@ module.exports = {
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
     smoothScroll: true,
+    nav: [
+      { text: 'Website', link: 'https://rapidez.io' },
+      { text: 'Demo', link: 'https://demo.rapidez.io' }
+    ],
     sidebar: {
       '/0.x/': [
         {
