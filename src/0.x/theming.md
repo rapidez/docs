@@ -2,7 +2,11 @@
 
 ---
 
-The base theming is located within `rapidez/core` but you can create your own package with all the views, css and js.
+The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, css and js like a theme.
+
+::: tip
+Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) before you begin.
+:::
 
 [[toc]]
 
@@ -49,6 +53,24 @@ Have a look at the [current widget locations](https://github.com/rapidez/core/se
 ::: warning
 Widgets are currently not fully supported. Just simple ones with blocks work fine.
 :::
+
+## Blade Components
+
+Rapdidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example the input component:
+```
+<x-rapidez::input name="username"/>
+```
+Which outputs a styled input with an id, name, type, placeholder and label (with a corresponding `for` attribute) on top.
+
+::: tip
+Try to use these elements as much as possible so if you'd like to change the appearance you can do so at one place.
+:::
+
+Another example; the "productlist" component which outputs a nice product list:
+```
+<x-rapidez::productlist :value="['MS04', 'MS05', 'MS09']"/>
+```
+Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
 ## CSS
 

@@ -2,31 +2,45 @@
 
 ---
 
-This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/master/packages) and have a look at the [existing packages](https://github.com/rapidez) to see how things are handled.
+In addition to the Rapidez Core we've created some packages.
 
-[[toc]]
+::: tip Created a package?
+[Edit this page](https://github.com/rapidez/docs/edit/master/src/0.x/packages.md) and add yours!
+:::
 
-## Eventy Filters
+## Base
 
-[Eventy](https://github.com/tormjens/eventy) is used to have Wordpress style filters which can be used within packages. Have a look at [their docs](https://github.com/tormjens/eventy#filters) to see how these filters can be used or at the [`AmastyLabelServiceProvider.php`](https://github.com/rapidez/amasty-label/blob/master/src/AmastyLabelServiceProvider.php) from the [Rapidez Amasty Label](https://github.com/rapidez/amasty-label) package as an example.
+Installed by default but can be removed or replaced with other packages.
 
-Filter | Explanation
---- | ---
-`product.scopes` | Add additional global product scopes
-`product.casts` | Add additional global product casts
-`index.product.scopes` | Add product scopes to the product query when indexing
-`index.product.data` | Manipulate the product data before it's getting indexed 
-`index.product.attributes` | Index additional product attributes
-`index.product.mapping` | Manipulate the index mapping
-`category.scopes` | Add additional global category scopes
+- [Menu](https://github.com/rapidez/menu)
+- [Account](https://github.com/rapidez/account)
+- [Image Resizer](https://github.com/rapidez/image-resizer)
 
-## Vue Events
+## Optional
 
-Rapidez emits some custom Vue events you can use to hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez Mollie](https://github.com/rapidez/mollie) package, have a look at the [`mollie.js`](https://github.com/rapidez/mollie/blob/master/resources/js/mollie.js) file.
+Core Magento functionality but not installed by default.
 
-Event | Explanation
---- | ---
-`CheckoutCredentialsSaved` | Triggered after the checkout credentials are saved
-`CheckoutPaymentSaved` | Triggered after the payment method is saved
+- [Compare](https://github.com/rapidez/compare)
+- [Reviews](https://github.com/rapidez/reviews)
 
-There is also a `doNotGoToTheNextStep` variable on the root Vue instance which can be used to prevent the checkout from going to the next step. That's also used within the [Rapidez Mollie](https://github.com/rapidez/mollie) package to prevent the checkout from going to the success page because you've to pay first and we'd like to redirect the user to the payment page.
+## Vendors
+
+Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Have a look at the [package development docs](package-development.md).
+
+### Amasty
+
+- [Amasty Labels](https://github.com/rapidez/amasty-label)
+- Amasty Promo Banners <Badge text="Coming soon" vertical="middle"/>
+
+### CMS
+
+- Storyblok <Badge text="Coming soon" vertical="middle"/>
+
+### Payment providers
+
+- [Mollie](https://github.com/rapidez/mollie)
+- Pay.nl <Badge text="Coming soon" vertical="middle"/>
+
+### Snowdog
+
+- [Menu](https://github.com/rapidez/snowdog-menu)

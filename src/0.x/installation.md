@@ -22,7 +22,7 @@ php artisan rapidez:install
 ```
 
 ::: tip Credentials
-Add the url and database credentials from your Magento 2 installation to the `.env`
+Add the url and database credentials from your Magento 2 installation to the `.env`. Have a look at the [configuration docs](configuration.md) for all options.
 :::
 
 ```bash
@@ -37,6 +37,14 @@ Use your favorite webserver (we like [Valet+](https://github.com/weprovide/valet
 php artisan serve
 ```
 See it in the browser! 🚀
+
+::: tip Note
+The `rapidez/rapidez` repository contains a fresh Laravel installation with the Rapidez Core and some other packages installed to give you a good start. If you have an existing project or want to start from scratch you can install the Rapidez packages yourself. Just have a look at the `composer.json`
+:::
+
+::: warning Product image speed
+The first time product images will load slowly as they are resized on the fly. Have a look at the [Image Resizer](https://github.com/rapidez/image-resizer) package to read how this is working.
+:::
 
 ## CORS
 
@@ -98,7 +106,7 @@ docker exec rapidez_magento magerun2 indexer:reindex
 ```
 Edit the `.env`
 
-```php
+```
 MAGENTO_URL=http://localhost:1234
 DB_PORT=3307
 DB_DATABASE=magento

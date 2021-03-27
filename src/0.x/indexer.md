@@ -1,11 +1,23 @@
-# Running the indexer
+# Indexer
 
 ---
 
-The easiest way is to schedule the `rapidez:index` command in `app/Console/Kernel.php`
+The indexer adds the product information to an Elasticsearch index for Reactive Search. There are multiple ways to refresh the index:
+
+[[toc]]
+
+## Manually
+
+Run `php artisan rapidez:index` from the terminal.
+
+## Scheduler
+
+If you'd like to run the indexer frequently you can schedule schedule the `rapidez:index` command in `app/Console/Kernel.php`
 ```php
 $schedule->command('rapidez:index')->hourly();
 ```
-For more information see [Task Scheduling](https://laravel.com/docs/master/scheduling).
+For more information see [Task Scheduling](https://laravel.com/docs/master/scheduling)
 
-Another option is to visit `/api/admin/index/products?token=` and append your `RAPIDEZ_TOKEN` from the `.env`. You can automate this however you want by sending GET requests.
+## Webhook
+
+Another option is to visit `/api/admin/index/products?token=` and append your `RAPIDEZ_TOKEN` from the `.env`. You can automate this however you want by calling the url. This can be useful when you want to trigger the indexer from an external system.

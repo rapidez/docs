@@ -6,7 +6,7 @@
 
 ## Why is it so fast?
 
-> Because we do not use the Magento frontend stack. Just Laravel which queries the Magento database directly and the Magento REST API / GraphQL for other parts like the cart and checkout. Category filters are so fast because of Reactive Search which uses Elasticsearch as database. For the smooth page transitions we use Turbolinks.
+> Because Rapidez does not use the Magento frontend stack. Just Laravel which queries the Magento database directly and the Magento REST API / GraphQL for other parts like the cart and checkout. Category filters are so fast because of Reactive Search which uses Elasticsearch as database. For the smooth page transitions Rapidez uses Turbolinks.
 
 ## How is this different from Vue Storefront?
 
@@ -22,7 +22,7 @@
 
 ## Why query the Magento database instead of using GraphQL?
 
-> Speed; and not all data is available through GraphQL. The Magento database stucture isn't changed much over the years and Rapidez is just using it to get data. For inserting and updating we use the REST API or GraphQL.
+> Speed; and not all data is available through GraphQL. The Magento database stucture isn't changed much over the years and Rapidez is just using it to get data. For inserting and updating Rapidez uses the REST API or GraphQL.
 
 ## TailwindCSS is used, do I need to use it?
 

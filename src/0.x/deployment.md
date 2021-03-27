@@ -15,7 +15,7 @@ You've to secure your Elasticsearch instance so other people cannot manipulate t
 - Restart Elasticsearch (with Docker: `docker restart rapidez_elasticsearch`)
 - Setup a password with `bin/elasticsearch-setup-passwords auto` (or use `interactive` to choose the passwords yourself, with Docker prepend `docker exec rapidez_elasticsearch `)
 - Edit your `.env` and add the credentials
-```php
+```
 ELASTICSEARCH_USER=elastic
 ELASTICSEARCH_PASS=YOUR-PASSWORD
 ```
@@ -32,10 +32,10 @@ elasticsearch.username: "elastic"
 elasticsearch.password: "YOUR-PASSWORD"
 ```
 - Login to Kibana and go to Management > Roles
-- Add a new role `web`. It only needs one index privilege; use a `*` for the indices and `read` as privilege.
+- Add a new role `web`. It only needs one index privilege; use `rapidez_*` for the indices and `read` as privilege.
 - Create an user `web`, password `rapidez` and the `web` role
 - Add this to your `.env`
-```php
+```
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
@@ -64,7 +64,7 @@ location / {
 }
 ```
 Use the MySQL credentials from the container in the `.env`
-```php
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3307

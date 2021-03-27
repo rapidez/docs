@@ -47,6 +47,7 @@ module.exports = {
           children: [
             'intro',
             'installation',
+            'configuration',
             'deployment',
             'faq',
             'troubleshooting'
@@ -57,7 +58,7 @@ module.exports = {
           collapsable: false,
           children: [
             'theming',
-            'packages'
+            'package-development'
           ]
         },
         {
@@ -65,7 +66,8 @@ module.exports = {
           collapsable: false,
           children: [
             'indexer',
-            'caching'
+            'cache',
+            'packages'
           ]
         }
       ],
