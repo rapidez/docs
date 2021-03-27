@@ -56,7 +56,7 @@ Widgets are currently not fully supported. Just simple ones with blocks work fin
 
 ## Blade Components
 
-Rapdidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example the input component:
+Rapidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example the input component:
 ```
 <x-rapidez::input name="username"/>
 ```
