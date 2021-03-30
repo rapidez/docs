@@ -30,4 +30,4 @@
 
 ## Is it production ready?
 
-> If it fits your needs; yes. Please let us know if you're missing something.
+> If it fits your needs; yes. Please [let us know](https://github.com/rapidez/base/issues/new) if you're missing something.
