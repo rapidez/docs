@@ -22,7 +22,7 @@
 
 ## Why query the Magento database instead of using GraphQL?
 
-> Speed; and not all data is available through GraphQL. The Magento database stucture isn't changed much over the years and Rapidez is just using it to get data. For inserting and updating Rapidez uses the REST API or GraphQL.
+> Speed; and not all data is available through GraphQL. The Magento database structure hasn't changed much over the years and Rapidez is just using it to get data. For inserting and updating Rapidez uses the REST API or GraphQL.
 
 ## TailwindCSS is used, do I need to use it?
 
