@@ -8,13 +8,13 @@ Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/dep
 
 ## Secure Elasticsearch
 
-You've to secure your Elasticsearch instance so other people cannot manipulate the data in it as it need to be exposed for Reactive Search.
+You've to secure your Elasticsearch instance so other people can't manipulate the data in it as it needs to be exposed for Reactive Search.
 
 - Enable security in `elasticsearch.yml` with: `xpack.security.enabled: true`
 - Change `http.cors.allow-origin` to your domain
 - Restart Elasticsearch (with Docker: `docker restart rapidez_elasticsearch`)
 - Setup a password with `bin/elasticsearch-setup-passwords auto` (or use `interactive` to choose the passwords yourself, with Docker prepend `docker exec rapidez_elasticsearch `)
-- Edit your `.env` and add the credentials
+- Add your credentials to `.env`
 ```
 ELASTICSEARCH_USER=elastic
 ELASTICSEARCH_PASS=YOUR-PASSWORD
@@ -34,7 +34,7 @@ elasticsearch.password: "YOUR-PASSWORD"
 - Login to Kibana and go to Management > Roles
 - Add a new role `web`. It only needs one index privilege; use `rapidez_*` for the indices and `read` as privilege.
 - Create an user `web`, password `rapidez` and the `web` role
-- Add this to your `.env`
+- Add the url to your `.env`
 ```
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
