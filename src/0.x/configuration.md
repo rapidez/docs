@@ -23,8 +23,8 @@ Configuration | Explanation
 `general/locale/code` | Locale
 `currency/options/default` | Currency
 `checkout/cart/redirect_to_cart` | Redirect to the cart when adding a product
-`catalog/seo/product_url_suffix` | Product url suffix, default: `.html`
-`catalog/seo/category_url_suffix` | Category url suffix, default: `.html`
+`catalog/seo/product_url_suffix` | Product url suffix
+`catalog/seo/category_url_suffix` | Category url suffix
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
 
