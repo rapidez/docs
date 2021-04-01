@@ -74,7 +74,11 @@ Rapidez is using this component to render the related products, up-sells and cro
 
 ## CSS
 
-Use TailwindCSS as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
+Use [TailwindCSS](https://tailwindcss.com) as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
+
+::: tip TailwindCSS JIT
+By default Rapidez is using the [TailwindCSS just-in-time compiler](https://github.com/tailwindlabs/tailwindcss-jit).
+:::
 
 ## Javascript
 
