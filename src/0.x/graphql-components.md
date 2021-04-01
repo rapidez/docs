@@ -48,9 +48,9 @@ With large GraphQL queries you can extract the query to a sperated file, for exa
         <div v-else>
             <form v-on:submit.prevent="mutate">
                 <x-rapidez::input name="email" type="email" v-model="changes.email"/>
-                <button type="submit" class="btn btn-primary" :disabled="$root.loading">
+                <x-rapidez::button type="submit">
                     @lang('Subscribe')
-                </button>
+                </x-rapidez::button>
             </form>
             <p v-if="error">
                 @{{ error }}
