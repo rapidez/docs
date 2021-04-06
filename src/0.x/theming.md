@@ -28,7 +28,7 @@ It's recommended to only add the views you've changed into your source control f
 
 Rapidez provides some Blade Directives to easily get information from Magento.
 
-::: tip Caching
+::: warning Caching
 Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](caching.md).
 :::
 
@@ -81,7 +81,7 @@ Rapidez is using this component to render the related products, up-sells and cro
 Use [TailwindCSS](https://tailwindcss.com) as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
 
 ::: tip TailwindCSS JIT
-By default Rapidez is using the [TailwindCSS just-in-time compiler](https://github.com/tailwindlabs/tailwindcss-jit).
+By default Rapidez is using the [TailwindCSS Just-in-Time Mode](https://tailwindcss.com/docs/just-in-time-mode)
 :::
 
 ## Javascript
