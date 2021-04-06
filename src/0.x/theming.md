@@ -13,9 +13,13 @@ Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) b
 ## Views
 
 To change the views you can publish them with:
+
 ```bash
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
+
+After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/master/packages#overriding-package-views) in the Laravel docs.
+
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view it's a good idea to add the unchanged version to version control before you make any changes.
 :::
