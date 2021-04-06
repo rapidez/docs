@@ -9,8 +9,12 @@
 - [Laravel requirements](https://laravel.com/docs/8.x/installation#server-requirements)
 - PHP >= 7.4
 - MySQL >= 5.7.13
-- Elasticsearch >= 7.6
+- Elasticsearch Basic >= 7.6
 - Magento >= 2.4.1 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#magento-demo-shop))
+
+::: tip Elasticsearch Basic
+There are multiple Elasticsearch versions and licenses, see the [subscriptions page](https://www.elastic.co/subscriptions). Rapidez requires at least the basic version which is free but not always installed by default. Make sure you use the "full" or "non-OSS" version otherwise you'll get "no handler for type flattened" errors while [indexing](indexer.md).
+:::
 
 ## Create your first project
 
@@ -57,7 +61,7 @@ Rapidez is making AJAX requests to the Magento API which requires CORS to be ope
 
 ### Elasticsearch
 
-If you're using your own Elasticsearch installation you've to open CORS in `elasticsearch.yml` and restart Elasticsearch. An example can be found in the root of this project. That configuration is used when you're using Elasticsearch from our Docker Compose config.
+If you're using your own Elasticsearch installation you've to open CORS in `elasticsearch.yml` and restart Elasticsearch. An example can be found in the the project: [`elasticsearch.yml`](https://github.com/rapidez/rapidez/blob/master/elasticsearch.yml). That configuration is used when you're using Elasticsearch from the [Docker Compose config](https://github.com/rapidez/rapidez/blob/master/docker-compose.yml).
 
 ## Flat tables
 
