@@ -45,6 +45,12 @@ Get the block contents for the current store scope:
 ```php
 @block('your_block_identifier')
 ```
+Optionally you can specify a second argument with an array which will be passed through to the [`strtr`](https://php.net/strtr) function to replace data within the block, for example:
+```php
+@block('footer_links_block', [
+    '<a' => '<a class="text-red-600"'
+])
+```
 
 ### `@widget`
 
