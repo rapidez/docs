@@ -4,7 +4,7 @@
 
 Publish the Rapidez config file:
 
-```sh
+```
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag="config"
 ```
 

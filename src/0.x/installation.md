@@ -18,10 +18,10 @@ There are multiple Elasticsearch versions and licenses, see the [subscriptions p
 
 ## Create your first project
 
-```bash
+```
 composer create-project rapidez/rapidez rapidez
 ```
-```bash
+```
 php artisan rapidez:install
 ```
 
@@ -29,7 +29,7 @@ php artisan rapidez:install
 Add the url and database credentials from your Magento 2 installation to the `.env`. Have a look at the [configuration docs](configuration.md) for all options.
 :::
 
-```bash
+```
 yarn
 yarn run prod
 php artisan storage:link
@@ -37,7 +37,7 @@ php artisan rapidez:validate
 php artisan rapidez:index
 ```
 Use your favorite webserver (we like [Valet+](https://github.com/weprovide/valet-plus) on macOS) or use Laravel's built-in development server:
-```bash
+```
 php artisan serve
 ```
 See it in the browser! 🚀
@@ -83,7 +83,7 @@ When you've setup multiple stores in Magento then Rapidez needs to know which st
 
 With Nginx you could use a map, for example:
 
-```nginx
+```
 map $http_host $MAGE_RUN_CODE {
     default default_store_code;
     second-store.com second_store_code;
@@ -92,7 +92,7 @@ map $http_host $MAGE_RUN_CODE {
 ```
 
 And pass that to PHP-FPM:
-```nginx
+```
 fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
 ```
 
@@ -104,7 +104,7 @@ If you do not have a Magento 2 installation yet, you want to test Rapidez or lik
 Make sure Docker can use at least 4GB of memory!
 :::
 
-```bash
+```
 docker-compose up -d
 docker exec rapidez_magento magerun2 indexer:reindex
 ```

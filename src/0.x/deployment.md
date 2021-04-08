@@ -20,7 +20,7 @@ ELASTICSEARCH_USER=elastic
 ELASTICSEARCH_PASS=YOUR-PASSWORD
 ```
 - Create a proxy (with SSL) on a subdomain
-```nginx
+```
 location / {
         proxy_pass http://localhost:9200;
 }
@@ -46,7 +46,7 @@ This is only needed if you'd like to run the [Magento 2 demo webshop](installati
 :::
 
 Just proxy everything to a subdomain and use that domain as `MAGENTO_URL` in the `.env`. With Laravel Forge this is really easy; just create another website on your server, setup SSL and edit the Nginx config
-```nginx
+```
 location / {
     proxy_pass http://127.0.0.1:1234;
     proxy_redirect off;

@@ -14,7 +14,7 @@ Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) b
 
 To change the views you can publish them with:
 
-```bash
+```
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
 
