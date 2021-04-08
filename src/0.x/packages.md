@@ -4,6 +4,8 @@
 
 In addition to the Rapidez Core we've created some packages.
 
+[[toc]]
+
 ::: tip Created a package?
 [Edit this page](https://github.com/rapidez/docs/edit/master/src/0.x/packages.md) and add yours!
 :::
