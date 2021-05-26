@@ -42,6 +42,10 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Blog](https://github.com/rapidez/mageplaza-blog)
 
+### Mirasvit
+
+- [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
+
 ### Payment providers
 
 - [Mollie](https://github.com/rapidez/mollie)
