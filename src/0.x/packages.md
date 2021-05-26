@@ -31,8 +31,8 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### Amasty
 
-- [Amasty Labels](https://github.com/rapidez/amasty-label)
-- [Amasty Promo Banners](https://github.com/rapidez/amasty-promo-banners)
+- [Labels](https://github.com/rapidez/amasty-label)
+- [Promo Banners](https://github.com/rapidez/amasty-promo-banners)
 
 ### CMS
 
