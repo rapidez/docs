@@ -13,9 +13,13 @@ Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) b
 ## Views
 
 To change the views you can publish them with:
-```bash
+
+```
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
+
+After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/master/packages#overriding-package-views) in the Laravel docs.
+
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view it's a good idea to add the unchanged version to version control before you make any changes.
 :::
@@ -24,7 +28,7 @@ It's recommended to only add the views you've changed into your source control f
 
 Rapidez provides some Blade Directives to easily get information from Magento.
 
-::: tip Caching
+::: warning Caching
 Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](caching.md).
 :::
 
@@ -40,6 +44,12 @@ Get a config value for the current store scope with optionally a fallback, examp
 Get the block contents for the current store scope:
 ```php
 @block('your_block_identifier')
+```
+Optionally you can specify a second argument with an array which will be passed through to the [`strtr`](https://php.net/strtr) function to replace data within the block, for example:
+```php
+@block('footer_links_block', [
+    '<a' => '<a class="text-red-600"'
+])
 ```
 
 ### `@widget`
@@ -74,7 +84,11 @@ Rapidez is using this component to render the related products, up-sells and cro
 
 ## CSS
 
-Use TailwindCSS as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
+Use [TailwindCSS](https://tailwindcss.com) as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
+
+::: tip TailwindCSS JIT
+By default Rapidez is using the [TailwindCSS Just-in-Time Mode](https://tailwindcss.com/docs/just-in-time-mode)
+:::
 
 ## Javascript
 

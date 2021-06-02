@@ -4,6 +4,8 @@
 
 In addition to the Rapidez Core we've created some packages.
 
+[[toc]]
+
 ::: tip Created a package?
 [Edit this page](https://github.com/rapidez/docs/edit/master/src/0.x/packages.md) and add yours!
 :::
@@ -29,12 +31,21 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### Amasty
 
-- [Amasty Labels](https://github.com/rapidez/amasty-label)
-- Amasty Promo Banners <Badge text="Coming soon" vertical="middle"/>
+- [Labels](https://github.com/rapidez/amasty-label)
+- [Promo Banners](https://github.com/rapidez/amasty-promo-banners)
 
 ### CMS
 
 - Storyblok <Badge text="Coming soon" vertical="middle"/>
+
+### Mageplaza
+
+- [Blog](https://github.com/rapidez/mageplaza-blog)
+
+### Mirasvit
+
+- [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
+- [Advanced Seo Suite](https://github.com/rapidez/mirasvit-advanced-seo-suite)
 
 ### Payment providers
 

@@ -12,7 +12,7 @@ Run `php artisan rapidez:index` from the terminal.
 
 ## Scheduler
 
-If you'd like to run the indexer frequently you can schedule schedule the `rapidez:index` command in `app/Console/Kernel.php`
+If you'd like to run the indexer frequently you can schedule the `rapidez:index` command in `app/Console/Kernel.php`
 ```php
 $schedule->command('rapidez:index')->hourly();
 ```

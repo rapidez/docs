@@ -58,7 +58,8 @@ module.exports = {
           collapsable: false,
           children: [
             'theming',
-            'package-development'
+            'package-development',
+            'graphql-components'
           ]
         },
         {
