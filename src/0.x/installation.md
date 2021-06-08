@@ -55,7 +55,7 @@ The first time product images will load slowly as they are resized on the fly. H
 ### Magento
 
 Rapidez is making AJAX requests to the Magento API which requires CORS to be opened.
-- If you're using Valet+ this can be easily done, [see here](https://github.com/weprovide/valet-plus/issues/493).
+- To do so with Laravel Valet see [this](https://gist.github.com/poul-kg/b669a76fc27afcc31012aa0b0e34f738) and for Valet+ see [this](https://github.com/weprovide/valet-plus/issues/493).
 - With the Docker Magento installation it's already opened [with a patch](https://github.com/michielgerritsen/magento2-extension-integration-test/blob/master/magento/patches/cors.patch).
 - For production you've to restrict this to your domain within your webserver configuration or with for example this [Magento 2 CORS module](https://github.com/graycoreio/magento2-cors).
 
