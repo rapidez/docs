@@ -31,13 +31,18 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### Amasty
 
+- [Automatic Related Products](https://github.com/rapidez/amasty-automatic-related-products)
 - [Labels](https://github.com/rapidez/amasty-label)
 - [Promo Banners](https://github.com/rapidez/amasty-promo-banners)
-- [Automatic Related Products](https://github.com/rapidez/amasty-automatic-related-products)
+- [Shop By Brand](https://github.com/rapidez/amasty-shop-by-brand)
 
 ### CMS
 
 - Storyblok <Badge text="Coming soon" vertical="middle"/>
+
+### Elgentos
+
+- [Serverside Analytics](https://github.com/rapidez/elgentos-serverside-analytics)
 
 ### Mageplaza
 
@@ -45,8 +50,8 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### Mirasvit
 
-- [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
 - [Advanced Seo Suite](https://github.com/rapidez/mirasvit-advanced-seo-suite)
+- [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
 
 ### Payment providers
 
