@@ -19,6 +19,7 @@ Filter | Explanation
 `index.product.attributes` | Index additional product attributes
 `index.product.mapping` | Manipulate the index mapping
 `category.scopes` | Add additional global category scopes
+`routes` | Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
 ## Vue Events
 
