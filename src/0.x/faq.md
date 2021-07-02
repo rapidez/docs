@@ -30,7 +30,7 @@
 
 ## TailwindCSS is used, do I need to use it?
 
-> No, you do not need te use it. You are completely free to use whatever you want. We like it so we used it for basic styling.
+> No, you do not need to use it. You are completely free to use whatever you want. We like it so we use it for basic styling.
 
 ## Is it production ready?
 
