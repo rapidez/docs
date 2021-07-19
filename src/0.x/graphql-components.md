@@ -66,7 +66,7 @@ Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | GraphQL query but the data should be replaced with `changes` so it can be replaced.
 `changes` | Object | `{}` | Set the default values `:changes="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
-`refreshUserInfo` | Boolean | `false` | Refresh the user info after the mutation
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
 `clear` | Boolean | `false` | Clear the values after the mutation
+`callback` | Function | | Called after the mutation
