@@ -52,6 +52,10 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Blog](https://github.com/rapidez/mageplaza-blog)
 
+### MagePrince
+
+- [FAQ](https://github.com/rapidez/mageprince-faq)
+
 ### Mirasvit
 
 - [Advanced Seo Suite](https://github.com/rapidez/mirasvit-advanced-seo-suite)
