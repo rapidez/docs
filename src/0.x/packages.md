@@ -69,3 +69,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Snowdog
 
 - [Menu](https://github.com/rapidez/snowdog-menu)
+
+### Smile
+
+- [Store Locator](https://github.com/rapidez/smile-store-locator)
