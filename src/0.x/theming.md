@@ -52,17 +52,21 @@ Optionally you can specify a second argument with an array which will be passed 
 ])
 ```
 
+### `@content`
+
+Processes content containing variables from Magento so variables, block and widgets are working.
+```php
+@content($page->content)
+```
+Created your own variables? Have a look at the `content-variables` [configuration](configuration.md).
+
 ### `@widget`
 
-Get the widget contents for the current store scope:
+Used to specify a widget location where widgets can be rendered.
 ```php
 @widget('location', 'type', 'handle', $entityId)
 ```
-Have a look at the [current widget locations](https://github.com/rapidez/core/search?l=Blade&q=widget) we've added by default and the widget tables in the database to see how the parameters work.
-
-::: warning
-Widgets are currently not fully supported. Just simple ones with blocks work fine.
-:::
+Have a look at the [current widget locations](https://github.com/rapidez/core/search?l=Blade&q=widget) we've added by default and the widget tables in the database to see how the parameters work. Custom widgets can be defined with the `widgets` [configuration](configuration.md).
 
 ## Blade Components
 
