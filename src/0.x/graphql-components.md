@@ -27,6 +27,7 @@ See the usage within the [Rapidez Repositories](https://github.com/search?l=Blad
 Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | GraphQL query
+`variables` | Object | `{}` | GraphQL variables
 `check` | String | | Run a check on the response data, for example: `check="data.countries[0] == 'Country'"`
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Will be flushed when the [cache](cache.md) is cleared.
@@ -65,6 +66,7 @@ With large GraphQL queries you can extract the query to a separated file, for ex
 Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | GraphQL query but the data should be replaced with `changes` so it can be replaced.
+`variables` | Object | `{}` | GraphQL variables
 `changes` | Object | `{}` | Set the default values `:changes="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
