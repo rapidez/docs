@@ -64,7 +64,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Payment providers
 
 - [Mollie](https://github.com/rapidez/mollie)
-- Pay.nl <Badge text="Coming soon" vertical="middle"/>
+- [Pay.nl](https://github.com/rapidez/paynl)
 
 ### Snowdog
 
