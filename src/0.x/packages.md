@@ -38,7 +38,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### CMS
 
-- Storyblok <Badge text="Coming soon" vertical="middle"/>
+- Strapi <Badge text="Coming soon" vertical="middle"/>
 
 ### Elgentos
 
