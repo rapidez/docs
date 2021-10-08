@@ -72,3 +72,4 @@ Prop | Type | Default | Explanation
 `alert` | Boolean | `true` | Show an alert when an error occurs
 `clear` | Boolean | `false` | Clear the values after the mutation
 `callback` | Function | | Called after the mutation
+`mutate-event` | String | | Event name to listen to, used to trigger the mutate method
