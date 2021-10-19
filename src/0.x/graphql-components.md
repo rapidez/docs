@@ -90,9 +90,3 @@ Prop | Type | Explanation
 `mutate` | Function | Run the GraphQL query 
 `mutated` | Boolean | True if the mutation has run
 `error` | String | The error message if the GraphQL request failed
-
-::: Note
-If the slot scope value is of type Object you cannot change the values inside directly.
-You will have to use something along the lines of `v-on:change="$set(variables, 'property_name', 'property_value')"`
-as described in: [https://vuejs.org/v2/guide/reactivity.html#For-Objects](https://vuejs.org/v2/guide/reactivity.html#For-Objects)
-:::
