@@ -36,6 +36,12 @@ Prop | Type | Default | Explanation
 With large GraphQL queries you can extract the query to a separated file, for example: `resources/views/queries/countries.graphql` and include it with: `query='@include('queries.countries')'`
 :::
 
+### Slot scopes
+
+Prop | Type | Explanation
+:--- | :--- | :---
+`data` | Object | The data returned from the GraphQL request
+
 ## Mutation
 
 `<graphql-mutation>` component example with a newsletter subscription form:
@@ -73,3 +79,14 @@ Prop | Type | Default | Explanation
 `clear` | Boolean | `false` | Clear the values after the mutation
 `callback` | Function | | Called after the mutation
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
+
+### Slot scopes
+
+Slot scopes are useful when wanting to get or update values or functions within the components template.
+
+Prop | Type | Explanation
+:--- | :--- | :---
+`variables` | Object | GraphQL variables
+`mutate` | Function | Run the GraphQL query 
+`mutated` | Boolean | True if the mutation has run
+`error` | String | The error message if the GraphQL request failed
