@@ -79,6 +79,7 @@ Prop | Type | Default | Explanation
 `clear` | Boolean | `false` | Clear the values after the mutation
 `callback` | Function | | Called after the mutation
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
+`recaptcha` | Boolean | `false` | Sends the `X-ReCaptcha` header with the request
 
 ### Slot scopes
 
