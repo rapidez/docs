@@ -38,6 +38,7 @@ Get a config value for the current store scope with optionally a fallback, examp
 ```php
 @config('general/locale/timezone', 'Europe/Amsterdam')
 ```
+A third parameter can be set to `true` when it's a sensitive/encrypted config.
 
 ### `@block`
 
