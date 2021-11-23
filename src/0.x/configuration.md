@@ -2,6 +2,10 @@
 
 ---
 
+[[toc]]
+
+## Rapidez
+
 Publish the Rapidez config file:
 
 ```
@@ -29,6 +33,17 @@ Configuration | Explanation
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
+
+### Forgot password email
+
+You've to change the url in the forgot password email as this points to Magento instead of Rapidez. Replace this:
+```
+{{var this.getUrl($store,'customer/account/createPassword/',[_query:[token:$customer.rp_token],_nosid:1])}}
+```
+With
+```
+https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
+```
 
 ## Elasticsearch
 
