@@ -17,6 +17,7 @@ Filter | Explanation
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
+`frontend.product.attributes` | Add product attributes to frontend
 `index.product.mapping` | Manipulate the index mapping
 `category.scopes` | Add additional global category scopes
 `routes` | Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
