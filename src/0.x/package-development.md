@@ -28,8 +28,9 @@ Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuej
 
 Event | Explanation
 :--- | :---
-`checkout-credentials-saved` | Triggered after the checkout credentials are saved
-`checkout-payment-saved` | Triggered after the payment method is saved
-`product-super-attribute-change` | Triggered after a swatch change, when calling this the product image updates based on the choice.
+`cart-refreshed` | After the cart is refreshed
+`checkout-credentials-saved` | After the checkout credentials are saved
+`checkout-payment-saved` | After the payment method is saved
+`product-super-attribute-change` | After a swatch change, when calling this the product image updates based on the choice.
 
 There is also a `doNotGoToTheNextStep` variable on the root Vue instance which can be used to prevent the checkout from going to the next step. That's also used within the [Rapidez Mollie](https://github.com/rapidez/mollie) package to prevent the checkout from going to the success page because you've to pay first and we'd like to redirect the user to the payment page.
