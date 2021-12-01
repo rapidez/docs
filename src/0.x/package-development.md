@@ -14,11 +14,12 @@ Filter | Explanation
 :--- | :---
 `product.scopes` | Add additional global product scopes
 `product.casts` | Add additional global product casts
+`product.children.select` | Manipulate the children select query
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
-`frontend.product.attributes` | Add product attributes to frontend
 `index.product.mapping` | Manipulate the index mapping
+`frontend.product.attributes` | Add product attributes to frontend
 `category.scopes` | Add additional global category scopes
 `routes` | Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
