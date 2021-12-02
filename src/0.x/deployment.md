@@ -72,3 +72,14 @@ DB_DATABASE=magento
 DB_USERNAME=magento
 DB_PASSWORD=password
 ```
+
+## Redirecting Magento to Rapidez
+
+If you want to redirect all urls (other than some specified ones) from Magento to Rapidez you can add the folowing location to your nginx configuration
+```
+location ~* ^\/(?!api|graphql|static|media|admin) {
+    return 301 $scheme://test.rapidez.io$request_uri;
+}
+```
+under the regular [Magento location directives](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222)
+This will redirect any urls not under those specified in the location, so you should change the `admin` to your admin url to make sure you can still access your Magento backend.
