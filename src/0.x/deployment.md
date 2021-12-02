@@ -6,6 +6,16 @@ Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/dep
 
 [[toc]]
 
+## Redirecting Magento to Rapidez
+
+The Magento frontend should not be accessible anymore as you're using Rapidez. But GraphQL, media, admin, etc should be reachable. Create a redirect rule to accomplish that, for example with Nginx:
+```
+location ~* ^\/(?!api|graphql|static|media|admin) {
+    return 301 $scheme://your-rapidez-url.com$request_uri;
+}
+```
+Make sure the change the admin location and url. Place this below the Magento location directives, for example [here in the sample Nginx config](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222).
+
 ## Secure Elasticsearch
 
 You've to secure your Elasticsearch instance so other people can't manipulate the data in it as it needs to be exposed for Reactive Search.
@@ -72,14 +82,3 @@ DB_DATABASE=magento
 DB_USERNAME=magento
 DB_PASSWORD=password
 ```
-
-## Redirecting Magento to Rapidez
-
-If you want to redirect all urls (other than some specified ones) from Magento to Rapidez you can add the folowing location to your nginx configuration
-```
-location ~* ^\/(?!api|graphql|static|media|admin) {
-    return 301 $scheme://test.rapidez.io$request_uri;
-}
-```
-under the regular [Magento location directives](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222)
-This will redirect any urls not under those specified in the location, so you should change the `admin` to your admin url to make sure you can still access your Magento backend.
