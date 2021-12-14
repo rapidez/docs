@@ -10,7 +10,7 @@ Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/dep
 
 The Magento frontend should not be accessible anymore as you're using Rapidez. But GraphQL, media, admin, etc should be reachable. Create a redirect rule to accomplish that, for example with Nginx:
 ```
-location ~* ^\/(?!rest|graphql|static|media|admin) {
+location ~* ^\/(?!(rest|graphql|static|media|admin)(\/|$)) {
     return 301 $scheme://your-rapidez-url.com$request_uri;
 }
 ```
