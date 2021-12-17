@@ -45,6 +45,10 @@ With
 https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
 ```
 
+### Customer Token Lifetime
+
+By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Settings > Configuration > Services > OAuth > Access Token Expiration.
+
 ## Elasticsearch
 
 To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/cviebrock/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials you can do so with these `.env` configurations:
