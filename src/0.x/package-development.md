@@ -15,6 +15,7 @@ Filter | Explanation
 `product.scopes` | Add additional global product scopes
 `product.casts` | Add additional global product casts
 `product.children.select` | Manipulate the children select query
+`quote.items.select` | Manipulate the quote items select query
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
