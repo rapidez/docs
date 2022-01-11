@@ -17,6 +17,7 @@ Filter | Explanation
 `product.children.select` | Manipulate the children select query
 `productpage.scopes` | Add product scopes only for the product page
 `productpage.frontend.attributes` | Add product attributes to the frontend
+`quote.items.select` | Manipulate the quote items select query
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
