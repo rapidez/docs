@@ -15,13 +15,15 @@ Filter | Explanation
 `product.scopes` | Add additional global product scopes
 `product.casts` | Add additional global product casts
 `product.children.select` | Manipulate the children select query
+`productpage.scopes` | Add product scopes only for the product page
+`productpage.frontend.attributes` | Add product attributes to the frontend
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
 `index.product.mapping` | Manipulate the index mapping
-`frontend.product.attributes` | Add product attributes to frontend
-`category.scopes` | Add additional global category scopes
 `routes` | Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
+
+Every models extends the [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example to the category model with `category.scopes`
 
 ## Vue Events
 
