@@ -10,6 +10,10 @@ The indexer adds the product information to an Elasticsearch index for Reactive 
 
 Run `php artisan rapidez:index` from the terminal.
 
+::: warning Using xDebug?
+It is a known problem that the indexer will run slower when xDebug is turned on. Turn xDebug off temporarily to speed up the index process.
+:::
+
 ## Scheduler
 
 If you'd like to run the indexer frequently you can schedule the `rapidez:index` command in `app/Console/Kernel.php`
