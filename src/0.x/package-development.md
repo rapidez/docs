@@ -36,5 +36,7 @@ Event | Explanation
 `checkout-credentials-saved` | After the checkout credentials are saved
 `checkout-payment-saved` | After the payment method is saved
 `product-super-attribute-change` | After a swatch change, when calling this the product image updates based on the choice.
+`logged-in` | After the user has logged in.
+`logout` | After the user attempts to log out, listen to this to clear any sensitive information about the user.
 
 There is also a `doNotGoToTheNextStep` variable on the root Vue instance which can be used to prevent the checkout from going to the next step. That's also used within the [Rapidez Mollie](https://github.com/rapidez/mollie) package to prevent the checkout from going to the success page because you've to pay first and we'd like to redirect the user to the payment page.
