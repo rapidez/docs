@@ -87,6 +87,7 @@ Another example; the "productlist" component which outputs a nice product list:
 ```
 Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
+
 ## CSS
 
 Use [TailwindCSS](https://tailwindcss.com) as we've done with the base styling or change the `webpack.mix.js` file and use whatever you want. Have a look at the [Laravel Mix docs](https://laravel.com/docs/8.x/mix) for all the available options.
