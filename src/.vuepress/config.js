@@ -59,7 +59,8 @@ module.exports = {
           children: [
             'theming',
             'package-development',
-            'graphql-components'
+            'graphql-components',
+            'extending'
           ]
         },
         {

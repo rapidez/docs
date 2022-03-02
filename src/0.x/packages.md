@@ -24,6 +24,8 @@ Core Magento functionality but not installed by default.
 
 - [Compare](https://github.com/rapidez/compare)
 - [Reviews](https://github.com/rapidez/reviews)
+- [Wishlist](https://github.com/rapidez/wishlist)
+- [Product alerts](https://github.com/rapidez/product-alert)
 
 ## Vendors
 
@@ -38,7 +40,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 ### CMS
 
-- Strapi <Badge text="Coming soon" vertical="middle"/>
+- [Strapi](https://github.com/rapidez/strapi)
 
 ### Elgentos
 
@@ -51,6 +53,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Mageplaza
 
 - [Blog](https://github.com/rapidez/mageplaza-blog)
+- Free gifts <Badge text="Coming soon" vertical="middle"/>
 
 ### MagePrince
 

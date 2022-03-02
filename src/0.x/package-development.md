@@ -12,7 +12,7 @@ This works just like any Laravel package, [read their documentation to get start
 
 Filter | Explanation
 :--- | :---
-`product.scopes` | Add additional global product scopes
+`*.scopes` | Add additional global scopes to every model available e.g. `product.scopes` or `category.scopes`
 `product.casts` | Add additional global product casts
 `product.children.select` | Manipulate the children select query
 `productpage.scopes` | Add product scopes only for the product page
