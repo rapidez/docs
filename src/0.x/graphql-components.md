@@ -48,14 +48,14 @@ Prop | Type | Explanation
 `<graphql-mutation>` component example with a newsletter subscription form:
 
 ```html
-<graphql-mutation v-cloak query="mutation { subscribeEmailToNewsletter(changes) { status } }" :alert="false" :clear="true">
-    <div slot-scope="{ mutate, changes, mutated, error }">
+<graphql-mutation v-cloak query="mutation visitor ($email: String!) { subscribeEmailToNewsletter(email: $email) { status } }" :alert="false" :clear="true">
+    <div slot-scope="{ mutate, variables, mutated, error }">
         <strong v-if="mutated">
             @lang('Thank you for subscribing!')
         </strong>
         <div v-else>
             <form v-on:submit.prevent="mutate">
-                <x-rapidez::input name="email" type="email" v-model="changes.email"/>
+                <x-rapidez::input name="email" type="email" v-model="variables.email"/>
                 <x-rapidez::button type="submit">
                     @lang('Subscribe')
                 </x-rapidez::button>
@@ -73,8 +73,7 @@ Prop | Type | Explanation
 Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | GraphQL query but the data should be replaced with `changes` so it can be replaced.
-`variables` | Object | `{}` | GraphQL variables
-`changes` | Object | `{}` | Set the default values `:changes="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
+`variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
 `clear` | Boolean | `false` | Clear the values after the mutation
