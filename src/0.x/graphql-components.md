@@ -72,7 +72,7 @@ Prop | Type | Explanation
 
 Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
-`query` | String | Required | GraphQL query but the data should be replaced with `changes` so it can be replaced.
+`query` | String | Required | The GraphQL query
 `variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
