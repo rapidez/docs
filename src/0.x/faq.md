@@ -18,7 +18,7 @@
 
 ## Are all product types supported?
 
-> Simple, configurable and downloadable product types are currently supported.
+> Simple, configurable, downloadable and grouped product types are currently supported.
 
 ## How is this different from Vue Storefront?
 
