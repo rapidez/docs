@@ -66,7 +66,15 @@ Magento widgets can be defined in the [Rapidez config](configuration.md#rapidez)
 ],
 ```
 
-They're rendered with the [widget directive](theming.md#widget). You can implement additional widgets by adding them to the configuration and creating a class. All parameters will be added to the constructor and a `render()` method should return the output. Have a look at the [existing widgets](https://github.com/rapidez/core/tree/master/src/Widgets)
+They're rendered with the [widget directive](theming.md#widget). You can implement additional widgets by adding them to the configuration and creating a class. All parameters will be added to the constructor and a `render()` method should return the output. Have a look at the [existing widgets](https://github.com/rapidez/core/tree/master/src/Widgets).
+
+If the widget doesn't need any extra logic and just needs a view with the available parameters you can just specify the view name. All parameters will be available within the `$options` variable.
+```php
+'widgets' => [
+    ...
+    'Your\Custom\Widget' => 'viewname',
+],
+```
 
 ::: tip Alternatives to Magento's CMS functionalities
 Have a look at the [CMS packages](packages.md#cms)!
