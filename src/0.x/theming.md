@@ -99,3 +99,114 @@ By default Rapidez is using the [TailwindCSS Just-in-Time Mode](https://tailwind
 ## Javascript
 
 In `resources/js/app.js` there is just a `require` so you can extend easily. If you'd like to change or overwrite something you can copy the content of the required file and change the parts you'd like.
+
+## Multistore
+
+Rapidez also has support for multiple themes!
+This is done based on the `MAGE_RUN_CODE` you pass it and configuration.
+
+### Blade
+
+In `config/rapidez.php` you can define the themes you'd like to be used per store code.
+
+An example of this configuration is:
+```php
+'themes' => [
+  'default' => resource_path('themes/default'),
+  'extra_store' => resource_path('themes/extra_store'),
+  'extra_store_nl' => resource_path('themes/extra_store'),
+],
+```
+
+In this example we have the default store using a "default" theme.
+
+And the extra store in both languages using the same "extra_store" theme since it's changes are only translations.
+
+
+The structure of your theme folder will be the same as your views folder, so overriding the views folder is as simple as copy and pasting the file with the correct folder structure.
+
+If a template does not exist in your theme it'll try your (views)[https://github.com/laravel/laravel/blob/9.x/config/view.php#L17] folder and if it does not exist in there and it is from a package it'll lasty try to load the template from the package.
+
+By default it will load your theme from `resources/themes/<theme name>` (because of the resource_path()), but this is fully customisable since it is expecting a full path to the theme folder.
+
+### Tailwind & CSS
+
+If you only want to change some tailwind colors and styling in your multistore and do not need to overwrite any templates it may be a good idea to only use a different tailwind config for this.
+
+This can be done by editing your `webpack.mix.js` to generate different css files with different tailwind configs
+```diff
+const mix = require('laravel-mix');
+const path = require('path');
+const path = require('path');
++const tailwindcss = require('tailwindcss')
++
++const cssRequires = [
++    require('@tailwindcss/nesting'),
++    require('autoprefixer'),
++    require('postcss-preset-env')
++
++];
+
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel applications. By default, we are compiling the CSS
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
+ require("@pp-spaces/laravel-mix-graphql");
+ mix
+    .setPublicPath('public')
+    .js('resources/js/app.js', 'public/js').vue()
+-   .postCss('resources/css/app.css', 'public/css', [      
+-       require('tailwindcss'),
+-       require('@tailwindcss/nesting'),        
+-       require('autoprefixer'),
+-       require('postcss-preset-env')
+-    ]))
++   .postCss('resources/css/app.<store code>.css', 'public/css',
++       cssRequires.concat([
++           tailwindcss('./tailwind.<store code>.js')
++       ])
++    )
++   .postCss('resources/css/app.<another store code>.css', 'public/css',
++       cssRequires.concat([
++           tailwindcss('./tailwind.<another store code>.js')
++       ])
++    )
+```
+
+Then you can create your different tailwind configs, e.g. updating some colors for a specific theme.
+```js
+module.exports = {
+    presets: [
+        require('./tailwind.config.js')
+    ],
+    theme: {
+        colors: {
+            blue: {
+                100: '#EAF1F4',
+                110: '#CCDFE8',
+                200: '#D0D9DC',
+                300: '#A0B1B9',
+                400: '#6A8693',
+                900: '#143F51',
+            }
+        },
+    }
+}
+```
+
+This will compile any css within `resources/css/app.<store code>.css` and tailwind into your `public/css/app.<store code>.css` folder.
+
+after which you will be able to update your `app.blade.php` with the new path to your css.
+
+```diff
+-<link href="{{ url(mix('css/app.css')) }}" rel="stylesheet" data-turbolinks-track="reload">
++<link href="{{ url(mix('css/app.'.config('rapidez.store_code').'.css')) }}" rel="stylesheet" data-turbolinks-track="reload">
+```
+
+Of course you can do this any way you want, if you want to load the same css for specific stores. Map the store code to a theme name and use that as your css file.
