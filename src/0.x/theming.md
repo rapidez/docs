@@ -137,7 +137,6 @@ This can be done by editing your `webpack.mix.js` to generate different css file
 ```diff
 const mix = require('laravel-mix');
 const path = require('path');
-const path = require('path');
 +const tailwindcss = require('tailwindcss')
 +
 +const cssRequires = [
