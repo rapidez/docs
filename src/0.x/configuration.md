@@ -31,6 +31,10 @@ Configuration | Explanation
 `catalog/seo/category_url_suffix` | Category url suffix
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
+`customer/address/middlename_show` | Show/hide middlename
+`customer/address/telephone_show` | Show/hide telephone
+`customer/address/company_show` | Show/hide company
+`customer/address/street_lines` | Show street, housenumber and/or addition
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
