@@ -77,6 +77,7 @@ Prop | Type | Default | Explanation
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
 `clear` | Boolean | `false` | Clear the values after the mutation
+`before-request` | Function(query, variables, options): [query, variables, options] | | Called before the request is sent in order to change, must return `[query, variables, options]` if used
 `callback` | Function | | Called after the mutation
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
 `recaptcha` | Boolean | `false` | Sends the `X-ReCaptcha` header with the request
