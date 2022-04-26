@@ -37,6 +37,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Labels](https://github.com/rapidez/amasty-label)
 - [Promo Banners](https://github.com/rapidez/amasty-promo-banners)
 - [Shop By Brand](https://github.com/rapidez/amasty-shop-by-brand)
+- [Custom Form](https://github.com/rapidez/amasty-custom-form)
 
 ### CMS
 
