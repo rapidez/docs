@@ -40,6 +40,10 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Shop By Brand](https://github.com/rapidez/amasty-shop-by-brand)
 - [Custom Form](https://github.com/rapidez/amasty-custom-form)
 
+### Analytics
+
+- [Google Tag Manager](https://github.com/rapidez/gtm)
+
 ### CMS
 
 - [Strapi](https://github.com/rapidez/strapi)
