@@ -47,6 +47,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### CMS
 
 - [Strapi](https://github.com/rapidez/strapi)
+- [Statamic](https://github.com/rapidez/statamic)
 
 ### Elgentos
 
