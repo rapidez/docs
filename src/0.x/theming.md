@@ -87,6 +87,9 @@ Another example; the "productlist" component which outputs a nice product list:
 ```
 Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
+## Graphql
+
+When using multiple stores, Magento uses the `Store` header to determine which store the query is for. Add the header to your allowed headers in your configuration.
 
 ## CSS
 
