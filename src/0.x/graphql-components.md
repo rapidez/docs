@@ -4,6 +4,8 @@
 
 Magento has an excellent [GraphQL](https://devdocs.magento.com/guides/v2.4/graphql/) implementation which gives you more flexibility over the [REST API](https://devdocs.magento.com/guides/v2.4/rest/bk-rest.html). Rapidez provides some handy renderless GraphQL Vue components to communicate with GraphQL.
 
+When using multiple stores, Magento uses the `Store` header to determine which store the query is for. Add the header to your allowed headers in your configuration.
+
 ::: tip Examples
 See the usage within the [Rapidez Repositories](https://github.com/search?l=Blade&q=org%3Arapidez+graphql&type=Code)
 :::
