@@ -9,7 +9,7 @@
 - [Laravel requirements](https://laravel.com/docs/8.x/installation#server-requirements)
 - PHP >= 7.4
 - MySQL >= 5.7.13
-- Elasticsearch Basic >= 7.6
+- Elasticsearch Basic >= 7.6 (NOTE: Magento does not currently support Elasticsearch 8.x)
 - Magento >= 2.4.2 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#demo-magento-2-webshop))
 
 ::: tip Elasticsearch Basic
