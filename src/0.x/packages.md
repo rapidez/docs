@@ -44,6 +44,10 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Google Tag Manager](https://github.com/rapidez/gtm)
 
+### Boldcommerce
+
+- [Order comments](https://github.com/rapidez/boldcommerce-order-comments)
+
 ### CMS
 
 - [Strapi](https://github.com/rapidez/strapi)
