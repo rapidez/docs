@@ -23,7 +23,7 @@ Filter | Explanation
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
 `index.product.mapping` | Manipulate the index mapping
-`routes` | Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
+`routes` | ([deprecated](#addfallbackroute)) Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
 Every models extends the [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example the category model: `category.scopes`
 
@@ -41,3 +41,32 @@ Event | Explanation
 `logout` | After the user attempts to log out, listen to this to clear any sensitive information about the user.
 
 There is also a `doNotGoToTheNextStep` variable on the root Vue instance which can be used to prevent the checkout from going to the next step. That's also used within the [Rapidez Mollie](https://github.com/rapidez/mollie) package to prevent the checkout from going to the success page because you've to pay first and we'd like to redirect the user to the payment page.
+
+## Fallback routing
+
+If your package cannot define it's own predefined routes you will want to start using fallback routes to check if it matches a route in e.g. your database.
+
+### addFallbackRoute
+
+If you use the `Route::fallback` you'll prevent other packages from implementing fallback routes, this is what we've created `Rapidez::addFallbackRoute()` for.
+
+You can pass controllers, functions etc. in the same way like you would with `Route::fallback` however it will check each fallback route until it finds one that does not return void or 404.
+
+You can use this function anywhere so long as it's before the fallback route is triggered, we suggest in your ServiceProvider or Routes file. ([example](https://github.com/rapidez/core/blob/aa1dbb54faed244b982f5b6198749ccf493c210a/src/RapidezServiceProvider.php#L87))
+
+The first argument to this function will be your Callable or action, the second argument will be the position or priority it has. lower means higher priority. But it is optional.
+
+::: tip
+If your check to see if it matches has a high performance impact, consider putting the position higher than `9999`.
+And caching the results.
+:::
+
+The following are all valid.
+```php
+use Rapidez\Core\Facades\Rapidez;
+
+Rapidez::addFallbackRoute(UrlRewriteController::class);
+Rapidez::addFallbackRoute('UrlRewriteController@index');
+Rapidez::addFallbackRoute([UrlRewriteController::class, 'index'], 5);
+Rapidez::addFallbackRoute(function (Request $request) {return redirect('/');}, 5);
+```
