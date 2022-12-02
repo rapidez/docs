@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- [Laravel requirements](https://laravel.com/docs/8.x/installation#server-requirements)
+- [Laravel requirements](https://laravel.com/docs/9.x/installation#server-requirements)
 - PHP >= 7.4
 - MySQL >= 5.7.13
 - Elasticsearch Basic >= 7.6 (NOTE: Magento does not currently support Elasticsearch 8.x)
