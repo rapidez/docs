@@ -13,7 +13,7 @@ By default Rapidez is optimized for Lighthouse. To keep the scores high we've li
 To improve the Lighthouse scores even more you could use Server Push because [Early Hints](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/103) is not yet integrated in all major browsers. For example with [laravel-HTTP2ServerPush](https://github.com/JacobBennett/laravel-HTTP2ServerPush) (or use [this fork](https://github.com/royduin/laravel-HTTP2ServerPush) as of [this PR](https://github.com/JacobBennett/laravel-HTTP2ServerPush/pull/52)). 
 
 ::: tip Browser cache
-If you're worried about the push that happens every page load regardless of the browser cache; Turbolinks is used so it's only pushed on the first page.
+If you're worried about the push that happens every page load regardless of the browser cache; Turbo is used so it's only pushed on the first page.
 :::
 
 ::: warning
