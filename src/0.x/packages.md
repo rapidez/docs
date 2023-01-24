@@ -23,8 +23,6 @@ Installed by default but can be removed or replaced with other packages.
 Core Magento functionality but not installed by default.
 
 - [Compare](https://github.com/rapidez/compare)
-- [Reviews](https://github.com/rapidez/reviews)
-- [Wishlist](https://github.com/rapidez/wishlist)
 - [Product alerts](https://github.com/rapidez/product-alert)
 - [Login As Customer](https://github.com/rapidez/login-as-customer)
 
