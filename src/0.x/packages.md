@@ -40,10 +40,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Shop By Brand](https://github.com/rapidez/amasty-shop-by-brand)
 - [Custom Form](https://github.com/rapidez/amasty-custom-form)
 
-### Analytics
-
-- [Google Tag Manager](https://github.com/rapidez/gtm)
-
 ### Boldcommerce
 
 - [Order comments](https://github.com/rapidez/boldcommerce-order-comments)
@@ -64,7 +60,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Mageplaza
 
 - [Blog](https://github.com/rapidez/mageplaza-blog)
-- Free gifts <Badge text="Coming soon" vertical="middle"/>
 
 ### MagePrince
 
@@ -79,6 +74,12 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Mollie](https://github.com/rapidez/mollie)
 - [Pay.nl](https://github.com/rapidez/paynl)
+- [MultiSafepay](https://github.com/rapidez/multisafepay)
+
+### Rapidez
+
+- [Google Tag Manager](https://github.com/rapidez/gtm)
+- [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 
 ### Snowdog
 
