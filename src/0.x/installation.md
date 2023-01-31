@@ -75,9 +75,6 @@ Finally when your settings are validated you should [run the Magento indexes](ht
 
 ::: warning Row size too large
 If you run into "row size too large" MySQL errors when indexing in Magento then you could install the [magento2-optimizeflattable](https://github.com/justbetter/magento2-optimizeflattable) module. If you're still running into errors you should disable the "Used in Product Listing" on "Text field" and "Multiple Select" attributes, one by one until the index is running fine.
-
-
-you disable "" for the attributes which contains the most data like descriptions until the indexes run fine.
 :::
 
 ## Multistore
