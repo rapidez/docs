@@ -74,7 +74,10 @@ All attributes with "Used in Product Listing" enabled will be indexed into Elast
 Finally when your settings are validated you should [run the Magento indexes](https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-index.html#config-cli-subcommands-index-reindex). For example with `bin/magento indexer:reindex` from your Magento installation.
 
 ::: warning Row size too large
-If you run into "Row size too large" MySQL errors when indexing in Magento then you disable "Used in Product Listing" for the attributes which contains the most data like descriptions until the indexes run fine.
+If you run into "row size too large" MySQL errors when indexing in Magento then you could install the [magento2-optimizeflattable](https://github.com/justbetter/magento2-optimizeflattable) module. If you're still running into errors you should disable the "Used in Product Listing" on "Text field" and "Multiple Select" attributes, one by one until the index is running fine.
+
+
+you disable "" for the attributes which contains the most data like descriptions until the indexes run fine.
 :::
 
 ## Multistore
