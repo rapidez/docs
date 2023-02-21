@@ -98,7 +98,39 @@ By default Rapidez is using the [TailwindCSS Just-in-Time Mode](https://tailwind
 
 ## Javascript
 
-In `resources/js/app.js` there is just an `import` so you can extend easily. If you'd like to change or overwrite something you can copy the content of the required file and change the parts you'd like.
+In `resources/js/app.js` there is a "glob import" so you can extend easily. If you'd like to change or overwrite something you can copy the content of the required file and change the parts you'd like.
+
+You might have to prevent the original from loading in by adding something like `'!Vendor/rapidez/account/resources/js/app.js',`
+
+### Autoloading Vue Components
+
+To autoload Vue components in your project we suggest creating a `components.js` which is imported by your `app.js` containing the following:
+
+```js
+(() => {
+    const components = {
+        ...import.meta.glob(['./components/*.vue', '!./components/*.lazy.vue'], { eager: true, import: 'default' }),
+        ...import.meta.glob(['./components/*.lazy.vue'], { eager: false, import: 'default' })
+    };
+    for (const path in components) {
+        Vue.component(path.split('/').pop().split('.').shift(), components[path])
+    }
+})();
+```
+
+This will automatically import and register your Vue components according to their name.
+
+e.g. `components/Listing.vue` will be available as `<listing>`
+
+and `components/LoginAsCustomer.vue` will be available as `<login-as-customer>`
+
+#### Lazyloading (importing on demand)
+
+Lazyloading these components (importing them on demand) will be handled automatically for you as well, by simply adding `.lazy` to the file extension.
+
+thus `components/Listing.lazy.vue` will still be usable like `<listing>` however this script and it's dependencies will only be downloaded when used on the page.
+
+Also when building for production it will create a separate bundle for `<listing>` and its dependencies.
 
 ## Multistore
 

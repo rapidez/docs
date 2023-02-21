@@ -68,5 +68,4 @@ use Rapidez\Core\Facades\Rapidez;
 Rapidez::addFallbackRoute(UrlRewriteController::class);
 Rapidez::addFallbackRoute('UrlRewriteController@index');
 Rapidez::addFallbackRoute([UrlRewriteController::class, 'index'], 5);
-Rapidez::addFallbackRoute(function (Request $request) {return redirect('/');}, 5);
 ```
