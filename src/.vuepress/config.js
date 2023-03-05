@@ -36,8 +36,15 @@ module.exports = {
     lastUpdated: 'Last Updated',
     smoothScroll: true,
     nav: [
+      {
+        text: 'Version',
+        items: [
+          { text: '1.x', link: '/1.x/intro' },
+          { text: '0.x', link: '/0.x/intro' },
+        ]
+      },
       { text: 'Website', link: 'https://rapidez.io' },
-      { text: 'Demo', link: 'https://demo.rapidez.io' }
+      { text: 'Demo', link: 'https://demo.rapidez.io' },
     ],
     sidebar: {
       '/0.x/': [
@@ -48,6 +55,41 @@ module.exports = {
             'intro',
             'installation',
             'configuration',
+            'deployment',
+            'faq',
+            'troubleshooting'
+          ]
+        },
+        {
+          title: 'Development',
+          collapsable: false,
+          children: [
+            'theming',
+            'package-development',
+            'graphql-components',
+            'extending',
+            'tips'
+          ]
+        },
+        {
+          title: 'Components',
+          collapsable: false,
+          children: [
+            'indexer',
+            'cache',
+            'packages'
+          ]
+        }
+      ],
+      '/1.x/': [
+        {
+          title: 'Getting started',
+          collapsable: false,
+          children: [
+            'intro',
+            'installation',
+            'configuration',
+            'upgrading',
             'deployment',
             'faq',
             'troubleshooting'
