@@ -21,3 +21,18 @@ For more information see [Task Scheduling](https://laravel.com/docs/master/sched
 ## Webhook
 
 Another option is to visit `/api/admin/index/products?token=` and append your `RAPIDEZ_TOKEN` from the `.env`. You can automate this however you want by calling the url. This can be useful when you want to trigger the indexer from an external system. Rapidez is using [`fastcgi_finish_request()`](https://www.php.net/fastcgi_finish_request) so you get a response really fast and the index process continues.
+
+## Adding actions around the indexer
+
+The indexer calls the Eventy actions `index.before` and `index.after` before and after it gets run, allowing you to include other functionality directly to the command. 
+
+You can add actions by using `Eventy::addAction` in your application boot (e.g. in `App\Providers\AppServiceProvider:boot`) like so:
+
+```php
+Eventy::addAction('index.before', function($context) {
+    $context->call('rapidez:index:sortings');
+});
+Eventy::addAction('index.after', function($context) {
+    $context->call('rapidez:index:additionals');
+});
+```
