@@ -70,3 +70,13 @@ Rapidez::addFallbackRoute('UrlRewriteController@index');
 Rapidez::addFallbackRoute([UrlRewriteController::class, 'index'], 5);
 Rapidez::addFallbackRoute(function (Request $request) {return redirect('/');}, 5);
 ```
+
+## Hooking into commands
+
+You can hook into commands by using the events that Rapidez fires. For example, if you want to fire a command that runs before the indexer, you can put the following into your AppServiceProvider.php:
+
+```php
+Event::listen(IndexBeforeEvent::class, fn($event) => $event->context->call('rapidez:index:categories'));
+```
+
+Have a look at [all of the currently available events in Rapidez](https://github.com/rapidez/core/tree/master/src/Events).
