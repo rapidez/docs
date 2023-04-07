@@ -68,6 +68,7 @@ module.exports = {
             'package-development',
             'graphql-components',
             'extending',
+            'testing',
             'tips'
           ]
         },
@@ -103,6 +104,7 @@ module.exports = {
             'package-development',
             'graphql-components',
             'extending',
+            'testing',
             'tips'
           ]
         },
