@@ -79,6 +79,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Rapidez
 
 - [Google Tag Manager](https://github.com/rapidez/gtm)
+- [OpenReplay](https://github.com/rapidez/openreplay)
 - [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 
 ### Snowdog
