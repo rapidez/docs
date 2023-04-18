@@ -35,6 +35,9 @@ location / {
         proxy_pass http://localhost:9200;
 }
 ```
+
+### Kibana
+
 - Repeat this step for Kibana which should be running on port 5601
 - Set the credentials in `kibana.yml`
 ```yaml
@@ -45,6 +48,42 @@ elasticsearch.password: "YOUR-PASSWORD"
 - Add a new role `web`. It only needs one index privilege; use `rapidez_*` for the indices and `read` as privilege.
 - Create an user `web`, password `rapidez` and the `web` role
 - Add the url to your `.env`
+
+```env
+ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
+```
+
+### No Kibana
+
+Setting up the roles and passwords without Kibana is possible too. to do so run the following commands
+
+```bash
+# Create the role `web` that may read `rapidez_*` indexes
+curl -X POST "localhost:9200/_security/role/web?pretty" -H 'Content-Type: application/json' -d'
+{
+  "indices": [
+    {
+      "names": [ "rapidez_*" ],
+      "privileges": ["read"]
+    }
+  ]
+}
+' -u username:password
+```
+
+Then create the user.
+
+```bash
+# Create the user `web` whith password `rapidez`
+curl -X POST "localhost:9200/_security/user/web?pretty" -H 'Content-Type: application/json' -d'
+{
+  "password" : "rapidez",
+  "roles" : [ "web" ]
+}
+' -u username:password
+```
+
+Finally add the url to your `.env`
 ```
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
