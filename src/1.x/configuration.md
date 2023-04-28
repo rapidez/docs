@@ -35,6 +35,7 @@ Configuration | Explanation
 `customer/address/telephone_show` | Show/hide telephone
 `customer/address/company_show` | Show/hide company
 `customer/address/street_lines` | Show street, housenumber and/or addition
+`reports/options/product_view_enabled` | Report product views
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
