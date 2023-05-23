@@ -50,6 +50,15 @@ With
 https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
 ```
 
+#### Alternatively
+
+If you set the store view base url to that of your Rapidez installation you can keep the getUrl to dynamically determine the url.
+
+```diff
+- {{var this.getUrl($store,'customer/account/createPassword/',[_query:[token:$customer.rp_token],_nosid:1])}}
++ {{var this.getUrl($store,'resetpassword',[_query:[token:$customer.rp_token],_nosid:1])}}
+```
+
 ### Customer Token Lifetime
 
 By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Settings > Configuration > Services > OAuth > Access Token Expiration.
