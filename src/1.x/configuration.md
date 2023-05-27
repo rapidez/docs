@@ -36,6 +36,7 @@ Configuration | Explanation
 `customer/address/company_show` | Show/hide company
 `customer/address/street_lines` | Show street, housenumber and/or addition
 `reports/options/product_view_enabled` | Report product views
+`cataloginventory/options/show_out_of_stock setting` | Show/hide out of stock products
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
