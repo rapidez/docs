@@ -35,6 +35,9 @@ Configuration | Explanation
 `customer/address/telephone_show` | Show/hide telephone
 `customer/address/company_show` | Show/hide company
 `customer/address/street_lines` | Show street, housenumber and/or addition
+`design/head/default_title` | The default title to use when no customized title has been set
+`design/head/title_prefix` | Prefix to give to a customized title when set
+`design/head/title_suffix` | Suffix to give to a customized title when set
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
