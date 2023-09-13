@@ -74,7 +74,7 @@ curl -X POST "localhost:9200/_security/role/web?pretty" -H 'Content-Type: applic
 Then create the user.
 
 ```bash
-# Create the user `web` whith password `rapidez`
+# Create the user `web` with password `rapidez`
 curl -X POST "localhost:9200/_security/user/web?pretty" -H 'Content-Type: application/json' -d'
 {
   "password" : "rapidez",

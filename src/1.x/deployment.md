@@ -55,7 +55,7 @@ ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 
 ### No Kibana
 
-Setting up the roles and passwords without Kibana is possible too. to do so run the following commands
+Setting up the roles and passwords without Kibana is possible too. To do so run the following commands:
 
 ```bash
 # Create the role `web` that may read `rapidez_*` indexes
@@ -74,7 +74,7 @@ curl -X POST "localhost:9200/_security/role/web?pretty" -H 'Content-Type: applic
 Then create the user.
 
 ```bash
-# Create the user `web` whith password `rapidez`
+# Create the user `web` with password `rapidez`
 curl -X POST "localhost:9200/_security/user/web?pretty" -H 'Content-Type: application/json' -d'
 {
   "password" : "rapidez",
