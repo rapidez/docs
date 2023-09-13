@@ -55,7 +55,7 @@ ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 
 ### No Kibana
 
-Setting up the roles and passwords without Kibana is possible too. to do so run the following commands
+Setting up the roles and passwords without Kibana is possible too. To do so run the following commands:
 
 ```bash
 # Create the role `web` that may read `rapidez_*` indexes
