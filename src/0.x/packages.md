@@ -53,10 +53,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Serverside Analytics](https://github.com/rapidez/elgentos-serverside-analytics)
 
-### Experius
-
-- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
-
 ### Mageplaza
 
 - [Blog](https://github.com/rapidez/mageplaza-blog)
@@ -90,3 +86,8 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Smile
 
 - [Store Locator](https://github.com/rapidez/smile-store-locator)
+
+### Zipcode providers
+
+- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
+- [Postcodeservice](https://github.com/rapidez/postcodeservice)
