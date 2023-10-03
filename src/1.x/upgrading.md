@@ -15,3 +15,4 @@ First have a look at all the changes between 0.x and 1.0 in the [changelog](http
 - Instead of accessing the user and the cart using the `$root` or `window.app` we suggest using the [stores](https://github.com/rapidez/core/tree/master/resources/js/stores) as these provide additional functionality like `clear` and `refresh`
 - lodash has been removed, if you are using it you can either reinstall it or migrate away
 - vue-async-computed has been removed, if you were using this you can either reinstall it or migrate it to [VueUse asyncComputed](https://vueuse.org/core/computedAsync/)
+- Heroicons has been upgraded to version 2, this requires some icons to be renamed in the templates, see this upgrade guide: [Heroicons upgrade guide](https://github.com/tailwindlabs/heroicons/releases/tag/v2.0.0)
