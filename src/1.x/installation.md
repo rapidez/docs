@@ -46,6 +46,12 @@ See it in the browser! 🚀
 The `rapidez/rapidez` repository contains a fresh Laravel installation with the Rapidez Core and some other packages installed to give you a good start. If you have an existing project or want to start from scratch you can install the Rapidez packages yourself. Just have a look at the `composer.json`
 :::
 
+::: tip Magento
+Rapidez has a Companion Magento module available called [Rapidez_Compadre](https://github.com/rapidez/magento2-compadre)
+This is in no way required, but adds additional functionality that we found lacking in Magento.
+Current functionality can be found [here](https://github.com/rapidez/magento2-compadre#current-functionality)
+:::
+
 ::: warning Product image speed
 The first time product images will load slowly as they are resized on the fly. Have a look at the [Image Resizer](https://github.com/rapidez/image-resizer) package to read how this is working.
 :::
