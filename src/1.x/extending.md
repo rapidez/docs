@@ -79,3 +79,17 @@ If the widget doesn't need any extra logic and just needs a view with the availa
 ::: tip Alternatives to Magento's CMS functionalities
 Have a look at the [CMS packages](packages.md#cms)!
 :::
+
+## Routes
+
+You can add any additional routes just "the Laravel way", check out the [Laravel routing docs](https://laravel.com/docs/master/routing). Additionally Rapidez adds a handy `store_code` route middleware so you can create routes for specify stores:
+```php
+Route::middleware('store_code:YOUR_STORE_CODE')->get('customroute', function () {
+    // 
+});
+```
+Alternatively you can create a custom routes file if you've multiple routes specific for a store within your `RouteServiceProvider`
+```php
+Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
+    ->group(base_path('routes/YOUR_STORE_CODE.php'));
+```
