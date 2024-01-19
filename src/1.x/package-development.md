@@ -35,6 +35,8 @@ Event | Explanation
 :--- | :---
 `cart-refreshed` | After the cart is refreshed
 `checkout-credentials-saved` | After the checkout credentials are saved
+`checkout-payment-selected` | After the payment method has been selected
+`before-checkout-payment-saved` | Before the payment method is saved (setting checkout.preventOrder to true prevents saving and creating the order alltogether)
 `checkout-payment-saved` | After the payment method is saved
 `product-super-attribute-change` | After a swatch change, when calling this the product image updates based on the choice.
 `logged-in` | After the user has logged in.
