@@ -74,7 +74,7 @@ By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/
 ```
 location = /robots.txt  { access_log off; log_not_found off; }
 ```
-The trick is to remove this line or extend it, depending on if you would want the other log configurations:
+The trick is to remove this line or extend it, depending on if you want the other log configurations:
 ```
 location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri/ /index.php?$query_string; }
 ```
