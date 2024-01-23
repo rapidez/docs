@@ -30,6 +30,7 @@ Configuration | Explanation
 `catalog/seo/product_url_suffix` | Product url suffix
 `catalog/seo/category_url_suffix` | Category url suffix
 `design/search_engine_robots/default_robots` | Meta robots tag value
+`design/search_engine_robots/custom_instructions` | Robots.txt
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
 `customer/address/middlename_show` | Show/hide middlename
 `customer/address/telephone_show` | Show/hide telephone
