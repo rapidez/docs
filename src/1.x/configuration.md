@@ -68,6 +68,17 @@ If you set the store view base url to that of your Rapidez installation you can 
 
 By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Settings > Configuration > Services > OAuth > Access Token Expiration.
 
+### Robots.txt
+
+By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/master/valet) do include a line causing this as the file could not be found:
+```
+location = /robots.txt  { access_log off; log_not_found off; }
+```
+The trick is to remove this line or extend it, depending on if you would want the other log configurations:
+```
+location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri/ /index.php?$query_string; }
+```
+
 ## Elasticsearch
 
 To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/cviebrock/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials you can do so with these `.env` configurations:
