@@ -96,8 +96,7 @@ Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
 
 ## Autocomplete
 
-The autocomplete can contain as many ES indexes as you wish. You can add these in the `frontend.php` config file. For example:
-
+The autocomplete can contain as many ElasticSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
 ```php
 'autocomplete' => [
     'additionals' => [
@@ -113,5 +112,4 @@ The autocomplete can contain as many ES indexes as you wish. You can add these i
     'limit' => 10,
 ],
 ```
-
 You can use `categories.blade.php` as an example for how to display new indexes properly in the autocomplete.
