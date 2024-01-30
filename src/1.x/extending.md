@@ -102,14 +102,14 @@ The autocomplete can contain as many ElasticSearch indexes as you wish. You can 
     'additionals' => [
         'categories' => ['name^3', 'description'],
         'blogs' => [
-            'fields': ['title', 'tags'],
-            'size': 3,
-            'sort': ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
+            'fields' => ['title', 'tags'],
+            'size' => 3,
+            'sort' => ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
         ],
     ],
 
     'debounce' => 500,
-    'limit' => 10,
+    'size' => 10,
 ],
 ```
 You can use `categories.blade.php` as an example for how to display new indexes properly in the autocomplete.
