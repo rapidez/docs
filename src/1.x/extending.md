@@ -103,7 +103,7 @@ The autocomplete can contain as many ElasticSearch indexes as you wish. You can 
         'categories' => ['name^3', 'description'],
         'blogs' => [
             'fields': ['title', 'tags'],
-            'limit': 3,
+            'size': 3,
             'sort': ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
         ],
     ],
