@@ -93,3 +93,23 @@ Alternatively you can create a custom routes file if you've multiple routes spec
 Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
     ->group(base_path('routes/YOUR_STORE_CODE.php'));
 ```
+
+## Autocomplete
+
+The autocomplete can contain as many ElasticSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
+```php
+'autocomplete' => [
+    'additionals' => [
+        'categories' => ['name^3', 'description'],
+        'blogs' => [
+            'fields' => ['title', 'tags'],
+            'size' => 3,
+            'sort' => ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
+        ],
+    ],
+
+    'debounce' => 500,
+    'size' => 10,
+],
+```
+You can use `categories.blade.php` as an example for how to display new indexes properly in the autocomplete.
