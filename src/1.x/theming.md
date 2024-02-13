@@ -71,11 +71,11 @@ Have a look at the [current widget locations](https://github.com/rapidez/core/se
 
 ## Blade Components
 
-Rapidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example the input component:
+Rapidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example the input-field component:
 ```
-<x-rapidez::input name="username"/>
+<x-rapidez::input-field name="username" :label="__('Username')"/>
 ```
-Which outputs a styled input with an id, name, type, placeholder and label (with a corresponding `for` attribute) on top.
+Which outputs a styled input with an id, name, type, placeholder and label (with a corresponding `for` attribute) on top. See also: [Input Field](#input-field)
 
 ::: tip
 Try to use these elements as much as possible so if you'd like to change the appearance you can do so at one place.
@@ -87,6 +87,65 @@ Another example; the "productlist" component which outputs a nice product list:
 ```
 Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
+## Input Field
+
+The input-field component can be very flexible:
+
+```
+<x-rapidez::input-field
+    name="username"
+    :label="__('Username')"
+    v-model="username"
+/>
+```
+
+the above code essentially expands into this:
+
+```
+<x-rapidez::input-field name="username">
+    <x-slot:label>@lang('Username')</x-slot:label>
+    <x-slot:input v-model="username"></x-slot:input>
+</x-rapidez::input-field>
+```
+
+You can also do more advanced things like:
+
+```
+<x-rapidez::input-field
+    name="email"
+    type="email"
+>
+    <x-slot:label class="text-xl"><em>Your email</em> here</x-slot:label>
+    <x-slot:input
+        class="pl-12"
+        v-bind:required="$root.loggedIn"
+        v-bind:disabled="$root.loggedIn"
+        v-bind:value="$root.user.email"
+    ></x-slot:input>
+    <x-heroicon-o-user class="pointer-events-none absolute left-3 bottom-3 h-8 w-8 peer-enabled:opacity-0" />
+    <a class="hidden absolute right-5 top-5 w-5 peer-disabled:block" href="#">
+        <x-heroicon-o-logout/>
+    </a>
+</x-rapidez::input-field>
+```
+
+Where the absolute elements are relative to the label.
+
+---
+
+Some attributes automatically get shifted to the input slot, along with any attribute that starts with `v-bind:`. Take a look at `frontend.php` to see these specific attributes.
+
+For a select, you need to use the input slot to contain the options:
+
+```
+<x-rapidez::input-field.select name="qty" v-model="addToCartSlotProps.qty">
+    <x-slot:input>
+        @for ($i = $product->qty_increments; $i <= $product->qty_increments * 10; $i += $product->qty_increments)
+            <option value="{{ $i }}">{{ $i }}</option>
+        @endfor
+    </x-slot:input>
+</x-rapidez::input-field.select>
+```
 
 ## CSS
 
