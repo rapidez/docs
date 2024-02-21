@@ -34,4 +34,4 @@
 
 ## Is it production ready?
 
-> If it fits your needs; yes. Please [let us know](https://github.com/rapidez/rapidez/discussions) if you're missing something.
+> Absolutely! Check some [showcases](https://rapidez.io/showcases) to see live projects! Please [let us know](https://github.com/rapidez/rapidez/discussions) if you're missing something.

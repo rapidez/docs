@@ -36,6 +36,7 @@ Configuration | Explanation
 `customer/address/street_lines` | Show street, housenumber and/or addition
 `reports/options/product_view_enabled` | Report product views
 `cataloginventory/options/show_out_of_stock setting` | Show/hide out of stock products
+`design/head/includes` | Additional scripts/styles in the head
 `design/head/default_title` | The default title to use when no customized title has been set
 `design/head/title_prefix` | Prefix to give to a customized title when set
 `design/head/title_suffix` | Suffix to give to a customized title when set

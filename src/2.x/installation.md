@@ -7,10 +7,10 @@
 ## Requirements
 
 - [Laravel requirements](https://laravel.com/docs/9.x/installation#server-requirements)
-- PHP >= 8.0
+- PHP >= 8.1
 - MySQL >= 5.7.13
 - Elasticsearch Basic >= 7.6 (NOTE: Magento does not currently support Elasticsearch 8.x)
-- Magento >= 2.4.4 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#demo-magento-2-webshop))
+- Magento >= 2.4.5 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#demo-magento-2-webshop))
 
 ::: tip Elasticsearch Basic
 There are multiple Elasticsearch versions and licenses, see the [subscriptions page](https://www.elastic.co/subscriptions). Rapidez requires at least the basic version which is free but not always installed by default. Make sure you use the "full" or "non-OSS" version otherwise you'll get "no handler for type flattened" errors while [indexing](indexer.md).
