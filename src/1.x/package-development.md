@@ -2,7 +2,7 @@
 
 ---
 
-This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/master/packages) and have a look at the [existing packages](packages.md) to see how things are handled.
+This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/master/packages) and have a look at the [existing packages](packages.md) to see how things are handled. You could use our [Package Template](https://github.com/rapidez/package-template) as a starting point.
 
 [[toc]]
 
@@ -35,6 +35,8 @@ Event | Explanation
 :--- | :---
 `cart-refreshed` | After the cart is refreshed
 `checkout-credentials-saved` | After the checkout credentials are saved
+`checkout-payment-selected` | After the payment method has been selected
+`before-checkout-payment-saved` | Before the payment method is saved (setting checkout.preventOrder to true prevents saving and creating the order alltogether)
 `checkout-payment-saved` | After the payment method is saved
 `product-super-attribute-change` | After a swatch change, when calling this the product image updates based on the choice.
 `logged-in` | After the user has logged in.

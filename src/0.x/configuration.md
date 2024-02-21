@@ -35,6 +35,9 @@ Configuration | Explanation
 `customer/address/telephone_show` | Show/hide telephone
 `customer/address/company_show` | Show/hide company
 `customer/address/street_lines` | Show street, housenumber and/or addition
+`design/head/default_title` | The default title to use when no customized title has been set
+`design/head/title_prefix` | Prefix to give to a customized title when set
+`design/head/title_suffix` | Suffix to give to a customized title when set
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
@@ -47,6 +50,15 @@ You've to change the url in the forgot password email as this points to Magento 
 With
 ```
 https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
+```
+
+#### Alternatively
+
+If you set the store view base url to that of your Rapidez installation you can keep the getUrl to dynamically determine the url.
+
+```diff
+- {{var this.getUrl($store,'customer/account/createPassword/',[_query:[token:$customer.rp_token],_nosid:1])}}
++ {{var this.getUrl($store,'resetpassword',[_query:[token:$customer.rp_token],_nosid:1])}}
 ```
 
 ### Customer Token Lifetime

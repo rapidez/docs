@@ -29,13 +29,19 @@ Configuration | Explanation
 `checkout/cart/redirect_to_cart` | Redirect to the cart when adding a product
 `catalog/seo/product_url_suffix` | Product url suffix
 `catalog/seo/category_url_suffix` | Category url suffix
-`design/search_engine_robots/default_robots` | Meta robots tag value
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
 `customer/address/middlename_show` | Show/hide middlename
 `customer/address/telephone_show` | Show/hide telephone
 `customer/address/company_show` | Show/hide company
 `customer/address/street_lines` | Show street, housenumber and/or addition
 `reports/options/product_view_enabled` | Report product views
+`cataloginventory/options/show_out_of_stock setting` | Show/hide out of stock products
+`design/head/includes` | Additional scripts/styles in the head
+`design/head/default_title` | The default title to use when no customized title has been set
+`design/head/title_prefix` | Prefix to give to a customized title when set
+`design/head/title_suffix` | Suffix to give to a customized title when set
+`design/search_engine_robots/default_robots` | Meta robots tag value
+`design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
@@ -50,9 +56,29 @@ With
 https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
 ```
 
+#### Alternatively
+
+If you set the store view base url to that of your Rapidez installation you can keep the getUrl to dynamically determine the url.
+
+```diff
+- {{var this.getUrl($store,'customer/account/createPassword/',[_query:[token:$customer.rp_token],_nosid:1])}}
++ {{var this.getUrl($store,'resetpassword',[_query:[token:$customer.rp_token],_nosid:1])}}
+```
+
 ### Customer Token Lifetime
 
 By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Settings > Configuration > Services > OAuth > Access Token Expiration.
+
+### Robots.txt
+
+By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/master/valet) do include a line causing this as the file could not be found:
+```
+location = /robots.txt  { access_log off; log_not_found off; }
+```
+The trick is to remove this line or extend it, depending on if you want the other log configurations:
+```
+location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri/ /index.php?$query_string; }
+```
 
 ## Elasticsearch
 

@@ -79,3 +79,37 @@ If the widget doesn't need any extra logic and just needs a view with the availa
 ::: tip Alternatives to Magento's CMS functionalities
 Have a look at the [CMS packages](packages.md#cms)!
 :::
+
+## Routes
+
+You can add any additional routes just "the Laravel way", check out the [Laravel routing docs](https://laravel.com/docs/master/routing). Additionally Rapidez adds a handy `store_code` route middleware so you can create routes for specify stores:
+```php
+Route::middleware('store_code:YOUR_STORE_CODE')->get('customroute', function () {
+    // 
+});
+```
+Alternatively you can create a custom routes file if you've multiple routes specific for a store within your `RouteServiceProvider`
+```php
+Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
+    ->group(base_path('routes/YOUR_STORE_CODE.php'));
+```
+
+## Autocomplete
+
+The autocomplete can contain as many ElasticSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
+```php
+'autocomplete' => [
+    'additionals' => [
+        'categories' => ['name^3', 'description'],
+        'blogs' => [
+            'fields' => ['title', 'tags'],
+            'size' => 3,
+            'sort' => ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
+        ],
+    ],
+
+    'debounce' => 500,
+    'size' => 10,
+],
+```
+You can use `categories.blade.php` as an example for how to display new indexes properly in the autocomplete.
