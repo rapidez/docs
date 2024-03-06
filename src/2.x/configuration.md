@@ -82,7 +82,7 @@ location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri
 
 ## Elasticsearch
 
-To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/cviebrock/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials you can do so with these `.env` configurations:
+To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials you can do so with these `.env` configurations:
 
 ```
 ELASTICSEARCH_HOST=localhost
