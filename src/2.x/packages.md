@@ -65,6 +65,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Advanced Seo Suite](https://github.com/rapidez/mirasvit-advanced-seo-suite)
 - [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
+- [Labels](https://github.com/rapidez/mirasvit-label)
 
 ### Payment providers
 
