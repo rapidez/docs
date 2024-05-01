@@ -82,3 +82,42 @@ Event::listen(IndexBeforeEvent::class, fn($event) => $event->context->call('rapi
 ```
 
 Have a look at [all of the currently available events in Rapidez](https://github.com/rapidez/core/tree/master/src/Events).
+
+## Extending Models
+
+All Rapidez models extend Rapidez' [Model](https://github.com/rapidez/core/blob/master/src/Models/Model.php)
+
+This means it implements [Macroable](https://laravel.com/api/master/Illuminate/Support/Traits/Macroable.html) making it possible to add your own functions without overwriting the Model itself!
+
+### Adding a single function
+
+Say you want to add a single function to the Product model, then you can add the following in your ServiceProvider boot method:
+
+```php
+Product::macro('myTestFunction', function () {
+  return 'completed!';
+});
+```
+
+### Adding a multiple functions
+
+If you want to add multiple functions this might get cluttered, which is where you can use mixins:
+
+```php
+Product::mixin(ProductMixin::class);
+```
+
+and any functions defined in this ProductMixin class will be available in the Product model
+
+### Adding Relationships
+
+Your package might add a new model that should be accessible from a Rapidez model.
+
+By adding the following to your ServiceProvider boot method the Product model has a `testRelation` relationship added to it:
+
+```php
+Product::resolveRelationUsing(
+    'testRelation',
+    fn (Product $product) => $product->hasMany(MyTestModel::class, 'product_id');
+);
+```
