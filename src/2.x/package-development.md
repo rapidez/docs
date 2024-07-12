@@ -121,3 +121,23 @@ Product::resolveRelationUsing(
     fn (Product $product) => $product->hasMany(MyTestModel::class, 'product_id');
 );
 ```
+
+## Notifications
+Notifications are essential for keeping users informed about important events within your application. With Rapidez, you can easily add notifications to a session, ensuring that users receive relevant messages.
+
+### Implementation
+Follow these steps to add notifications to a session:
+
+1. Add the following code to your controller function or where you want to start the session:
+```php
+return redirect('/')->with(['notification' => [
+    'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'type' => 'success',
+    'show' => true
+]]);
+```
+- `message`: The text of the notification.
+- `type`: The notification type (e.g., ‘success’, ‘error’, ‘warning’).
+- `show`: Whether the notification should be displayed immediately.
+
+2. **Displaying the Notification**: After the redirect, the notification will automatically appear for the user.
