@@ -132,12 +132,10 @@ Follow these steps to add notifications to a session:
 ```php
 return redirect('/')->with(['notification' => [
     'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    'type' => 'success',
-    'show' => true
+    'type' => 'success'
 ]]);
 ```
 - `message`: The text of the notification.
 - `type`: The notification type (e.g., ‘success’, ‘error’, ‘warning’).
-- `show`: Whether the notification should be displayed immediately.
 
 2. **Displaying the Notification**: After the redirect, the notification will automatically appear for the user.
