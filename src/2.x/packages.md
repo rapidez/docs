@@ -80,6 +80,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 - [OpenReplay](https://github.com/rapidez/openreplay)
 - [Postcodeservice](https://github.com/rapidez/postcodeservice)
+- [Sentry](https://github.com/rapidez/sentry)
 
 ### Snowdog
 
