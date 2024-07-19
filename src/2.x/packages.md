@@ -72,6 +72,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Mollie](https://github.com/rapidez/mollie)
 - [Pay.nl](https://github.com/rapidez/paynl)
 - [MultiSafepay](https://github.com/rapidez/multisafepay)
+- [Riverty](https://github.com/rapidez/riverty)
 
 ### Rapidez
 
