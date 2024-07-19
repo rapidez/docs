@@ -81,6 +81,10 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [OpenReplay](https://github.com/rapidez/openreplay)
 - [Postcodeservice](https://github.com/rapidez/postcodeservice)
 
+### Sentry
+
+- [Sentry](https://github.com/rapidez/sentry)
+
 ### Snowdog
 
 - [Menu](https://github.com/rapidez/snowdog-menu)
