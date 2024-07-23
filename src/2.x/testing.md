@@ -94,9 +94,24 @@ $browser->waitUntilTrueForDuration('true', 120, 0.5);
 
 ### Bitbucket
 
-Bitbucket pipelines unfortunately [do not support artifacts for failing tests](https://jira.atlassian.com/browse/BCLOUD-21636)
-Which means that you would not be able to see the screenshots or read the logs of failed tests.
+When using Bitbucket pipelines we recommend to use an after-script to upload the dusk result to Bitbucket.
 
-For that we have the [following script available](/run_dusktest.sh)
-
-It will echo out the logs to the pipeline, and show links to the uploaded screenshots if the pipeline fails.
+```yml
+    - step:
+        name: Dusk Tests
+        services:
+          - chrome
+        artifacts:
+          paths:
+            - .bitbucket/dusk_result/**
+        script:
+          - php artisan dusk:chrome-driver --detect
+          - php artisan serve --host=0.0.0.0 --port=80 > /dev/null 2>&1 &
+          - php artisan dusk --log-junit ./test-reports/junit.xml
+        after-script:
+          - if [ $BITBUCKET_EXIT_CODE -eq 0 ]; then exit 0; fi
+          - mkdir -p  .bitbucket/dusk_result/
+          - cp -r tests/Browser/screenshots/ .bitbucket/dusk_result/
+          - cp -r tests/Browser/console/ .bitbucket/dusk_result/
+          - cp -r storage/logs/ .bitbucket/dusk_result/
+```
