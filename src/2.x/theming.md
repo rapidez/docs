@@ -87,6 +87,40 @@ Another example; the "productlist" component which outputs a nice product list:
 ```
 Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
+## Blade Icons
+
+Rapidez comes preinstalled with [Blade Icons](https://blade-ui-kit.com/blade-icons?set=1) providing a massive library of icons you can use in your project!
+
+With many [icon packages available](https://github.com/blade-ui-kit/blade-icons#icon-packages) to get even more icons.
+
+### Icon Deferring
+
+We've added [Icon deferring](https://github.com/blade-ui-kit/blade-icons#deferring-icons) support to Blade Icons in order to reduce HTML element count when icons are used often.
+
+In Rapidez this is enabled by default instead of you having to request it. 
+
+If you would rather turn it off you can change it globally in the options by:
+
+Publishing the config `php artisan vendor:publish --tag=blade-icons`
+and adding `'defer' => false` to the `'attributes'` section within the config file
+```diff config/blade-icons.php
+ <?php
+ return [
+     ...
+     'attributes' => [
+         // 'width' => 50,
+         // 'height' => 50,
++        'defer' => false         
+     ],
+     ...
+ ];
+```
+
+or per icon:
+
+```blade
+<x-heroicon-s-heart class="h-6 w-6 text-red-600" :defer="false" />
+```
 
 ## CSS
 
