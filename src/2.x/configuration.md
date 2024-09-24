@@ -45,6 +45,8 @@ Configuration | Explanation
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
+For more advanced control and similar syntax as Magento you can also use `\Rapidez\Core\Models\Config::getValue('web/secure/base_media_url', Rapidez\Core\Models\ConfigScopes::SCOPE_STORE, $scopeId, ['cache' => true, 'decrypt' => false])`
+
 ### Forgot password email
 
 You've to change the url in the forgot password email as this points to Magento instead of Rapidez. Replace this:

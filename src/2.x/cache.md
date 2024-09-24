@@ -7,3 +7,7 @@ Rapidez caches a lot to speed things up. This means that after you've changed so
 ::: tip
 Change the `CACHE_DRIVER` in the `.env` to `null` to disable the cache while developing.
 :::
+
+## Query caching
+
+In order to reduce some often made query calls (like those for configuration) and speed these up we've added the ability to call `->getCachedForever()` on queries.
