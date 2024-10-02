@@ -67,7 +67,13 @@ If you set the store view base url to that of your Rapidez installation you can 
 
 ### Customer Token Lifetime
 
-By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Settings > Configuration > Services > OAuth > Access Token Expiration.
+By default the customer token lifetime is set to 1 hour in Magento so a customer needs to login again when the token expires in Rapidez. It's recommended to raise the expiration to for example 24 hours. See: Stores > Configuration > Services > OAuth > Access Token Expiration.
+
+### Enable Guest Checkout Login
+
+See: Stores > Configuration > Sales > Checkout > Checkout Options, but keep in mind as also mentioned there:
+
+> Enabling this setting will allow unauthenticated users to query if an e-mail address is already associated with a customer account. This can be used to enhance the checkout workflow for guests that do not realize they already have an account but comes at the cost of exposing information to unauthenticated users.
 
 ### Robots.txt
 
