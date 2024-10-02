@@ -39,6 +39,7 @@ module.exports = {
       {
         text: 'Version',
         items: [
+          { text: '3.x', link: '/3.x/intro' },
           { text: '2.x', link: '/2.x/intro' },
           { text: '1.x', link: '/1.x/intro' },
           { text: '0.x', link: '/0.x/intro' },
@@ -119,6 +120,41 @@ module.exports = {
         }
       ],
       '/2.x/': [
+        {
+          title: 'Getting started',
+          collapsable: false,
+          children: [
+            'intro',
+            'installation',
+            'configuration',
+            'upgrading',
+            'deployment',
+            'faq',
+            'troubleshooting'
+          ]
+        },
+        {
+          title: 'Development',
+          collapsable: false,
+          children: [
+            'theming',
+            'package-development',
+            'graphql-components',
+            'extending',
+            'testing'
+          ]
+        },
+        {
+          title: 'Components',
+          collapsable: false,
+          children: [
+            'indexer',
+            'cache',
+            'packages'
+          ]
+        }
+      ],
+      '/3.x/': [
         {
           title: 'Getting started',
           collapsable: false,
