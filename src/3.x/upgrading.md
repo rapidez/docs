@@ -11,6 +11,10 @@ In this release we refactored the checkout from the Magento API to GraphQL! 🚨
 - Dropped support for Magento 2.4.6, Laravel 10 and PHP 8.1
 - You should review all template changes!
 
+## Composer dependencies
+
+First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
+
 ## Frontend dependencies
 
 - `yarn add -D graphql graphql-tag universal-cookie`
