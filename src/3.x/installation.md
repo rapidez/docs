@@ -16,37 +16,38 @@
 There are multiple Elasticsearch versions and licenses, see the [subscriptions page](https://www.elastic.co/subscriptions). Rapidez requires at least the basic version which is free but not always installed by default. Make sure you use the "full" or "non-OSS" version otherwise you'll get "no handler for type flattened" errors while [indexing](indexer.md).
 :::
 
-## Create your first project
+## Install Rapidez
 
+1. **Start a fresh project**
 ```
-composer create-project rapidez/rapidez:^3.0 rapidez
+composer create-project rapidez/rapidez:^3.0 yourproject
 ```
+
+2. **Add the Magento 2 credentials**
+
+Only when you've a Magento 2 installation running; add the url and database credentials to the `.env`. Have a look at the [configuration docs](configuration.md) for all options. Otherwise we'll setup a Magento installation for you with Docker from the install command.
+
+3. **Run the install command**
+
 ```
 php artisan rapidez:install
 ```
 
-::: tip Credentials
-Add the url and database credentials from your Magento 2 installation to the `.env`. Have a look at the [configuration docs](configuration.md) for all options.
-:::
+4. **Explore**
 
-```
-yarn
-yarn run prod
-php artisan storage:link
-php artisan rapidez:validate
-php artisan rapidez:index
-```
-Use your favorite webserver (we like [Valet+](https://github.com/weprovide/valet-plus) on macOS) or use Laravel's built-in development server:
-```
-php artisan serve
-```
-See it in the browser! 🚀
+Visit Rapidez within your browser! 🚀 Plenty of options there:
 
-::: tip Note
+- [Laravel Herd](https://herd.laravel.com/)
+- [Laravel Valet](https://laravel.com/docs/master/valet)
+- `php artisan serve`
+
+---
+
+::: tip Existing Laravel project
 The `rapidez/rapidez` repository contains a fresh Laravel installation with the Rapidez Core and some other packages installed to give you a good start. If you have an existing project or want to start from scratch you can install the Rapidez packages yourself. Just have a look at the `composer.json`
 :::
 
-::: tip Magento
+::: tip Magento module
 Rapidez has a Companion Magento module available called [Rapidez_Compadre](https://github.com/rapidez/magento2-compadre)
 This is in no way required, but adds additional functionality that we found lacking in Magento.
 Current functionality can be found [here](https://github.com/rapidez/magento2-compadre#current-functionality)
