@@ -13,13 +13,42 @@ In this release we refactored the checkout from the Magento API to GraphQL! 🚨
 
 ## Composer dependencies
 
-First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
+First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/master/upgrade#main-content) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
+
+### Laravel 11
+
+With Laravel 11 a new application structure was introduced, Laravel doens't recommend to upgrade to the new structure, but as within our new `MagentoCartTokenGuard` we're using the `redirectUsing()` you've to make 1 change; remove the `redirectTo()` method from `app/Http/Middleware/Authenticate.php`:
+```code
+<?php
+
+namespace App\Http\Middleware;
+
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
+
+class Authenticate extends Middleware
+{
+    /** // [!code --]
+     * Get the path the user should be redirected to when they are not authenticated. // [!code --]
+     */ // [!code --]
+    protected function redirectTo(Request $request): ?string // [!code --]
+    { // [!code --]
+        return $request->expectsJson() ? null : route('login'); // [!code --]
+    } // [!code --]
+    //// [!code ++]
+}
+```
 
 ## Frontend dependencies
 
-- `yarn add -D graphql graphql-tag universal-cookie`
-- `yarn add -D "graphql-combine-query@indykoning/graphql-combine-query#feature/add-allowed-duplicates"`
-- `yarn build`
+1. **Install**
+```
+yarn add -D graphql graphql-tag universal-cookie "graphql-combine-query@indykoning/graphql-combine-query#feature/add-allowed-duplicates"
+```
+2. **Build**
+```
+yarn build
+```
 
 ## Checkout changes
 

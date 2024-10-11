@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- [Laravel requirements](https://laravel.com/docs/11.x/deployment#server-requirements)
+- [Laravel requirements](https://laravel.com/docs/master/deployment#server-requirements)
 - PHP >= 8.2
 - MySQL >= 8.0.28
 - Elasticsearch Basic >= 8.11
@@ -43,7 +43,7 @@ Visit Rapidez within your browser! 🚀 Plenty of options there:
 
 ---
 
-::: tip Existing Laravel project
+::: details Use in an existing Laravel project
 The `rapidez/rapidez` repository contains a fresh Laravel installation with the Rapidez Core and some other packages installed to give you a good start. If you have an existing project or want to start from scratch you can install the Rapidez packages yourself. Just have a look at the `composer.json`
 :::
 
@@ -74,13 +74,13 @@ If you're using your own Elasticsearch installation you've to open CORS in `elas
 
 The flat tables need to be enabled in Magento because Rapidez needs them to easily query for products and categories. You can follow [this guide](https://docs.magento.com/user-guide/catalog/catalog-flat.html#step-1-enable-the-flat-catalog) to enable it. After that you need to make sure the [Storefront Properties](https://docs.magento.com/user-guide/stores/attributes-product.html#storefront-properties) are configured correctly for all your attributes, you can validate the settings with `php artisan rapidez:validate`. If the result is that some attributes are not in the flat table you can enable "Used in Product Listing" on them and validate again.
 
-::: warning
+::: warning Public attribute values
 All attributes with "Used in Product Listing" enabled will be indexed into Elasticsearch. As this index is publicly available you should be careful with attributes which contain "sensitive" data like for example sale counts.
 :::
 
 Finally when your settings are validated you should [run the Magento indexes](https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-index.html#config-cli-subcommands-index-reindex). For example with `bin/magento indexer:reindex` from your Magento installation.
 
-::: warning Row size too large
+::: details Row size too large?
 If you run into "row size too large" MySQL errors when indexing in Magento then you could install the [magento2-optimizeflattable](https://github.com/justbetter/magento2-optimizeflattable) module. If you're still running into errors you should disable the "Used in Product Listing" on "Text field" and "Multiple Select" attributes, one by one until the index is running fine.
 :::
 
@@ -90,7 +90,7 @@ When you've setup multiple stores in Magento then Rapidez needs to know which st
 
 With Nginx you could use a map, for example:
 
-```
+```nginx
 map $http_host $MAGE_RUN_CODE {
     default default_store_code;
     second-store.com second_store_code;
@@ -99,7 +99,7 @@ map $http_host $MAGE_RUN_CODE {
 ```
 
 And pass that to PHP-FPM:
-```
+```nginx
 fastcgi_param MAGE_RUN_CODE $MAGE_RUN_CODE;
 ```
 

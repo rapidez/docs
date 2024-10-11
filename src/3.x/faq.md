@@ -6,15 +6,15 @@
 
 ## Why is it so fast?
 
-> Because Rapidez does not use the Magento frontend stack. Just Laravel which queries the Magento database directly and the Magento REST API / GraphQL for other parts like the cart and checkout. Category filters are so fast because of Reactive Search which uses Elasticsearch as database. For the smooth page transitions Rapidez uses Turbo.
+> Because Rapidez does not use the Magento frontend stack. Just Laravel which queries the Magento database directly and  GraphQL for other parts like the cart and checkout. Category filters are so fast because of Reactive Search which uses Elasticsearch as database. For the smooth page transitions Rapidez uses Turbo.
 
 ## Why headless and not a PWA?
 
 > Do you really need a offline experience on your webshop? PWA makes things more complicated then necessary.
 
-## Why query the Magento database instead of using GraphQL?
+## Why query the Magento database instead of using GraphQL everywhere?
 
-> Speed; and not all data is available through GraphQL. The Magento database structure hasn't changed much over the years and Rapidez is just using it to get data. For inserting and updating Rapidez uses the REST API or GraphQL.
+> Speed! The Magento database structure hasn't changed much over the years and Rapidez is just using it to read data. Changes will go through GraphQL.
 
 ## Are all product types supported?
 

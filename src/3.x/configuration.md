@@ -15,7 +15,7 @@ php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --ta
 After that you'll find all configuration options in `config/rapidez/*.php` with comments explaining the options. Most of them use the `env()` function so it's possible to have different configurations per environment in the `.env`.
 
 ::: tip
-For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/master/configuration)
+For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/master/configuration#main-content)
 :::
 
 ## Magento
@@ -77,7 +77,7 @@ See: Stores > Configuration > Sales > Checkout > Checkout Options, but keep in m
 
 ### Robots.txt
 
-By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/master/valet) do include a line causing this as the file could not be found:
+By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/master/valet#main-content) do include a line causing this as the file could not be found:
 ```
 location = /robots.txt  { access_log off; log_not_found off; }
 ```
@@ -90,7 +90,7 @@ location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri
 
 To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials you can do so with these `.env` configurations:
 
-```
+```dotenv
 ELASTICSEARCH_HOST=localhost
 ELASTICSEARCH_PORT=9200
 ELASTICSEARCH_SCHEME=

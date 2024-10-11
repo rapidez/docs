@@ -16,7 +16,7 @@ If you'd like to run the indexer frequently you can schedule the `rapidez:index`
 ```php
 $schedule->command('rapidez:index')->hourly();
 ```
-For more information see [Task Scheduling](https://laravel.com/docs/master/scheduling)
+For more information see [Task Scheduling](https://laravel.com/docs/master/scheduling#main-content)
 
 ## Webhook
 

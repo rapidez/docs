@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/10.x/testing) including [Laravel Dusk](https://laravel.com/docs/10.x/dusk#main-content) available to you.
+Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/10.x/testing) including [Laravel Dusk](https://laravel.com/docs/master/dusk#main-content) available to you.
 
 Dusk is most likely what you'll be using to write your tests.
 
@@ -52,11 +52,11 @@ After the command has finished you'll find that your `/tests/` folder contains `
 
 ### Feature tests
 
-The feature tests work exactly like Laravel does so we suggest looking through the [testing documentation](https://laravel.com/docs/10.x/testing) for that.
+The feature tests work exactly like Laravel does so we suggest looking through the [testing documentation](https://laravel.com/docs/master/testing#main-content) for that.
 
 ### Browser tests (Dusk tests)
 
-Dusk or Browser tests are also covered by the [Laravel documentation](https://laravel.com/docs/10.x/dusk). However we do have some extras to aid in testing Rapidez.
+Dusk or Browser tests are also covered by the [Laravel documentation](https://laravel.com/docs/11.x/dusk#main-content). However we do have some extras to aid in testing Rapidez.
 
 #### Additional functions
 
@@ -82,7 +82,7 @@ It will wait until no network request is active and the browser being idle for 5
 $browser->waitUntilTrueForDuration('true', 120, 0.5);
 ```
 
-[waitUntilTrueForDuration](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil](https://laravel.com/docs/10.x/dusk#waiting-on-javascript-expressions) however since sometimes the result of an expression you pass can be unstable and change to false quickly after it was true we have created a function to wait until it is true for a duration.
+[waitUntilTrueForDuration](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil](https://laravel.com/docs/master/dusk#waiting-on-javascript-expressions) however since sometimes the result of an expression you pass can be unstable and change to false quickly after it was true we have created a function to wait until it is true for a duration.
 
 | Argument | default | Description |
 |---|---|---|

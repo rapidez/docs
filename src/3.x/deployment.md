@@ -2,14 +2,14 @@
 
 ---
 
-Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/deployment) and make sure [CORS is opened up](installation.md#cors).
+Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/deployment#main-content) and make sure [CORS is opened up](installation.md#cors).
 
 [[toc]]
 
-## Redirecting Magento to Rapidez
+## Redirecting Magento
 
 The Magento frontend should not be accessible anymore as you're using Rapidez. But GraphQL, media, admin, etc should be reachable. Create a redirect rule to accomplish that, for example with Nginx:
-```
+```nginx
 location ~* ^\/(?!(rest|graphql|static|media|admin)(\/|$)) {
     return 301 $scheme://your-rapidez-url.com$request_uri;
 }
@@ -25,18 +25,22 @@ You've to secure your Elasticsearch instance so other people can't manipulate th
 - Restart Elasticsearch (with Docker: `docker restart rapidez_elasticsearch`)
 - Setup a password with `bin/elasticsearch-setup-passwords auto` (or use `interactive` to choose the passwords yourself, with Docker prepend `docker exec rapidez_elasticsearch `)
 - Add your credentials to `.env`
-```
+```dotenv
 ELASTICSEARCH_USER=elastic
 ELASTICSEARCH_PASS=YOUR-PASSWORD
 ```
 - Create a proxy (with SSL) on a subdomain
-```
+```nginx
 location / {
         proxy_pass http://localhost:9200;
 }
 ```
 
 ### Kibana
+
+::: tip No Kibana running?
+You can also secure Elasticsearch without it, see: [Without Kibana](#without-kibana)
+:::
 
 - Repeat this step for Kibana which should be running on port 5601
 - Set the credentials in `kibana.yml`
@@ -53,9 +57,9 @@ elasticsearch.password: "YOUR-PASSWORD"
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
-### No Kibana
+### Without Kibana
 
-Setting up the roles and passwords without Kibana is possible too. To do so run the following commands:
+Run the following commands:
 
 ```bash
 # Create the role `web` that may read `rapidez_*` indexes
@@ -84,7 +88,7 @@ curl -X POST "localhost:9200/_security/user/web?pretty" -H 'Content-Type: applic
 ```
 
 Finally add the url to your `.env`
-```
+```dotenv
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
@@ -95,7 +99,7 @@ This is only needed if you'd like to run the [Magento 2 demo webshop](installati
 :::
 
 Just proxy everything to a subdomain and use that domain as `MAGENTO_URL` in the `.env`. With Laravel Forge this is really easy; just create another website on your server, setup SSL and edit the Nginx config
-```
+```nginx
 location / {
     proxy_pass http://127.0.0.1:1234;
     proxy_redirect off;
@@ -113,7 +117,7 @@ location / {
 }
 ```
 Use the MySQL credentials from the container in the `.env`
-```
+```dotenv
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3307
