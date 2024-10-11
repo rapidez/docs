@@ -29,7 +29,7 @@ It's recommended to only add the views you've changed into your source control f
 Rapidez provides some Blade Directives to easily get information from Magento.
 
 ::: warning Caching
-Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](caching.md).
+Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](cache.md).
 :::
 
 ### `@config`
