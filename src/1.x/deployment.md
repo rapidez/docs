@@ -49,7 +49,7 @@ elasticsearch.password: "YOUR-PASSWORD"
 - Create an user `web`, password `rapidez` and the `web` role
 - Add the url to your `.env`
 
-```env
+```dotenv
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
