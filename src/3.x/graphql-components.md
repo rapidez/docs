@@ -32,7 +32,7 @@ Prop | Type | Default | Explanation
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Will be flushed when the [cache](cache.md) is cleared.
 `callback` | Function | | Called after the query
-`store` | String | | The store code to send with the GraphQL request
+`store` | String | `window.config.store_code` | Store code
 
 ::: tip
 With large GraphQL queries you can extract the query to a separated file, for example: `resources/views/queries/countries.graphql` and include it with: `query='@include('queries.countries')'`
