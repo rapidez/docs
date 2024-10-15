@@ -28,6 +28,7 @@ Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | GraphQL query
 `variables` | Object | `{}` | GraphQL variables
+`store` | String | `window.config.store_code` | Store code
 `check` | String | | Run a check on the response data, for example: `check="data.countries[0] == 'Country'"`
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Will be flushed when the [cache](cache.md) is cleared.
@@ -74,6 +75,7 @@ Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | The GraphQL query
 `variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql-components.md#query) component
+`store` | String | `window.config.store_code` | Store code
 `watch` | Boolean | `true` | Should the `variables` be watched?
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
