@@ -32,6 +32,7 @@ Prop | Type | Default | Explanation
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Will be flushed when the [cache](cache.md) is cleared.
 `callback` | Function | | Called after the query
+`store` | String | `window.config.store_code` | Store code
 
 ::: tip
 With large GraphQL queries you can extract the query to a separated file, for example: `resources/views/queries/countries.graphql` and include it with: `query='@include('queries.countries')'`
@@ -80,6 +81,7 @@ Prop | Type | Default | Explanation
 `clear` | Boolean | `false` | Clear the values after the mutation
 `before-request` | Function(query, variables, options): [query, variables, options] | | Called before the request is sent in order to change, must return `[query, variables, options]` if used
 `callback` | Function | | Called after the mutation
+`store` | String | `window.config.store_code` | Store code
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
 `recaptcha` | Boolean | `false` | Sends the `X-ReCaptcha` header with the request
 
