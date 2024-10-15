@@ -81,7 +81,7 @@ Prop | Type | Default | Explanation
 `clear` | Boolean | `false` | Clear the values after the mutation
 `before-request` | Function(query, variables, options): [query, variables, options] | | Called before the request is sent in order to change, must return `[query, variables, options]` if used
 `callback` | Function | | Called after the mutation
-`store` | String | | The store code to send with the GraphQL request
+`store` | String | `window.config.store_code` | Store code
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
 `recaptcha` | Boolean | `false` | Sends the `X-ReCaptcha` header with the request
 
