@@ -124,17 +124,16 @@ In `resources/js/app.js` there is just an `import` so you can extend easily. If 
 
 ## Multistore
 
-Rapidez also has support for multiple themes!
-This is done based on the `MAGE_RUN_CODE` you pass it and configuration.
+Rapidez also has support for multiple themes! This is based on the `MAGE_RUN_CODE`.
 
 ### Blade
 
-In `config/rapidez.php` you can define the themes you'd like to be used per store code. An example of this configuration is:
+In `config/rapidez.php` you can define the themes you'd like to be used per store code:
 ```php
 'themes' => [
-  'default' => resource_path('themes/default'),
-  'extra_store' => resource_path('themes/extra_store'),
-  'extra_store_nl' => resource_path('themes/extra_store'),
+    'default' => resource_path('themes/default'),
+    'extra_store' => resource_path('themes/extra_store'),
+    'extra_store_nl' => resource_path('themes/extra_store'),
 ],
 ```
 
@@ -145,7 +144,9 @@ The structure of your theme folder will be the same as your views folder, so ove
 
 ### Tailwind & CSS
 
-If you only want to change some tailwind colors and styling in your multistore and do not need to overwrite any templates, it may be a good idea to only use a different tailwind config. This can be done by editing your `vite.config.js` to generate different css files with different tailwind configs
+If you only want to change some Tailwind colors and styling in your multistore and do not need to overwrite any templates, it may be a good idea to only use a different Tailwind config. This can be done by editing your Vite config to generate different CSS files with different Tailwind configs.
+
+1. **`vite.config.js`**
 ```js
 export default defineConfig({
     plugins: [
@@ -158,18 +159,19 @@ export default defineConfig({
             ],
 ```
 
-Then create your `resources/css/app.<store_code>.css` and import a config css file you will create for it at the top.
+
+2. **`resources/css/app.<store_code>.css`**
 ```css
 @import "./<store_code>/config.css";
 @import "./app.css";
 ```
 
-And your `resources/css/<store_code>/config.css` and use tailwinds config directive which will compile this theme using that config.
+3. **`resources/css/<store_code>/config.css`**
 ```css
 @config "../../../tailwind.<store_code>.js";
 ```
 
-Then you can create your different Tailwind configs, e.g. updating some colors for a specific theme.
+4. **`tailwind.<store_code>.js`**
 ```js
 module.exports = {
     presets: [
@@ -190,17 +192,13 @@ module.exports = {
 }
 ```
 
-This will compile any css within `resources/css/app.<store code>.css` and tailwind into your `public/css/app.<store code>.css` folder. After which you will be able to update your `app.blade.php` with the new path to your css.
-
+5. **`resources/views/layouts/app.blade.php`**
 ```blade
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
 @vite([
-  'resources/css/app.css',// [!code --]
-  'resources/css/app.' . config('rapidez.store_code') . '.css',// [!code ++]
-  'resources/js/app.js'
+    'resources/css/app.css',// [!code --]
+    'resources/css/app.' . config('rapidez.store_code') . '.css',// [!code ++]
+    'resources/js/app.js'
 ])
 ```
 
-Of course you can do this any way you want, if you want to load the same css for specific stores. Map the store code to a theme name and use that as your css file.
+Of course you can do this any way you want, if you want to load the same CSS for specific stores. Map the store code to a theme name and use that as your CSS file.

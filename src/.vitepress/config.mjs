@@ -82,7 +82,7 @@ export default defineConfig({
           items: [
             { text: 'Theming', link: '/0.x/theming' },
             { text: 'Package development', link: '/0.x/package-development' },
-            { text: 'Graphql components', link: '/0.x/graphql-components' },
+            { text: 'GraphQL components', link: '/0.x/graphql-components' },
             { text: 'Extending', link: '/0.x/extending' },
             { text: 'Testing', link: '/0.x/testing' },
             { text: 'Tips', link: '/0.x/tips' },
@@ -118,7 +118,7 @@ export default defineConfig({
           items: [
             { text: 'Theming', link: '/1.x/theming' },
             { text: 'Package development', link: '/1.x/package-development' },
-            { text: 'Graphql components', link: '/1.x/graphql-components' },
+            { text: 'GraphQL components', link: '/1.x/graphql-components' },
             { text: 'Extending', link: '/1.x/extending' },
             { text: 'Testing', link: '/1.x/testing' },
           ]
@@ -153,7 +153,7 @@ export default defineConfig({
           items: [
             { text: 'Theming', link: '/2.x/theming' },
             { text: 'Package development', link: '/2.x/package-development' },
-            { text: 'Graphql components', link: '/2.x/graphql-components' },
+            { text: 'GraphQL components', link: '/2.x/graphql-components' },
             { text: 'Extending', link: '/2.x/extending' },
             { text: 'Testing', link: '/2.x/testing' },
           ]
@@ -188,7 +188,7 @@ export default defineConfig({
           items: [
             { text: 'Theming', link: '/3.x/theming' },
             { text: 'Package development', link: '/3.x/package-development' },
-            { text: 'Graphql components', link: '/3.x/graphql-components' },
+            { text: 'GraphQL components', link: '/3.x/graphql-components' },
             { text: 'Extending', link: '/3.x/extending' },
             { text: 'Testing', link: '/3.x/testing' },
           ]

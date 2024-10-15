@@ -31,12 +31,13 @@ class Product extends BaseProduct {
 }
 ```
 
-Then change it in the configuration file:
+And change it in the configuration file:
 
 ```php
 'models' => [
     ...
-    'product'      => App\Models\Product::class,
+    'product'      => Rapidez\Core\Models\Product::class,// [!code --]
+    'product'      => App\Models\Product::class,// [!code ++]
     ...
 ]
 ```

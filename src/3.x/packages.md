@@ -7,7 +7,7 @@ In addition to the Rapidez Core we've created some packages.
 [[toc]]
 
 ::: tip Created a package?
-[Edit this page](https://github.com/rapidez/docs/edit/master/src/0.x/packages.md) and add yours!
+[Edit this page](https://github.com/rapidez/docs/edit/master/src/3.x/packages.md) and add yours!
 :::
 
 ## Base
@@ -30,7 +30,7 @@ Core Magento functionality but not installed by default.
 
 ## Vendors
 
-Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Have a look at the [package development docs](package-development.md).
+Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Check the [package development docs](package-development.md).
 
 ### Amasty
 
