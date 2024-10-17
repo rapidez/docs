@@ -137,7 +137,7 @@ In `config/rapidez.php` you can define the themes you'd like to be used per stor
 ],
 ```
 
-In this example we have the default store using a "default" theme. The extra store in both languages using the same "extra_store" theme since it's changes are only translations.
+In this example we have the default store using a "default" theme. The extra store in both languages using the same "extra_store" theme since its changes are only translations.
 
 
 The structure of your theme folder will be the same as your views folder, so overriding the views folder is as simple as copy and pasting the file with the correct folder structure.
@@ -202,3 +202,7 @@ module.exports = {
 ```
 
 Of course you can do this any way you want, if you want to load the same CSS for specific stores. Map the store code to a theme name and use that as your CSS file.
+
+## Translations
+
+The core---alongside other relevant Rapidez packages---will come with standard translations into Dutch for every translation string contained inside (see `lang/nl.json`). You can copy them to your project's own translation file to create your own translations or override some of these if necessary.
