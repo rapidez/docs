@@ -205,4 +205,10 @@ Of course you can do this any way you want, if you want to load the same CSS for
 
 ## Translations
 
-The core---alongside other relevant Rapidez packages---will come with standard translations into Dutch for every translation string contained inside (see `lang/nl.json`). You can copy them to your project's own translation file to create your own translations or override some of these if necessary.
+Just create a json file for your language within the `lang` directory, for example: `/lang/de.json`. As an example have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information read the [Laravel Localization docs](https://laravel.com/docs/master/localization).
+
+In the core we also have a `frontend.php` translation file per language, these translations will be available from Javascript with: `config.translations.key`. To publish them to your project use:
+
+```bash
+php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=rapidez-translations
+```
