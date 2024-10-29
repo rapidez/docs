@@ -137,7 +137,7 @@ In `config/rapidez.php` you can define the themes you'd like to be used per stor
 ],
 ```
 
-In this example we have the default store using a "default" theme. The extra store in both languages using the same "extra_store" theme since it's changes are only translations.
+In this example we have the default store using a "default" theme. The extra store in both languages using the same "extra_store" theme since its changes are only translations.
 
 
 The structure of your theme folder will be the same as your views folder, so overriding the views folder is as simple as copy and pasting the file with the correct folder structure.
@@ -202,3 +202,13 @@ module.exports = {
 ```
 
 Of course you can do this any way you want, if you want to load the same CSS for specific stores. Map the store code to a theme name and use that as your CSS file.
+
+## Translations
+
+Just create a json file for your language within the `lang` directory, for example: `/lang/de.json`. As an example have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information read the [Laravel Localization docs](https://laravel.com/docs/master/localization).
+
+In the core we also have a `frontend.php` translation file per language, these translations will be available from Javascript with: `config.translations.key`. To publish them to your project use:
+
+```bash
+php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=rapidez-translations
+```
