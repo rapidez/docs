@@ -29,7 +29,7 @@ Prop | Type | Default | Explanation
 `query` | String | Required | GraphQL query
 `variables` | Object | `{}` | GraphQL variables
 `store` | String | `window.config.store_code` | Store code
-`group` | String | | Bundle queries by a name into 1 request
+[`group`](#group) | String | | Bundle queries by a name into 1 request [see: group](#group)
 `check` | String | | Run a check on the response data, for example: `check="data.countries[0] == 'Country'"`
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Flushes when the [cache](cache.md) is cleared.
@@ -78,7 +78,7 @@ Prop | Type | Default | Explanation
 `query` | String | Required | The GraphQL query
 `variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql-components.md#query) component
 `store` | String | `window.config.store_code` | Store code
-`group` | String | | Bundle queries by a name into 1 request
+[`group`](#group) | String | | Bundle queries by a name into 1 request [see: group](#group)
 `watch` | Boolean | `true` | Should the `variables` be watched?
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
@@ -102,3 +102,83 @@ Prop | Type | Explanation
 `error` | String | The error message if the GraphQL request failed
 `variables` | Object | GraphQL variables
 `watch` | Boolean | Can be used to toggle the `watch` prop
+
+## General
+
+### Group
+
+Imagine you want to send many GraphQL requests at the same time, do you think it will be faster to send them all separately or in a single request?
+
+GraphQL supports sending as many queries together as you like! 
+
+Increasing performance of your query calls, and possibly improving stability as well!
+
+So we've added the feature to be able to do this automatically!
+
+by adding a `group="your-group-name"` to your graphql components they will automatically be merged into a single request if they would've been sent at the same time.
+
+You can create as many groups as you like. 
+
+Alternatively you can use the `combiningGraphQL` function in js.
+```js
+import { combiningGraphQL } from 'Vendor/rapidez/core/resources/js/fetch'
+
+const response = await combiningGraphQL(query, variables, {}, group)
+```
+
+#### Caveats
+
+There are some caveats to using this though:
+
+1. Mutations and Queries can not be combined, you should give them their own name.
+2. If you're sending variables they **can not** have the same name, if they conflict in name an error will be thrown.
+  The only variable where this is allowed, is `cart_id`
+
+### submitFieldsets
+
+If you have multiple graphql components which may or may not exist on the page, that need to all be executed before continuing in a form `submitFieldsets` can help.
+
+`submitFieldsets` is being used in order to make the onestepcheckout to multiplestepcheckout work without having to recreate the form fieldsets for every combination.
+
+The way it works is that you call `submitFieldsets(element)` when you want to call all `data-function` functions within that element.
+
+then you can chain `.then()` in order to do what should happen when all functions have successfully completed.
+
+`data-function` **must** always be on the direct child of a Vue component, and have it's original function name. Here are some examples:
+
+```html
+<!-- Correct -->
+<graphql ...>
+  <div data-function="mutate">...</div>
+</graphql>
+<!-- Correct -->
+<graphql ...>
+  <fieldset data-function="mutate">...</fieldset>
+</graphql>
+<!-- Inorrect -->
+<graphql ...>
+  <fieldset>
+    <div data-function="mutate">
+      ...
+    </div>
+  </fieldset>
+</graphql>
+<!-- Inorrect -->
+<graphql ...>
+  <fieldset v-slot={ mutate: save } data-function="save">...</fieldset>
+</graphql>
+```
+
+An example of how it can be implemented:
+
+```html
+<form v-on:sumbit.prevent="v-on:submit.prevent="(e) => {submitFieldsets(e.target?.form ?? e.target).then((result) => window.Turbo.visit('/success')).catch()}">
+  <graphql ...>
+    <fieldset data-function="mutate">...</fieldset>
+  </graphql>
+  <graphql ...>
+    <fieldset data-function="mutate">...</fieldset>
+  </graphql>
+  <button type="submit">Save</button>
+</form>
+```
