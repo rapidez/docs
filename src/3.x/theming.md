@@ -2,7 +2,7 @@
 
 ---
 
-The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, css and js like a theme.
+The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, CSS and Javascript like a theme.
 
 ::: tip
 Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade#main-content) before you begin.
@@ -23,6 +23,18 @@ After that you'll find all the Rapidez Core views in `resources/views/vendor/rap
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view it's a good idea to add the unchanged version to version control before you make any changes.
 :::
+
+## CSS
+
+We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/master/vite#main-content) so probably you don't need to touch the CSS, but if you need to add a simple class the "starting point" is `resources/css/app.css`. From there we include the core styling and that's where the color variables can be defined. For any Tailwind changes you'll need to be within the `tailwind.config.js`.
+
+::: details But... I don't like Tailwind CSS
+If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages so we don't recommend it. Just clear out the `resources/css/app.css` and write your own.
+:::
+
+## Javascript
+
+From `resources/js/app.js` we automatically import everything. Just extend from there. If you need additional Vue components read the [readme within the components folder](https://github.com/rapidez/rapidez/blob/master/resources/js/components/README.md).
 
 ## Blade Directives
 
@@ -114,13 +126,17 @@ Or per icon:
 <x-heroicon-s-heart class="h-6 w-6 text-red-600" :defer="false" />
 ```
 
-## CSS
+## Vue Directives
 
-Use [Tailwind CSS](https://tailwindcss.com) as we've done with the base styling or change the `vite.config.js` file and use whatever you want. Have a look at the [Laravel Vite docs](https://laravel.com/docs/master/vite#main-content) for all the available options.
+On top of Vue we've added some extra directives.
 
-## Javascript
+### `v-blur`
 
-In `resources/js/app.js` there is just an `import` so you can extend easily. If you'd like to change or overwrite something you can copy the content of the required file and change the parts you'd like.
+Just like [v-cloak](https://v2.vuejs.org/v2/api/#v-cloak) but instead of hiding, the element will be blurred. Useful if you don't like to have any layout shifts.
+
+### `v-on-click-away`
+
+Using [vue-clickaway](https://github.com/simplesmiler/vue-clickaway) enabling you to close something if you click away from the element, [example can be found within the core](https://github.com/search?q=repo%3Arapidez%2Fcore%20v-on-click-away&type=code).
 
 ## Multistore
 
