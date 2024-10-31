@@ -125,3 +125,21 @@ return redirect('/')->with(['notification' => [
 ```
 
 By default there are 4 types: `info`, `success`, `warning` and `error`. The style differences are defined in the [frontend config](https://github.com/rapidez/core/blob/master/config/rapidez/frontend.php), everything else is in the [Blade template](https://github.com/rapidez/core/blob/master/resources/views/components/notifications.blade.php).
+
+### Html Attributes
+
+To aid in development we've added some html attributes you can use.
+
+#### v-blur
+
+Have you used Vue's built in [v-cloak function](https://vuejs.org/api/built-in-directives.html#v-cloak) but seeing that cause layout shifts?
+
+Do you still want to hide the content when it's not ready yet without causing the layout to shift?
+
+Introducing `v-blur`, while Vue has not bootstrapped and replaced the content it will blur the contents and place a pulse animation on the html element you placed it on.
+
+This way the element (and possibly it's content) is still there, without being visible to the user before being replaced.
+
+Our suggestion is still to try and render the defaults using blade, and then replacing the content with more current information using `v-text`.
+
+But in places where that does not make sense, `v-blur` will cause a better user experience and experienced performance than `v-cloak`.
