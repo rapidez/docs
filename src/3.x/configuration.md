@@ -24,24 +24,25 @@ Some Magento configuration options involve the frontend, as the Magento frontend
 
 Configuration | Explanation
 :--- | :---
-`general/locale/code` | Locale
-`currency/options/default` | Currency
-`checkout/cart/redirect_to_cart` | Redirect to the cart when adding a product
-`catalog/seo/product_url_suffix` | Product url suffix
-`catalog/seo/category_url_suffix` | Category url suffix
 `catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
-`customer/address/middlename_show` | Show/hide middlename
-`customer/address/telephone_show` | Show/hide telephone
-`customer/address/company_show` | Show/hide company
-`customer/address/street_lines` | Show street, housenumber and/or addition
-`reports/options/product_view_enabled` | Report product views
+`catalog/seo/category_url_suffix` | Category url suffix
+`catalog/seo/product_url_suffix` | Product url suffix
 `cataloginventory/options/show_out_of_stock setting` | Show/hide out of stock products
-`design/head/includes` | Additional scripts/styles in the head
+`checkout/cart/redirect_to_cart` | Redirect to the cart when adding a product
+`currency/options/default` | Currency
+`customer/address/company_show` | Show/hide company
+`customer/address/middlename_show` | Show/hide middlename
+`customer/address/street_lines` | Show street, housenumber and/or addition
+`customer/address/telephone_show` | Show/hide telephone
+`design/head/default_description` | The default meta description to use on a page when no customized meta description has been set
 `design/head/default_title` | The default title to use when no customized title has been set
+`design/head/includes` | Additional scripts/styles in the head
 `design/head/title_prefix` | Prefix to give to a customized title when set
 `design/head/title_suffix` | Suffix to give to a customized title when set
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
+`general/locale/code` | Locale
+`reports/options/product_view_enabled` | Report product views
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
