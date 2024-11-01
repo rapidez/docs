@@ -33,15 +33,18 @@ Configuration | Explanation
 `customer/address/middlename_show` | Show/hide middlename
 `customer/address/telephone_show` | Show/hide telephone
 `customer/address/company_show` | Show/hide company
+`customer/address/taxvat_show` | Show/hide VAT on address forms
 `customer/address/street_lines` | Show street, housenumber and/or addition
+`customer/create_account/vat_frontend_visibility` | Show/hide VAT during registration
 `reports/options/product_view_enabled` | Report product views
-`cataloginventory/options/show_out_of_stock setting` | Show/hide out of stock products
+`cataloginventory/options/show_out_of_stock` | Show/hide out of stock products
 `design/head/includes` | Additional scripts/styles in the head
 `design/head/default_title` | The default title to use when no customized title has been set
 `design/head/title_prefix` | Prefix to give to a customized title when set
 `design/head/title_suffix` | Suffix to give to a customized title when set
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
+`web/secure/base_url` | See [base url](configuration.html#base-url)
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
@@ -58,12 +61,24 @@ https://your-rapidez-url.com/resetpassword?token={{var customer.rp_token}}
 
 #### Alternatively
 
-If you set the store view base url to that of your Rapidez installation you can keep the getUrl to dynamically determine the url.
+If you [set the store view base url to that of your Rapidez installation](configuration.html#base-url) you can keep the getUrl to dynamically determine the url.
 
 ```diff
 - {{var this.getUrl($store,'customer/account/createPassword/',[_query:[token:$customer.rp_token],_nosid:1])}}
 + {{var this.getUrl($store,'resetpassword',[_query:[token:$customer.rp_token],_nosid:1])}}
 ```
+
+### Base Url
+
+If you configure `web/secure/base_url` at the Store View level to be that of your Rapidez installation, your emails will automatically have the correct urls set.
+:::info
+It may also get used by packages like [rapidez/statamic](https://github.com/rapidez/statamic) to automatically use the correct url.
+:::
+
+We suggest keeping `web/secure/base_url` at the Website level to link to your Magento url.
+:::info
+If the website base url differs from the Rapidez url it will automatically use that as Magento and Media url.
+:::
 
 ### Customer Token Lifetime
 
