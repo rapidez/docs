@@ -111,19 +111,19 @@ With the `group` prop you're able to bundle multiple GraphQL requests into 1 to 
 You can not combine mutations and queries. Variable names should be unique, except `cart_id`
 :::
 
-We also provide a `submitFieldsets()` helper which can be used to submit multiple queries and have a callback when they're all finished. This is used in the onestep checkout to submit each section and only continue to the success page when everything is finished.
+We also provide a `submitPartials()` helper which can be used to submit multiple queries and have a callback when they're all finished. This is used in the onestep checkout to submit each section and only continue to the success page when everything is finished.
 
 ```html
 <form v-on:sumbit.prevent="(e) => {
-    submitFieldsets(e.target?.form ?? e.target)
+    submitPartials(e.target?.form ?? e.target)
         .then((result) => window.Turbo.visit('/success'))
         .catch()
 }">
     <graphql ...>
-        <fieldset data-function="mutate">...</fieldset>
+        <fieldset partial-submit="mutate">...</fieldset>
     </graphql>
     <graphql ...>
-        <fieldset data-function="mutate">...</fieldset>
+        <fieldset partial-submit="mutate">...</fieldset>
     </graphql>
     <button type="submit">Save</button>
 </form>
@@ -134,24 +134,24 @@ We also provide a `submitFieldsets()` helper which can be used to submit multipl
 
 
 ::: warning Keep in mind
-`data-function` **must** always be on the direct child of a Vue component, and have it's original function name.
+`partial-submit` **must** always be on the direct child of a Vue component, and have it's original function name.
 
 ::: details Example
 ```html
 <!-- Correct -->
 <graphql ...>
-    <div data-function="mutate">...</div>
+    <div partial-submit="mutate">...</div>
 </graphql>
 
 <!-- Correct -->
 <graphql ...>
-    <fieldset data-function="mutate">...</fieldset>
+    <fieldset partial-submit="mutate">...</fieldset>
 </graphql>
 
 <!-- Inorrect -->
 <graphql ...>
     <fieldset>
-        <div data-function="mutate">
+        <div partial-submit="mutate">
             ...
         </div>
     </fieldset>
@@ -159,7 +159,7 @@ We also provide a `submitFieldsets()` helper which can be used to submit multipl
 
 <!-- Inorrect -->
 <graphql ...>
-    <fieldset v-slot={ mutate: save } data-function="save">...</fieldset>
+    <fieldset v-slot={ mutate: save } partial-submit="save">...</fieldset>
 </graphql>
 ```
 :::
