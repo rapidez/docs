@@ -29,7 +29,7 @@ Prop | Type | Default | Explanation
 `query` | String | Required | GraphQL query
 `variables` | Object | `{}` | GraphQL variables
 `store` | String | `window.config.store_code` | Store code
-`group` | String | | Bundle queries by a name into 1 request
+[`group`](#grouping) | String | | Bundle queries by a name into 1 request [see: group](#grouping)
 `check` | String | | Run a check on the response data, for example: `check="data.countries[0] == 'Country'"`
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Flushes when the [cache](cache.md) is cleared.
@@ -78,7 +78,7 @@ Prop | Type | Default | Explanation
 `query` | String | Required | The GraphQL query
 `variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql-components.md#query) component
 `store` | String | `window.config.store_code` | Store code
-`group` | String | | Bundle queries by a name into 1 request
+[`group`](#grouping) | String | | Bundle queries by a name into 1 request [see: group](#grouping)
 `watch` | Boolean | `true` | Should the `variables` be watched?
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs
@@ -102,3 +102,64 @@ Prop | Type | Explanation
 `error` | String | The error message if the GraphQL request failed
 `variables` | Object | GraphQL variables
 `watch` | Boolean | Can be used to toggle the `watch` prop
+
+## Grouping
+
+With the `group` prop you're able to bundle multiple GraphQL requests into 1 to increasing performance. When one of them get's executed the combined query will be send.
+
+::: warning Note
+You can not combine mutations and queries. Variable names should be unique, except `cart_id`
+:::
+
+We also provide a `submitPartials()` helper which can be used to submit multiple queries and have a callback when they're all finished. This is used in the onestep checkout to submit each section and only continue to the success page when everything is finished.
+
+```html
+<form v-on:sumbit.prevent="(e) => {
+    submitPartials(e.target?.form ?? e.target)
+        .then((result) => window.Turbo.visit('/success'))
+        .catch()
+}">
+    <graphql ...>
+        <fieldset partial-submit="mutate">...</fieldset>
+    </graphql>
+    <graphql ...>
+        <fieldset partial-submit="mutate">...</fieldset>
+    </graphql>
+    <button type="submit">Save</button>
+</form>
+```
+
+
+
+
+
+::: warning Keep in mind
+`partial-submit` **must** always be on the direct child of a Vue component, and have it's original function name.
+
+::: details Example
+```html
+<!-- Correct -->
+<graphql ...>
+    <div partial-submit="mutate">...</div>
+</graphql>
+
+<!-- Correct -->
+<graphql ...>
+    <fieldset partial-submit="mutate">...</fieldset>
+</graphql>
+
+<!-- Inorrect -->
+<graphql ...>
+    <fieldset>
+        <div partial-submit="mutate">
+            ...
+        </div>
+    </fieldset>
+</graphql>
+
+<!-- Inorrect -->
+<graphql ...>
+    <fieldset v-slot={ mutate: save } partial-submit="save">...</fieldset>
+</graphql>
+```
+:::
