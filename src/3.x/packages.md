@@ -24,11 +24,14 @@ Core Magento functionality but not installed by default.
 
 - [Compare](https://github.com/rapidez/compare)
 - [Reviews](https://github.com/rapidez/reviews)
-- [Wishlist](https://github.com/rapidez/wishlist)
+- [Wishlist](#wishlists)
 - [Product alerts](https://github.com/rapidez/product-alert)
 - [Login As Customer](https://github.com/rapidez/login-as-customer)
+- [MSI](https://github.com/rapidez/msi)
 
 ## Checkout
+
+Opinionated checkout packages.
 
 - [Checkout Theme](https://github.com/rapidez/checkout-theme/)
 - [Confira](https://github.com/rapidez/confira)
@@ -39,6 +42,26 @@ Core Magento functionality but not installed by default.
 - [Pay.nl](https://github.com/rapidez/paynl)
 - [MultiSafepay](https://github.com/rapidez/multisafepay)
 - [Riverty](https://github.com/rapidez/riverty)
+
+## CMS
+
+- [Strapi](https://github.com/rapidez/strapi)
+- [Statamic](https://github.com/rapidez/statamic)
+
+## Marketing
+
+- [Google Tag Manager](https://github.com/rapidez/gtm)
+
+## Monitoring
+
+- [OpenReplay](https://github.com/rapidez/openreplay)
+- [Sentry](https://github.com/rapidez/sentry)
+
+## Wishlists
+
+- [Default](https://github.com/rapidez/wishlist)
+- [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
+- [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 
 ## Zipcode providers
 
@@ -61,11 +84,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Order comments](https://github.com/rapidez/boldcommerce-order-comments)
 
-### CMS
-
-- [Strapi](https://github.com/rapidez/strapi)
-- [Statamic](https://github.com/rapidez/statamic)
-
 ### Elgentos
 
 - [Serverside Analytics](https://github.com/rapidez/elgentos-serverside-analytics)
@@ -83,14 +101,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Advanced Seo Suite](https://github.com/rapidez/mirasvit-advanced-seo-suite)
 - [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
 - [Labels](https://github.com/rapidez/mirasvit-label)
-
-### Rapidez
-
-- [Google Tag Manager](https://github.com/rapidez/gtm)
-- [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
-- [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
-- [OpenReplay](https://github.com/rapidez/openreplay)
-- [Sentry](https://github.com/rapidez/sentry)
 
 ### Snowdog
 
