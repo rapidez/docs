@@ -28,6 +28,7 @@ You could also add the `store_code` to the `disabled_sites` array within the `ra
   '{store_code}'
 ],
 ```
+When adding a new store in Magento make sure to clear the Laravel cache.
 
 ### Routing
 
