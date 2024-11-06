@@ -25,7 +25,7 @@ The current site will be determined based on the `MAGE_RUN_CODE`. By default Sta
 You could also add the `store_code` to the `disabled_sites` array within the `rapidez/statamic.php` config if you want to exclude this site from being altered with Statamic data.
 ```php
 'disabled_sites' => [
-  '{store_code}'
+    '{store_code}'
 ],
 ```
 When adding a new store in Magento make sure to clear the Laravel cache.
