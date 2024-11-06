@@ -28,6 +28,23 @@ Core Magento functionality but not installed by default.
 - [Product alerts](https://github.com/rapidez/product-alert)
 - [Login As Customer](https://github.com/rapidez/login-as-customer)
 
+## Checkout
+
+- [Checkout Theme](https://github.com/rapidez/checkout-theme/)
+- [Confira](https://github.com/rapidez/confira)
+
+## Payment providers
+
+- [Mollie](https://github.com/rapidez/mollie)
+- [Pay.nl](https://github.com/rapidez/paynl)
+- [MultiSafepay](https://github.com/rapidez/multisafepay)
+- [Riverty](https://github.com/rapidez/riverty)
+
+## Zipcode providers
+
+- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
+- [Postcodeservice](https://github.com/rapidez/postcodeservice)
+
 ## Vendors
 
 Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Check the [package development docs](package-development.md).
@@ -67,20 +84,12 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
 - [Labels](https://github.com/rapidez/mirasvit-label)
 
-### Payment providers
-
-- [Mollie](https://github.com/rapidez/mollie)
-- [Pay.nl](https://github.com/rapidez/paynl)
-- [MultiSafepay](https://github.com/rapidez/multisafepay)
-- [Riverty](https://github.com/rapidez/riverty)
-
 ### Rapidez
 
 - [Google Tag Manager](https://github.com/rapidez/gtm)
 - [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
 - [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 - [OpenReplay](https://github.com/rapidez/openreplay)
-- [Postcodeservice](https://github.com/rapidez/postcodeservice)
 - [Sentry](https://github.com/rapidez/sentry)
 
 ### Snowdog
@@ -90,8 +99,3 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Smile
 
 - [Store Locator](https://github.com/rapidez/smile-store-locator)
-
-### Zipcode providers
-
-- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
-- [Postcodeservice](https://github.com/rapidez/postcodeservice)
