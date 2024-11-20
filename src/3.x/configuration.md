@@ -108,13 +108,12 @@ ELASTICSEARCH_PASS=
 
 ## Early hints
 
-We come with [Early Hints](https://github.com/justbetter/laravel-http3earlyhints) built in. You should enable your early hints in [Cloudflare](https://developers.cloudflare.com/cache/advanced-configuration/early-hints/#enable-early-hints) or your CDN for a boost. Anything loaded with `@vite()` will properly get loaded with early hints, it will also discover other elements on your page which could benefit from early hints. Like your `preload`, and `preconnect` links, eager loaded images, blocking scripts and bocking styles.
+We come with [Early Hints](https://github.com/justbetter/laravel-http3earlyhints) built in. You should enable your early hints in [Cloudflare](https://developers.cloudflare.com/cache/advanced-configuration/early-hints/#enable-early-hints) or your CDN for a boost. Anything loaded with `@vite()` will properly get loaded with early hints, it will also discover other elements on your page which could benefit from early hints. Like your `preload`, and `preconnect` links, eager loaded images, blocking scripts and bocking styles. You can disable it with:
 
-::: tip
-You should [Preload your custom fonts](https://web.dev/articles/codelab-preload-web-fonts) if they're used during the initial render.
-:::
-
-You can disable it with:
 ```dotenv
 EARLY_HINTS_ENABLED=false
 ```
+
+::: tip
+You should [preload your custom fonts](https://web.dev/articles/codelab-preload-web-fonts) if they're used during the initial render.
+:::
