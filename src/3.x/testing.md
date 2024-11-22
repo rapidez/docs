@@ -2,7 +2,7 @@
 
 ---
 
-Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/11.x/testing#main-content) including [Laravel Dusk](https://laravel.com/docs/11.x/dusk#main-content) available to you. Dusk is most likely what you'll be using to write your tests.
+Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/11.x/testing) including [Laravel Dusk](https://laravel.com/docs/11.x/dusk) available to you. Dusk is most likely what you'll be using to write your tests.
 
 [[toc]]
 
@@ -21,7 +21,7 @@ This means the system you want to run your tests on will need to have [Chrome](h
 
 ## Writing tests
 
-Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. All information around testing can be found within the [Laravel testing docs](https://laravel.com/docs/11.x/testing#main-content) and the [Laravel Dusk docs](https://laravel.com/docs/11.x/dusk#main-content). In additional to all functionality Laravel offers, we've added some extra's:
+Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. All information around testing can be found within the [Laravel testing docs](https://laravel.com/docs/11.x/testing) and the [Laravel Dusk docs](https://laravel.com/docs/11.x/dusk). In additional to all functionality Laravel offers, we've added some extra's:
 
 ### `waitUntilIdle()`
 

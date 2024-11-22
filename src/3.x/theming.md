@@ -5,7 +5,7 @@
 The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, CSS and Javascript like a theme.
 
 ::: tip
-Read the [Laravel Blade Templates docs](https://laravel.com/docs/11.x/blade#main-content) before you begin.
+Read the [Laravel Blade Templates docs](https://laravel.com/docs/11.x/blade) before you begin.
 :::
 
 [[toc]]
@@ -26,7 +26,7 @@ It's recommended to only add the views you've changed into your source control f
 
 ## CSS
 
-We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite#main-content) so probably you don't need to touch the CSS, but if you need to add a simple class the "starting point" is `resources/css/app.css`. From there we include the core styling and that's where the color variables can be defined. For any Tailwind changes you'll need to be within the `tailwind.config.js`.
+We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite) so probably you don't need to touch the CSS, but if you need to add a simple class the "starting point" is `resources/css/app.css`. From there we include the core styling and that's where the color variables can be defined. For any Tailwind changes you'll need to be within the `tailwind.config.js`.
 
 ::: details But... I don't like Tailwind CSS
 If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages so we don't recommend it. Just clear out the `resources/css/app.css` and write your own.
