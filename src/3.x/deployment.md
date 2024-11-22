@@ -2,7 +2,7 @@
 
 ---
 
-Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/deployment#main-content) and make sure [CORS is opened up](installation.md#cors).
+Have a look at the [Laravel deployment docs](https://laravel.com/docs/11.x/deployment#main-content) and make sure [CORS is opened up](installation.md#cors).
 
 [[toc]]
 

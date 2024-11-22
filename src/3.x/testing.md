@@ -2,7 +2,7 @@
 
 ---
 
-Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/master/testing#main-content) including [Laravel Dusk](https://laravel.com/docs/master/dusk#main-content) available to you. Dusk is most likely what you'll be using to write your tests.
+Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/11.x/testing#main-content) including [Laravel Dusk](https://laravel.com/docs/11.x/dusk#main-content) available to you. Dusk is most likely what you'll be using to write your tests.
 
 [[toc]]
 
@@ -21,7 +21,7 @@ This means the system you want to run your tests on will need to have [Chrome](h
 
 ## Writing tests
 
-Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. All information around testing can be found within the [Laravel testing docs](https://laravel.com/docs/master/testing#main-content) and the [Laravel Dusk docs](https://laravel.com/docs/master/dusk#main-content). In additional to all functionality Laravel offers, we've added some extra's:
+Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. All information around testing can be found within the [Laravel testing docs](https://laravel.com/docs/11.x/testing#main-content) and the [Laravel Dusk docs](https://laravel.com/docs/11.x/dusk#main-content). In additional to all functionality Laravel offers, we've added some extra's:
 
 ### `waitUntilIdle()`
 
@@ -33,7 +33,7 @@ $browser->waitUntilIdle(120);
 
 ### `waitUntilTrueForDuration()`
 
-[waitUntilTrueForDuration()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil()](https://laravel.com/docs/master/dusk#waiting-on-javascript-expressions) however since sometimes the result of an expression you pass can be unstable and change to false quickly after it was true we have created a function to wait until it is true for a duration.
+[waitUntilTrueForDuration()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil()](https://laravel.com/docs/11.x/dusk#waiting-on-javascript-expressions) however since sometimes the result of an expression you pass can be unstable and change to false quickly after it was true we have created a function to wait until it is true for a duration.
 
 ```php
 $browser->waitUntilTrueForDuration('true', 120, 0.5);

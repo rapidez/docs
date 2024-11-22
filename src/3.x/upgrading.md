@@ -13,7 +13,7 @@ In this release we refactored the checkout from the Magento API to GraphQL! 🚨
 
 ## Composer dependencies
 
-First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/master/upgrade#main-content) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
+First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade#main-content) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
 
 ### Laravel 11
 

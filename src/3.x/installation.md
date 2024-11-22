@@ -6,7 +6,7 @@
 
 ## Requirements
 
-- [Laravel requirements](https://laravel.com/docs/master/deployment#server-requirements)
+- [Laravel requirements](https://laravel.com/docs/11.x/deployment#server-requirements)
 - PHP >= 8.2
 - MySQL >= 8.0.28
 - Elasticsearch Basic >= 8.11
@@ -38,7 +38,7 @@ php artisan rapidez:install
 Visit Rapidez within your browser! 🚀 Plenty of options there:
 
 - [Laravel Herd](https://herd.laravel.com/)
-- [Laravel Valet](https://laravel.com/docs/master/valet)
+- [Laravel Valet](https://laravel.com/docs/11.x/valet)
 - `php artisan serve`
 
 ---
