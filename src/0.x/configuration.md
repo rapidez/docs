@@ -15,7 +15,7 @@ php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --ta
 After that you'll find all configuration options in `config/rapidez.php` with comments explaining the options. Most of them use the `env()` function so it's possible to have different configurations per environment in the `.env`.
 
 ::: tip
-For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/master/configuration)
+For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/9.x/configuration)
 :::
 
 ## Magento
