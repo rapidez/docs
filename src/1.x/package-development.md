@@ -2,7 +2,7 @@
 
 ---
 
-This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/master/packages) and have a look at the [existing packages](packages.md) to see how things are handled. You could use our [Package Template](https://github.com/rapidez/package-template) as a starting point.
+This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/10.x/packages) and have a look at the [existing packages](packages.md) to see how things are handled. You could use our [Package Template](https://github.com/rapidez/package-template) as a starting point.
 
 [[toc]]
 
