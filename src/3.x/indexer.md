@@ -12,10 +12,10 @@ Run `php artisan rapidez:index` from the terminal.
 
 ## Scheduler
 
-If you'd like to run the indexer frequently you can schedule the `rapidez:index` command in `app/Console/Kernel.php`, for more information see [Task Scheduling](https://laravel.com/docs/11.x/scheduling)
+If you'd like to run the indexer frequently you can schedule the `rapidez:index` command in `routes/console.php`, for more information see [Task Scheduling](https://laravel.com/docs/11.x/scheduling)
 
 ```php
-$schedule->command('rapidez:index')->hourly();
+Schedule::command('rapidez:index')->hourly();
 ```
 
 ## Webhook
