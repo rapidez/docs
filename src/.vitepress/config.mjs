@@ -38,14 +38,23 @@ export default defineConfig({
     search: {
       provider: 'local',
       options: {
-        _render(src, env, md) {
-          const html = md.render(src, env)
-          // TODO: Fix this to make sure you'll only get results for the current version
-          // const version = window.location.pathname.split('/')[1]
-          // if (env.relativePath.startsWith(version)) return ''
-          return html
+        miniSearch: {
+          /**
+           * @type {Pick<import('minisearch').Options, 'extractField' | 'tokenize' | 'processTerm'>}
+           */
+          options: {
+          },
+
+          /**
+           * @type {import('minisearch').SearchOptions}
+           */
+          searchOptions: {
+            filter: (result) => {
+              return window.location.pathname.split('/')[1] === result.id.split('/')[1]
+            },
+          }
         }
-      }
+      },
     },
 
     nav: [
