@@ -48,12 +48,16 @@ Configuration | Explanation
 
 If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
 
+For more advanced usage (like defining which scope) you can use the `\Rapidez\Core\Models\Config::getValue($path, ConfigScopes::SCOPE_STORE, $scopeId, $options)`
+
 ## Base URL
 
 Rapidez will be the frontend, Magento just as backend. So they'll need 2 different urls; we suggest to set the `web/secure/base_url` differently per scope:
 
 - **Store View:** `https://webshop.com`
 - **Website:** `https://magento.webshop.com`
+
+If you have set this correctly you can set `GET_MAGENTO_URL_FROM_DATABASE=true` in Rapidez' .env and it will automatically apply the urls in Rapidez itself.
 
 ## Forgot password email
 
