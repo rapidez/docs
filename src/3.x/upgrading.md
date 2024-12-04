@@ -50,6 +50,10 @@ yarn add -D graphql graphql-tag universal-cookie "graphql-combine-query@indykoni
 yarn build
 ```
 
+### Event changes
+
+If you need to interact with the current Vue instance, do not use `turbo:load`. Instead use `vue:loaded` to ensure Vue has actually been booted.
+
 ## Checkout changes
 
 Everything has been migrated to use the GraphQL components for queries and mutations. On those components callbacks are used to process the data. So any changes made in an overwritten `checkout.vue` file and any checkout views should be reviewed.
