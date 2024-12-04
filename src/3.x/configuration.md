@@ -57,7 +57,7 @@ Rapidez will be the frontend, Magento just as backend. So they'll need 2 differe
 - **Store View:** `https://webshop.com`
 - **Website:** `https://magento.webshop.com`
 
-If you have set this correctly you can set `GET_MAGENTO_URL_FROM_DATABASE=true` in Rapidez' .env and it will automatically apply the urls in Rapidez itself.
+If you have set this correctly you can set `GET_MAGENTO_URL_FROM_DATABASE=true` in the Rapidez `.env` and it will automatically apply the urls in Rapidez itself.
 
 ## Forgot password email
 
