@@ -43,9 +43,10 @@ Configuration | Explanation
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
 
-If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
-
-For more advanced usage (like defining which scope) you can use the `\Rapidez\Core\Models\Config::getValue($path, ConfigScopes::SCOPE_STORE, $scopeId, $options)`
+If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive. For more advanced usage (like defining which scope) you can use:
+```
+\Rapidez\Core\Models\Config::getValue($path, ConfigScopes::SCOPE_STORE, $scopeId, $options)
+```
 
 ## Base URL
 
