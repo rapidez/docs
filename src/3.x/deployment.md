@@ -21,9 +21,14 @@ Make sure the change the admin location and url. Place this below the Magento lo
 You've to secure your Elasticsearch instance so other people can't manipulate the data in it as it needs to be exposed for Reactive Search.
 
 - Enable security in `elasticsearch.yml` with: `xpack.security.enabled: true`
+  - On Ubuntu: `/etc/elasticsearch/elasticsearch.yml`
 - Change `http.cors.allow-origin` to your domain
-- Restart Elasticsearch (with Docker: `docker restart rapidez_elasticsearch`)
-- Setup a password with `bin/elasticsearch-setup-passwords auto` (or use `interactive` to choose the passwords yourself, with Docker prepend `docker exec rapidez_elasticsearch `)
+- Restart Elasticsearch
+  - On Ubuntu: `sudo service elasticsearch restart`
+  - With Docker: `docker restart rapidez_elasticsearch`
+- Setup a password with `bin/elasticsearch-setup-passwords auto` (or use `interactive` to choose the passwords yourself)
+  - On Ubuntu, from: `cd /usr/share/elasticsearch/`
+  - With Docker, prefix with: `docker exec rapidez_elasticsearch `
 - Add your credentials to `.env`
 ```dotenv
 ELASTICSEARCH_USER=elastic
