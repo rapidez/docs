@@ -34,7 +34,7 @@ Prop | Type | Default | Explanation
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Flushes when the [cache](cache.md) is cleared.
 `callback` | Function | | Called after the query
-`error-callback` | Function | Notification | Called after a unsuccessful query
+`error-callback` | Function | Notification | Called after an unsuccessful query
 
 ::: tip
 With large GraphQL queries you can extract the query to a separated file, for example: `resources/views/queries/countries.graphql` and include it with: `query='@include('queries.countries')'`
@@ -80,19 +80,19 @@ Prop | Type | Default | Explanation
 `store` | String | `window.config.store_code` | Store code
 [`group`](#grouping) | String | | Bundle queries by a name into 1 request [see: group](#grouping)
 `watch` | Boolean | `true` | Should the `variables` be watched?
-`redirect` | String | | The redirect url
+`redirect` | String | | The redirect URL
 `alert` | Boolean | `true` | Show an alert when an error occurs
 `clear` | Boolean | `false` | Clear the values after the mutation
 `notify` | Object | | Success notification
 `before-request` | Function(query, variables, options): [query, variables, options] | | Called before the request is sent in order to change, must return `[query, variables, options]` if used
 `callback` | Function | | Called after the mutation
-`error-callback` | Function | | Called after a unsuccessful query
+`error-callback` | Function | | Called after an unsuccessful query
 `mutate-event` | String | | Event name to listen to, used to trigger the mutate method
 `recaptcha` | Boolean | `false` | Sends the `X-ReCaptcha` header with the request
 
 ### Slot scopes
 
-Slot scopes are useful when wanting to get or update values or functions within the components template.
+Slot scopes are useful when wanting to get or update values or functions within the component's template.
 
 Prop | Type | Explanation
 :--- | :--- | :---
@@ -105,10 +105,10 @@ Prop | Type | Explanation
 
 ## Grouping
 
-With the `group` prop you're able to bundle multiple GraphQL requests into 1 to increasing performance. When one of them get's executed the combined query will be send.
+With the `group` prop, you are able to bundle multiple GraphQL requests into 1 to increase performance. When one of them gets executed, the combined query will be sent.
 
 ::: warning Note
-You can not combine mutations and queries. Variable names should be unique, except `cart_id`
+You cannot combine mutations and queries. Variable names should be unique, except `cart_id`
 :::
 
 We also provide a `submitPartials()` helper which can be used to submit multiple queries and have a callback when they're all finished. This is used in the onestep checkout to submit each section and only continue to the success page when everything is finished.
@@ -134,7 +134,7 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
 
 
 ::: warning Keep in mind
-`partial-submit` **must** always be on the direct child of a Vue component, and have it's original function name.
+`partial-submit` **must** always be on the direct child of a Vue component and have its original function name.
 
 ::: details Example
 ```html
@@ -148,7 +148,7 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
     <fieldset partial-submit="mutate">...</fieldset>
 </graphql>
 
-<!-- Inorrect -->
+<!-- Incorrect -->
 <graphql ...>
     <fieldset>
         <div partial-submit="mutate">
@@ -157,7 +157,7 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
     </fieldset>
 </graphql>
 
-<!-- Inorrect -->
+<!-- Incorrect -->
 <graphql ...>
     <fieldset v-slot={ mutate: save } partial-submit="save">...</fieldset>
 </graphql>

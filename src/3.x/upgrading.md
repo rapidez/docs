@@ -6,18 +6,18 @@
 
 ## Rapidez v3
 
-In this release we refactored the checkout from the Magento API to GraphQL! 🚨 You should review all changes! And with that 🥁 we added a onestep checkout option! 🚀
+In this release, we refactored the checkout from the Magento API to GraphQL! 🚨 You should review all changes! And with that 🥁, we added a one-step checkout option! 🚀
 
-- Dropped support for Magento 2.4.6, Laravel 10 and PHP 8.1
+- Dropped support for Magento 2.4.6, Laravel 10, and PHP 8.1
 - You should review all template changes!
 
 ## Composer dependencies
 
-First follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade) and check all your dependencies one by one if they're compatible and what's changed in changelogs / release notes.
+First, follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade) and check all your dependencies one by one to see if they're compatible and what has changed in changelogs / release notes.
 
 ### Laravel 11
 
-With Laravel 11 a new application structure was introduced, Laravel doens't recommend to upgrade to the new structure, but as within our new `MagentoCartTokenGuard` we're using the `redirectUsing()` you've to make 1 change; remove the `redirectTo()` method from `app/Http/Middleware/Authenticate.php`:
+With Laravel 11, a new application structure was introduced. Laravel doesn't recommend upgrading to the new structure, but since we are using the `redirectUsing()` within our new `MagentoCartTokenGuard`, you have to make 1 change; remove the `redirectTo()` method from `app/Http/Middleware/Authenticate.php`:
 ```code
 <?php
 
@@ -52,22 +52,22 @@ yarn build
 
 ### Event changes
 
-If you need to interact with the current Vue instance, do not use `turbo:load`. Instead use `vue:loaded` to ensure Vue has actually been booted.
+If you need to interact with the current Vue instance, do not use `turbo:load`. Instead, use `vue:loaded` to ensure Vue has actually been booted.
 
 ## Checkout changes
 
-Everything has been migrated to use the GraphQL components for queries and mutations. On those components callbacks are used to process the data. So any changes made in an overwritten `checkout.vue` file and any checkout views should be reviewed.
+Everything has been migrated to use the GraphQL components for queries and mutations. On those components, callbacks are used to process the data. So any changes made in an overwritten `checkout.vue` file and any checkout views should be reviewed.
 
-The fastest option is to remove all checkout customizations and reïmplemenent them within the new checkout as a lot has been changed!
+The fastest option is to remove all checkout customizations and reimplement them within the new checkout as a lot has been changed!
 
 ### Routing
 
-We moved everything to Laravel routes where previously this was handled with custom Javascript. The benefit of this is that every checkout step will go through PHP where we can add/check any data, just like everything else within Rapidez. So `/checkout#credentials` becomes `/checkout/credentials`. With that we introduced authentication providers which can be used as a middleware on routes:
+We moved everything to Laravel routes where previously this was handled with custom JavaScript. The benefit of this is that every checkout step will go through PHP where we can add/check any data, just like everything else within Rapidez. So `/checkout#credentials` becomes `/checkout/credentials`. With that, we introduced authentication providers which can be used as middleware on routes:
 
 - `auth:magento-customer`
 - `auth:magento-cart`
 
-With this routes can be "secured" where previously this was checked on the frontend, when unauthorized you where redirected away after the page load. This is now handled serverside. All checkout steps are secured with the `auth:magento-cart` middleware by default to validate the cart mask. To make this possible the mask and customer token are moved from LocalStorage to Cookies.
+With these routes, you can "secure" them where previously this was checked on the frontend. When unauthorized, you were redirected away after the page load. This is now handled server-side. All checkout steps are secured with the `auth:magento-cart` middleware by default to validate the cart mask. To make this possible, the mask and customer token are moved from LocalStorage to Cookies.
 
 ## Magento configuration
 

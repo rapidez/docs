@@ -2,7 +2,7 @@
 
 ---
 
-In addition to the Rapidez Core we've created some packages.
+In addition to the Rapidez Core, we've created some packages.
 
 [[toc]]
 
@@ -70,7 +70,7 @@ Opinionated checkout packages.
 
 ## Vendors
 
-Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Check the [package development docs](package-development.md).
+Some Magento modules work out of the box, but most of the modules that do something on the frontend need to be integrated with Rapidez. Check the [package development docs](package-development.md).
 
 ### Amasty
 

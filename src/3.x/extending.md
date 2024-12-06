@@ -17,7 +17,7 @@ All models are defined in the [Rapidez config](configuration.md#rapidez):
 ]
 ```
 
-To overwrite a model just create one, for example: `app/Models/Product.php` and extend the Rapidez model:
+To overwrite a model, simply create one. For example, `app/Models/Product.php` and extend the Rapidez model:
 
 ```php
 <?php
@@ -54,7 +54,7 @@ All controllers are defined in the [Rapidez config](configuration.md#rapidez):
 ],
 ```
 
-Create your own, for example: `app/Controllers/Product.php`, make sure you implement the methods as defined in the controller in the core and define it in the configuration as with models.
+Create your own controller. For example, `app/Controllers/Product.php`. Make sure you implement the methods as defined in the core controller and define it in the configuration as with models.
 
 ## Widgets
 
@@ -67,9 +67,10 @@ Magento widgets can be defined in the [Rapidez config](configuration.md#rapidez)
 ],
 ```
 
-They're rendered with the [widget directive](theming.md#widget). You can implement additional widgets by adding them to the configuration and creating a class. All parameters will be added to the constructor and a `render()` method should return the output. Have a look at the [existing widgets](https://github.com/rapidez/core/tree/master/src/Widgets).
+They are rendered with the [widget directive](theming.md#widget). You can implement additional widgets by adding them to the configuration and creating a class. All parameters will be added to the constructor, and a `render()` method should return the output. Take a look at the [existing widgets](https://github.com/rapidez/core/tree/master/src/Widgets).
 
-If the widget doesn't need any extra logic and just needs a view with the available parameters you can just specify the view name. All parameters will be available within the `$options` variable.
+If the widget doesn't need any extra logic and just needs a view with the available parameters, you can simply specify the view name. All parameters will be available within the `$options` variable.
+
 ```php
 'widgets' => [
     ...
@@ -78,18 +79,21 @@ If the widget doesn't need any extra logic and just needs a view with the availa
 ```
 
 ::: tip Alternatives to Magento's CMS functionalities
-Have a look at the [CMS packages](packages.md#cms)!
+Take a look at the [CMS packages](packages.md#cms)!
 :::
 
 ## Routes
 
-You can add any additional routes just "the Laravel way", check out the [Laravel routing docs](https://laravel.com/docs/11.x/routing). Additionally Rapidez adds a handy `store_code` route middleware so you can create routes for specify stores:
+You can add any additional routes just "the Laravel way". Check out the [Laravel routing docs](https://laravel.com/docs/11.x/routing). Additionally, Rapidez adds a handy `store_code` route middleware, so you can create routes for specific stores:
+
 ```php
 Route::middleware('store_code:YOUR_STORE_CODE')->get('customroute', function () {
     // 
 });
 ```
-Alternatively you can create a custom routes file if you've multiple routes specific for a store within your `RouteServiceProvider`
+
+Alternatively, you can create a custom routes file if you have multiple routes specific to a store within your `RouteServiceProvider`:
+
 ```php
 Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
     ->group(base_path('routes/YOUR_STORE_CODE.php'));
@@ -97,7 +101,8 @@ Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
 
 ## Autocomplete
 
-The autocomplete can contain as many ElasticSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
+The autocomplete can contain as many Elasticsearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
+
 ```php
 'autocomplete' => [
     'additionals' => [
@@ -113,4 +118,5 @@ The autocomplete can contain as many ElasticSearch indexes as you wish. You can 
     'size' => 10,
 ],
 ```
-You can use `categories.blade.php` as an example for how to display new indexes properly in the autocomplete.
+
+You can use `categories.blade.php` as an example for how to properly display new indexes in the autocomplete.
