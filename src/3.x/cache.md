@@ -1,9 +1,7 @@
 # Cache
 
----
-
-Rapidez caches some things to speed things up. This means that after you've changed some Magento configuration you've to clear the cache. This can be done by easily running the command from the terminal `php artisan cache:clear` but you can automate this just like the [indexer](indexer.md#webhook) with `/api/admin/cache/clear?token=` and also append your token.
+Rapidez caches certain things to improve speed. This means that after you have made changes to some Magento configuration, you need to clear the cache. This can be easily done by running the command `php artisan cache:clear` from the terminal. However, you can also automate this process by using the [indexer](indexer.md#webhook) with `/api/admin/cache/clear?token=` and appending your token.
 
 ::: tip
-Change the `CACHE_DRIVER` in the `.env` to `null` to disable the cache while developing.
+To disable the cache while developing, change the `CACHE_DRIVER` in the `.env` file to `null`.
 :::
