@@ -34,7 +34,7 @@ If you don't like Tailwind CSS you *can* use anything else. But it's widely used
 
 ## Javascript
 
-From `resources/js/app.js`, we automatically import everything. Just extend from there. If you need additional Vue components, read the [readme within the components folder](https://github.com/rapidez/rapidez/blob/master/resources/js/components/README.md).
+We automatically import everything in `resources/js/app.js`, and you can extend from there. If you need additional Vue components, read the [readme within the components folder](https://github.com/rapidez/rapidez/blob/master/resources/js/components/README.md).
 
 ## Blade Directives
 
@@ -69,7 +69,7 @@ Optionally, you can specify a second argument with an array, which will be passe
 
 ### `@content`
 
-Processes content containing variables from Magento, so variables, blocks, and widgets are working.
+Processes content containing variables from Magento so that variables, blocks, and widgets are working.
 ```blade
 @content($page->content)
 ```
@@ -95,7 +95,7 @@ Rapidez comes with some useful [Blade Components](https://github.com/rapidez/cor
 Which outputs a styled input with an id, name, type, placeholder, and label (with a corresponding `for` attribute) on top.
 
 ::: tip
-Try to use these elements as much as possible, so if you'd like to change the appearance, you can do so at one place.
+Try to use these elements as much as possible, so that if you'd like to change the appearance you can do so in only one place.
 :::
 
 Another example is the "productlist" component, which outputs a nice product list:
@@ -142,7 +142,7 @@ Just like [v-cloak](https://v2.vuejs.org/v2/api/#v-cloak), but instead of hiding
 
 ### `v-on-click-away`
 
-Using [vue-clickaway](https://github.com/simplesmiler/vue-clickaway), enabling you to close something if you click away from the element, [an example can be found within the core](https://github.com/search?q=repo%3Arapidez%2Fcore%20v-on-click-away&type=code).
+Rapidez uses [vue-clickaway](https://github.com/simplesmiler/vue-clickaway), enabling you to close something if you click away from the element. [An example can be found within the core](https://github.com/search?q=repo%3Arapidez%2Fcore%20v-on-click-away&type=code).
 
 ## Multistore
 
@@ -225,7 +225,7 @@ Of course, you can do this any way you want if you want to load the same CSS for
 
 ## Translations
 
-Just create a JSON file for your language within the `lang` directory, for example: `/lang/de.json`. As an example, have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information, read the [Laravel Localization docs](https://laravel.com/docs/11.x/localization).
+You can create a JSON file for your language within the `lang` directory, for example: `/lang/de.json`. As an example, have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information, read the [Laravel Localization docs](https://laravel.com/docs/11.x/localization).
 
 In the core, we also have a `frontend.php` translation file per language. These translations will be available from Javascript with: `config.translations.key`. To publish them to your project, use:
 

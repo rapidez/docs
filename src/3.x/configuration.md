@@ -20,7 +20,7 @@ For more info on how the configuration works, read the [Laravel configuration do
 
 ## Magento configuration
 
-Some Magento configuration options involve the frontend, as the Magento frontend is not used, most of them don't do anything. Rapidez listens to some of those configurations:
+Some Magento configuration options involve the frontend. As the Magento frontend is not used, most of them don't do anything. Rapidez listens to some of those configurations:
 
 Configuration | Explanation
 :--- | :---
@@ -53,7 +53,7 @@ If you need to access a Magento configuration, you can use the [`@config` Blade 
 
 ## Base URL
 
-Rapidez will be the frontend, Magento just as the backend. So they'll need two different URLs; we suggest setting the `web/secure/base_url` differently per scope:
+Rapidez will become the frontend, Magento will only be used for the backend. Because of this, they'll need two different URLs. We suggest setting the `web/secure/base_url` differently per scope:
 
 - **Store View:** `https://webshop.com`
 - **Website:** `https://magento.webshop.com`
@@ -113,7 +113,7 @@ ELASTICSEARCH_PASS=
 
 ## Early hints
 
-We come with [Early Hints](https://github.com/justbetter/laravel-http3earlyhints) built-in. You should enable your early hints in [Cloudflare](https://developers.cloudflare.com/cache/advanced-configuration/early-hints/#enable-early-hints) or your CDN for a boost. Anything loaded with `@vite()` will properly get loaded with early hints, it will also discover other elements on your page which could benefit from early hints. Like your `preload` and `preconnect` links, eager-loaded images, blocking scripts, and blocking styles. You can disable it with:
+Rapidez comes with [Early Hints](https://github.com/justbetter/laravel-http3earlyhints) built in. You should enable your early hints in [Cloudflare](https://developers.cloudflare.com/cache/advanced-configuration/early-hints/#enable-early-hints) or your CDN for a boost. Anything loaded with `@vite()` will properly get loaded with early hints, it will also discover other elements on your page which could benefit from early hints. Like your `preload` and `preconnect` links, eager-loaded images, blocking scripts, and blocking styles. You can disable it with:
 
 ```dotenv
 EARLY_HINTS_ENABLED=false

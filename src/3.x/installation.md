@@ -25,7 +25,7 @@ composer create-project rapidez/rapidez:^3.0 yourproject
 
 2. **Add the Magento 2 credentials**
 
-Only when you have a Magento 2 installation running; add the URL and database credentials to the `.env`. Have a look at the [configuration docs](configuration.md) for all options. Otherwise, we'll set up a Magento installation for you with Docker from the install command.
+When you have a Magento 2 installation running, add the URL and database credentials to the `.env`. Have a look at the [configuration docs](configuration.md) for all options. If you don't have a Magento installation running yet, we'll set one up for you with Docker from the install command.
 
 3. **Run the install command**
 
@@ -75,7 +75,7 @@ If you're using your own Elasticsearch installation, you have to open CORS in `e
 The flat tables need to be enabled in Magento because Rapidez needs them to easily query for products and categories. You can follow [this guide](https://docs.magento.com/user-guide/catalog/catalog-flat.html#step-1-enable-the-flat-catalog) to enable it. After that, you need to make sure the [Storefront Properties](https://docs.magento.com/user-guide/stores/attributes-product.html#storefront-properties) are configured correctly for all your attributes. You can validate the settings with `php artisan rapidez:validate`. If the result is that some attributes are not in the flat table, you can enable "Used in Product Listing" on them and validate again.
 
 ::: warning Public attribute values
-All attributes with "Used in Product Listing" enabled will be indexed into Elasticsearch. As this index is publicly available, you should be careful with attributes that contain "sensitive" data like, for example, sale counts.
+All attributes with "Used in Product Listing" enabled will be indexed into Elasticsearch. As this index is publicly available, you should be careful with attributes that contain "sensitive" data (for example, sale counts).
 :::
 
 Finally, when your settings are validated, you should [run the Magento indexes](https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-index.html#config-cli-subcommands-index-reindex). For example, with `bin/magento indexer:reindex` from your Magento installation.
@@ -86,7 +86,7 @@ If you run into "row size too large" MySQL errors when indexing in Magento, then
 
 ## Multistore
 
-When you have set up multiple stores in Magento, then Rapidez needs to know which store to show. Rapidez listens to the `MAGE_RUN_CODE` like Magento does. So just set that variable from your webserver.
+When you have set up multiple stores in Magento, Rapidez needs to know which store to show. Rapidez listens to the `MAGE_RUN_CODE` like Magento does. You will have to set that variable from your webserver.
 
 With Nginx, you could use a map, for example:
 

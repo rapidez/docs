@@ -17,7 +17,7 @@ All models are defined in the [Rapidez config](configuration.md#rapidez):
 ]
 ```
 
-To overwrite a model, simply create one. For example, `app/Models/Product.php` and extend the Rapidez model:
+To overwrite a model, you can simply extend it. For example, create a new `app/Models/Product.php` file and extend the Rapidez model:
 
 ```php
 <?php
@@ -54,7 +54,7 @@ All controllers are defined in the [Rapidez config](configuration.md#rapidez):
 ],
 ```
 
-Create your own controller. For example, `app/Controllers/Product.php`. Make sure you implement the methods as defined in the core controller and define it in the configuration as with models.
+For controllers, you can also extend them, for example: `app/Controllers/ProductController.php`. Make sure you implement the methods as defined in the core controller and define it in the configuration just like you would with models.
 
 ## Widgets
 

@@ -59,7 +59,7 @@ You can pass controllers, functions, etc. in the same way like you would with `R
 The first argument to this function will be your Callable or action, the second argument will be the position or priority it has. Lower means higher priority, but it is optional.
 
 ::: tip
-If your check to see if it matches has a high-performance impact (for example when it's an API request), consider putting the position higher than `9999` and caching the results.
+If your check to see if it matches has a high performance impact (for example when it's an API request), consider putting the position higher than `9999` and caching the results.
 :::
 
 Examples:
@@ -96,7 +96,7 @@ Product::macro('myTestFunction', function () {
 
 ### Adding multiple functions
 
-If you want to add multiple functions this might get cluttered, in that case, you can use a mixin; all functions defined in there will be made available from your model:
+If you want to add multiple functions, this might get cluttered. In that case, you can use a mixin. All functions defined in there will be made available from your model:
 
 ```php
 Product::mixin(ProductMixin::class);
