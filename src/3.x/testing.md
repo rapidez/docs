@@ -2,30 +2,30 @@
 
 ---
 
-Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/11.x/testing) including [Laravel Dusk](https://laravel.com/docs/11.x/dusk) available to you. Dusk is most likely what you'll be using to write your tests.
+Rapidez is built upon [Laravel](https://laravel.com/), so you have access to its [full testing suite](https://laravel.com/docs/11.x/testing), including [Laravel Dusk](https://laravel.com/docs/11.x/dusk). Dusk is most likely what you'll be using to write your tests.
 
 [[toc]]
 
 ## Installation
 
-Rapidez already has some tests included in the core. To install and configure Dusk, and to use these tests you can run the following command.
+Rapidez already includes some tests in the core. To install and configure Dusk, and to use these tests, you can run the following command.
 
 ```bash
 php artisan rapidez:install:tests
 ```
 
 ::: tip Note
-Laravel Dusk expects a [ChromeDriver](https://chromedriver.chromium.org/) compatible browser to be installed by default. 
-This means the system you want to run your tests on will need to have [Chrome](https://www.google.com/chrome/) or [Chromium](https://www.chromium.org/Home/) installed.
+Laravel Dusk requires a [ChromeDriver](https://chromedriver.chromium.org/)-compatible browser to be installed by default. 
+This means that the system you want to run your tests on will need to have [Chrome](https://www.google.com/chrome/) or [Chromium](https://www.chromium.org/Home/) installed.
 :::
 
 ## Writing tests
 
-Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. All information around testing can be found within the [Laravel testing docs](https://laravel.com/docs/11.x/testing) and the [Laravel Dusk docs](https://laravel.com/docs/11.x/dusk). In additional to all functionality Laravel offers, we've added some extra's:
+Tests are located in the `/tests` folder and contain `Browser` and `Feature` tests. You can find all information about testing in the [Laravel testing docs](https://laravel.com/docs/11.x/testing) and the [Laravel Dusk docs](https://laravel.com/docs/11.x/dusk). In addition to all the functionality that Laravel offers, we've added some extras:
 
 ### `waitUntilIdle()`
 
-Since Rapidez has many API calls and code running in the background, sometimes we want to make sure these requests have completed and the browser is idle and no longer executing code. This is what [waitUntilIdle()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L39) is for. It will wait until no network request is active and the browser being idle for 500ms. So we know for sure and API requests doesn't initiate another API request. By default we wait for 120 seconds until the tests will fail, but you can change that by specifying an argument:
+Since Rapidez has many API calls and code running in the background, sometimes we want to ensure that these requests have completed and the browser is idle, with no further code execution. This is where [waitUntilIdle()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L39) comes in. It will wait until there are no active network requests and the browser is idle for 500ms. This ensures that API requests do not initiate another API request. By default, we wait for 120 seconds before the tests fail, but you can change that by specifying an argument:
 
 ```php
 $browser->waitUntilIdle(120);
@@ -33,7 +33,7 @@ $browser->waitUntilIdle(120);
 
 ### `waitUntilTrueForDuration()`
 
-[waitUntilTrueForDuration()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil()](https://laravel.com/docs/11.x/dusk#waiting-on-javascript-expressions) however since sometimes the result of an expression you pass can be unstable and change to false quickly after it was true we have created a function to wait until it is true for a duration.
+[waitUntilTrueForDuration()](https://github.com/rapidez/core/blob/60b9c761a6d7e7f844d854306b314b422143aae9/tests/DuskTestCaseSetup.php#L18) is similar to [waitUntil()](https://laravel.com/docs/11.x/dusk#waiting-on-javascript-expressions). However, sometimes the result of the expression you pass can be unstable and change to false quickly after becoming true. To account for this, we have created a function that waits until the expression remains true for a given duration.
 
 ```php
 $browser->waitUntilTrueForDuration('true', 120, 0.5);
@@ -41,10 +41,10 @@ $browser->waitUntilTrueForDuration('true', 120, 0.5);
 
 | Argument | Default | Description |
 |---|---|---|
-| `script` | `'true'` | The javascript expression that needs to be true to continue. |
-| `timeout` | 120 | The timeout in seconds, if this is exceeded the test will fail. |
-| `for` | 0.5 | How long in seconds the expression needs to be true for before continuing. |
+| `script` | `'true'` | The JavaScript expression that needs to be true to continue. |
+| `timeout` | 120 | The timeout in seconds. If this is exceeded, the test will fail. |
+| `for` | 0.5 | The duration in seconds that the expression needs to be true for before continuing. |
 
 ## Continuous Integration
 
-If you'd like to run the tests with some CI tool like Bitbucket Pipelines or Github Actions you've to make sure there is a Magento environment Rapidez can work with. You could use a test environment for that so you don't have to setup a Magento environment in Docker. But you've to make a SSH tunnel for the database connection and for every run orders will be created. If you've made it until here and you're interested; [ask us on Slack](https://rapidez.io/slack)!
+If you would like to run the tests with a CI tool like Bitbucket Pipelines or Github Actions, you need to ensure that there is a Magento environment that Rapidez can work with. You could use a test environment for this, so you don't have to set up a Magento environment in Docker. However, you will need to create an SSH tunnel for the database connection, and for every run, orders will be created. If you have made it this far and you're interested, [ask us on Slack](https://rapidez.io/slack)!

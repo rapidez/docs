@@ -14,11 +14,11 @@ location ~* ^\/(?!(rest|graphql|static|media|admin)(\/|$)) {
     return 301 $scheme://your-rapidez-url.com$request_uri;
 }
 ```
-Make sure the change the admin location and url. Place this below the Magento location directives, for example [here in the sample Nginx config](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222).
+Make sure to change the admin location and URL. Place this below the Magento location directives, for example [here in the sample Nginx config](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222).
 
 ## Secure Elasticsearch
 
-You've to secure your Elasticsearch instance so other people can't manipulate the data in it as it needs to be exposed for Reactive Search.
+You have to secure your Elasticsearch instance so other people can't manipulate the data in it as it needs to be exposed for Reactive Search.
 
 - Enable security in `elasticsearch.yml` with: `xpack.security.enabled: true`
   - On Ubuntu: `/etc/elasticsearch/elasticsearch.yml`
@@ -55,8 +55,8 @@ elasticsearch.password: "YOUR-PASSWORD"
 ```
 - Login to Kibana and go to Management > Roles
 - Add a new role `web`. It only needs one index privilege; use `rapidez_*` for the indices and `read` as privilege.
-- Create an user `web`, password `rapidez` and the `web` role
-- Add the url to your `.env`
+- Create a user `web`, password `rapidez` and the `web` role
+- Add the URL to your `.env`
 
 ```dotenv
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
@@ -92,7 +92,7 @@ curl -X POST "localhost:9200/_security/user/web?pretty" -H 'Content-Type: applic
 ' -u username:password
 ```
 
-Finally add the url to your `.env`
+Finally add the URL to your `.env`
 ```dotenv
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
