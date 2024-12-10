@@ -30,7 +30,7 @@ Prop | Type | Default | Explanation
 `variables` | Object | `{}` | GraphQL variables
 `store` | String | `window.config.store_code` | Store code
 [`group`](#grouping) | String | | Bundle queries by a name into 1 request [see: group](#grouping)
-`check` | String | | Run a check on the response data, for example: `check="data.countries[0] == 'Country'"`
+`check` | Function | | Run a check on the response data, for example: `check="(data) => data.countries[0] == 'Country'"`
 `redirect` | String | | Where to redirect if the check fails
 `cache` | String | | Cache key in localstorage. Caches only when provided and will be prefixed with `graphql_`. Flushes when the [cache](cache.md) is cleared.
 `callback` | Function | | Called after the query
