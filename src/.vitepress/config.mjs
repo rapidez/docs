@@ -196,10 +196,10 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Theming', link: '/3.x/theming' },
-            { text: 'Package development', link: '/3.x/package-development' },
-            { text: 'GraphQL components', link: '/3.x/graphql-components' },
             { text: 'Extending', link: '/3.x/extending' },
             { text: 'Testing', link: '/3.x/testing' },
+            { text: 'GraphQL components', link: '/3.x/graphql-components' },
+            { text: 'Package development', link: '/3.x/package-development' },
           ]
         },
         {
