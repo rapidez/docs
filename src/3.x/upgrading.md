@@ -39,7 +39,8 @@ class Authenticate extends Middleware
 }
 ```
 
-## Frontend dependencies
+## Frontend changes
+### Dependencies
 
 1. **Install**
 ```
@@ -53,6 +54,10 @@ yarn build
 ### Event changes
 
 If you need to interact with the current Vue instance, do not use `turbo:load`. Instead, use `vue:loaded` to ensure Vue has actually been booted.
+
+### Graphql component
+
+The `check` property on the graphql component has been changed from a string that gets evaluated to a function. This means that you will have to update each (normal) usage of `check="[...]"` to `check="(data) => data.[...]"`.
 
 ## Checkout changes
 
