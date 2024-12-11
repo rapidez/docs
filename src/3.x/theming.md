@@ -87,12 +87,16 @@ Have a look at the [current widget locations](https://github.com/rapidez/core/se
 
 ## Blade Components
 
-Rapidez comes with some useful [Blade Components](https://github.com/rapidez/core/tree/master/resources/views/components) for commonly used elements like form elements to reduce repetition. For example, the input component:
+Rapidez uses a separated package with Blade Components for inputs, checkboxes, buttons, etc. See: [rapidez/blade-components](https://github.com/rapidez/blade-components). An example of the input component:
+
 ```blade
-<x-rapidez::input name="username"/>
+<label>
+    <x-rapidez::label>Something</x-rapidez::label>
+    <x-rapidez::input name="something" class="extra-styling" />
+</label>
 ```
 
-Which outputs a styled input with an id, name, type, placeholder, and label (with a corresponding `for` attribute) on top.
+Additionally, there are some Rapidez specific components within the core. See the [resources/views/components/](https://github.com/rapidez/core/tree/master/resources/views/components) directory.
 
 ::: tip
 Try to use these elements as much as possible, so that if you'd like to change the appearance you can do so in only one place.
