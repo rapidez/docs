@@ -1,3 +1,7 @@
+<script setup>
+import ColorTile from '../.vitepress/theme/ColorTile.vue'
+</script>
+
 # Theming
 
 ---
@@ -26,11 +30,60 @@ It's recommended to only add the views you've changed into your source control f
 
 ## CSS
 
-We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is `resources/css/app.css`. From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the `tailwind.config.js`.
+We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js).
 
 ::: details But... I don't like Tailwind CSS
-If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages, so we don't recommend it. Just clear out the `resources/css/app.css` and write your own.
+If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages, so we don't recommend it. Just clear out the [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css) and write your own.
 :::
+
+### Colors
+
+Colors can be configured from [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css) and all colors used by Rapidez can be found within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js). This is just a starting point to easily change the whole look and feel with some variables. We advice you to use those variables / classes as much as possible but you're free to use anything else.
+
+The colors variables are inspired by [GitHub Primer](https://primer.style/) where Tailwind CSS provides the "base color tokens", see: [design token categories](https://primer.style/foundations/color/overview#design-token-categories) and within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js) we're just "aliasing" those to "functional color tokens". More information with examples on color naming can be found in the [color names refactor pull request](https://github.com/rapidez/core/pull/622).
+
+#### Semantic colors
+
+These colors can be used to apply your branding. There is one "modifier" by default provided: `text`. That color modifier is used for the text on top of the color, for example with buttons. The `conversion` color is used for anything "conversion" related.
+
+Color name | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`primary` | `--primary` | `#2FBC85` | <colorTile color="#2FBC85"/>{.np}
+`primary-text` | `--primary-text` | `white` | <colorTile color="white"/>{.np}
+`secondary` | `--secondary` | `#202F60` | <colorTile color="#202F60"/>{.np}
+`secondary-text` | `--secondary-text` | `white` | <colorTile color="white"/>{.np}
+`conversion` | `--conversion` | `green-500` | <colorTile color="#22c55e"/>{.np}
+`conversion-text` | `--conversion-text` | `white` | <colorTile color="white"/>{.np}
+
+These color names work the same as Tailwind colors. You can use them for anything, for exmaple: `bg-primary`, `border-primary`, `text-primary`, etc.
+
+#### Neutral colors
+
+Used for the text color, borders and backgrounds to give some design system to work with. Visual examples can be found with in the [Primer neutral colors docs](https://primer.style/foundations/color/overview#neutral-colors). These colors should not be used directly: ~~`text-foreground`~~ as those colors are "linked and scoped" to the text, border and background colors. Just use the provided classes to keep a consistent style.
+
+##### Text / Foreground
+
+Class | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`text-emphasis` | `--foreground-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
+`text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="#1e293b"/>{.np}
+`text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="#475569"/>{.np}
+
+##### Border
+
+Class | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`border-emphasis` | `--border-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
+`border` / `border-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
+`border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
+
+##### Background
+
+Class | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
+`bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
+`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
 
 ## Javascript
 
