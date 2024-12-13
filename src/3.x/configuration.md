@@ -122,31 +122,3 @@ EARLY_HINTS_ENABLED=false
 ::: tip
 You should [preload your custom fonts](https://web.dev/articles/codelab-preload-web-fonts) if they're used during the initial render.
 :::
-
-## Pipelines
-
-Rapidez comes with PHPStan for static analysis (`composer analyse`) and Pint (`composer style` and `composer fix-style`) for code style analysis installed by default. These can be used in automated pipelines to help keep code quality under control.
-
-### GitHub actions
-
-The `rapidez/rapidez` repository contains an example PHPStan workflow [here](https://github.com/rapidez/rapidez/blob/master/.github/workflows/analyse.yml). Replace `composer analyse` with `composer style` to run Pint.
-
-### Bitbucket pipelines
-
-If you're using Bitbucket you can set up these pipelines with a php docker container. A pipeline step to run PHPStan could look something like this:
-
-```yaml
-    - step: &analyse
-        name: Static analysis
-        image:
-          name: $DOCKER_IMAGE
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
-        caches:
-          - composer
-        script:
-          - composer install
-          - cp .env.example .env
-          - php artisan key:generate
-          - composer analyse
-```
