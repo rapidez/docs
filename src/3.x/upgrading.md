@@ -6,9 +6,20 @@
 
 ## Rapidez v3
 
-In this release, we refactored the checkout from the Magento API to GraphQL! 🚨 You should review all changes! And with that 🥁, we added a one-step checkout option! 🚀
+In this release, we **refactored the checkout** from the Magento API **to GraphQL**! 🚨 And with that 🥁, we added a **one-step checkout** option! 🚀 Furthermore:
 
 - Dropped support for Magento 2.4.6, Laravel 10, and PHP 8.1
+- [Improved the install command](https://github.com/rapidez/core/pull/586)
+- [Active filters will be visible](https://github.com/rapidez/core/pull/587)
+- [HTTP/3 Early Hints support](https://github.com/rapidez/core/pull/644)
+
+And a lot of frontend changes:
+
+- [Product gallery](https://github.com/rapidez/core/pull/624)
+- [Autocomplete](https://github.com/rapidez/core/pull/670)
+- [Quantity input](https://github.com/rapidez/core/pull/645)
+- [Color names](https://github.com/rapidez/core/pull/622)
+- [Named z-indexes](https://github.com/rapidez/core/pull/625)
 - You should review all template changes!
 
 ## Composer dependencies
