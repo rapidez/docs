@@ -64,10 +64,7 @@ If you're using Bitbucket you can set up these pipelines with a php docker conta
 ```yaml
     - step: &analyse
         name: Static analysis
-        image:
-          name: $DOCKER_IMAGE
-          username: $DOCKER_USERNAME
-          password: $DOCKER_PASSWORD
+        image: ghcr.io/justbetter/docker-ci-php-node:1-22.04-8.3-22
         caches:
           - composer
         script:
