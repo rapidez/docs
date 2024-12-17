@@ -45,6 +45,7 @@ Configuration | Explanation
 `design/head/title_suffix` | Suffix to give to a customized title when set
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
+`newsletter/general/active` | Whether or not the option to sign up for the newsletter is displayed
 
 If you need to access a Magento configuration, you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()`, which accepts the same parameters as the directive. For more advanced usage (like defining which scope), you can use:
 ```php
