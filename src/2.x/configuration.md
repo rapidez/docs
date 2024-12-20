@@ -57,6 +57,8 @@ Rapidez will be the frontend, Magento just as backend. So they'll need 2 differe
 
 If you have set this correctly you can set `GET_MAGENTO_URL_FROM_DATABASE=true` in the Rapidez `.env` and it will automatically apply the urls in Rapidez itself.
 
+For more advanced control and similar syntax as Magento you can also use `\Rapidez\Core\Models\Config::getValue('web/secure/base_media_url', Rapidez\Core\Models\ConfigScopes::SCOPE_STORE, $scopeId, ['cache' => true, 'decrypt' => false])`
+
 ### Forgot password email
 
 You've to change the url in the forgot password email as this points to Magento instead of Rapidez. Replace this:
