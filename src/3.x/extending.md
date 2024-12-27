@@ -110,7 +110,8 @@ The autocomplete can contain as many Elasticsearch indexes as you wish. You can 
         'blogs' => [
             'fields' => ['title', 'tags'],
             'size' => 3,
-            'sort' => ['date' => 'desc'] // See: https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html
+            'stores' => ['my_second_store'],
+            'sort' => ['date' => 'desc'],
         ],
     ],
 
@@ -119,4 +120,55 @@ The autocomplete can contain as many Elasticsearch indexes as you wish. You can 
 ],
 ```
 
-You can use `categories.blade.php` as an example for how to properly display new indexes in the autocomplete.
+### Configuration
+
+There are two ways to define a new additional index. The shorthand way is by only giving the index name and searchable fields, like so:
+
+```php
+'categories' => ['name^3', 'description'],
+```
+
+Alternatively, you can have more control by expanding the configuration like below:
+
+```php
+'blogs' => [
+    'fields' => ['title', 'tags'],
+    'size' => 3,
+    'stores' => ['my_second_store'],
+    'sort' => ['date' => 'desc'],
+],
+```
+
+- `fields` (required)  
+Here you can define the searched fields
+- `size`  
+This overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 3 blogs to be shown in the autocomplete instead of the default 10.
+- `stores`  
+Limits your index to specific stores. In the above example, the `blogs` index will only be queried on the store with the code `my_second_store`. This allows you to have store-specific indexes. The index will be used on all stores if this parameter is not defined.
+- `sort`  
+This lets you define an alternative sorting in case the default ES sorting doesn't suffice. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html) for how to use this parameter correctly.
+
+### Displaying new indexes
+
+When you add a new index to this configuration, Rapidez will attempt to include `rapidez::layouts.partials.header.autocomplete.index_name_here` in the autocomplete. This means that any additional indexes should have their own view defined under `[your resource folder]/views/vendor/rapidez/layouts/partials/header/autocomplete/index_name_here.blade.php`.
+
+A basic example of such a view can be found below:
+
+```blade
+<div class="border-b pb-2" v-if="resultsType == 'index_name_here'">
+    <x-rapidez::autocomplete.title>@lang('My index')</x-rapidez::autocomplete.title>
+    <ul class="flex flex-col">
+        <li v-for="hit in resultsData.hits" :key="hit._source.id">
+            <a v-bind:href="hit._source.url">
+                <span v-html="autocompleteScope.highlight(hit, 'field_name_here')"></span>
+            </a>
+        </li>
+    </ul>
+</div>
+```
+
+Variables you can use in this view:
+
+- `resultsType` is the type of result that the autocomplete is currently returning data for. Note that it is currently necessary that you check for the correct resultsType at the start of your partial.
+- `resultsData` is the data that's been returned by ElasticSearch. You can loop over `resultsData.hits` to get all of the relevant hits.
+- `autocompleteScope` is the data of the `autocomplete` component. This is mostly useful to be able to use `autocompleteScope.highlight(hit, 'field_name_here')` as done in the example above.
