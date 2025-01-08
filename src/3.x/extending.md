@@ -148,7 +148,10 @@ Alternatively, you can have more control by expanding the configuration like bel
 
 ### Displaying new indexes
 
-When you add a new index to this configuration, Rapidez will attempt to include `rapidez::layouts.partials.header.autocomplete.index_name_here` in the autocomplete. This means that any additional indexes should have their own view defined under `[your resource folder]/views/vendor/rapidez/layouts/partials/header/autocomplete/index_name_here.blade.php`.
+When you add a new index to this configuration, Rapidez will attempt to include `rapidez::layouts.partials.header.autocomplete.index_name_here` in the autocomplete. This means that any additional indexes should have their own view defined under
+```
+/resources/views/vendor/rapidez/layouts/partials/header/autocomplete/index_name_here.blade.php
+```
 
 A basic example of such a view can be found below:
 
