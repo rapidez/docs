@@ -139,14 +139,12 @@ Alternatively, you can have more control by expanding the configuration like bel
 ],
 ```
 
-- `fields` (required)  
-Here you can define the searched fields
-- `size`  
-This overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 3 blogs to be shown in the autocomplete instead of the default 10.
-- `stores`  
-Limits your index to specific stores. In the above example, the `blogs` index will only be queried on the store with the code `my_second_store`. This allows you to have store-specific indexes. The index will be used on all stores if this parameter is not defined.
-- `sort`  
-This lets you define an alternative sorting in case the default ES sorting doesn't suffice. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html) for how to use this parameter correctly.
+| Option | Required | Description |
+|---|---|---|
+| `fields` | Yes | The searched fields |
+| `size` | No | Overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 3 blogs to be shown in the autocomplete instead of the default 10. |
+| `stores` | No | Limits your index to specific stores. In the above example, the `blogs` index will only be queried on the store with the code `my_second_store`. This allows you to have store-specific indexes. The index will be used on all stores if this parameter is not defined. |
+| `sort` | No | Lets you define an alternative sorting in case the default ES sorting doesn't suffice. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html) for how to use this parameter correctly. |
 
 ### Displaying new indexes
 
@@ -155,7 +153,7 @@ When you add a new index to this configuration, Rapidez will attempt to include 
 A basic example of such a view can be found below:
 
 ```blade
-<div class="border-b pb-2" v-if="resultsType == 'index_name_here'">
+<div class="border-b pb-2">
     <x-rapidez::autocomplete.title>@lang('My index')</x-rapidez::autocomplete.title>
     <ul class="flex flex-col">
         <li v-for="hit in resultsData.hits" :key="hit._source.id">
@@ -169,6 +167,8 @@ A basic example of such a view can be found below:
 
 Variables you can use in this view:
 
-- `resultsType` is the type of result that the autocomplete is currently returning data for. Note that it is currently necessary that you check for the correct resultsType at the start of your partial.
-- `resultsData` is the data that's been returned by ElasticSearch. You can loop over `resultsData.hits` to get all of the relevant hits.
-- `autocompleteScope` is the data of the `autocomplete` component. This is mostly useful to be able to use `autocompleteScope.highlight(hit, 'field_name_here')` as done in the example above.
+
+| Variable | Description |
+|---|---|
+| `resultsData` | The data that's been returned by ElasticSearch. You can loop over `resultsData.hits` to get all of the relevant hits. |
+| `autocompleteScope` | The data of the `autocomplete` component. This is mostly useful to be able to use `autocompleteScope.highlight(hit, 'field_name_here')` as done in the example above. |
