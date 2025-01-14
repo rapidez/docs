@@ -69,7 +69,7 @@ Class | CSS variable | Default color | |
 `text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="#1e293b"/>{.np}
 `text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="#475569"/>{.np}
 
-##### Border
+##### Border, Ring and Outline
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
@@ -77,37 +77,25 @@ Class | CSS variable | Default color | |
 `border` / `border-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 
+Ring and outline colors are the same as the border colors.
+You can use them like this:
+`outline-emphasis`
+`ring-emphasis`
+
 ##### Background
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
 `bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
-`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
 
 ##### Shadow
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`shadow-emphasis` | `--border-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
-`shadow-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
-`shadow-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
-
-##### Ring
-
-Class | CSS variable | Default color | |
-:--- | :--- | :--- | :---
-`ring-emphasis` | `--border-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
-`ring-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
-`ring-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
-
-##### Outline
-
-Class | CSS variable | Default color | |
-:--- | :--- | :--- | :---
-`outline-emphasis` | `--border-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
-`outline-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
-`outline-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
+`shadow-emphasis` | `--shadow-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
+`shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
+`shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
 
 ## Javascript
 
