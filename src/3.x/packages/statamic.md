@@ -137,6 +137,16 @@ Eventy::addFilter('rapidez.statamic.brand.entry.data', fn($brand) => [
 );
 ```
 
+We also added support for the Amasty ShopBy Brand module, if this module is installed it will migrate the data from the Amasty Brand module to Statamic after running the the Brand import command:
+
+```bash
+# Import all brands in all sites
+php artisan rapidez:statamic:import:brands
+
+# Import all brands in the site with handle "default" only
+php artisan rapidez:statamic:import:brands --site=default
+```
+
 ## Globals
 
 Globals will be available through the `$globals` variable.
