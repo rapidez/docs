@@ -59,7 +59,7 @@ These color names work the same as Tailwind colors. You can use them for anythin
 
 #### Neutral colors
 
-Used for the text color, borders and backgrounds to give some design system to work with. Visual examples can be found with in the [Primer neutral colors docs](https://primer.style/foundations/color/overview#neutral-colors). These colors should not be used directly: ~~`text-foreground`~~ as those colors are "linked and scoped" to the text, border and background colors. Just use the provided classes to keep a consistent style.
+Used for the text color, borders, backgrounds, shadows, rings and outlines to give some design system to work with. Visual examples can be found with in the [Primer neutral colors docs](https://primer.style/foundations/color/overview#neutral-colors). These colors should not be used directly: ~~`text-foreground`~~ as those colors are "linked and scoped" to the text, border, background, shadow, ring and outline colors. Just use the provided classes to keep a consistent style.
 
 ##### Text / Foreground
 
@@ -69,7 +69,7 @@ Class | CSS variable | Default color | |
 `text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="#1e293b"/>{.np}
 `text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="#475569"/>{.np}
 
-##### Border
+##### Border, Ring and Outline
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
@@ -77,13 +77,22 @@ Class | CSS variable | Default color | |
 `border` / `border-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 
+Ring and outline colors are the same as the border colors, you can use them like: `outline-emphasis` and `ring-emphasis`.
+
 ##### Background
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
 `bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
-`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
+
+##### Shadow
+
+Class | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`shadow-emphasis` | `--shadow-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
+`shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
+`shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
 
 ## Javascript
 
