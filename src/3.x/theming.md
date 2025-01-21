@@ -73,8 +73,8 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`border-emphasis` | `--border-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
-`border` / `border-default` | `--border` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
+`border-emphasis` | `--border-emphasis` | `slate-400` | <colorTile color="#94a3b8"/>{.np}
+`border` / `border-default` | `--border` | `slate-300` | <colorTile color="#cbd5e1"/>{.np}
 `border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 
 Ring and outline colors are the same as the border colors, you can use them like: `outline-emphasis` and `ring-emphasis`.
