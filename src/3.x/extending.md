@@ -133,6 +133,7 @@ Alternatively, you can have more control by expanding the configuration like bel
 ```php
 'blogs' => [
     'fields' => ['title', 'tags'],
+    'fuzziness' => 'AUTO:5,10',
     'size' => 3,
     'stores' => ['my_second_store'],
     'sort' => ['date' => 'desc'],
@@ -142,6 +143,7 @@ Alternatively, you can have more control by expanding the configuration like bel
 | Option | Required | Description |
 |---|---|---|
 | `fields` | Yes | The searched fields |
+| `fuzziness` | No | The ElasticSearch fuzziness parameter. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/common-options.html#fuzziness). |
 | `size` | No | Overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 3 blogs to be shown in the autocomplete instead of the default 10. |
 | `stores` | No | Limits your index to specific stores. In the above example, the `blogs` index will only be queried on the store with the code `my_second_store`. This allows you to have store-specific indexes. The index will be used on all stores if this parameter is not defined. |
 | `sort` | No | Lets you define an alternative sorting in case the default ES sorting doesn't suffice. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html) for how to use this parameter correctly. |
