@@ -188,6 +188,7 @@ With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blo
 
 ### From 4.x to 5.x
 
+:::: details
 ```bash
 composer update rapidez/statamic -W
 ```
@@ -233,9 +234,11 @@ Within the `config/rapidez/statamic.php` config, make the Runway resources writa
 - In `category.yaml`, the fields are: `entity_id`, `name`
 - In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`
 - In `product.yaml`, the fields are: `entity_id`, `sku`, `name`
+::::
 
 ### From 2.x to 3.x
 
+::: details
 Since 3.0.0, we have started using [`optionalDeep()`](https://github.com/rapidez/blade-directives#optionaldeep) for the `$globals` and `$content` variables. Some code may need to be upgraded. Things you need to change:
 
 The class will always be returned; you explicitly need to check if the value is set:
@@ -262,3 +265,4 @@ However, anything that will attempt to cast the value to a string will get the v
     {{ $contentBlock }}
 @endForeach
 ```
+:::
