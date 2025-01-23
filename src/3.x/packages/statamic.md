@@ -2,50 +2,110 @@
 
 ---
 
-This is the Rapidez integration for Statamic, this package gives you some good starting points for integrating products, categories & brands.
-
-You can check the whole feature list and installation guide on the [Github page](https://github.com/rapidez/statamic).
+The Rapidez with [Statamic](https://statamic.com/) integration! 🤝🚀
 
 [[toc]]
 
+## Features
+
+- Products, categories and brands are integrated through [Runway](https://github.com/statamic-rad-pack/runway)
+- Automatic site registration based Magento stores
+- Routing, the Statamic routes are the fallback
+- Page builder fieldset with multiple components:
+    - Product slider
+    - Content
+    - Image
+    - Form
+- Responsive images with [Glide](https://github.com/justbetter/statamic-glide-directive)
+- Breadcrumbs on pages
+- Globals available in all views
+- SEO meta title and description
+- Automatic alternate hreflang link tags
+- Sitemap for all sites, collections and taxonomies
+
+## Installation
+
+1. **Install Statamic**
+
+> Just follow the [Statamic installation guide](https://statamic.dev/installing/laravel)
+
+2. **Prepare the user model**
+
+> Copy these two files from Laravel into your project:
+>
+> - [app/Models/User.php](https://github.com/laravel/laravel/blob/11.x/app/Models/User.php)
+> - [database/migrations/0001_01_01_000000_create_users_table.php](https://github.com/laravel/laravel/blob/11.x/database/migrations/0001_01_01_000000_create_users_table.php)
+
+3. **Install the Rapidez Statamic integration**
+
+```bash
+composer require rapidez/statamic
+```
+
+4. **Finish the user model**
+
+> Follow the [storing users in a database guide](https://statamic.dev/tips/storing-users-in-a-database#in-an-existing-laravel-app)
+
+5. **Run the install command**
+
+```bash
+php artisan rapidez-statamic:install
+```
+
+When running the install command you will be prompted to setup the Eloquent driver. In this configuration you can choose what to keep in the flat file system and what to migrate to the database. We recommend migrating the following options to the database when setting up the eloquent driver:
+
+- Assets
+- Collection Trees
+- Entries
+- Forms
+- Form Submissions
+- Globals
+- Global Variables
+- Navigation Trees
+- Terms
+- Tokens
+
 ## Configuration
 
-We recommend using the following configuration to setup Statamic in your Rapidez project.
-Have a look within the `rapidez/statamic.php` config file, if you need to change something you can publish it with:
+The configuration file can be published with:
 
 ```bash
 php artisan vendor:publish --provider="Rapidez\Statamic\RapidezStatamicServiceProvider" --tag=config
 ```
 
-## Sites configuration
+After that you'll find all options within `config/rapidez/statamic.php`
 
-There is no need for a `sites.yaml` in your project anymore. The sites will be registered automatically based on the configured stores in Magento.
+### Sites
 
-The current site will be determined based on the `MAGE_RUN_CODE`. By default Statamic uses the url for this; that's still the fallback. The `group` within the `attributes` will be set based on the `website_code` from Magento. This makes it possible to add alternate hreflang link tags. You could also add the `store_code` to the `disabled_sites` array within the `rapidez/statamic.php` config if you want to exclude this site from being altered with Statamic data.
-```php
-'disabled_sites' => [
-    '{store_code}'
-],
-```
-When adding a new store in Magento make sure to clear the Laravel cache.
+Sites within Statamic will automatically be registered based on the Magento stores. So there is no need for a `sites.yaml`. The current site will be determined based on the `MAGE_RUN_CODE` and the alternate hreflang link tags are grouped by the `website_code`. 
 
-## Routing
+::: warning Sites cache
+Make sure the flush the cache after editing stores in Magento!
+:::
 
-As Rapidez uses route fallbacks to allow routes to be added with lower priority than Magento routes, this package is used to fix this, as statamic routes on itself will overwrite your Magento routes. Make sure default Statamic routing is disabled in `config/statamic/routes.php`. We'll register the Statamic routes from this packages after the Magento routes.
+::: details Disable Statamic for a store
+To disable Statamic for a specific store just add the `store_code` to the `disabled_sites` within `config/rapidez/statamic.php`
+:::
+
+### Routing
+
+The default Statamic routing will overrule the Rapidez routes. We don't want that so you've to disable the default Statamic routing within `config/statamic/routes.php`
 
 ```php
 'enabled' => false,
 ```
 
-### Magento CMS pages
+The integration package will register the Statamic routes as fallback; so it tries the Magento routes first.
 
-The routing will choose Magento CMS pages over Statamic pages.
+::: tip Seeing a Magento page instead of Statamic?
 This can happen when a CMS page in Magento has the same slug as a page in Statamic, like the homepage.
 To show the Statamic page, simply disable the page in Magento.
+:::
 
-## Assets disk
+### Assets
 
 Make sure there is an assets disk within `config/filesystems.php`
+
 ```php
 'disks' => [
     'assets' => [
@@ -57,100 +117,58 @@ Make sure there is an assets disk within `config/filesystems.php`
 ],
 ```
 
-## Publishing views
+## Runway / Magento data
 
-If you have run the install command these will already have been published.
+With [Runway](https://github.com/statamic-rad-pack/runway) you're able to display data from an Eloquent model within Statamic. We're using this to have all products, categories and brands from Magento visible within Statamic, without the need of importing and syncing data. These Runway models can be used to link anything within Statamic  to existing Magento data.
 
-```bash
-php artisan vendor:publish --provider="Rapidez\Statamic\RapidezStatamicServiceProvider" --tag=views
-```
+For example; the product slider component within the page builder has a relation with the products Runway model. This way you can select from all Magento products you'd like to display within the slider.
 
-## Showing content on categories and products
+You can also enrich data with this; for example when you want to use Statamic to add data on product, category or brand pages. Therefore next to the "Runway product collection" (which is read-only and has all data from Magento) there is also a "Product content collection". From there you're free to use anything from Statamic, only the `linked_product` field using the `belongs_to` field type should be there to link your custom content to a product within Magento.
 
-By default you'll get the configured content on categories and products available withint the `$content` variable. This can be enabled/disabled with the `fetch` configurations within the `rapidez/statamic.php` config file. If you want to display the configured content from the default page builder you can include this in your view:
+::: warning This is going to change in the next verion!
+We're currently working on rapidez/statamic v5 where we're moving to a "hybrid Runway" solution. Have a look at [this pull request](https://github.com/rapidez/statamic/pull/80) for more information.
+:::
+
+### Displaying content
+
+If you are going to enrich product / category pages with content from Statamic you'll find all data within the `$content` variable.
+
+To display the default page builder content you've to add this to your view:
+
 ```blade
 @includeWhen(isset($content), 'rapidez-statamic::page_builder', ['content' => $content?->content])
 ```
+
 - Product: `resources/views/vendor/rapidez/product/overview.blade.php`
 - Category: `resources/views/vendor/rapidez/category/overview.blade.php`
 
+::: details Disable `$content`
+If you don't want `$content` on the product / category pages, you can disable it from the `rapidez/statamic.php` config file by setting the `fetch` option to `false`
+:::
 
-## Brand overview and single brand
-### Brand pages
-Single brand pages display a listing page with your products linked to that brand. By default the single brand pages are disabled. You can enable routing for them in `content/collections/brands.yaml` by adding a route for them:
+## Brand pages
+
+You'll get a brand collection out-of-the-box. You could just create entries but those can also be imported from Magento. Double check the `brand_attribute_id` within `config/rapidez/statamic.php` and run the import command:
+
+```bash
+php artisan rapidez:statamic:import:brands
+```
+
+::: details I'm using the Amasty ShopBy Brand module
+Good news! We'll detect that module and import all existing data into Statamic!
+:::
+
+If you want to have actual brand pages on the frontend displaying all the products of that brand; you've to enable the route within `content/collections/brands.yaml`
 
 ```yaml
 route: '/brands/{slug}'
 ```
-### Brand overview
-If you want an overview page for your brands you can add a `Brand overview` component on a normal page. This will automaticly load a view with your brands grouped by their first letter.
 
-## Editing Categories, Products or Brands from Magento
-
-When editing a category, product or brand from Magento, the data is automatically synced to Statamic.
-There are 3 Runway resources that are synced:
-- Category
-- Product
-- Brand
-
-It's possible to add more fields to these resources by changing their respective blueprints.
-These blueprints can be found in `resources/blueprints/vendor/runway/category.yaml`, `resources/blueprints/vendor/runway/product.yaml` and `resources/blueprints/vendor/runway/brand.yaml`.
-
-The Page Builder is added on these blueprints by default.
-
-### Categories
-
-By default the slug and title of the category are copied.
-
-If you have a custom blueprint and would like to add more data from the category you can do so by hooking into the Eventy event: `rapidez-statamic:category-entry-data`
-
-```php
-Eventy::addFilter('rapidez.statamic.category.entry.data', fn($category) => [
-        'description' => $category->description,
-    ]
-);
-```
-
-### Products
-
-By default the slug and title of the product are copied.
-
-If you have a custom blueprint and would like to add more data from the product you can do so by hooking into the Eventy event: `rapidez.statamic.product.entry.data`
-
-```php
-Eventy::addFilter('rapidez.statamic.product.entry.data', fn($product) => [
-        'description' => $product->description,
-    ]
-);
-```
-
-### Brands
-
-By default the slug and title of the brand are copied.
-
-If you have a custom blueprint and would like to add more data from the brand you can do so by hooking into the Eventy event `rapidez.statamic.brand.entry.data`
-
-```php
-Eventy::addFilter('rapidez.statamic.brand.entry.data', fn($brand) => [
-        'description' => $brand->description,
-    ]
-);
-```
-
-We also added support for the Amasty ShopBy Brand module, if this module is installed it will migrate the data from the Amasty Brand module to Statamic after running the the Brand import command:
-
-```bash
-# Import all brands in all sites
-php artisan rapidez:statamic:import:brands
-
-# Import all brands in the site with handle "default" only
-php artisan rapidez:statamic:import:brands --site=default
-```
+For a "brand overview" page with all brands listed alphabetically you can just create a normal page and use the "Brand overview" component.
 
 ## Globals
 
-Globals will be available through the `$globals` variable.
-For example; If you created a global with the handle `header` and added a field called `logo` in this global it will be available as `$globals->header->logo`.
+All Statamic globals will be available through the `$globals` variable within your Rapidez Blade templates. If you have a global with the handle "header" and added a field called "logo" it will be available as `$globals->header->logo`
 
 ## Forms
 
@@ -158,63 +176,34 @@ When you create a form you could use `rapidez-statamic::emails.form` as HTML tem
 
 ## Sitemap
 
-We hook into the [Rapidez Sitemap](https://github.com/rapidez/sitemap) generation by adding our Statamic-specific sitemaps to the store's sitemap index. 
+This package hooks into the [Rapidez Sitemap](https://github.com/rapidez/sitemap) generation by adding Statamic specific sitemaps to the store's sitemap index. For each store, we generate sitemaps for collections and taxonomies that have a route and content. The folder layout will look like:
 
-For each store, we generate sitemaps for collections and taxonomies that have actual routes and content. The XML files will be stored in the configured sitemap disk (defaults to 'public') under the configured path (defaults to 'rapidez-sitemaps') with the following structure:
-```shell
+```bash
 rapidez-sitemaps/{store_id}/{sitemap_prefix}_collection_{collection_handle}.xml
 rapidez-sitemaps/{store_id}/{sitemap_prefix}_taxonomy_{taxonomy_handle}.xml
 ```
 
-The sitemap prefix can be configured in the `rapidez.statamic.sitemap.prefix` config.
+With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blob/master/config/sitemap.php). The prefix default is `statamic_sitemap_` and can be configured within `config/rapidez/statamic.php`
 
-## Upgrade Guide
+## Upgrading
 
-### Upgrade from `rapidez/statamic` 2.x to 3.x
-
-Since 3.0.0 we have started using optionalDeep for the $globals, and $content variables.
-This means some code may need to be upgraded. Here's a list of things you can expect might need to be changed:
-
-Since optionalDeep will always return the optional class we explicitly need to ask it if a value is set
-```diff
-- @if($globals->cookie_notice->text)
-+ @if($globals->cookie_notice->text->isset())
-```
-
-This also means that checks for specific values need to be updated
-```diff
-- @if($globals->cookie_notice->text === 'foo')
-+ @if($globals->cookie_notice->text->get() === 'foo')
-```
-
-However, anything that will attempt to cast the value to string will get the value right away. Thus bits that can stay unchanged are:
-```blade
-{{ $globals->cookie_notice->text }}
-{{ $globals->cookie_notice->text ?? 'fallback value' }}
-{{ $globals->cookie_notice->text . ' string concatenation' }}
-@foreach($content->blocks as $contentBlock)
-
-@endForeach
-```
-
-### Upgrade from `rapidez/statamic` 4.x to 5.x
-Ensure that all dependencies are compatible with version 5.x and follow the upgrade instructions provided in the official documentation.
+### From 4.x to 5.x
 
 ```bash
 composer update rapidez/statamic -W
 ```
 
-#### Remove Blueprint Directories
-> [!IMPORTANT]
-> Before removing the blueprint and content directories, ensure you have copied over any custom fields or configurations you need to retain.
+#### Remove blueprints and content
 
-You can remove the following blueprint directories:
+::: danger
+Before removing the blueprint and content directories, ensure you have copied over any custom fields or configurations you need to retain!
+:::
+
+You can remove all these directories and files:
+
 - `resources/blueprints/collections/categories`
 - `resources/blueprints/collections/products`
 - `resources/blueprints/collections/brands`
-
-#### Remove Content Directories
-The following content directories can also be removed:
 - `content/collections/categories`
 - `content/collections/products`
 - `content/collections/brands`
@@ -222,50 +211,56 @@ The following content directories can also be removed:
 - `content/collections/categories.yaml`
 - `content/collections/brands.yaml`
 
-#### Clear Cache
-Run the following command to clear the cache:
-- `php artisan optimize:clear`
+And clear the cache afterwards: `php artisan cache:clear`
 
-#### Import Page Builder Fieldset
-Add the following line to the specified runway resources blueprints:
-- `resources/blueprints/vendor/runway/product.yaml`
-- `resources/blueprints/vendor/runway/category.yaml`
-- `resources/blueprints/vendor/runway/brand.yaml`:
+#### Import the page builder fieldset
+
+Add the this line:
 
 ```yaml
 import: page_builder
 ```
 
-#### Change Runway Collections to Not Read-Only
-Update the runway collections to be not read-only by modifying the following code in `config/statamic.php`:
-```php
-\Rapidez\Statamic\Models\Product::class => [
-    'name' => 'Products',
-    'read_only' => false,
-    'title_field' => 'sku',
-    'cp_icon' => 'table',
-],
+In these Runway resource blueprints:
 
-\Rapidez\Statamic\Models\Category::class => [
-    'name' => 'Categories',
-    'read_only' => false,
-    'title_field' => 'name',
-    'cp_icon' => 'array',
-],
+- `resources/blueprints/vendor/runway/product.yaml`
+- `resources/blueprints/vendor/runway/category.yaml`
+- `resources/blueprints/vendor/runway/brand.yaml`
 
-\Rapidez\Statamic\Models\Brand::class => [
-    'name' => 'Brands',
-    'read_only' => false,
-    'title_field' => 'value_store',
-    'cp_icon' => 'tags',
-    'order_by' => 'sort_order',
-],
+#### Writable Runway resources
+
+Within the `config/rapidez/statamic.php` config make the Runway resources writable by changing the `read_only` to `false`. Additionally, add `visibility: read_only` to the system fields of Magento in the Runway blueprints:
+
+- In `category.yaml`, the fields are: `entity_id`, `name`
+- In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`
+- In `product.yaml`, the fields are: `entity_id`, `sku`, `name`
+
+### From 2.x to 3.x
+
+Since 3.0.0 we have started using [`optionalDeep()`](https://github.com/rapidez/blade-directives#optionaldeep) for the `$globals` and `$content` variables.
+Some code may need to be upgraded. Things you need to change:
+
+The class will always be returned, you explicitly need to check if the value is set:
+
+```diff
+- @if($globals->cookie_notice->text)
++ @if($globals->cookie_notice->text->isset())
 ```
-Additionally, add `visibility: read_only` to the system fields of Magento in the runway blueprints:
-- In `category.yaml`, the fields are: `entity_id`, `name`.
-- In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`.
-- In `product.yaml`, the fields are: `entity_id`, `sku`, `name`.
 
-#### Note
-- Make sure to back up your project before performing these steps to prevent any data loss.
-- Additionally, ensure that if there are any custom fields in the old blueprints we deleted, they are copied over to the new runway blueprints.
+This also means that checks for specific values need to be updated:
+
+```diff
+- @if($globals->cookie_notice->text === 'foo')
++ @if($globals->cookie_notice->text->get() === 'foo')
+```
+
+However, anything that will attempt to cast the value to string will get the value right away. No changes needed here:
+
+```blade
+{{ $globals->cookie_notice->text }}
+{{ $globals->cookie_notice->text ?? 'fallback value' }}
+{{ $globals->cookie_notice->text . ' string concatenation' }}
+@foreach($content->blocks as $contentBlock)
+    {{ $contentBlock }}
+@endForeach
+```
