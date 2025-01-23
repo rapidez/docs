@@ -184,6 +184,22 @@ rapidez-sitemaps/{store_id}/{sitemap_prefix}_taxonomy_{taxonomy_handle}.xml
 
 With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blob/master/config/sitemap.php), the prefix default is `statamic_sitemap_` and can be configured within `config/rapidez/statamic.php`
 
+## Static caching
+
+Statamic comes with [static caching](https://statamic.dev/static-caching) and with this packages we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
+
+Invalidation is handled by a command that checks the `updated_at` column on products, categories and pages in Magento. Everything updated after the latest invalidation will be invalidated:
+
+```bash
+php artisan rapidez-statamic:invalidate-cache
+```
+
+We recommend to schedule this command in `routes/console.php` to invalidate periodically. For more information, see [Task Scheduling](https://laravel.com/docs/11.x/scheduling).
+
+```php
+Schedule::command('php artisan rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
+```
+
 ## Upgrading
 
 ### From 4.x to 5.x
