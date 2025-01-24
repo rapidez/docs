@@ -124,3 +124,26 @@ DB_DATABASE=magento
 DB_USERNAME=magento
 DB_PASSWORD=password
 ```
+
+## Standalone Checkout
+
+Are you not ready to fully commit to Rapidez just yet? We support running it as a standalone checkout as well!
+
+You will need to install the folowing package in Magento: https://github.com/rapidez/magento2-standalone-checkout
+
+```bash
+composer install rapidez/magento2-standalone-checkout
+bin/magento module:enable Rapidez_StandaloneCheckout
+```
+
+Then you can activate it by setting your Rapidez base url under: `Stores > Configuration > Rapidez > Standalone Checkout > Rapidez Url`
+
+### Credential storage
+
+Rapidez temporarily needs to store the customers' cart mask and customer token, we save this in cache.
+
+This is usually not a problem, however if the cache gets cleared often this can lead to annoyances if the customer needs to press the checkout button multiple times.
+
+You can select a different cache store to work around this with the following ENV variable: `STANDALONE_CHECKOUT_CACHE_STORE`.
+
+We suggest copying the [Redis store in config/cache.php](https://github.com/laravel/framework/blob/79b44b168da164191950aab79ba1689f0087ccda/config/cache.php#L74) to something like "redis-persistent" and setting the connection to "default" instead of "cache".
