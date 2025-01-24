@@ -147,3 +147,15 @@ This is usually not a problem, however if the cache gets cleared often this can 
 You can select a different cache store to work around this with the following ENV variable: `STANDALONE_CHECKOUT_CACHE_STORE`.
 
 We suggest copying the [Redis store in config/cache.php](https://github.com/laravel/framework/blob/79b44b168da164191950aab79ba1689f0087ccda/config/cache.php#L74) to something like "redis-persistent" and setting the connection to "default" instead of "cache".
+
+### Nginx
+
+Since you're using standalone checkout you might not want to expose the other urls.
+To do so you can use this nginx rule:
+
+```nginx
+# Redirect non-standalone-checkout urls to Magento.
+location ~* ^\/(?!(api|healthcheck|checkout.*|mollie.+|paynl.*|msp-return)(\/|$)) {
+    return 308 $scheme://<magento url>$request_uri;
+}
+```
