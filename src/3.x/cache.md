@@ -14,6 +14,10 @@ After you have made changes to some Magento configuration, you need to clear the
 To disable the cache while developing, change the `CACHE_DRIVER` in the `.env` file to `null`.
 :::
 
+## Query caching
+
+In order to reduce some often made query calls (like those for configuration) and speed these up we've added the ability to call `->getCachedForever()` on queries.
+
 ## Partial caching
 
 When you have a template consuming too much time or resources and it doesn't have to do that every time, you could use [`@includeCached()`](https://github.com/rapidez/blade-directives#includecached) to cache the partial.
