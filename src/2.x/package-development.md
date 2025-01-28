@@ -2,7 +2,7 @@
 
 ---
 
-This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/master/packages) and have a look at the [existing packages](packages.md) to see how things are handled. You could use our [Package Template](https://github.com/rapidez/package-template) as a starting point.
+This works just like any Laravel package, [read their documentation to get started](https://laravel.com/docs/11.x/packages) and have a look at the [existing packages](packages.md) to see how things are handled. You could use our [Package Template](https://github.com/rapidez/package-template) as a starting point.
 
 [[toc]]
 
@@ -121,3 +121,21 @@ Product::resolveRelationUsing(
     fn (Product $product) => $product->hasMany(MyTestModel::class, 'product_id');
 );
 ```
+
+## Notifications
+Notifications are essential for keeping users informed about important events within your application. With Rapidez, you can easily add notifications to a session, ensuring that users receive relevant messages.
+
+### Implementation
+Follow these steps to add notifications to a session:
+
+1. Add the following code to your controller function or where you want to start the session:
+```php
+return redirect('/')->with(['notification' => [
+    'message' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    'type' => 'success'
+]]);
+```
+- `message`: The text of the notification.
+- `type`: The notification type (e.g., ‘success’, ‘error’, ‘warning’).
+
+2. **Displaying the Notification**: After the redirect, the notification will automatically appear for the user.

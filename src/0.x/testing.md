@@ -6,7 +6,7 @@
 
 ## Introduction
 
-Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/10.x/testing) including [Laravel Dusk](https://laravel.com/docs/10.x/dusk#main-content) available to you.
+Rapidez is built upon [Laravel](https://laravel.com/) so you have its [full testing suite](https://laravel.com/docs/10.x/testing) including [Laravel Dusk](https://laravel.com/docs/10.x/dusk) available to you.
 
 Dusk is most likely what you'll be using to write your tests.
 

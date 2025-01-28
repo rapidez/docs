@@ -2,12 +2,12 @@
 
 ---
 
-In addition to the Rapidez Core we've created some packages.
+In addition to the Rapidez Core, we've created some packages.
 
 [[toc]]
 
 ::: tip Created a package?
-[Edit this page](https://github.com/rapidez/docs/edit/master/src/1.x/packages.md) and add yours!
+[Edit this page](https://github.com/rapidez/docs/edit/master/src/3.x/packages.md) and add yours!
 :::
 
 ## Base
@@ -24,13 +24,53 @@ Core Magento functionality but not installed by default.
 
 - [Compare](https://github.com/rapidez/compare)
 - [Reviews](https://github.com/rapidez/reviews)
-- [Wishlist](https://github.com/rapidez/wishlist)
+- [Wishlist](#wishlists)
 - [Product alerts](https://github.com/rapidez/product-alert)
 - [Login As Customer](https://github.com/rapidez/login-as-customer)
+- [MSI](https://github.com/rapidez/msi)
+
+## Checkout
+
+Opinionated checkout packages.
+
+- [Checkout Theme](https://github.com/rapidez/checkout-theme/)
+- [Confira](https://github.com/rapidez/confira)
+
+## Payment providers
+
+- [Mollie](https://github.com/rapidez/mollie)
+- [Pay.nl](https://github.com/rapidez/paynl)
+- [MultiSafepay](https://github.com/rapidez/multisafepay)
+- [Riverty](https://github.com/rapidez/riverty)
+
+## CMS
+
+- [Strapi](https://github.com/rapidez/strapi)
+- [Statamic](https://github.com/rapidez/statamic)
+
+## Marketing
+
+- [Google Tag Manager](https://github.com/rapidez/gtm)
+
+## Monitoring
+
+- [OpenReplay](https://github.com/rapidez/openreplay)
+- [Sentry](https://github.com/rapidez/sentry)
+
+## Wishlists
+
+- [Default](https://github.com/rapidez/wishlist)
+- [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
+- [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
+
+## Zipcode providers
+
+- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
+- [Postcodeservice](https://github.com/rapidez/postcodeservice)
 
 ## Vendors
 
-Some Magento modules work out of the box but most of the modules which do something on the frontend need to be integrated with Rapidez. Have a look at the [package development docs](package-development.md).
+Some Magento modules work out of the box, but most of the modules that do something on the frontend need to be integrated with Rapidez. Check the [package development docs](package-development.md).
 
 ### Amasty
 
@@ -43,11 +83,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Boldcommerce
 
 - [Order comments](https://github.com/rapidez/boldcommerce-order-comments)
-
-### CMS
-
-- [Strapi](https://github.com/rapidez/strapi)
-- [Statamic](https://github.com/rapidez/statamic)
 
 ### Elgentos
 
@@ -67,20 +102,6 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Knowledge Base](https://github.com/rapidez/mirasvit-knowledge-base)
 - [Labels](https://github.com/rapidez/mirasvit-label)
 
-### Payment providers
-
-- [Mollie](https://github.com/rapidez/mollie)
-- [Pay.nl](https://github.com/rapidez/paynl)
-- [MultiSafepay](https://github.com/rapidez/multisafepay)
-
-### Rapidez
-
-- [Google Tag Manager](https://github.com/rapidez/gtm)
-- [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
-- [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
-- [OpenReplay](https://github.com/rapidez/openreplay)
-- [Postcodeservice](https://github.com/rapidez/postcodeservice)
-
 ### Snowdog
 
 - [Menu](https://github.com/rapidez/snowdog-menu)
@@ -88,8 +109,3 @@ Some Magento modules work out of the box but most of the modules which do someth
 ### Smile
 
 - [Store Locator](https://github.com/rapidez/smile-store-locator)
-
-### Zipcode providers
-
-- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
-- [Postcodeservice](https://github.com/rapidez/postcodeservice)

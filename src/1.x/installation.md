@@ -19,7 +19,7 @@ There are multiple Elasticsearch versions and licenses, see the [subscriptions p
 ## Create your first project
 
 ```
-composer create-project rapidez/rapidez rapidez
+composer create-project rapidez/rapidez:^1.0 rapidez
 ```
 ```
 php artisan rapidez:install
