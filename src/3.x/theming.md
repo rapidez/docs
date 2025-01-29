@@ -94,8 +94,9 @@ Class | CSS variable | Default color | |
 `shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
 `shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
 
-
 ##### Backdrop
+
+A slightly transparant background visible when a slideover or the autocomplete is open.
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
