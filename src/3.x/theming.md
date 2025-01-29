@@ -99,7 +99,7 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`backgdrop` | `--backdrop` | `rgba(0, 0, 0, 0.4)` | <colorTile color="#00000066"/>{.np}
+`backdrop` | `--backdrop` | `rgba(0, 0, 0, 0.4)` | <colorTile color="#00000066"/>{.np}
 
 ## Javascript
 
