@@ -69,7 +69,7 @@ Class | CSS variable | Default color | |
 `text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="#1e293b"/>{.np}
 `text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="#475569"/>{.np}
 
-##### Border, Ring and Outline
+##### Border, ring and outline
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
@@ -77,7 +77,7 @@ Class | CSS variable | Default color | |
 `border` / `border-default` | `--border` | `slate-300` | <colorTile color="#cbd5e1"/>{.np}
 `border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 
-Ring and outline colors are the same as the border colors, you can use them like: `outline-emphasis` and `ring-emphasis`.
+> Ring and outline colors are the same as the border colors, you can use them like: `outline-emphasis` and `ring-emphasis`.
 
 ##### Background
 
