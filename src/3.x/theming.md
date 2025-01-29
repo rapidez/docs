@@ -94,6 +94,14 @@ Class | CSS variable | Default color | |
 `shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
 `shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
 
+##### Backdrop
+
+A slightly transparant background visible when a slideover or the autocomplete is open.
+
+Class | CSS variable | Default color | |
+:--- | :--- | :--- | :---
+`backdrop` | `--backdrop` | `rgba(0, 0, 0, 0.4)` | <colorTile color="#00000066"/>{.np}
+
 ## Javascript
 
 We automatically import everything in `resources/js/app.js`, and you can extend from there. If you need additional Vue components, read the [readme within the components folder](https://github.com/rapidez/rapidez/blob/master/resources/js/components/README.md).
