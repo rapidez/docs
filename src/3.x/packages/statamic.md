@@ -197,7 +197,7 @@ php artisan rapidez-statamic:invalidate-cache
 We recommend to schedule this command in `routes/console.php` to invalidate periodically. For more information, see [Task Scheduling](https://laravel.com/docs/11.x/scheduling).
 
 ```php
-Schedule::command('php artisan rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
+Schedule::command('rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
 ```
 
 ## Upgrading
