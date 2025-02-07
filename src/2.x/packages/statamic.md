@@ -4,8 +4,8 @@
 
 The Rapidez with [Statamic](https://statamic.com/) integration! 🤝🚀
 
-::: info Version 5
-This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statamic) version 5
+::: info Version 4
+This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statamic/tree/4.x) version 4
 :::
 
 [[toc]]
@@ -206,52 +206,33 @@ Schedule::command('rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
 
 ## Upgrading
 
-### From 4.x to 5.x
+### From 2.x to 3.x
 
-:::: details
-```bash
-composer update rapidez/statamic -W
+::: details
+Since 3.0.0, we have started using [`optionalDeep()`](https://github.com/rapidez/blade-directives#optionaldeep) for the `$globals` and `$content` variables. Some code may need to be upgraded. Things you need to change:
+
+The class will always be returned; you explicitly need to check if the value is set:
+
+```diff
+- @if($globals->cookie_notice->text)
++ @if($globals->cookie_notice->text->isset())
 ```
 
-#### Remove blueprints and content
+This also means that checks for specific values need to be updated:
 
-::: danger
-Before removing the blueprint and content directories, ensure you have copied over any custom fields or configurations you need to retain!
+```diff
+- @if($globals->cookie_notice->text === 'foo')
++ @if($globals->cookie_notice->text->get() === 'foo')
+```
+
+However, anything that will attempt to cast the value to a string will get the value right away. No changes needed here:
+
+```blade
+{{ $globals->cookie_notice->text }}
+{{ $globals->cookie_notice->text ?? 'fallback value' }}
+{{ $globals->cookie_notice->text . ' string concatenation' }}
+@foreach($content->blocks as $contentBlock)
+    {{ $contentBlock }}
+@endForeach
+```
 :::
-
-You can remove all these directories and files:
-
-- `resources/blueprints/collections/categories`
-- `resources/blueprints/collections/products`
-- `resources/blueprints/collections/brands`
-- `content/collections/categories`
-- `content/collections/products`
-- `content/collections/brands`
-- `content/collections/products.yaml`
-- `content/collections/categories.yaml`
-- `content/collections/brands.yaml`
-
-And clear the cache afterward: `php artisan cache:clear`
-
-#### Import the page builder fieldset
-
-Add this line:
-
-```yaml
-import: page_builder
-```
-
-In these Runway resource blueprints:
-
-- `resources/blueprints/vendor/runway/product.yaml`
-- `resources/blueprints/vendor/runway/category.yaml`
-- `resources/blueprints/vendor/runway/brand.yaml`
-
-#### Writable Runway resources
-
-Within the `config/rapidez/statamic.php` config, make the Runway resources writable by changing the `read_only` to `false`. Additionally, add `visibility: read_only` to the system fields of Magento in the Runway blueprints:
-
-- In `category.yaml`, the fields are: `entity_id`, `name`
-- In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`
-- In `product.yaml`, the fields are: `entity_id`, `sku`, `name`
-::::

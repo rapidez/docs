@@ -173,7 +173,14 @@ export default defineConfig({
           items: [
             { text: 'Indexer', link: '/2.x/indexer' },
             { text: 'Cache', link: '/2.x/cache' },
-            { text: 'Packages', link: '/2.x/packages' },
+          ]
+        },
+        {
+          text: 'Packages',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/2.x/packages' },
+            { text: 'Statamic', link: '/2.x/packages/statamic' },
           ]
         }
       ],
