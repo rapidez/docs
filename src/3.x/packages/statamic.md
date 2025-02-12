@@ -192,6 +192,23 @@ With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blo
 
 Statamic comes with [static caching](https://statamic.dev/static-caching) and with this packages we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
 
+::: details Cloudflare static caching
+
+Cloudflare's edge can bring these static files even closer (and faster to the customer) {#cloudflare}
+
+To achieve this you will need to create [Cloudflare cache rules](../cache.md#cloudflare).
+
+And add Cache-Control headers to your static route:
+
+```nginx
+location @static {
+    add_header Cache-Control "max-age=120, stale-while-revalidate=3600";# [!code ++]
+    try_files /static${uri}_$args.html $uri $uri/ /index.php?$args;
+}
+```
+
+:::
+
 Invalidation is handled by a command that checks the `updated_at` column on products, categories and pages in Magento. Everything updated after the latest invalidation will be invalidated:
 
 ```bash
