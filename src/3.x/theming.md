@@ -90,9 +90,9 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`shadow-emphasis` | `--shadow-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
-`shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
-`shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
+`shadow-emphasis` | `--shadow-emphasis` | `slate-500` | <colorTile color="#64748b"/>{.np}
+`shadow-default` | `--shadow` | `slate-400` | <colorTile color="#94a3b8"/>{.np}
+`shadow-muted` | `--shadow-muted` | `slate-300` | <colorTile color="#cbd5e1"/>{.np}
 
 ##### Backdrop
 
