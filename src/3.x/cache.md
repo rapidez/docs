@@ -32,19 +32,16 @@ Alternatively, you could implement one of these packages with different strategi
 
 ### Cloudflare
 
-Using Cloudflare's CDN edge you can speed page caching up even more by bringing the files closer to your customer. (we've seen response times of ~30ms)
-By default Cloudflare will not cache any pages, but you can ask it to. By [creating a cache rule in Cloudflare](https://developers.cloudflare.com/cache/how-to/cache-rules/create-dashboard/) you can ask Cloudflare to start caching pages.
-We suggest the following settings:
+Using [Cloudflare's CDN edge](https://www.cloudflare.com/learning/cdn/glossary/edge-server/) you can speed up page responses even more (~30ms) by bringing the files closer to your customers. By default Cloudflare will not cache any pages, but you can configure it by [creating a cache rule in Cloudflare](https://developers.cloudflare.com/cache/how-to/cache-rules/create-dashboard/) with these settings:
+
 - [Cache eligibility](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#cache-eligibility)
   - [Eligible for cache](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#eligible-for-cache-settings)
 - [Edge TTL](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#edge-ttl)
-  -  `Use cache-control header if present, bypass cache if not`. This ensures Cloudflare will not cache pages that don't explicitly state they can be cached.
+  -  `Use cache-control header if present, bypass cache if not` - this ensures Cloudflare will not cache pages that don't explicitly state they can be cached
 - [Browser TTL](https://developers.cloudflare.com/cache/how-to/cache-rules/settings/#browser-ttl)
   - `Respect origin TTL`
 
-You do not need to change any other settings.
+With this Cloudflare will listen to the cache-control headers sent by your server, but by default Laravel and Rapidez will make each page response private, so no caching will be done. If you're sure your pages contain no private data (which is the case by default in Rapidez) you can add the [Cache Control Middleware](https://laravel.com/docs/master/responses#cache-control-middleware). These packages control it for you:
 
-Cloudflare will now listen to the cache-control headers sent by your server.
-By default Laravel and Rapidez will make each page response private, so no caching will be done. 
-If you're sure your pages contain no private data (which is the case by default in Rapidez) you can add the [Cache Control Middleware](https://laravel.com/docs/master/responses#cache-control-middleware).
-Alternatively [spatie/laravel-varnish](https://github.com/spatie/laravel-varnish) and [Statamic](packages/statamic.md) does this for you (note: you may need to [add some config](packages/statamic.md#cloudflare)).
+- [spatie/laravel-varnish](https://github.com/spatie/laravel-varnish)
+- [rapidez/statamic](packages/statamic.md) (see [Static Caching](packages/statamic.md#static-caching))
