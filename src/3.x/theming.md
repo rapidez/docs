@@ -85,6 +85,7 @@ Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
 `bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
+`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
 
 ##### Shadow
 
