@@ -13,7 +13,6 @@ This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statam
 ## Features
 
 - Products, categories, and brands are integrated through [Runway](https://github.com/statamic-rad-pack/runway)
-- Automatic site registration based on Magento stores
 - Routing: Statamic routes are the fallback
 - Page builder fieldset with multiple components:
     - Product slider
@@ -81,14 +80,28 @@ After that, you'll find all options within `config/rapidez/statamic.php`
 
 ### Sites
 
-Sites within Statamic will automatically be registered based on the Magento stores. So there is no need for a `sites.yaml`. The current site will be determined based on the `MAGE_RUN_CODE`, and the alternate hreflang link tags are grouped by the `website_code`
+Sites can be configured in the `config/rapidez/statamic.php`, no need for a `sites.yaml`
+
+```php
+'sites' => [
+    'default' => [
+        'name' => env('APP_NAME', 'Statamic'),
+        'locale' => 'en_EN',
+        'lang' => 'en_EN',
+        'url' => '/',
+        'attributes' => [
+            'magento_store_id' => 1,
+            'group' => 'default',
+            'disabled' => false,
+        ],
+    ],
+]
+```
+
+The current site will be determined based on the `MAGE_RUN_CODE`, and the alternate hreflang link tags are grouped by the `group`
 
 ::: warning Sites cache
 Make sure to flush the cache after editing stores in Magento!
-:::
-
-::: details Disable Statamic for a store
-To disable Statamic for a specific store, just add the `store_code` to the `disabled_sites` within `config/rapidez/statamic.php`
 :::
 
 ### Routing
@@ -128,8 +141,8 @@ For example, the product slider component within the page builder has a relation
 
 You can also enrich data with this. For example, when you want to use Statamic to add data on product, category, or brand pages. Therefore, next to the "Runway product collection" (which is read-only and has all data from Magento), there is also a "Product content collection". From there, you're free to use anything from Statamic. Only the `linked_product` field using the `belongs_to` field type should be there to link your custom content to a product within Magento.
 
-::: warning This is going to change in the next version!
-We're currently working on rapidez/statamic v5 where we're moving to a "hybrid Runway" solution. Have a look at [this pull request](https://github.com/rapidez/statamic/pull/80) for more information.
+::: warning This is changed in rapidez/statamic v5!
+See the [rapidez/statamic v5 docs](../../3.x/packages/statamic.md#runway-magento-data) and the [pull request](https://github.com/rapidez/statamic/pull/80) for more information.
 :::
 
 ### Displaying content
@@ -146,7 +159,7 @@ To display the default page builder content, you have to add this to your view:
 - Category: `resources/views/vendor/rapidez/category/overview.blade.php`
 
 ::: details Disable `$content`
-If you don't want `$content` on the product / category pages, you can disable it from the `rapidez/statamic.php` config file by setting the `fetch` option to `false`
+If you don't want `$content` on the product / category pages, you can disable it from the `config/rapidez/statamic.php` config file by setting the `fetch` option to `false`
 :::
 
 ## Brand pages
@@ -167,7 +180,7 @@ If you want to have actual brand pages on the frontend displaying all the produc
 route: '/brands/{slug}'
 ```
 
-For a "brand overview" page with all brands listed alphabetically, you can just create a normal page and use the "Brand overview" component.
+For a "brand overview" page with all brands listed alphabetically, you can just create a normal page from the control panel and use the "brand overview" component.
 
 ## Globals
 

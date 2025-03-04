@@ -29,45 +29,19 @@ This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statam
 
 ## Installation
 
-1. **Install Statamic**
-
-> Just follow the [Statamic installation guide](https://statamic.dev/installing/laravel)
-
-2. **Prepare the user model**
-
-> Copy these two files from Laravel into your project:
->
-> - [app/Models/User.php](https://github.com/laravel/laravel/blob/11.x/app/Models/User.php)
-> - [database/migrations/0001_01_01_000000_create_users_table.php](https://github.com/laravel/laravel/blob/11.x/database/migrations/0001_01_01_000000_create_users_table.php)
-
-3. **Install the Rapidez Statamic integration**
+1. **Install Statamic with the Rapidez Statamic integration**
 
 ```bash
 composer require rapidez/statamic
 ```
 
-4. **Finish the user model**
-
-> Follow the [storing users in a database guide](https://statamic.dev/tips/storing-users-in-a-database#in-an-existing-laravel-app)
-
-5. **Run the install command**
+2. **Run the install command**
 
 ```bash
 php artisan rapidez-statamic:install
 ```
 
-When running the install command, you will be prompted to setup the Eloquent driver. In this configuration, you can choose what to keep in the flat file system and what to migrate to the database. We recommend migrating the following options to the database when setting up the eloquent driver:
-
-- Assets
-- Collection Trees
-- Entries
-- Forms
-- Form Submissions
-- Globals
-- Global Variables
-- Navigation Trees
-- Terms
-- Tokens
+And follow the steps. When finished visit `/cp` for the control panel 🚀
 
 ## Configuration
 
@@ -126,11 +100,7 @@ With [Runway](https://github.com/statamic-rad-pack/runway), you're able to displ
 
 For example, the product slider component within the page builder has a relation with the products Runway model. This way, you can select from all Magento products you'd like to display within the slider.
 
-You can also enrich data with this. For example, when you want to use Statamic to add data on product, category, or brand pages. Therefore, next to the "Runway product collection" (which is read-only and has all data from Magento), there is also a "Product content collection". From there, you're free to use anything from Statamic. Only the `linked_product` field using the `belongs_to` field type should be there to link your custom content to a product within Magento.
-
-::: warning This is going to change in the next version!
-We're currently working on rapidez/statamic v5 where we're moving to a "hybrid Runway" solution. Have a look at [this pull request](https://github.com/rapidez/statamic/pull/80) for more information.
-:::
+You can also enrich data with this; when you want to use Statamic to add data on product, category, or brand pages. When saving an entry we're not touching the Magento tables, those are always read-only! We are observing the "updating" event on those models and save all data to a Statamic entry. When reveiving a model we're doing opposite; merging the data from Magento with the data from the Statamic entry so we just have one collection.
 
 ### Displaying content
 
@@ -146,28 +116,29 @@ To display the default page builder content, you have to add this to your view:
 - Category: `resources/views/vendor/rapidez/category/overview.blade.php`
 
 ::: details Disable `$content`
-If you don't want `$content` on the product / category pages, you can disable it from the `rapidez/statamic.php` config file by setting the `fetch` option to `false`
+If you don't want `$content` on the product / category pages, you can disable it from the `config/rapidez/statamic.php` config file by setting the `fetch` option to `false`
 :::
 
 ## Brand pages
 
-You'll get a brand collection out-of-the-box. You could just create entries, but those can also be imported from Magento. Double-check the `brand_attribute_id` within `config/rapidez/statamic.php` and run the import command:
+Just make sure the `brand_attribute_id` is correct within `config/rapidez/statamic.php` and all brands will be available within Statamic automatically. If you want to have actual brand pages on the frontend displaying all the products of that brand, you have to enable the route per store within `config/rapidez/statamic/builder.php`:
 
+```php
+'routes' => [
+    Brands::class => [
+        'store_code' => 'brand/{slug}'
+    ],
+],
+```
+
+For a "brand overview" page with all brands listed alphabetically, you can just create a normal page from the control panel and use the "brand overview" component.
+
+::: details I'm using the Amasty ShopBy Brand module
+Good news! There is an import command to import the data!
 ```bash
 php artisan rapidez:statamic:import:brands
 ```
-
-::: details I'm using the Amasty ShopBy Brand module
-Good news! We'll detect that module and import all existing data into Statamic!
 :::
-
-If you want to have actual brand pages on the frontend displaying all the products of that brand, you have to enable the route within `content/collections/brands.yaml`
-
-```yaml
-route: '/brands/{slug}'
-```
-
-For a "brand overview" page with all brands listed alphabetically, you can just create a normal page and use the "Brand overview" component.
 
 ## Globals
 
