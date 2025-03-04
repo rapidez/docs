@@ -20,6 +20,7 @@ This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statam
     - Content
     - Image
     - Form
+- Navigation component
 - Responsive images with [Glide](https://github.com/justbetter/statamic-glide-directive)
 - Breadcrumbs on pages
 - Globals available in all views
@@ -140,6 +141,61 @@ php artisan rapidez:statamic:import:brands
 ```
 :::
 
+## Navigation
+
+To render a navigation somewhere we provide two options; a full main navigation option with a mobile sliderover menu + a helper with a unified cached output to render it yourself.
+
+### Navigation helper
+
+With Statamic you can get a data by tag in Blade with:
+
+```php
+Statamic::tag('nav:footer')->fetch()
+```
+
+This will result in multiple queries to get all data. When you're linking to for example a category, each category will be a query resulting in a lot of queries. This packages provides a "helper" that fetches the navigation completely with all children and the result will be unified and cached. When a navigation changes; the cache will refreshed automatically.
+
+```php
+RapidezStatamic::nav('nav:footer')
+```
+
+::: details Example usage
+```blade
+<ul>
+    @foreach (RapidezStatamic::nav('nav:footer') as $item)
+        <li>
+            <a href="{{ $item['url'] }}">
+                {{ $item['title'] }}
+            </a>
+        </li>
+        {{-- $item['children'] --}}
+    @endforeach
+</ul>
+```
+:::
+
+### Main navigation
+
+When you need a navigation from Statamic to be your site's main navigation in the header we provide a Blade component that handles everything for you:
+
+```blade
+<x-rapidez-statamic::nav
+    nav="nav:main"
+    {{-- Optionally a different mobile menu; of multiple combined --}}
+    :mobileNav="['nav:main', 'nav:header_links']"
+/>
+```
+
+In `resources/views/vendor/rapidez/layouts/partials/header.blade.php` replace the default Rapidez navigation with this component and you'll get a navigation displaying the main items in the header and the children within a "mega menu" dropdown on hover.
+
+On mobile the whole menu will be in a slideover from [rapidez/blade-components](https://github.com/rapidez/blade-components); to open the mobile menu you've to add a opener somewhere and style this however you'd like:
+
+```blade
+<label for="navigation">
+    Open mobile menu
+</label>
+```
+
 ## Globals
 
 All Statamic globals will be available through the `$globals` variable within your Rapidez Blade templates. If you have a global with the handle "header" and added a field called "logo", it will be available as `$globals->header->logo`
@@ -164,9 +220,6 @@ With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blo
 Statamic comes with [static caching](https://statamic.dev/static-caching) and with this packages we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
 
 ::: details Cloudflare Static Caching
-
-
-
 Cloudflare's CDN edge can bring these static files even closer and faster to the customer. To achieve this you will need to create a [Cloudflare cache rule](../cache.md#cloudflare) and add a cache control header to your static route:
 
 ```nginx
@@ -175,7 +228,6 @@ location @static {
     try_files /static${uri}_$args.html $uri $uri/ /index.php?$args;
 }
 ```
-
 :::
 
 Invalidation is handled by a command that checks the `updated_at` column on products, categories and pages in Magento. Everything updated after the latest invalidation will be invalidated:
