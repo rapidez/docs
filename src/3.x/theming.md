@@ -87,7 +87,6 @@ Class | CSS variable | Default color | |
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 `bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
 
-
 ##### Backdrop
 
 A slightly transparant background visible when a slideover or the autocomplete is open.
