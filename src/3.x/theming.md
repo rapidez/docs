@@ -59,7 +59,7 @@ These color names work the same as Tailwind colors. You can use them for anythin
 
 #### Neutral colors
 
-Used for the text color, borders, backgrounds, shadows, rings and outlines to give some design system to work with. Visual examples can be found with in the [Primer neutral colors docs](https://primer.style/foundations/color/overview#neutral-colors). These colors should not be used directly: ~~`text-foreground`~~ as those colors are "linked and scoped" to the text, border, background, shadow, ring and outline colors. Just use the provided classes to keep a consistent style.
+Used for the text color, borders, backgrounds, rings and outlines to give some design system to work with. Visual examples can be found with in the [Primer neutral colors docs](https://primer.style/foundations/color/overview#neutral-colors). These colors should not be used directly: ~~`text-foreground`~~ as those colors are "linked and scoped" to the text, border, background, ring and outline colors. Just use the provided classes to keep a consistent style.
 
 ##### Text / Foreground
 
@@ -87,13 +87,6 @@ Class | CSS variable | Default color | |
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 `bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
 
-##### Shadow
-
-Class | CSS variable | Default color | |
-:--- | :--- | :--- | :---
-`shadow-emphasis` | `--shadow-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
-`shadow-default` | `--shadow` | `slate-700` | <colorTile color="#334155"/>{.np}
-`shadow-muted` | `--shadow-muted` | `slate-500` | <colorTile color="#64748b"/>{.np}
 
 ##### Backdrop
 
