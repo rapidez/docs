@@ -45,6 +45,8 @@ With large GraphQL queries you can extract the query to a separated file, for ex
 Prop | Type | Explanation
 :--- | :--- | :---
 `data` | Object | The data returned from the GraphQL request
+`running` | Boolean | True when running
+`runQuery` | Function | Run the query again
 
 ## Mutation
 
@@ -98,7 +100,8 @@ Prop | Type | Explanation
 :--- | :--- | :---
 `mutate` | Function | Run the GraphQL query 
 `mutated` | Boolean | True if the mutation has run
-`mutating` | Boolean | True when mutating
+`mutating` | Boolean | True when mutating (Alias of `running`)
+`running` | Boolean | True when running
 `error` | String | The error message if the GraphQL request failed
 `variables` | Object | GraphQL variables
 `watch` | Boolean | Can be used to toggle the `watch` prop
