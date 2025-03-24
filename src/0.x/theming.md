@@ -5,7 +5,7 @@
 The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, css and js like a theme.
 
 ::: tip
-Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) before you begin.
+Read the [Laravel Blade Templates docs](https://laravel.com/docs/9.x/blade) before you begin.
 :::
 
 [[toc]]
@@ -18,7 +18,7 @@ To change the views you can publish them with:
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
 
-After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/master/packages#overriding-package-views) in the Laravel docs.
+After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/9.x/packages#overriding-package-views) in the Laravel docs.
 
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view it's a good idea to add the unchanged version to version control before you make any changes.
@@ -29,7 +29,7 @@ It's recommended to only add the views you've changed into your source control f
 Rapidez provides some Blade Directives to easily get information from Magento.
 
 ::: warning Caching
-Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](caching.md).
+Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](cache.md).
 :::
 
 ### `@config`

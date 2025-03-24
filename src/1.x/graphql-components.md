@@ -73,7 +73,7 @@ Prop | Type | Explanation
 Prop | Type | Default | Explanation
 :--- | :--- | :--- | :---
 `query` | String | Required | The GraphQL query
-`variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql.md#query) component
+`variables` | Object | `{}` | Set the default variables `:variables="{ email: 'example@rapidez.io' }"`, useful when having the mutation component within the [`<graphql>`](graphql-components.md#query) component
 `watch` | Boolean | `true` | Should the `variables` be watched?
 `redirect` | String | | The redirect url
 `alert` | Boolean | `true` | Show an alert when an error occurs

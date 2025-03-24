@@ -5,7 +5,7 @@
 The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively you can [create your own package](package-development.md) with views, css and js like a theme.
 
 ::: tip
-Read the [Laravel Blade Templates docs](https://laravel.com/docs/master/blade) before you begin.
+Read the [Laravel Blade Templates docs](https://laravel.com/docs/11.x/blade) before you begin.
 :::
 
 [[toc]]
@@ -18,7 +18,7 @@ To change the views you can publish them with:
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
 
-After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/master/packages#overriding-package-views) in the Laravel docs.
+After that you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information see [Overriding Package Views](https://laravel.com/docs/11.x/packages#overriding-package-views) in the Laravel docs.
 
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view it's a good idea to add the unchanged version to version control before you make any changes.
@@ -29,7 +29,7 @@ It's recommended to only add the views you've changed into your source control f
 Rapidez provides some Blade Directives to easily get information from Magento.
 
 ::: warning Caching
-Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](caching.md).
+Keep in mind the output of these directives are cached! So after changing a configuration, block or widget the cache needs te be cleared. See the [caching docs](cache.md).
 :::
 
 ### `@config`
@@ -87,6 +87,40 @@ Another example; the "productlist" component which outputs a nice product list:
 ```
 Rapidez is using this component to render the related products, up-sells and cross-sells but it can be used anywhere.
 
+## Blade Icons
+
+Rapidez comes preinstalled with [Blade Icons](https://blade-ui-kit.com/blade-icons?set=1) providing a massive library of icons you can use in your project!
+
+With many [icon packages available](https://github.com/blade-ui-kit/blade-icons#icon-packages) to get even more icons.
+
+### Icon Deferring
+
+We've added [Icon deferring](https://github.com/blade-ui-kit/blade-icons#deferring-icons) support to Blade Icons in order to reduce HTML element count when icons are used often.
+
+In Rapidez this is enabled by default instead of you having to request it. 
+
+If you would rather turn it off you can change it globally in the options by:
+
+Publishing the config `php artisan vendor:publish --tag=blade-icons`
+and adding `'defer' => false` to the `'attributes'` section within the config file
+```diff config/blade-icons.php
+ <?php
+ return [
+     ...
+     'attributes' => [
+         // 'width' => 50,
+         // 'height' => 50,
++        'defer' => false         
+     ],
+     ...
+ ];
+```
+
+or per icon:
+
+```blade
+<x-heroicon-s-heart class="h-6 w-6 text-red-600" :defer="false" />
+```
 
 ## CSS
 

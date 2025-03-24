@@ -15,7 +15,7 @@ php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --ta
 After that you'll find all configuration options in `config/rapidez/*.php` with comments explaining the options. Most of them use the `env()` function so it's possible to have different configurations per environment in the `.env`.
 
 ::: tip
-For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/master/configuration)
+For more info on how the configuration works read the [Laravel configuration docs](https://laravel.com/docs/11.x/configuration)
 :::
 
 ## Magento
@@ -43,7 +43,19 @@ Configuration | Explanation
 `design/search_engine_robots/default_robots` | Meta robots tag value
 `design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
 
-If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive.
+If you need to access a Magento configuration you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()` which accepts the same parameters as the directive. For more advanced usage (like defining which scope) you can use:
+```php
+\Rapidez\Core\Models\Config::getValue($path, ConfigScopes::SCOPE_STORE, $scopeId, $options)
+```
+
+## Base URL
+
+Rapidez will be the frontend, Magento just as backend. So they'll need 2 different urls; we suggest to set the `web/secure/base_url` differently per scope:
+
+- **Store View:** `https://webshop.com`
+- **Website:** `https://magento.webshop.com`
+
+If you have set this correctly you can set `GET_MAGENTO_URL_FROM_DATABASE=true` in the Rapidez `.env` and it will automatically apply the urls in Rapidez itself.
 
 ### Forgot password email
 
@@ -71,7 +83,7 @@ By default the customer token lifetime is set to 1 hour in Magento so a customer
 
 ### Robots.txt
 
-By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/master/valet) do include a line causing this as the file could not be found:
+By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/11.x/valet) do include a line causing this as the file could not be found:
 ```
 location = /robots.txt  { access_log off; log_not_found off; }
 ```

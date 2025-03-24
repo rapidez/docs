@@ -1,14 +1,14 @@
 {
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "preview": "vitepress preview src"
   },
   "devDependencies": {
-    "vuepress": "^1.5.3",
-    "vuepress-plugin-code-copy": "^1.0.6"
+    "vitepress": "^1.4.0"
   },
   "volta": {
-    "node": "16.20.2",
+    "node": "18.20.4",
     "yarn": "1.22.21"
   }
 }

@@ -2,7 +2,7 @@
 
 ---
 
-Have a look at the [Laravel deployment docs](https://laravel.com/docs/master/deployment) and make sure [CORS is opened up](installation.md#cors).
+Have a look at the [Laravel deployment docs](https://laravel.com/docs/10.x/deployment) and make sure [CORS is opened up](installation.md#cors).
 
 [[toc]]
 
@@ -49,7 +49,7 @@ elasticsearch.password: "YOUR-PASSWORD"
 - Create an user `web`, password `rapidez` and the `web` role
 - Add the url to your `.env`
 
-```env
+```dotenv
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 

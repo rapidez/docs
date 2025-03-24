@@ -7,7 +7,7 @@ In addition to the Rapidez Core we've created some packages.
 [[toc]]
 
 ::: tip Created a package?
-[Edit this page](https://github.com/rapidez/docs/edit/master/src/0.x/packages.md) and add yours!
+[Edit this page](https://github.com/rapidez/docs/edit/master/src/2.x/packages.md) and add yours!
 :::
 
 ## Base
@@ -72,6 +72,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Mollie](https://github.com/rapidez/mollie)
 - [Pay.nl](https://github.com/rapidez/paynl)
 - [MultiSafepay](https://github.com/rapidez/multisafepay)
+- [Riverty](https://github.com/rapidez/riverty)
 
 ### Rapidez
 
@@ -80,6 +81,7 @@ Some Magento modules work out of the box but most of the modules which do someth
 - [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
 - [OpenReplay](https://github.com/rapidez/openreplay)
 - [Postcodeservice](https://github.com/rapidez/postcodeservice)
+- [Sentry](https://github.com/rapidez/sentry)
 
 ### Snowdog
 
