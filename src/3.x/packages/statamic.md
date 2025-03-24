@@ -204,6 +204,17 @@ All Statamic globals will be available through the `$globals` variable within yo
 
 When you create a form, you can use `rapidez-statamic::emails.form` as the HTML template, which uses the [Laravel mail template](https://laravel.com/docs/11.x/mail#customizing-the-components) with all fields in a table. Make sure you enable markdown!
 
+## Images
+When using Rapidez Statamic, ther is a [Glide directive package](https://github.com/justbetter/statamic-glide-directive) pre-integrated to work seamlessly with your Statamic install. Just use the Glide directive as shown, and the package will handle image manipulation with the transformations dictated by your parameters.
+
+```blade
+@responsive($image, [
+    'alt' => 'This is an alt text.', 
+    'class' => 'some classes here',
+    'loading' => 'lazy'
+])
+```
+
 ## Sitemap
 
 This package hooks into the [Rapidez Sitemap](https://github.com/rapidez/sitemap) generation by adding Statamic-specific sitemaps to the store's sitemap index. For each store, we generate sitemaps for collections and taxonomies that have a route and content. The folder layout will look like:
@@ -218,6 +229,10 @@ With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blo
 ## Static caching
 
 Statamic comes with [static caching](https://statamic.dev/static-caching) and with this packages we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
+
+::: details I'm using multiple stores
+When using Statamic Static caching in a multisite setup, you typically need to manually [configure](https://statamic.dev/static-caching#paths) a paths for each site for the static files to be stored. However, with Rapidez Statamic, this manual step isn't necessary. The integration automatically sets the correct paths based on the store definitions in the Magento database, saving you time and reducing potential errors.
+:::
 
 ::: details Cloudflare Static Caching
 Cloudflare's CDN edge can bring these static files even closer and faster to the customer. To achieve this you will need to create a [Cloudflare cache rule](../cache.md#cloudflare) and add a cache control header to your static route:
