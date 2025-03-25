@@ -59,7 +59,7 @@ Opinionated checkout packages.
 
 ## Social Login
 
-- [Socia login](https://github.com/rapidez/social-login)
+- [Social login](https://github.com/rapidez/social-login)
 
 ## Wishlists
 
