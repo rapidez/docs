@@ -57,6 +57,10 @@ Opinionated checkout packages.
 - [OpenReplay](https://github.com/rapidez/openreplay)
 - [Sentry](https://github.com/rapidez/sentry)
 
+## Social Login
+
+- [Socia login](https://github.com/rapidez/social-login)
+
 ## Wishlists
 
 - [Default](https://github.com/rapidez/wishlist)
