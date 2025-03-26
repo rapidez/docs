@@ -84,6 +84,10 @@ If you [set the store view "Base URL" to that of your Rapidez installation](conf
 
 By default, the customer token lifetime is set to 1 hour in Magento, so a customer needs to log in again when the token expires in Rapidez. It's recommended to raise the expiration to, for example, 24 hours. See: Stores > Configuration > Services > OAuth > Access Token Expiration.
 
+## Customer Data Lifetime
+
+When using the Standalone Checkout the default Customer Data Lifetime of 1 hour may result in the customer and/or their cart being removed in Magento. It's recommended to raise the lifetime to, for example, 3 hours. See: Stores > Configuration > Customers > Customer configuration > Online Customers Options > Customer Data Lifetime
+
 ## Enable Guest Checkout Login
 
 See: Stores > Configuration > Sales > Checkout > Checkout Options, but keep in mind as also mentioned there:
