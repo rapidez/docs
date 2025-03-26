@@ -205,7 +205,7 @@ All Statamic globals will be available through the `$globals` variable within yo
 When you create a form, you can use `rapidez-statamic::emails.form` as the HTML template, which uses the [Laravel mail template](https://laravel.com/docs/11.x/mail#customizing-the-components) with all fields in a table. Make sure you enable markdown!
 
 ## Images
-When using Rapidez Statamic, ther is a [Glide directive package](https://github.com/justbetter/statamic-glide-directive) pre-integrated to work seamlessly with your Statamic install. Just use the Glide directive as shown, and the package will handle image manipulation with the transformations dictated by your parameters.
+When using Rapidez Statamic, the package pre-integrates the [Glide directive package](https://github.com/justbetter/statamic-glide-directive) to work seamlessly with your Statamic install. Just use the Glide directive as shown, and the package will handle image manipulation with the transformations dictated by your parameters.
 
 ```blade
 @responsive($image, [
