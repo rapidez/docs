@@ -61,6 +61,7 @@ export default defineConfig({
       {
         text: 'Version',
         items: [
+          { text: '4.x', link: '/4.x/intro' },
           { text: '3.x', link: '/3.x/intro' },
           { text: '2.x', link: '/2.x/intro' },
           { text: '1.x', link: '/1.x/intro' },
@@ -223,6 +224,48 @@ export default defineConfig({
           items: [
             { text: 'Overview', link: '/3.x/packages' },
             { text: 'Statamic', link: '/3.x/packages/statamic' },
+          ]
+        }
+      ],
+      '/4.x/': [
+        {
+          text: 'Getting started',
+          collapsed: false,
+          items: [
+            { text: 'Intro', link: '/4.x/intro' },
+            { text: 'Installation', link: '/4.x/installation' },
+            { text: 'Configuration', link: '/4.x/configuration' },
+            { text: 'Upgrading', link: '/4.x/upgrading' },
+            { text: 'Deployment', link: '/4.x/deployment' },
+            { text: 'Faq', link: '/4.x/faq' },
+            { text: 'Troubleshooting', link: '/4.x/troubleshooting' },
+          ]
+        },
+        {
+          text: 'Development',
+          collapsed: false,
+          items: [
+            { text: 'Theming', link: '/4.x/theming' },
+            { text: 'Extending', link: '/4.x/extending' },
+            { text: 'Testing', link: '/4.x/testing' },
+            { text: 'GraphQL components', link: '/4.x/graphql-components' },
+            { text: 'Package development', link: '/4.x/package-development' },
+          ]
+        },
+        {
+          text: 'Components',
+          collapsed: false,
+          items: [
+            { text: 'Indexer', link: '/4.x/indexer' },
+            { text: 'Cache', link: '/4.x/cache' },
+          ]
+        },
+        {
+          text: 'Packages',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/4.x/packages' },
+            { text: 'Statamic', link: '/4.x/packages/statamic' },
           ]
         }
       ],
