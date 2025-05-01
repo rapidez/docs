@@ -29,6 +29,24 @@ Check all your dependencies one by one to see if they're compatible and what has
 composer outdated
 ```
 
+### `.env` changes
+
+We changed the product index to use [Laravel Scout](https://github.com/laravel/scout), to support [ElasticSearch](https://github.com/elastic/elasticsearch) as driver we need an [elasticsearch driver](https://github.com/matchish/laravel-scout-elasticsearch) and with this change we don't need [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) anymore. The `.env` configs are different so you need to change:
+
+```dotenv
+ELASTICSEARCH_HOST=localhost
+ELASTICSEARCH_PORT=9200
+ELASTICSEARCH_SCHEME=http
+ELASTICSEARCH_USER=
+ELASTICSEARCH_PASS=
+```
+To
+```dotenv
+ELASTICSEARCH_HOST=http://localhost:9200
+ELASTICSEARCH_USER=
+ELASTICSEARCH_PASSWORD=
+```
+
 ## Frontend changes
 
 ### Dependencies

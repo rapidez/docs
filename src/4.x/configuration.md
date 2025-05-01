@@ -20,33 +20,7 @@ For more info on how the configuration works, read the [Laravel configuration do
 
 ## Magento configuration
 
-Some Magento configuration options involve the frontend. As the Magento frontend is not used, most of them don't do anything. Rapidez listens to some of those configurations:
-
-Configuration | Explanation
-:--- | :---
-`web/secure/base_url` | See [base url](configuration.html#base-url)
-`general/locale/code` | Locale
-`currency/options/default` | Currency
-`checkout/cart/redirect_to_cart` | Redirect to the cart when adding a product
-`catalog/seo/product_url_suffix` | Product url suffix
-`catalog/seo/category_url_suffix` | Category url suffix
-`catalog/frontend/show_swatches_in_product_list` | Show the product options in product lists
-`customer/address/middlename_show` | Show/hide middlename
-`customer/address/telephone_show` | Show/hide telephone
-`customer/address/company_show` | Show/hide company
-`customer/address/taxvat_show` | Show/hide VAT on address forms
-`customer/address/street_lines` | Show street, housenumber and/or addition
-`customer/create_account/vat_frontend_visibility` | Show/hide VAT during registration
-`reports/options/product_view_enabled` | Report product views
-`cataloginventory/options/show_out_of_stock` | Show/hide out of stock products
-`design/head/includes` | Additional scripts/styles in the head
-`design/head/default_description` | The default meta description to use on a page when no customized meta description has been set
-`design/head/default_title` | The default title to use when no customized title has been set
-`design/head/title_prefix` | Prefix to give to a customized title when set
-`design/head/title_suffix` | Suffix to give to a customized title when set
-`design/search_engine_robots/default_robots` | Meta robots tag value
-`design/search_engine_robots/custom_instructions` | See [Robots.txt](configuration.html#robots-txt)
-`newsletter/general/active` | Whether or not the option to sign up for the newsletter is displayed
+Some Magento configuration options involve the frontend. As the Magento frontend is not used, most of them don't do anything. Rapidez listens to some of those configurations, they are listed here: [`config/rapidez/magento-defaults.php`](https://github.com/rapidez/core/blob/master/config/rapidez/magento-defaults.php) with their defaults as not all of those can be queried from Magento.
 
 If you need to access a Magento configuration, you can use the [`@config` Blade Directive](theming.html#config) or the Rapidez facade `Rapidez::config()`, which accepts the same parameters as the directive. For more advanced usage (like defining which scope), you can use:
 ```php
@@ -107,14 +81,13 @@ location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri
 
 ## Elasticsearch
 
-To communicate with Elasticsearch, Rapidez is using the [laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) package. If you need to change the Elasticsearch credentials, you can do so with these `.env` configurations:
+To communicate with Elasticsearch, Rapidez is using the [matchish/laravel-scout-elasticsearch](https://github.com/matchish/laravel-scout-elasticsearch) package. If you need to change the Elasticsearch credentials, you can do so with these `.env` configurations:
 
 ```dotenv
-ELASTICSEARCH_HOST=localhost
-ELASTICSEARCH_PORT=9200
-ELASTICSEARCH_SCHEME=
+ELASTICSEARCH_HOST=http://localhost:9200
 ELASTICSEARCH_USER=
-ELASTICSEARCH_PASS=
+ELASTICSEARCH_PASSWORD=
+ELASTICSEARCH_SSL_VERIFICATION=true
 ```
 
 ## Early hints
