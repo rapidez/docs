@@ -165,12 +165,32 @@ Additionally, there are some Rapidez specific components within the core. See th
 Try to use these elements as much as possible, so that if you'd like to change the appearance you can do so in only one place.
 :::
 
-Another example is the "productlist" component, which outputs a nice product list:
+### Listing component
+
+The [`productlist`](https://github.com/rapidez/core/blob/master/resources/views/components/productlist.blade.php) component can be used to output a nice product list by SKU:
 ```blade
 <x-rapidez::productlist :value="['MS04', 'MS05', 'MS09']"/>
 ```
+Or with the product info from Javascript:
+```blade
+<x-rapidez::productlist
+    value="config.productIds"
+    field="entity_id"
+    title="Products you need!"
+/>
+```
+Rapidez is using this component to render the related products, up-sells, and cross-sells. 
 
-Rapidez is using this component to render the related products, up-sells, and cross-sells, but it can be used anywhere.
+This [`productlist`](https://github.com/rapidez/core/blob/master/resources/views/components/productlist.blade.php) Blade component and the [`listing`](https://github.com/rapidez/core/blob/master/resources/views/components/listing.blade.php) Blade component (used for category pages and the search results page) are using the renderless [`Listing.vue`](https://github.com/rapidez/core/blob/master/resources/js/components/Listing/Listing.vue) component that does have some useful props:
+
+Prop | Type | Explanation
+:--- | :--- | :---
+`index` | String | The ElasticSearch index name
+`query` | Function | To give you full control with [Query DSL](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl)
+`categoryId` | Number | Filter the items by category ID
+`baseFilters` | Function | Additional base filters; just like the `categoryID`. The base to start with.
+`filterQueryString` | String | The easiest way to filter, see [query string query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-query-string-query)
+`configCallback` | Function | Can be used to change the config per listing
 
 ## Blade Icons
 

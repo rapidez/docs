@@ -114,13 +114,13 @@ If you do not have a Magento 2 installation yet, you want to test Rapidez, or li
 Make sure Docker can use at least 4GB of memory!
 :::
 
-```
+```bash
 docker-compose up -d
 docker exec rapidez_magento magerun2 indexer:reindex
 ```
 Edit the `.env`
 
-```
+```dotenv
 MAGENTO_URL=http://localhost:1234
 DB_PORT=3307
 DB_DATABASE=magento

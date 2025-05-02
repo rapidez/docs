@@ -18,6 +18,19 @@ For more info on how the configuration works, read the [Laravel configuration do
 
 [[toc]]
 
+## Multistore
+
+When you need a different configuration for a specific store, you can create a store specific configuration file: `/config/rapidez/stores/{store_code}/{config_file}` with only the changes you need compared with the default. For example, when store code `de` needs different checkout steps; create `/config/rapidez/stores/de/frontend.php` with:
+```php
+<?php
+
+return [
+    'checkout_steps' => [
+        'onestep'
+    ],
+];
+```
+
 ## Magento configuration
 
 Some Magento configuration options involve the frontend. As the Magento frontend is not used, most of them don't do anything. Rapidez listens to some of those configurations, they are listed here: [`config/rapidez/magento-defaults.php`](https://github.com/rapidez/core/blob/master/config/rapidez/magento-defaults.php) with their defaults as not all of those can be queried from Magento.
