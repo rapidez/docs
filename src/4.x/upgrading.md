@@ -31,20 +31,21 @@ composer outdated
 
 ### `.env` changes
 
-We changed the product index to use [Laravel Scout](https://github.com/laravel/scout), to support [ElasticSearch](https://github.com/elastic/elasticsearch) as driver we need an [elasticsearch driver](https://github.com/matchish/laravel-scout-elasticsearch) and with this change we don't need [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) anymore. The `.env` configs are different so you need to change:
+We changed the product index to use [Laravel Scout](https://github.com/laravel/scout), to support [ElasticSearch](https://github.com/elastic/elasticsearch) as driver we need an [elasticsearch driver](https://github.com/matchish/laravel-scout-elasticsearch) and with this change we don't need [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) anymore. To configure scout, you need to add the following `.env` lines:
 
 ```dotenv
-ELASTICSEARCH_HOST=localhost
-ELASTICSEARCH_PORT=9200
-ELASTICSEARCH_SCHEME=http
-ELASTICSEARCH_USER=
-ELASTICSEARCH_PASS=
+SCOUT_DRIVER=Matchish\ScoutElasticSearch\Engines\ElasticSearchEngine
+SCOUT_PREFIX="your_prefix_here"
 ```
-To
-```dotenv
-ELASTICSEARCH_HOST=http://localhost:9200
-ELASTICSEARCH_USER=
-ELASTICSEARCH_PASSWORD=
+
+Note that `ELASTICSEARCH_PREFIX` has been replaced with `SCOUT_PREFIX`.
+
+### `providers.php` changes
+
+You need to add the Scout Elasticsearch provider to your providers file:
+
+```php
+Matchish\ScoutElasticSearch\ElasticSearchServiceProvider::class,
 ```
 
 ## Frontend changes
