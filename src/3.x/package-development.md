@@ -127,7 +127,13 @@ return redirect('/')->with(['notification' => [
 By default, there are 4 types: `info`, `success`, `warning`, and `error`. The style differences are defined in the [frontend config](https://github.com/rapidez/core/blob/master/config/rapidez/frontend.php), everything else is in the [Blade template](https://github.com/rapidez/core/blob/master/resources/views/components/notifications.blade.php).
 
 ## Frontend translations
-Rapidez adds some [frontend translations](theming.md#translations) by default. Your package might need to have some translations within Javascript. If you register a frontend.php translations file within a rapidez directory, it wil automaticly be included in the frontend translations. You can use them by referencing it by package name. For example within the [Rapidez Statamic](https://github.com/rapidez/statamic) package:
+Rapidez adds some [frontend translations](theming.md#translations) by default. Your package might need to have some translations within Javascript. If you register a frontend.php translations file within a rapidez namespace, it wil automaticly be included in the frontend translations. 
+
+```php
+$this->loadTranslationsFrom(__DIR__ . '/../lang', 'rapidez-statamic');
+```
+
+You can use them by referencing it by package name. For example within the [Rapidez Statamic](https://github.com/rapidez/statamic) package:
 
 ```js
 window.config.translations.packages.statamic
