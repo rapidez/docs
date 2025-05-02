@@ -6,12 +6,12 @@
 
 ## Rapidez v4
 
-In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀 (using [Searchkit](https://github.com/searchkit/searchkit) and [Laravel Scout](https://github.com/laravel/scout)), with that some new features where added:
+In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀 to index products we're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit) and introducing some new features:
 
 - Search within results filter
 - Select super attributes on products while filtering, so when you filter on a color this will be selected on all items so the matching images will show
 
-And some other changes included in this release:
+Other changes included in this release:
 
 - Config refactor
 - Custom range slider, removing the [vue-slider-component](https://github.com/NightCatSama/vue-slider-component) dependency
@@ -31,7 +31,7 @@ composer outdated
 
 ### `.env` changes
 
-We changed the product index to use [Laravel Scout](https://github.com/laravel/scout), to support [ElasticSearch](https://github.com/elastic/elasticsearch) as driver we need an [elasticsearch driver](https://github.com/matchish/laravel-scout-elasticsearch) and with this change we don't need [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) anymore. The `.env` configs are different so you need to change:
+We switched [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) for [matchish/laravel-scout-elasticsearch](https://github.com/matchish/laravel-scout-elasticsearch), with that the configs changed, they are [compatible](https://github.com/matchish/laravel-scout-elasticsearch/pull/307) but we recommend to change them:
 
 ```dotenv
 ELASTICSEARCH_HOST=localhost
