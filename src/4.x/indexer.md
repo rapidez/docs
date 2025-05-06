@@ -49,6 +49,7 @@ both accept the same parameters:
 ```
 
 POST will create/update the specified id(s) on the index.
+
 DELETE will remove the specified id(s) from the index.
 
 ### Scheduling index updates
