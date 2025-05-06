@@ -109,52 +109,35 @@ The autocomplete can contain as many Elasticsearch indexes as you wish. You can 
 ```php
 'autocomplete' => [
     'additionals' => [
-        'categories' => ['name^3', 'description'],
+        'categories' => [],
         'blogs' => [
-            'fields' => ['title', 'tags'],
             'size' => 3,
-            'stores' => ['my_second_store'],
-            'sort' => ['date' => 'desc'],
         ],
     ],
 
-    'debounce' => 500,
     'size' => 10,
 ],
 ```
 
 ### Configuration
 
-There are two ways to define a new additional index. The shorthand way is by only giving the index name and searchable fields, like so:
+There are two ways to define a new additional index. The shorthand way is by only giving the index name, like so:
 
 ```php
-'categories' => ['name^3', 'description'],
+'categories' => [],
 ```
 
 Alternatively, you can have more control by expanding the configuration like below:
 
 ```php
 'blogs' => [
-    'fields' => ['title', 'tags'],
-    'fuzziness' => 'AUTO:5,10',
-    'size' => 3,
-    'stores' => ['my_second_store'],
-    'sort' => ['date' => 'desc'],
-    'options' => [
-        'fields' => ['name'],
-        '_source' => false,
-    ],
+    'size' => 10,
 ],
 ```
 
 | Option | Required | Description |
 |---|---|---|
-| `fields` | Yes | The searched fields |
-| `fuzziness` | No | The ElasticSearch fuzziness parameter. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/common-options.html#fuzziness). Defaults to `AUTO`. |
-| `size` | No | Overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 3 blogs to be shown in the autocomplete instead of the default 10. |
-| `stores` | No | Limits your index to specific stores. In the above example, the `blogs` index will only be queried on the store with the code `my_second_store`. This allows you to have store-specific indexes. The index will be used on all stores if this parameter is not defined. |
-| `sort` | No | Lets you define an alternative sorting in case the default ES sorting doesn't suffice. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/sort-search-results.html) for how to use this parameter correctly. |
-| `options` | No | Useful for any other arbitrary options you might want to define. See [the ES documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/search-your-data.html). |
+| `size` | No | Overrides the default `size` parameter for this index, letting you define a different page size for this specific index. In the above example, we only get a maximum of 10 blogs to be shown in the autocomplete instead of the default 3. |
 
 ### Displaying new indexes
 
