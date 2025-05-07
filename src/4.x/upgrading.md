@@ -47,6 +47,23 @@ ELASTICSEARCH_USER=
 ELASTICSEARCH_PASSWORD=
 ```
 
+You will also have to add the following lines:
+
+```dotenv
+SCOUT_DRIVER=Matchish\ScoutElasticSearch\Engines\ElasticSearchEngine
+SCOUT_PREFIX="your_prefix_here"
+```
+
+Note that `ELASTICSEARCH_PREFIX` has been replaced with `SCOUT_PREFIX`.
+
+### `providers.php` changes
+
+You need to add the Scout Elasticsearch provider to your providers file:
+
+```php
+Matchish\ScoutElasticSearch\ElasticSearchServiceProvider::class,
+```
+
 ## Frontend changes
 
 ### Dependencies
