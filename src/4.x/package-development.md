@@ -22,7 +22,8 @@ Filter | Explanation
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.data` | Manipulate the product data before it's getting indexed 
 `index.product.attributes` | Index additional product attributes
-`index.product.mapping` | Manipulate the index mapping
+`index.*.mapping` | Manipulate the index mapping for a given model, e.g. `index.product.mapping`
+`index.*.settings` | Manipulate the index settings for a given model, e.g. `index.product.settings`
 `routes` | ([deprecated](#addfallbackroute)) Register additional routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
 Every model extends the [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example: `category.scopes`
