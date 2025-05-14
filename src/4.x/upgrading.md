@@ -50,6 +50,13 @@ ELASTICSEARCH_USER=
 ELASTICSEARCH_PASSWORD=
 ```
 
+You will also have to replace `ELASTICSEARCH_PREFIX` with `SCOUT_PREFIX`:
+
+```diff
+-  ELASTICSEARCH_PREFIX="your_prefix_here"
++  SCOUT_PREFIX="your_prefix_here"
+```
+
 ## Frontend changes
 
 ### Dependencies
@@ -71,3 +78,33 @@ yarn build
 :::tip
 We recommend to double check all frontend dependencies with `yarn outdated`. But keep in mind that Rapidez doesn't support Vue 3 yet.
 :::
+
+## Config refactor
+
+### Store-specific values
+
+With the config refactor comes a rework of how store-specific config values get defined. You will have to change the `checkout_steps` and `themes` values in `frontend.php` to reflect this:
+
+```diff
+'checkout_steps' => [
+-  'default' => ['login', 'credentials', 'payment'],
++  'login', 'credentials', 'payment',
+],
+...
+-'themes' => [
+-   'default' => resource_path('themes/default'),
+-],
++'theme' => resource_path('themes/default'),
+```
+
+Any store-specific values have been moved to store-specific config files. For example, if you had a store with store_code `secondstore` with a different theme folder, you need to make a new config file under `config/rapidez/stores/secondstore/frontend.php` like this:
+
+```php
+<?php
+
+return [
+    'theme' => resource_path('themes/secondstore'),
+];
+```
+
+With this refactor, you can use this method override *any* Rapidez config value with a store-specific variant. See also [the documentation for this functionality](configuration.md#multistore).
