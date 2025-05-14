@@ -100,3 +100,4 @@ EARLY_HINTS_ENABLED=false
 
 ::: tip
 You should [preload your custom fonts](https://web.dev/articles/codelab-preload-web-fonts) if they're used during the initial render.
+:::
