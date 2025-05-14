@@ -100,4 +100,17 @@ EARLY_HINTS_ENABLED=false
 
 ::: tip
 You should [preload your custom fonts](https://web.dev/articles/codelab-preload-web-fonts) if they're used during the initial render.
-:::
+
+## Store-specific values
+
+You can override any Rapidez config value with a store-specific variant by creating a store-specific config file to override them. For example, if you want to have a store with store_code `secondstore` and make it use a different theme folder, you can make a new config file under `config/rapidez/stores/secondstore/frontend.php` like this:
+
+```php
+<?php
+
+return [
+    'theme' => resource_path('themes/secondstore'),
+];
+```
+
+Note that you only need to add the values that you actually want to overwrite. Everything else will be taken from the default configuration.
