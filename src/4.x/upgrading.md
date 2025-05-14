@@ -54,14 +54,6 @@ You will also have to replace `ELASTICSEARCH_PREFIX` with `SCOUT_PREFIX`:
 +  SCOUT_PREFIX="your_prefix_here"
 ```
 
-### `providers.php` changes
-
-You need to add the Scout Elasticsearch provider to your providers file:
-
-```php
-Matchish\ScoutElasticSearch\ElasticSearchServiceProvider::class,
-```
-
 ## Frontend changes
 
 ### Dependencies
