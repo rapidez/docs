@@ -47,14 +47,12 @@ ELASTICSEARCH_USER=
 ELASTICSEARCH_PASSWORD=
 ```
 
-You will also have to add the following lines:
+You will also have to replace `ELASTICSEARCH_PREFIX` with `SCOUT_PREFIX`:
 
-```dotenv
-SCOUT_DRIVER=Matchish\ScoutElasticSearch\Engines\ElasticSearchEngine
-SCOUT_PREFIX="your_prefix_here"
+```diff
+-  ELASTICSEARCH_PREFIX="your_prefix_here"
++  SCOUT_PREFIX="your_prefix_here"
 ```
-
-Note that `ELASTICSEARCH_PREFIX` has been replaced with `SCOUT_PREFIX`.
 
 ### `providers.php` changes
 
