@@ -104,4 +104,4 @@ return [
 ];
 ```
 
-With this refactor, you can use this method override *any* Rapidez config value with a store-specific variant.
+With this refactor, you can use this method override *any* Rapidez config value with a store-specific variant. See also [the documentation for this functionality](configuration.md#multistore).
