@@ -8,17 +8,20 @@
 
 In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀 to index products we're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit) and introducing some new features:
 
-- Search within results filter
+- [Search within results filter](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/filter/search.blade.php)
+- [Search history](https://github.com/rapidez/core/pull/849), your latest searches visible within the autocomplete
+- [Search suggestions](https://github.com/rapidez/core/pull/813), based on previous searches
 - Select super attributes on products while filtering, so when you filter on a color this will be selected on all items so the matching images will show
 
 Other changes included in this release:
 
-- Config refactor
-- Custom range slider, removing the [vue-slider-component](https://github.com/NightCatSama/vue-slider-component) dependency
+- [Config refactor](https://github.com/rapidez/core/pull/769)
+- [Custom range slider](https://github.com/rapidez/core/blob/master/resources/views/components/input/range-slider.blade.php), removing the [vue-slider-component](https://github.com/NightCatSama/vue-slider-component) dependency
 - Made more components customizable from Blade:
-    - Category filter
-    - Pagination
-    - Toolbar (stats, items per page and sorting)
+    - [Category filter](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/filter/category.blade.php)
+    - [Pagination](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/pagination.blade.php)
+    - [Toolbar](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/toolbar.blade.php) ([stats](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/toolbar/stats.blade.php), [items per page](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/toolbar/pages.blade.php) and [sorting](https://github.com/rapidez/core/blob/instantsearch/resources/views/listing/partials/toolbar/sorting.blade.php))
+- [Visual improvements](https://github.com/rapidez/core/pull/832)
 
 You should review [all template/config changes](https://github.com/rapidez/core/compare/3.x..master)
 
