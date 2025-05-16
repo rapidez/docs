@@ -2,9 +2,30 @@
 
 ---
 
-Have a look at the [Laravel deployment docs](https://laravel.com/docs/11.x/deployment) and make sure [CORS is opened up](installation.md#cors).
-
 [[toc]]
+
+## Checklist
+
+- Check the [Laravel deployment docs](https://laravel.com/docs/12.x/deployment)
+- Make sure the server meets the [requirements](installation.md#requirements)
+- Check all [configurations](configuration.md)
+- [Configure CORS](installation.md#cors)
+- Make sure the [flat tables are enabled](installation.md#flat-tables)
+- If you're upgrading, check the [upgrade notes](upgrading.md)
+- Configure the [indexer](indexer.md) in the [scheduler](indexer.md#scheduler) or with [webhooks](indexer.md#webhook)
+- [Redirect Magento](#redirecting-magento)
+- [Secure Elasticsearch](#secure-elasticsearch)
+- Check your `.env`
+  - Set `APP_ENV` to `production`
+  - Change the `RAPIDEZ_TOKEN` to something random
+  - Make sure these values are `false`
+    - `APP_DEBUG`
+    - `VITE_DEBUG`
+    - `DEBUGBAR_ENABLED`
+- Optionally [configure your multistore](installation.md#multistore)
+- Optionally [setup full page caching](cache.md#full-page-caching)
+- Make sure `php artisan optimize` is within your deployment script
+- Issues? Check see [troubleshooting](troubleshooting.md)
 
 ## Redirecting Magento
 

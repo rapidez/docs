@@ -87,7 +87,7 @@ Take a look at the [CMS packages](packages.md#cms)!
 
 ## Routes
 
-You can add any additional routes just "the Laravel way". Check out the [Laravel routing docs](https://laravel.com/docs/11.x/routing). Additionally, Rapidez adds a handy `store_code` route middleware, so you can create routes for specific stores:
+You can add any additional routes just "the Laravel way". Check out the [Laravel routing docs](https://laravel.com/docs/12.x/routing). Additionally, Rapidez adds a handy `store_code` route middleware, so you can create routes for specific stores:
 
 ```php
 Route::middleware('store_code:YOUR_STORE_CODE')->get('customroute', function () {
@@ -95,11 +95,18 @@ Route::middleware('store_code:YOUR_STORE_CODE')->get('customroute', function () 
 });
 ```
 
-Alternatively, you can create a custom routes file if you have multiple routes specific to a store within your `RouteServiceProvider`:
+Alternatively, you can create a custom routes file if you have multiple routes specific to a store within `bootstrap/app.php`:
 
 ```php
-Route::middleware(['web', 'store_code:YOUR_STORE_CODE'])
-    ->group(base_path('routes/YOUR_STORE_CODE.php'));
+->withRouting(
+    web: __DIR__.'/../routes/web.php',
+    commands: __DIR__.'/../routes/console.php',
+    health: '/up',
+    then: function () { // [!code focus]
+        Route::middleware(['web', 'store_code:YOUR_STORE_CODE']) // [!code focus]
+            ->group(base_path('routes/YOUR_STORE_CODE.php')); // [!code focus]
+    }, // [!code focus]
+)
 ```
 
 ## Autocomplete
@@ -109,13 +116,15 @@ The autocomplete can contain as many Elasticsearch indexes as you wish. You can 
 ```php
 'autocomplete' => [
     'additionals' => [
+        'history'    => [],
         'categories' => [],
-        'blogs' => [
-            'size' => 3,
-        ],
+
+        'blogs' => [ // [!code focus]
+            'size' => 10, // [!code focus]
+        ], // [!code focus]
     ],
 
-    'size' => 10,
+    'size' => 3,
 ],
 ```
 
@@ -146,25 +155,4 @@ When you add a new index to this configuration, Rapidez will attempt to include 
 /resources/views/vendor/rapidez/layouts/partials/header/autocomplete/index_name_here.blade.php
 ```
 
-A basic example of such a view can be found below:
-
-```blade
-<div class="border-b pb-2">
-    <x-rapidez::autocomplete.title>@lang('My index')</x-rapidez::autocomplete.title>
-    <ul class="flex flex-col">
-        <li v-for="hit in resultsData.hits" :key="hit._source.id">
-            <a v-bind:href="hit._source.url">
-                <span v-html="autocompleteScope.highlight(hit, 'field_name_here')"></span>
-            </a>
-        </li>
-    </ul>
-</div>
-```
-
-Variables you can use in this view:
-
-
-| Variable | Description |
-|---|---|
-| `resultsData` | The data that's been returned by ElasticSearch. You can loop over `resultsData.hits` to get all of the relevant hits. |
-| `autocompleteScope` | The data of the `autocomplete` component. This is mostly useful to be able to use `autocompleteScope.highlight(hit, 'field_name_here')` as done in the example above. |
+You could use the [categories view](https://github.com/rapidez/core/blob/master/resources/views/layouts/partials/header/autocomplete/categories.blade.php) as an example.

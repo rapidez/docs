@@ -9,7 +9,7 @@ import ColorTile from '../.vitepress/theme/ColorTile.vue'
 The base theming is located within `rapidez/core` which you can publish to your project and change it. Alternatively, you can [create your own package](package-development.md) with views, CSS, and Javascript like a theme.
 
 ::: tip
-Read the [Laravel Blade Templates docs](https://laravel.com/docs/11.x/blade) before you begin.
+Read the [Laravel Blade Templates docs](https://laravel.com/docs/12.x/blade) before you begin.
 :::
 
 [[toc]]
@@ -22,7 +22,7 @@ To change the views, you can publish them with:
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag=views
 ```
 
-After that, you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information, see [Overriding Package Views](https://laravel.com/docs/11.x/packages#overriding-package-views) in the Laravel docs.
+After that, you'll find all the Rapidez Core views in `resources/views/vendor/rapidez`. For more information, see [Overriding Package Views](https://laravel.com/docs/12.x/packages#overriding-package-views) in the Laravel docs.
 
 ::: tip
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view, it's a good idea to add the unchanged version to version control before you make any changes.
@@ -30,7 +30,7 @@ It's recommended to only add the views you've changed into your source control f
 
 ## CSS
 
-We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js).
+We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/12.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js).
 
 ::: details But... I don't like Tailwind CSS
 If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages, so we don't recommend it. Just clear out the [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css) and write your own.
@@ -237,16 +237,14 @@ Rapidez also has support for multiple themes! This is based on the `MAGE_RUN_COD
 
 ### Blade
 
-In `config/rapidez.php`, you can define the themes you'd like to be used per store code:
+As mentioned the the [multistore configuration docs](configuration.md#multistore) it's possible to have different config files per store. To have a different theme per store simply create it within `/config/rapidez/stores/{store_code}/frontend.php` and define a custom path:
 ```php
-'themes' => [
-    'default' => resource_path('themes/default'),
-    'extra_store' => resource_path('themes/extra_store'),
-    'extra_store_nl' => resource_path('themes/extra_store'),
-],
-```
+<?php
 
-In this example, we have the default store using a "default" theme. The extra store in both languages is using the same "extra_store" theme since its changes are only translations.
+return [
+    'theme' => resource_path('themes/custom_theme'),
+];
+```
 
 The structure of your theme folder will be the same as your views folder, so overriding the views folder is as simple as copying and pasting the file with the correct folder structure.
 
@@ -312,7 +310,7 @@ Of course, you can do this any way you want if you want to load the same CSS for
 
 ## Translations
 
-You can create a JSON file for your language within the `lang` directory, for example: `/lang/de.json`. As an example, have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information, read the [Laravel Localization docs](https://laravel.com/docs/11.x/localization).
+You can create a JSON file for your language within the `lang` directory, for example: `/lang/de.json`. As an example, have a look at the [existing translations in the core](https://github.com/rapidez/core/tree/master/lang). For more information, read the [Laravel Localization docs](https://laravel.com/docs/12.x/localization).
 
 In the core, we also have a `frontend.php` translation file per language. These translations will be available from Javascript with: `config.translations.key`. To publish them to your project, use:
 
