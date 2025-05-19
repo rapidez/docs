@@ -103,6 +103,12 @@ ELASTICSEARCH_PASSWORD=
 ELASTICSEARCH_SSL_VERIFICATION=true
 ```
 
+You will also need to set a prefix for your indices:
+
+```dotenv
+SCOUT_PREFIX=
+```
+
 ## Early hints
 
 Rapidez comes with [Early Hints](https://github.com/justbetter/laravel-http3earlyhints) built in. You should enable your early hints in [Cloudflare](https://developers.cloudflare.com/cache/advanced-configuration/early-hints/#enable-early-hints) or your CDN for a boost. Anything loaded with `@vite()` will properly get loaded with early hints, it will also discover other elements on your page which could benefit from early hints. Like your `preload` and `preconnect` links, eager-loaded images, blocking scripts, and blocking styles. You can disable it with:
