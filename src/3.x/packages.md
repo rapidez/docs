@@ -71,6 +71,7 @@ Opinionated checkout packages.
 
 - [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
 - [Postcodeservice](https://github.com/rapidez/postcodeservice)
+- [Pro6pp](https://github.com/rapidez/pro6pp-postcode)
 
 ## Vendors
 
