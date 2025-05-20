@@ -95,3 +95,5 @@ Some Magento modules work out of the box but most of the modules which do someth
 
 - [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
 - [Postcodeservice](https://github.com/rapidez/postcodeservice)
+- [Pro6pp](https://github.com/rapidez/pro6pp-postcode)
+
