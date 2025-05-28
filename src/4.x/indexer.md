@@ -41,7 +41,7 @@ If you'd like to have even faster updates we provide an endpoint to trigger upda
 /api/admin/index/MODEL?token=RAPIDEZ_TOKEN
 ```
 
-Replace `MODEL` with the name from the [models config](https://github.com/rapidez/core/blob/master/config/rapidez/models.php), most likely `product`, `category` or maybe a custom model you've created like `blog`. The `RAPIDEZ_TOKEN` is coming from your `.env`. If you do a `POST` request it will add / update an item and a `DELETE` request will remove an item from the index. The accepted parameters:
+Replace `MODEL` with the name from the [models config](https://github.com/rapidez/core/blob/master/config/rapidez/models.php), most likely `product`, `category` or maybe a custom model you've created like `blog`. The `RAPIDEZ_TOKEN` comes from your `.env`. If you do a `POST` request it will add / update an item and a `DELETE` request will remove an item from the index. The accepted parameters:
 
 | Param    | Required | Data  |
 | -------- | -------- | ----- |
@@ -49,15 +49,15 @@ Replace `MODEL` with the name from the [models config](https://github.com/rapide
 | `stores` | No       | - Default is the current store<br>- For all stores use `*`<br>- Specific stores: `['store_code1', 'store_code2']` |
 
 ::: tip Magento Webhooks
-Magento doesn't provide any webhooks by default but you could use [mageplaza/magento-2-webhook](https://github.com/mageplaza/magento-2-webhook) for example and configure it to reindex on product and category updates.
+Magento doesn't provide any webhooks by default, but you could use something like [mageplaza/magento-2-webhook](https://github.com/mageplaza/magento-2-webhook) and configure it to reindex on product and category updates.
 :::
 
 ### Full reindex
 
-Additionally there is an endpoints that triggers a full reindex with just a `GET` request:
+Additionally there is an endpoint that triggers a full reindex with just a `GET` request:
 
 ```
 /api/admin/index/products?token=RAPIDEZ_TOKEN
 ```
 
-This is using [`fastcgi_finish_request()`](https://www.php.net/fastcgi_finish_request) so you get a response really fast and the index process continues in the background.
+This uses [`fastcgi_finish_request()`](https://www.php.net/fastcgi_finish_request), which means you get a response immediately while the index process continues in the background.
