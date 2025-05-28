@@ -6,7 +6,9 @@
 
 ## Rapidez v4
 
-In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀. To index products, we're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit), and with this we're introducing some new features:
+In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀. To index products, we're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit).
+
+With this we're introducing some new features:
 
 - [Search within results filter](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/filter/search.blade.php)
 - [Search history](https://github.com/rapidez/core/pull/849), your latest searches visible within the autocomplete
