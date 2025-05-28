@@ -6,7 +6,7 @@
 
 ## Rapidez v4
 
-In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀 to index products we're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit) and introducing some new features:
+In this release, we migrated from [ReactiveSearch](https://github.com/appbaseio/reactivesearch/) to [InstantSearch](https://github.com/algolia/instantsearch) 🚀 to index products. We're now using [Laravel Scout](https://github.com/laravel/scout) with [Searchkit](https://github.com/searchkit/searchkit), and with this are introducing some new features:
 
 - [Search within results filter](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/filter/search.blade.php)
 - [Search history](https://github.com/rapidez/core/pull/849), your latest searches visible within the autocomplete
@@ -27,14 +27,14 @@ You should review [all template/config changes](https://github.com/rapidez/core/
 
 ## Composer dependencies
 
-Check all your dependencies one by one to see if they're compatible and what has changed in changelogs / release notes. To get a nice overview run:
+Check all your dependencies one by one to see if they're compatible and what has changed in changelogs / release notes. To get a nice overview, run the following command:
 ```bash
 composer outdated
 ```
 
 ### `.env` changes
 
-We switched [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) for [matchish/laravel-scout-elasticsearch](https://github.com/matchish/laravel-scout-elasticsearch), with that the configs changed, they are [compatible](https://github.com/matchish/laravel-scout-elasticsearch/pull/307) but we recommend to change them:
+We switched [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) for [matchish/laravel-scout-elasticsearch](https://github.com/matchish/laravel-scout-elasticsearch). With that change, the configs have also changed. They are [compatible](https://github.com/matchish/laravel-scout-elasticsearch/pull/307) but we recommend changing them from:
 
 ```dotenv
 ELASTICSEARCH_HOST=localhost
@@ -43,7 +43,7 @@ ELASTICSEARCH_SCHEME=http
 ELASTICSEARCH_USER=
 ELASTICSEARCH_PASS=
 ```
-To
+To:
 ```dotenv
 ELASTICSEARCH_HOST=http://localhost:9200
 ELASTICSEARCH_USER=
@@ -107,4 +107,4 @@ return [
 ];
 ```
 
-With this refactor, you can use this method override *any* Rapidez config value with a store-specific variant. See also [the documentation for this functionality](configuration.md#multistore).
+With this refactor, you can use this method to override *any* Rapidez config value with a store-specific variant. See also [the documentation for this functionality](configuration.md#multistore).

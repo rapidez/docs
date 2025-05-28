@@ -181,7 +181,7 @@ Or with the product info from Javascript:
 ```
 Rapidez is using this component to render the related products, up-sells, and cross-sells. 
 
-This [`productlist`](https://github.com/rapidez/core/blob/master/resources/views/components/productlist.blade.php) Blade component and the [`listing`](https://github.com/rapidez/core/blob/master/resources/views/components/listing.blade.php) Blade component (used for category pages and the search results page) are using the renderless [`Listing.vue`](https://github.com/rapidez/core/blob/master/resources/js/components/Listing/Listing.vue) component that does have some useful props:
+This [`productlist`](https://github.com/rapidez/core/blob/master/resources/views/components/productlist.blade.php) Blade component and the [`listing`](https://github.com/rapidez/core/blob/master/resources/views/components/listing.blade.php) Blade component (used for category pages and the search results page) are using the renderless [`Listing.vue`](https://github.com/rapidez/core/blob/master/resources/js/components/Listing/Listing.vue) component that has some useful props:
 
 Prop | Type | Explanation
 :--- | :--- | :---
@@ -237,7 +237,7 @@ Rapidez also has support for multiple themes! This is based on the `MAGE_RUN_COD
 
 ### Blade
 
-As mentioned the the [multistore configuration docs](configuration.md#multistore) it's possible to have different config files per store. To have a different theme per store simply create it within `/config/rapidez/stores/{store_code}/frontend.php` and define a custom path:
+As mentioned in the [multistore configuration docs](configuration.md#multistore), it's possible to have different config files per store. To have a different theme per store, create or edit `/config/rapidez/stores/{store_code}/frontend.php` and define a custom path like so:
 ```php
 <?php
 
