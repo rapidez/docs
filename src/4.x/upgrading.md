@@ -13,7 +13,7 @@ With this we're introducing some new features:
 - [Search within results filter](https://github.com/rapidez/core/blob/master/resources/views/listing/partials/filter/search.blade.php)
 - [Search history](https://github.com/rapidez/core/pull/849), your latest searches visible within the autocomplete
 - [Search suggestions](https://github.com/rapidez/core/pull/813), based on previous searches
-- Select super attributes on products while filtering, so when you filter on a color this will be selected on all items so the matching images will show
+- [Select super attributes on products while filtering](https://github.com/rapidez/core/pull/781), so when you filter on a color this will be selected on all items so the matching images will show
 
 Other changes included in this release:
 
