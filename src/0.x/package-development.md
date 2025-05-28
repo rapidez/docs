@@ -25,11 +25,11 @@ Filter | Explanation
 `index.product.mapping` | Manipulate the index mapping
 `routes` | ([deprecated](#addfallbackroute)) Register additional fallback routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
-Every models extends the [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example the category model: `category.scopes`
+Every models extends the [base model](https://github.com/rapidez/core/blob/0.x/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/0.x/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example the category model: `category.scopes`
 
 ## Vue Events
 
-Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez Mollie](https://github.com/rapidez/mollie) package, have a look at the [`mollie.js`](https://github.com/rapidez/mollie/blob/master/resources/js/mollie.js) file.
+Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez Mollie](https://github.com/rapidez/mollie) package, have a look at the [`mollie.js`](https://github.com/rapidez/mollie/blob/2.x/resources/js/mollie.js) file.
 
 Event | Explanation
 :--- | :---
