@@ -70,7 +70,7 @@ By default the customer token lifetime is set to 1 hour in Magento so a customer
 
 ### Robots.txt
 
-By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/10.x/valet) do include a line causing this as the file could not be found:
+By default Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/2.x/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions` which gives you the flexibility to have a `robots.txt` per website; you need to remove that file from your repository. That way it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/1.x/routes/web.php). Depending on your webserver configuration you could get a 404 response. For example [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/10.x/valet) do include a line causing this as the file could not be found:
 ```
 location = /robots.txt  { access_log off; log_not_found off; }
 ```

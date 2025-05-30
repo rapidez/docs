@@ -29,20 +29,35 @@ Every model extends the [base model](https://github.com/rapidez/core/blob/master
 
 ## Vue Events
 
-Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez Mollie](https://github.com/rapidez/mollie) package, have a look at the [`mollie.js`](https://github.com/rapidez/mollie/blob/master/resources/js/mollie.js) file.
+Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez GTM](https://github.com/rapidez/gtm) package, have a look at the [`gtm.js`](https://github.com/rapidez/gtm/blob/master/resources/js/gtm.js) file.
 
 Event | Explanation
 :--- | :---
+`registered` | After registering the user, contains any information passed except for the password
 `logged-in` | After the user has logged in
 `logout` | After the user attempts to log out, listen to this to clear any sensitive information about the user
+`logged-out` | After the user has been logged out
+`cart-add` | After a product has been added to the cart
 `cart-refreshed` | After the cart is refreshed
+`cart-remove` | When the remove from cart button has been used
 `checkout-credentials-saved` | After the checkout credentials are saved
 `checkout-payment-selected` | After the payment method has been selected
-`before-checkout-payment-saved` | Before the payment method is saved (setting `checkout.preventOrder` to true prevents saving and creating the order altogether)
+`checkout-success` | When the user is on the success page
 `checkout-payment-saved` | After the payment method is saved
 `product-super-attribute-change` | After a swatch change, when calling this the product image updates based on the choice
+`postcode-change` | Events for postcode integrations, fired after postcode or housenumber changed.
+`vat-change` | Events for VAT validation.
 
-There is also a `doNotGoToTheNextStep` variable on the root Vue instance which can be used to prevent the checkout from going to the next step. That's also used within the [Rapidez Mollie](https://github.com/rapidez/mollie) package to prevent the checkout from going to the success page because you have to pay first and we'd like to redirect the user to the payment page.
+## Regular Events
+
+These are custom vanilla JS events that are fired that you can hook into:
+
+Event | Explanation
+:--- | :---
+`vue:loaded` | After `window.app` has been created, always use this if you want to interact with the global Vue object after it's created. `DOMContentLoaded` or `turbo:load` are NOT recommended for this.
+`vue:mounted` | After the global vue component has been mounted, [see](https://github.com/rapidez/core/blob/master/resources/js/package.js#L173)
+`turbo:load` | The `DOMContentLoaded` for Turbo navigation, it will fire late the initial request. We recommend using `vue:loaded` instead. There are more [Turbo events](https://turbo.hotwired.dev/reference/events)
+`cart-updated` | Fired whenever the `updateCart` has been executed, this is no guarantee data has actually changed.
 
 ## Fallback routing
 
