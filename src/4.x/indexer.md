@@ -61,3 +61,11 @@ Additionally there is an endpoint that triggers a full reindex with just a `GET`
 ```
 
 This uses [`fastcgi_finish_request()`](https://www.php.net/fastcgi_finish_request), which means you get a response immediately while the index process continues in the background.
+
+## Adding models
+
+The Rapidez indexer listens to the [Searchable trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/Searchable.php), so if you want your own models indexed you can simply implement the trait and add it to the [models config](extending.md#models). By default this will index everything arrayable in an index following "`SCOUT_PREFIX`\_`plural model name`\_`store_id`".
+
+::: tip Scout Docs
+For more advanced usage take a look at the [Scout Docs](https://laravel.com/docs/12.x/scout)
+:::
