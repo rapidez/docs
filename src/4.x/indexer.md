@@ -106,7 +106,7 @@ protected static function indexSettings(): array
 
 You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider.
 
-The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$eventyName`).
+The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$modelName`).
 
 For example:
 
