@@ -69,6 +69,67 @@ The Rapidez indexer listens to the [Searchable trait](https://github.com/rapidez
 SCOUT_PREFIX _ plural model name _ STORE_ID
 ```
 
+Make sure any custom eloquent models extend Rapidez's [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php).
+
 ::: tip Scout Docs
 For more advanced usage take a look at the [Scout Docs](https://laravel.com/docs/12.x/scout)
 :::
+
+## Index mapping & settings
+
+You can define custom index mapping and settings for each searchable model. You can do this in a few different ways:
+
+### On the model itself
+
+On the searchable model itself, you can define the following functions:
+
+```php
+protected static function indexMapping(): array
+{
+    // return your mapping here, e.g.:
+    // return [
+    //     'properties' => [
+    //         'children' => [
+    //             'type' => 'flattened',
+    //         ],
+    //     ],
+    // ];
+}
+
+protected static function indexSettings(): array
+{
+    // return your settings here
+}
+```
+
+### Using an Eventy filter directly
+
+You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider.
+
+The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$eventyName`).
+
+For example:
+
+```php
+Eventy::addFilter('index.category.mapping', fn ($mapping) => array_merge_recursive($mapping, [
+    'properties' => [
+        'children' => [
+            'type' => 'flattened',
+        ],
+    ],
+]));
+```
+
+### Using an Eventy filter with a class
+
+You can also use classes instead of directly altering the arrays within your filter. For an example of this, have a look at [the `withSynonyms` class](https://github.com/rapidez/core/blob/master/src/Index/WithSynonyms.php). You can add a class like this as follows:
+
+```php
+// Simple without parameters
+Eventy::addFilter('index.product.settings', fn($filters) => array_merge($filters ?: [], [WithSynonyms::class]));
+
+// With parameters
+Eventy::addFilter('index.product.mapping', fn($filters) => array_merge($filters ?: [], [
+    [WithSynonyms::class, 'fields' => $productSynonymFields]
+]));
+```
