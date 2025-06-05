@@ -6,7 +6,7 @@
 
 ## Why is it so fast?
 
-> Because Rapidez does not use the Magento frontend stack. Just Laravel, which queries the Magento database directly, and GraphQL for other parts like the cart and checkout. Category filters are so fast because of InstantSearch, which uses Elasticsearch as a database. For the smooth page transitions, Rapidez uses Turbo.
+> Because Rapidez does not use the Magento frontend stack. Just Laravel on top of the Magento database through Laravel Eloquent for catalog data and GraphQL for other parts like the cart and checkout. Category filters are so fast because of InstantSearch which uses Elasticsearch. For the smooth page transitions Rapidez uses Turbo.
 
 ## Why headless and not a PWA?
 
@@ -19,10 +19,6 @@
 ## Are all product types supported?
 
 > Simple, configurable, downloadable, and grouped product types are currently supported.
-
-## How is this different from Vue Storefront?
-
-> Vue Storefront does support multiple platforms, where the focus of Rapidez is Magento 2. The learning curve of Vue Storefront can be steep because it's totally different from Magento, which uses a PHP stack. Rapidez combines the best of both worlds by using PHP and Vue.
 
 ## Do I need to know Vue?
 
