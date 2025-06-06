@@ -61,7 +61,7 @@ class Authenticate extends Middleware
 
 1. **Install**
 ```bash
-yarn add -D graphql graphql-tag universal-cookie "graphql-combine-query@indykoning/graphql-combine-query#feature/add-allowed-duplicates"
+yarn add -D @vueuse/integrations graphql graphql-tag universal-cookie "graphql-combine-query@indykoning/graphql-combine-query#feature/add-allowed-duplicates"
 ```
 2. **Build**
 ```bash
