@@ -88,7 +88,7 @@ The `check` property on the GraphQL component has been changed from a string tha
 
 ### Colors
 
-The colors got new names, see the [color docs](theming.md#colors). You could upgrade to those new classes by replacing them in overwritten and custom Blade templates; have a look at the [color names refactor PR](https://github.com/rapidez/core/pull/622) for examples. An easier approach is to merge those new colors with your existing colors in the `tailwind.config.js`. That way you're existing and new colors work.
+The colors got new names, see the [color docs](theming.md#colors). You could upgrade to those new classes by replacing them in overwritten and custom Blade templates; have a look at the [color names refactor PR](https://github.com/rapidez/core/pull/622) for examples. An easier approach is to merge those new colors with your existing colors in the `tailwind.config.js`. That way your existing and new colors work.
 
 ### Z-indexes
 
@@ -96,16 +96,16 @@ The `rapidez.frontend.z-indexes` config has been removed with the [named z-index
 
 ### Components
 
-Within Rapidez we'd multiple components for inputs, buttons, etc within the core. Most of them are extracted to a separated package: [rapidez/blade-components](https://github.com/rapidez/blade-components). The migration to those new components within the core can be found [here](https://github.com/rapidez/core/pull/667). We recommend to migrate everything to those new components. Check out the [readme](https://github.com/rapidez/blade-components) and [demo](https://rapidez.github.io/blade-components/demo/components.html).
+Within Rapidez we used to have multiple components for inputs, buttons, etc within the core. Most of them have been extracted to a separated package: [rapidez/blade-components](https://github.com/rapidez/blade-components). The migration to those new components within the core can be found [here](https://github.com/rapidez/core/pull/667). We recommend migrating everything to those new components. Check out the [readme](https://github.com/rapidez/blade-components) and [demo](https://rapidez.github.io/blade-components/demo/components.html).
 
 ## Checkout changes
 
 Everything has been migrated to use the GraphQL components for queries and mutations. On those components, callbacks are used to process the data. So any changes made in an overwritten `checkout.vue` file and any checkout views should be reviewed. Have a look at the [GraphQL checkout PR](https://github.com/rapidez/core/pull/503) for all changes.
 
-The opinionated checkout options ([checkout-theme](https://github.com/rapidez/checkout-theme) and [confira](https://github.com/rapidez/confira)) are already made compatible with Rapidez v3. No [onestep](#onestep-checkout) there as they're multi step checkouts.
+The opinionated checkout options ([checkout-theme](https://github.com/rapidez/checkout-theme) and [confira](https://github.com/rapidez/confira)) have already been made compatible with Rapidez v3. No [onestep](#onestep-checkout) there, because they are multi step checkouts by design.
 
 ::: tip
-The fastest option is to remove all checkout customizations and reimplement them within the new checkout as a lot has been changed! 
+The fastest option is to remove all checkout customizations and reimplement them within the new checkout, as a lot has been changed! 
 :::
 
 ### Routing
