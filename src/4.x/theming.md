@@ -73,6 +73,7 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
+`border-active` | `--border-active` | `slate-800` | <colorTile color="#1e293b"/>{.np}
 `border-emphasis` | `--border-emphasis` | `slate-400` | <colorTile color="#94a3b8"/>{.np}
 `border` / `border-default` | `--border` | `slate-300` | <colorTile color="#cbd5e1"/>{.np}
 `border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
@@ -83,6 +84,7 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
+`bg-active` | `--background-active` | `slate-800` | <colorTile color="#1e293b"/>{.np}
 `bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
 `bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
 `bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
