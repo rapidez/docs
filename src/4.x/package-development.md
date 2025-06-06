@@ -21,9 +21,10 @@ Filter | Explanation
 `quote.items.select` | Manipulate the quote items select query
 `index.product.scopes` | Add product scopes to the product query when indexing
 `index.product.attributes` | Index additional product attributes
-`index.*.data` | Manipulate the models data before it's getting indexed, e.g. `index.products.data`
-`index.*.mapping` | Manipulate the index mapping for a given model, e.g. `index.products.mapping`
-`index.*.settings` | Manipulate the index settings for a given model, e.g. `index.products.settings`
+`index.*.data` | Manipulate the model's data before it gets indexed, e.g. `index.product.data`
+`index.*.mapping` | Manipulate the index mapping for a given model, e.g. `index.product.mapping`
+`index.*.settings` | Manipulate the index settings for a given model, e.g. `index.product.settings`
+`index.*.synonym-fields` | Manipulate the fields that allow for synonyms on a given model, e.g. `index.product.synonym-fields`
 `routes` | ([deprecated](#addfallbackroute)) Register additional routes ([example](https://github.com/rapidez/amasty-shop-by-brand/blob/master/src/AmastyShopByBrandServiceProvider.php))
 
 Every model extends the [base model](https://github.com/rapidez/core/blob/master/src/Models/Model.php) which uses the [`HasEventyGlobalScopeFilter` trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/HasEventyGlobalScopeFilter.php) so it's possible to add scopes to every model, for example: `category.scopes`
