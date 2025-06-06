@@ -283,16 +283,9 @@ module.exports = {
         require('./tailwind.config.js')
     ],
     theme: {
-        colors: {
-            blue: {
-                100: '#EAF1F4',
-                110: '#CCDFE8',
-                200: '#D0D9DC',
-                300: '#A0B1B9',
-                400: '#6A8693',
-                900: '#143F51',
-            }
-        },
+        extend: {
+            // ...
+        }
     }
 }
 ```

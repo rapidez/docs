@@ -62,7 +62,9 @@ Additionally there is an endpoint that triggers a full reindex with just a `GET`
 
 This uses [`fastcgi_finish_request()`](https://www.php.net/fastcgi_finish_request), which means you get a response immediately while the index process continues in the background.
 
-## Adding models
+## Extending
+
+### Adding models
 
 The Rapidez indexer listens to the [Searchable trait](https://github.com/rapidez/core/blob/master/src/Models/Traits/Searchable.php), so if you want your own models indexed you can simply implement the trait and add it to the [models config](extending.md#models). By default this will index everything arrayable in an index following:
 ```
@@ -75,18 +77,17 @@ Make sure any custom eloquent models extend Rapidez's [base model](https://githu
 For more advanced usage take a look at the [Scout Docs](https://laravel.com/docs/12.x/scout)
 :::
 
-## Index mapping & settings
+### Mapping & settings
 
 You can define custom index mapping and settings for each searchable model. You can do this in a few different ways:
 
-### On the model itself
+#### Model
 
 On the searchable model itself, you can define the following functions:
 
 ```php
 protected static function indexMapping(): array
 {
-    // return your mapping here, e.g.:
     // return [
     //     'properties' => [
     //         'children' => [
@@ -101,14 +102,13 @@ protected static function indexSettings(): array
     // return your settings here
 }
 ```
+#### Eventy
 
-### Using an Eventy filter directly
+See the [package development docs](package-development.md#eventy-filters) for more information on Eventy.
 
-You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider.
+##### Array
 
-The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$modelName`).
-
-For example:
+You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider. The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$modelName`). For example:
 
 ```php
 Eventy::addFilter('index.category.mapping', fn ($mapping) => array_merge_recursive($mapping, [
@@ -120,9 +120,9 @@ Eventy::addFilter('index.category.mapping', fn ($mapping) => array_merge_recursi
 ]));
 ```
 
-### Using an Eventy filter with a class
+##### Class
 
-You can also use classes instead of directly altering the arrays within your filter. For an example of this, have a look at [the `withSynonyms` class](https://github.com/rapidez/core/blob/master/src/Index/WithSynonyms.php). You can add a class like this as follows:
+You can also use classes instead of directly altering the arrays within your filter. For an example of this, have a look at [the `withSynonyms` class](https://github.com/rapidez/core/blob/master/src/Index/WithSynonyms.php). Example:
 
 ```php
 // Simple without parameters
