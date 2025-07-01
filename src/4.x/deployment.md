@@ -118,6 +118,67 @@ Finally add the URL to your `.env`
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
+## Secure Opensearch
+
+You have to secure your Opensearch instance so other people can't manipulate the data in it as it needs to be exposed for InstantSearch.
+
+Add 
+```yaml
+http.cors.enabled: true
+http.cors.allow-credentials: true
+http.cors.allow-origin: "https://rapidez.example.com"
+http.cors.allow-headers: X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept
+```
+
+You will need to create a rapidez/web user as well
+[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#internal_usersyml](internal_users.yml)
+```yaml
+web:
+  hash: "WEB_PASSWORD_REPLACEME"
+  reserved: true
+  backend_roles:
+  - "rapidez"
+  description: "Public web user"
+```
+
+Then link that user to the role we are about to create
+[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#roles_mappingyml](roles_mapping.yml)
+```yaml
+rapidez:
+  reserved: false
+  users:
+  - "web"
+  backend_roles:
+  - "rapidez"
+  description: "Allow read only access to indexes prefixed with rapidez_"
+```
+
+And create the role with the correct permissions to search the `rapidez_` indexes.
+[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#rolesyml](roles.yml)
+```yaml
+rapidez:
+  reserved: false
+  cluster_permissions:
+    - "indices:data/read/msearch"
+    - "indices:data/read/msearch/template"
+  index_permissions:
+    - index_patterns:
+        - 'rapidez_*'
+      allowed_actions:
+        - "indices:data/read/scroll"
+        - "indices:data/read/scroll/clear"
+        - "indices:data/read/mget"
+        - "indices:data/read/mget*"
+        - "indices:data/read/search"
+        - "indices:data/read/search*"
+        - "indices:data/read/msearch"
+        - "indices:data/read/msearch/template"
+        - "indices:data/read/search/template"
+        - "indices:data/read/mtv"
+        - "indices:data/read/mtv*"
+        - "indices:data/read/search/template/render*"
+```
+
 ## Magento 2 Docker
 
 ::: warning

@@ -10,6 +10,7 @@
 - PHP >= 8.2
 - MySQL >= 8.0.28
 - Elasticsearch Basic >= 8.11
+- Or Opensearch ^2
 - Magento >= 2.4.7 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#demo-magento-2-webshop))
 
 ::: tip Elasticsearch Basic
@@ -72,6 +73,10 @@ When using the above module the following will probably not be necessary.
 ### Elasticsearch
 
 If you're using your own Elasticsearch installation, you have to open CORS in `elasticsearch.yml` and restart Elasticsearch. An example can be found in the project: [`elasticsearch.yml`](https://github.com/rapidez/rapidez/blob/master/elasticsearch.yml). That configuration is used when you're using Elasticsearch from the [Docker Compose config](https://github.com/rapidez/rapidez/blob/master/docker-compose.yml).
+
+### Opensearch
+
+If you're using your own Opensearch installation you will have to open CORS in `opensearch.yml` see: [Secure Opensearch](deployment.md#secure-opensearch).
 
 ## Flat tables
 

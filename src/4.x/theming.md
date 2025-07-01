@@ -187,7 +187,7 @@ This [`productlist`](https://github.com/rapidez/core/blob/master/resources/views
 
 Prop | Type | Explanation
 :--- | :--- | :---
-`index` | String | The ElasticSearch index name
+`index` | String | The ElasticSearch/Opensearch index name
 `query` | Function | To give you full control with [Query DSL](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl)
 `categoryId` | Number | Filter the items by category ID
 `baseFilters` | Function | Additional base filters; just like the `categoryID`. The base to start with.
