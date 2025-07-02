@@ -120,9 +120,7 @@ ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 
 ## Secure OpenSearch
 
-You have to secure your OpenSearch instance so other people can't manipulate the data in it as it needs to be exposed for InstantSearch.
-
-Add 
+You have to secure your OpenSearch instance so other people can't manipulate the data in it as it needs to be exposed for InstantSearch. Add this in your [`opensearch.yml`](https://docs.opensearch.org/docs/latest/install-and-configure/configuring-opensearch/index/#configuration-file)
 ```yaml
 http.cors.enabled: true
 http.cors.allow-credentials: true
@@ -130,8 +128,7 @@ http.cors.allow-origin: "https://your-rapidez-store.com"
 http.cors.allow-headers: X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept
 ```
 
-You will need to create a rapidez/web user as well
-[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#internal_usersyml](internal_users.yml)
+You will need to create a rapidez/web user as well in the [`internal_users.yml`](https://docs.opensearch.org/docs/latest/security/configuration/yaml/#internal_usersyml)
 ```yaml
 web:
   hash: "WEB_PASSWORD_REPLACEME"
@@ -141,8 +138,7 @@ web:
   description: "Public web user"
 ```
 
-Then link that user to the role we are about to create
-[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#roles_mappingyml](roles_mapping.yml)
+Then link that user to the role we are about to create in the [`roles_mapping.yml`](https://docs.opensearch.org/docs/latest/security/configuration/yaml/#roles_mappingyml)
 ```yaml
 rapidez:
   reserved: false
@@ -153,8 +149,7 @@ rapidez:
   description: "Allow read only access to indexes prefixed with rapidez_"
 ```
 
-And create the role with the correct permissions to search the `rapidez_` indexes.
-[https://docs.opensearch.org/docs/latest/security/configuration/yaml/#rolesyml](roles.yml)
+Create the role with the correct permissions to the `rapidez_` indexes in the [`roles.yml`](https://docs.opensearch.org/docs/latest/security/configuration/yaml/#rolesyml)
 ```yaml
 rapidez:
   reserved: false

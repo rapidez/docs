@@ -109,9 +109,9 @@ You will also need to set a prefix for your indices:
 SCOUT_PREFIX=
 ```
 
-## Opensearch
+## OpenSearch
 
-For OpenSearch the same applies but you need to add this in your `.env`:
+For OpenSearch the same applies as [Elasticsearch](#elasticsearch) but you need to add this in your `.env`:
 
 ```dotenv
 SCOUT_SEARCH_BACKEND=opensearch
