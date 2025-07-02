@@ -111,7 +111,7 @@ Alternatively, you can create a custom routes file if you have multiple routes s
 
 ## Autocomplete
 
-The autocomplete can contain as many Elasticsearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
+The autocomplete can contain as many Elasticsearch/OpenSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:
 
 ```php
 'autocomplete' => [

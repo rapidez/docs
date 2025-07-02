@@ -2,7 +2,7 @@
 
 ---
 
-The indexer adds the product and category information with [Laravel Scout](https://laravel.com/docs/12.x/scout) to an Elasticsearch index for InstantSearch. There are multiple ways to refresh the index:
+The indexer adds the product and category information with [Laravel Scout](https://laravel.com/docs/12.x/scout) to an Elasticsearch/OpenSearch index for InstantSearch. There are multiple ways to refresh the index:
 
 [[toc]]
 
@@ -108,7 +108,7 @@ See the [package development docs](package-development.md#eventy-filters) for mo
 
 ##### Array
 
-You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider. The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$modelName`). For example:
+You can also hook into the Eventy filters to directly alter the mapping before it gets sent to ElasticSearch/OpenSearch. This is useful for when you want to alter your mapping or settings within a serviceprovider. The filter names for this are `index.*.mapping` and `index.*.settings` where the `*` represents the model name (or its custom `$modelName`). For example:
 
 ```php
 Eventy::addFilter('index.category.mapping', fn ($mapping) => array_merge_recursive($mapping, [

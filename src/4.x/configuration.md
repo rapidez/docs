@@ -94,7 +94,7 @@ location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri
 
 ## Elasticsearch
 
-To communicate with Elasticsearch, Rapidez is using the [matchish/laravel-scout-elasticsearch](https://github.com/matchish/laravel-scout-elasticsearch) package. If you need to change the Elasticsearch credentials, you can do so with these `.env` configurations:
+To communicate with Elasticsearch, Rapidez is using the [rapidez/laravel-scout-elasticsearch](https://github.com/rapidez/laravel-scout-elasticsearch) package. If you need to change the Elasticsearch credentials, you can do so with these `.env` configurations:
 
 ```dotenv
 ELASTICSEARCH_HOST=http://localhost:9200
@@ -107,6 +107,14 @@ You will also need to set a prefix for your indices:
 
 ```dotenv
 SCOUT_PREFIX=
+```
+
+## Opensearch
+
+For OpenSearch the same applies but you need to add this in your `.env`:
+
+```dotenv
+SCOUT_SEARCH_BACKEND=opensearch
 ```
 
 ## Early hints
