@@ -6,7 +6,7 @@
 
 ## Why is it so fast?
 
-> Because Rapidez does not use the Magento frontend stack. Just Laravel on top of the Magento database through Laravel Eloquent for catalog data and GraphQL for other parts like the cart and checkout. Category filters are so fast because of InstantSearch which uses Elasticsearch/Opensearch. For the smooth page transitions Rapidez uses Turbo.
+> Because Rapidez does not use the Magento frontend stack. Just Laravel on top of the Magento database through Laravel Eloquent for catalog data and GraphQL for other parts like the cart and checkout. Category filters are so fast because of InstantSearch which uses Elasticsearch/OpenSearch. For the smooth page transitions Rapidez uses Turbo.
 
 ## Why headless and not a PWA?
 

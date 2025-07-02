@@ -111,17 +111,11 @@ SCOUT_PREFIX=
 
 ## Opensearch
 
-To communicate with Opensearch we also utilise [rapidez/laravel-scout-elasticsearch](https://github.com/rapidez/laravel-scout-elasticsearch).
-
-Configuration is the same as [Elasticsearch](#elasticsearch).
-
-But you add
+For OpenSearch the same applies but you need to add this in your `.env`:
 
 ```dotenv
 SCOUT_SEARCH_BACKEND=opensearch
 ```
-
-to your .env
 
 ## Early hints
 

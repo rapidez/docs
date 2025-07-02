@@ -118,15 +118,15 @@ Finally add the URL to your `.env`
 ELASTICSEARCH_URL=https://web:rapidez@elasticsearch.domain.com
 ```
 
-## Secure Opensearch
+## Secure OpenSearch
 
-You have to secure your Opensearch instance so other people can't manipulate the data in it as it needs to be exposed for InstantSearch.
+You have to secure your OpenSearch instance so other people can't manipulate the data in it as it needs to be exposed for InstantSearch.
 
 Add 
 ```yaml
 http.cors.enabled: true
 http.cors.allow-credentials: true
-http.cors.allow-origin: "https://rapidez.example.com"
+http.cors.allow-origin: "https://your-rapidez-store.com"
 http.cors.allow-headers: X-Requested-With, X-Auth-Token, Content-Type, Content-Length, Authorization, Access-Control-Allow-Headers, Accept
 ```
 

@@ -36,7 +36,7 @@ composer outdated
 
 ### `.env` changes
 
-We switched [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) for [rapidez/laravel-scout-elasticsearch](https://github.com/rapidez/laravel-scout-elasticsearch). With that change, the configs have also changed. They are [compatible](https://github.com/rapidez/laravel-scout-elasticsearch/pull/307) but we recommend changing them from:
+We switched [mailerlite/laravel-elasticsearch](https://github.com/mailerlite/laravel-elasticsearch) for [rapidez/laravel-scout-elasticsearch](https://github.com/rapidez/laravel-scout-elasticsearch). With that change, the configs have also changed. They are [compatible](https://github.com/matchish/laravel-scout-elasticsearch/pull/307) but we recommend changing them from:
 
 ```dotenv
 ELASTICSEARCH_HOST=localhost
@@ -59,12 +59,10 @@ You will also have to replace `ELASTICSEARCH_PREFIX` with `SCOUT_PREFIX`:
 +  SCOUT_PREFIX="your_prefix_here"
 ```
 
-If you wish to use Opensearch you can add
+If you wish to use OpenSearch add this in your `.env`:
 ```dotenv
 SCOUT_SEARCH_BACKEND=opensearch
 ```
-
-to your .env
 
 ## Frontend changes
 
