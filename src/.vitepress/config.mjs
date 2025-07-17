@@ -267,7 +267,14 @@ export default defineConfig({
             { text: 'Overview', link: '/4.x/packages' },
             { text: 'Statamic', link: '/4.x/packages/statamic' },
           ]
-        }
+        },
+        {
+          text: 'Tutorials',
+          collapsed: false,
+          items: [
+            { text: 'Semantic Search', link: '/4.x/semantic-search' },
+          ]
+        },
       ],
     },
 
