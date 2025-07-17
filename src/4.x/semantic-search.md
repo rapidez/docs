@@ -2,13 +2,13 @@
 
 ---
 
-With semantic search it's possible to understand the meaning of words by utilizing vector searches. You can get results on for example "clothing", dispite that word isn't used in any product information. It knows a "shirt" or "pants" are related to "clothing". There are also multilangual machine learning models so it's possible to search in multiple languages without the need to translate anything. So in Dutch "kleding" or "tas voor op je rug" also returns results.
+With semantic search, it's possible to understand the meaning of words by utilizing vector searches. You can get results with for example "clothing", even if that word isn't used in any product information. It understands that "shirt" or "pants" is related to "clothing". There are also multilingual machine learning models, so it's possible to search in multiple languages without the need to translate anything. For example, in Dutch; "kleding" or "tas voor op je rug" will also return results.
 
 [[toc]]
 
-## Preperation
+## Preparation
 
-Make sure you're familiar with [InstantSearch](https://github.com/algolia/instantsearch), that's what we're using for the autocomplete and product listings; like the category pages, the search page and product sliders. [Indexing](indexer.md) is handled by [Laravel Scout](https://laravel.com/docs/12.x/scout) and to make [InstantSearch](https://github.com/algolia/instantsearch) compatible with [Elasticsearch](https://www.elastic.co/elasticsearch) / [OpenSearch](https://opensearch.org) we're using [Searchkit](https://github.com/searchkit/searchkit). More docs on related topics:
+Make sure you're familiar with [InstantSearch](https://github.com/algolia/instantsearch), as it's used for the autocomplete and product listings such as category pages, the search page and product sliders. [Indexing](indexer.md) is handled by [Laravel Scout](https://laravel.com/docs/12.x/scout) and to make [InstantSearch](https://github.com/algolia/instantsearch) compatible with [Elasticsearch](https://www.elastic.co/elasticsearch) / [OpenSearch](https://opensearch.org) we're using [Searchkit](https://github.com/searchkit/searchkit). More docs on related topics:
 
 - [Requirements](installation.md#requirements)
 - Elasticsearch: [configuration](configuration.md#elasticsearch), [CORS](installation.md#elasticsearch) and [secure](deployment.md#secure-elasticsearch)
@@ -19,7 +19,7 @@ Make sure you're familiar with [InstantSearch](https://github.com/algolia/instan
 
 ## Requirements
 
-It's possible to use semantic search with Elasticsearch and OpenSearch. With OpenSearch it's a free feature to load a machine learning model within OpenSearch which creates the vectors. For Elasticsearch you've to take care of the vector creation yourself or use a paid subscription.
+It's possible to use semantic search with Elasticsearch and OpenSearch. With OpenSearch, it's a free feature to load a machine learning model into OpenSearch which creates the vectors. For Elasticsearch, you need to handle vector creation yourself or use a paid subscription.
 
 ## Configuration
 
@@ -33,7 +33,7 @@ Follow [this gist](https://gist.github.com/dtaivpp/d7e8d8a3ee5debaf896ed2f45b915
 
 ### Sentence Transformers
 
-With the configuration of Elasticsearch / OpenSearch you'll need to pick a sentence transformer model. The defaults in the tutorials are pretty good but you've to experiment with different models to see which one returns the best results for you. [More info on pretrained models](https://www.sbert.net/docs/sentence_transformer/pretrained_models.html) and if you're looking for a multilingual model; [switch to a different model that supports multiple languages](https://www.sbert.net/docs/sentence_transformer/pretrained_models.html#multilingual-models)
+With the configuration of Elasticsearch / OpenSearch you'll need to pick a sentence transformer model. The defaults in the tutorials are pretty good but you have to experiment with different models to see which one returns the best results for you. [More info on pretrained models](https://www.sbert.net/docs/sentence_transformer/pretrained_models.html) and if you're looking for a multilingual model; [switch to a different model that supports multiple languages](https://www.sbert.net/docs/sentence_transformer/pretrained_models.html#multilingual-models)
 
 ## Installation
 
@@ -112,10 +112,10 @@ See the [Laravel Scout docs](https://laravel.com/docs/12.x/scout), the [extendin
 
 ### Frontend
 
-The query used to get search results needs to include our new vector field. We can overwrite the query with the `query` prop on the [listing component](theming.md#listing-component). First [publish the Blade template](theming.md#views) and edit: `resources/views/vendor/rapidez/components/listing.blade.php`
+The query used to get search results needs to include our new vector field. You can overwrite the default query using the `query` prop on the [listing component](theming.md#listing-component). First [publish the Blade template](theming.md#views) and edit: `resources/views/vendor/rapidez/components/listing.blade.php`
 
 
-Add a a new custom function name:
+Add a new custom function name:
 ```php
 <listing
     ...
@@ -130,7 +130,7 @@ Vue.prototype.semanticSearch = (query, searchAttributes, config) => {
 
     finalQuery.bool.should.push({
         'neural': {
-            'semantic_embedding': {
+            'content_embedding': {
                 'query_text': query,
                 'model_id': 'YOUR-MODEL-ID',
                 'min_score': 0.9,
@@ -143,7 +143,7 @@ Vue.prototype.semanticSearch = (query, searchAttributes, config) => {
 ```
 
 ::: tip
-Read the [OpenSearch docs on neural queries](https://docs.opensearch.org/docs/latest/query-dsl/specialized/neural/)
+Refer to the [OpenSearch docs on neural queries](https://docs.opensearch.org/docs/latest/query-dsl/specialized/neural/)
 :::
 
 :::: warning Temporary workaround
