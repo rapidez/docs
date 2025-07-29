@@ -24,6 +24,9 @@ And a lot of frontend changes:
 
 You should review [all template/config changes](https://github.com/rapidez/core/compare/2.x..master)
 
+> [!NOTE]
+> If you haven't already updated to Statamic 5.x and `rapidez/statamic` 5.x with hybrid Runway, this upgrade now requires it. See [this upgrade guide](packages/statamic.md#from-4-x-to-5-x).
+
 ## Composer dependencies
 
 First, follow the [Laravel 11 upgrade guide](https://laravel.com/docs/11.x/upgrade) and check all your dependencies one by one to see if they're compatible and what has changed in changelogs / release notes.
