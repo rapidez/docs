@@ -52,7 +52,7 @@ Color name | CSS variable | Default color | |
 `primary-text` | `--primary-text` | `white` | <colorTile color="white"/>{.np}
 `secondary` | `--secondary` | `#202F60` | <colorTile color="#202F60"/>{.np}
 `secondary-text` | `--secondary-text` | `white` | <colorTile color="white"/>{.np}
-`conversion` | `--conversion` | `green-500` | <colorTile color="#22c55e"/>{.np}
+`conversion` | `--conversion` | `green-700` | <colorTile color="#15803D"/>{.np}
 `conversion-text` | `--conversion-text` | `white` | <colorTile color="white"/>{.np}
 
 These color names work the same as Tailwind colors. You can use them for anything, for exmaple: `bg-primary`, `border-primary`, `text-primary`, etc.
