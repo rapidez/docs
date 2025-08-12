@@ -259,9 +259,6 @@ Schedule::command('rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
 
 ## Indexing
 
-> [!NOTE]
-> This section is only relevant for Rapidez v4.
-
 You can extend the `BaseEntry` model provided with this package to index your collection data into ElasticSearch. See the following example of a blog collection:
 
 ```php
