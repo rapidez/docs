@@ -257,6 +257,47 @@ We recommend to schedule this command in `routes/console.php` to invalidate peri
 Schedule::command('rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
 ```
 
+## Indexing
+
+You can extend the `BaseEntry` model provided with this package to index your collection data into ElasticSearch. See the following example of a blog collection:
+
+```php
+<?php
+
+namespace App\Models;
+
+use Rapidez\Statamic\Models\BaseEntry;
+use Statamic\Eloquent\Entries\Entry;
+
+class Blog extends BaseEntry
+{
+    protected static $collection = 'blog';
+
+    protected function getAdditionalIndexData(Entry $entry): array
+    {
+        return [
+            'image' => $entry->image ? $entry->image->url() : '',
+            'categories' => $entry->blog_categories->map(fn ($category) => [
+                'title' => $category->title,
+                'slug' => $category->slug,
+            ]),
+            'content' => is_array($entry->content) ? json_encode($entry->content) : $entry->content,
+        ];
+    }
+}
+```
+
+Note the required definition of `$collection` here. This example also optionally adds some extra data to the indexer by using the `getAdditionalIndexData` function.
+
+You will then also need to add this model into the `rapidez/models.php` config file, like so:
+
+```diff
+return [
+    ...
++   'blog' => App\Models\Blog::class,
+];
+```
+
 ## Upgrading
 
 ### From 4.x to 5.x
@@ -307,4 +348,12 @@ Within the `config/rapidez/statamic.php` config, make the Runway resources writa
 - In `category.yaml`, the fields are: `entity_id`, `name`
 - In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`
 - In `product.yaml`, the fields are: `entity_id`, `sku`, `name`
+
+#### ElasticSearch indexed collections
+
+> [!NOTE]
+> This is only relevant if you're also upgrading to Rapidez v4 at the same time.
+
+Because of the indexer refactor that this upgrade brings, you will need to upgrade any collections that you're indexing into ElasticSearch. See the [indexing](#indexing) section of this page.
+
 ::::
