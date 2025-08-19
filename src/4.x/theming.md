@@ -188,10 +188,10 @@ This [`productlist`](https://github.com/rapidez/core/blob/master/resources/views
 Prop | Type | Explanation
 :--- | :--- | :---
 `index` | String | The ElasticSearch/OpenSearch index name
-`query` | Function | To give you full control with [Query DSL](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl)
 `categoryId` | Number | Filter the items by category ID
-`baseFilters` | Function | Additional base filters; just like the `categoryID`. The base to start with.
-`filterQueryString` | String | The easiest way to filter, see [query string query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-query-string-query)
+`query` | Function: Array | Allows adding an array of queries to the query, inside the [query context](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl#query-context). This can be used to, for example, alter scoring of the documents. The resulting array from this gets placed directly inside of a `must` block in the query.
+`baseFilters` | Function: Array | Allows adding an array of filters to the query, inside the [filter context](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl#filter-context). Note that the filter context cannot be used to alter scores, and instead should be used only to filter documents. The resulting array from this gets placed directly inside of a `filter` block in the query.
+`filterQueryString` | String | The easiest way to filter, see [query string query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-query-string-query). This gets transformed into a base filter (see above).
 `configCallback` | Function | Can be used to change the config per listing
 
 ## Blade Icons
