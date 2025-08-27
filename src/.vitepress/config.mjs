@@ -258,6 +258,7 @@ export default defineConfig({
           items: [
             { text: 'Indexer', link: '/4.x/indexer' },
             { text: 'Cache', link: '/4.x/cache' },
+            { text: 'Turbo', link: '/4.x/turbo' },
           ]
         },
         {
