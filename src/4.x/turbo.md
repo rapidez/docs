@@ -1,10 +1,18 @@
-# Performance
+# Turbo
 
 ---
 
-This page covers performance optimizations and best practices for your Rapidez application.
+This page covers Turbo and its integration with Rapidez for enhanced performance and user experience.
 
 [[toc]]
+
+## What is Turbo?
+
+[Turbo](https://turbo.hotwired.dev/) accelerates web applications by intercepting navigation and form submissions, loading content via AJAX without full page refreshes. In Rapidez, we primarily use **Turbo Drive** to update page content while keeping shared elements like headers and footers in place.
+
+::: tip Performance Benefits
+This approach significantly reduces bandwidth usage and improves perceived performance, especially noticeable on slower connections or mobile devices.
+:::
 
 ## Vue Turbo Frame Component
 

@@ -250,13 +250,13 @@ export default defineConfig({
             { text: 'Testing', link: '/4.x/testing' },
             { text: 'GraphQL components', link: '/4.x/graphql-components' },
             { text: 'Package development', link: '/4.x/package-development' },
-            { text: 'Performance', link: '/4.x/performance' },
           ]
         },
         {
           text: 'Components',
           collapsed: false,
           items: [
+            { text: 'Turbo', link: '/4.x/turbo' },
             { text: 'Indexer', link: '/4.x/indexer' },
             { text: 'Cache', link: '/4.x/cache' },
           ]
