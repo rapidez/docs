@@ -2,72 +2,70 @@
 
 ---
 
-This page covers Turbo and its integration with Rapidez for enhanced performance and user experience.
+[Turbo](https://turbo.hotwired.dev/) [Drive](https://turbo.hotwired.dev/handbook/drive) is used to accelerate navigation between pages by intercepting navigations, loading content via AJAX negating the need for full page reloads.
 
 [[toc]]
 
-## What is Turbo?
+## Turbo Frames
 
-[Turbo](https://turbo.hotwired.dev/) accelerates web applications by intercepting navigation and form submissions, loading content via AJAX without full page refreshes. In Rapidez, we primarily use **Turbo Drive** to update page content while keeping shared elements like headers and footers in place.
-
-::: tip Performance Benefits
-This approach significantly reduces bandwidth usage and improves perceived performance, especially noticeable on slower connections or mobile devices.
-:::
-
-## Vue Turbo Frame Component
-
-The `vue-turbo-frame` component enables you to load Vue components inside Turbo Frames. This solves the common issue where Vue components don't render correctly when content is loaded via Turbo Frame navigation.
+[Turbo Frames](https://turbo.hotwired.dev/handbook/frames) makes it possible to load parts of a page via AJAX. This could also be used to reduce the initial DOM size, for example by loading the content of a mega menu with it when the menu opens. With the `<turbo-frame>` Vue doesn't work, that's why there is a `<vue-turbo-frame>` Vue component.
 
 ### Usage
 
-The component works similarly to a regular `turbo-frame`, but includes pre-configured performance optimizations:
+The component works similarly to a regular `<turbo-frame>`, but includes pre-configured performance optimizations. An example with a menu that loads fully when it's visible within the browser:
 
 ```html
-<!-- In your main Blade template -->
-<vue-turbo-frame src="/path-to-your-content" id="my-frame">
-    <!-- Loading content shown before frame loads -->
-    <div>Loading cool stuff...</div>
+<vue-turbo-frame src="/menu-with-submenus" id="menu">
+    <ul>
+        <li>Just the top level menu items</li>
+        <li>Those which should be visible directly</li>
+    </ul>
 </vue-turbo-frame>
 ```
 
-The content served by the `src` URL should contain a regular `turbo-frame` with your Vue component:
+And the route that is just serving a Blade template:
+
+```php
+Route::view('/menu-with-submenus', 'turbo-frames.menu');
+```
+
+And the `resources/views/turbo-frames/menu.blade.php` content:
 
 ```html
-<!-- In the Blade file that serves /path-to-your-content -->
-<turbo-frame id="my-frame">
-    <my-vue-component>
-        <!-- Content shown after frame loads -->
-        This works now, yippie! 🚀
-    </my-vue-component>
+<turbo-frame id="menu">
+    <ul>
+        <li>Just the mega menu top level items
+            <ul>
+                <li>But now with all sub levels</li>
+            </ul>
+        </li>
+        <li>Those which should be visible directly
+            <any-vue-component>
+                Vue Components do work!
+            </any-vue-component>
+        </li>
+    </ul>
 </turbo-frame>
 ```
 
-### Default Props
+---
 
-The component includes these optimized defaults:
+Another example where the whole menu is behind a toggle:
 
-| Prop | Value | Description |
+```html
+<details>
+    <summary>Menu</summary>
+    <vue-turbo-frame id="menu" src="/menu-with-submenus">
+        Loading...
+    </vue-turbo-frame>
+</details>
+```
+
+### Default attributes
+
+The component adds these defaults:
+
+| Attribute | Value | Description |
 |------|-------|-------------|
 | `loading` | `lazy` | Content only loads when it scrolls into view, improving initial page load performance |
 | `target` | `_top` | Ensures links navigate the whole page instead of staying within the frame |
-
-### Performance Benefits
-
-- **Lazy Loading**: Content loads only when needed, reducing initial page weight
-- **Proper Navigation**: Links behave as expected, navigating the entire page
-- **Vue Compatibility**: Vue components render correctly within Turbo Frame content
-- **Seamless Integration**: Works with existing Turbo Frame functionality
-
-### Route Configuration
-
-Make sure you have the corresponding web route set up to serve the content:
-
-```php
-Route::get('/path-to-your-content', function () {
-    return view('your.blade.template');
-});
-```
-
-::: tip Performance Optimization
-The lazy loading feature significantly improves page load times, especially for content below the fold. Consider using this component for any heavy Vue components or content that doesn't need to be immediately visible.
-:::
