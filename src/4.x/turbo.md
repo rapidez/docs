@@ -8,7 +8,7 @@
 
 ## Turbo Frames
 
-[Turbo Frames](https://turbo.hotwired.dev/handbook/frames) makes it possible to load parts of a page via AJAX. This could also be used to reduce the initial DOM size, for example by loading the content of a mega menu with it when the menu opens. Note that Vue doesn't normally work within the `<turbo-frame>` component---for this purpose we've made a `<vue-turbo-frame>` Vue component.
+[Turbo Frames](https://turbo.hotwired.dev/handbook/frames) makes it possible to load parts of a page via AJAX. This could also be used to reduce the initial DOM size, for example by loading the content of a mega menu with it when the menu opens. Note that Vue doesn't normally work within the `<turbo-frame>` component; for this purpose we've made a `<vue-turbo-frame>` Vue component.
 
 ### Usage
 
