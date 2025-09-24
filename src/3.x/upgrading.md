@@ -120,9 +120,6 @@ We moved everything to Laravel routes where previously this was handled with cus
 
 With these routes, you can "secure" them where previously this was checked on the frontend. When unauthorized, you were redirected away after the page load. This is now handled server-side. All checkout steps are secured with the `auth:magento-cart` middleware by default to validate the cart mask. To make this possible, the mask and customer token are moved from LocalStorage to Cookies.
 
-> [!NOTE]
-> These are new routes, so they will need to be excluded from static caching in Statamic if you have that enabled. This means you need to add `/checkout/*` to your `statamic.static_caching.exclude.urls` configuration.
-
 ### Onestep checkout
 
 In the `config/rapidez/frontend.php` config there is a `checkout_steps` option. Those steps link to Blade views within the `resources/views/checkout/pages` directory. To use the one step checkout just swap the default with the [`onestep`](https://github.com/rapidez/core/blob/master/resources/views/checkout/pages/onestep.blade.php) view:
