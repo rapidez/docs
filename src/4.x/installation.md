@@ -118,18 +118,16 @@ If you do not have a Magento 2 installation yet, you want to test Rapidez, or li
 Make sure Docker can use at least 4GB of memory!
 :::
 
+If you have no web hosting running on your laptop (or simply want to use a self-contained version of the project) consider using `.env.example.traefik` as your `.env`.
+This will use [Traefik](https://traefik.io/traefik) to make [http://rapidez.localhost](http://rapidez.localhost) available without any configuration necessary.
+
+Otherwise opt for `.env.example.docker` for your `.env`.
+This will give you the reigns, exposing the websites on the ports defined in the `.env.example.docker`
+(by default, magento: [http://127.0.0.1:1234](http://127.0.0.1:1234), rapidez: [http://127.0.0.1:1235](http://127.0.0.1:1235), elasticsearch: [http://127.0.0.1:9200](http://127.0.0.1:9200))
+
 ```bash
 docker-compose up -d
 docker exec rapidez_magento magerun2 indexer:reindex
-```
-Edit the `.env`
-
-```dotenv
-MAGENTO_URL=http://localhost:1234
-DB_PORT=3307
-DB_DATABASE=magento
-DB_USERNAME=magento
-DB_PASSWORD=password
 ```
 
 ## Standalone Checkout
