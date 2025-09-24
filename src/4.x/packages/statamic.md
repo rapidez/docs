@@ -257,6 +257,24 @@ We recommend to schedule this command in `routes/console.php` to invalidate peri
 Schedule::command('rapidez-statamic:invalidate-cache')->everyFifteenMinutes();
 ```
 
+You should also set up exclusions for a few routes in your `config/statamic/static_caching.php` config file:
+
+```php
+'exclude' => [
+    'exclude' => [
+        'class' => null,
+        'urls' => [
+            '/login',
+            '/register'
+            '/checkout',
+            '/checkout/*',
+        ],
+    ],
+]
+```
+
+You should add any other custom routes here that you don't want cached. Most importantly, any routes that will differ based on login state or cart state.
+
 ## Indexing
 
 You can extend the `BaseEntry` model provided with this package to index your collection data into ElasticSearch. See the following example of a blog collection:
