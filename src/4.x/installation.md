@@ -122,7 +122,7 @@ If you have no web hosting running on your laptop (or simply want to use a self-
 This will use [Traefik](https://traefik.io/traefik) to make [http://rapidez.localhost](http://rapidez.localhost) available without any configuration necessary.
 
 Otherwise opt for `.env.example.docker` for your `.env`.
-This will give you the reigns, exposing the websites on the ports defined in the `.env.example.docker`
+This will give you the reins, exposing the websites on the ports defined in the `.env.example.docker`
 (by default, magento: [http://127.0.0.1:1234](http://127.0.0.1:1234), rapidez: [http://127.0.0.1:1235](http://127.0.0.1:1235), elasticsearch: [http://127.0.0.1:9200](http://127.0.0.1:9200))
 
 ```bash
