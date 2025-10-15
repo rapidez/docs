@@ -121,12 +121,24 @@ Add a new custom function name:
     ...
     :query="semanticSearch" // [!code focus]
 >
+<autocomplete
+    ...
+    :query="semanticSearch" // [!code focus]
+>
 ```
 
 And create that function in `resources/js/app.js`:
 ```js
 Vue.prototype.semanticSearch = (query, searchAttributes, config) => {
-    let finalQuery = Vue.prototype.relevanceQueryMatch(query, searchAttributes, config.fuzziness)
+    if (!query || query === '__NO_QUERY__') {
+        return
+    }
+
+    let finalQuery = Vue.prototype.relevanceQueryMatch(query, searchAttributes, config?.fuzziness)
+
+    if (!config?.request?.indexName?.includes('products')) { // This requires https://github.com/searchkit/searchkit/pull/1411
+        return finalQuery;
+    }
 
     finalQuery.bool.should.push({
         'neural': {
@@ -136,9 +148,9 @@ Vue.prototype.semanticSearch = (query, searchAttributes, config) => {
                 'min_score': 0.9,
             }
         }
-    })
+    });
 
-    return finalQuery
+    return finalQuery;
 }
 ```
 
