@@ -61,6 +61,7 @@ export default defineConfig({
       {
         text: 'Version',
         items: [
+          { text: '5.x', link: '/5.x/intro' },
           { text: '4.x', link: '/4.x/intro' },
           { text: '3.x', link: '/3.x/intro' },
           { text: '2.x', link: '/2.x/intro' },
@@ -274,6 +275,56 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Semantic Search', link: '/4.x/semantic-search' },
+          ]
+        },
+      ],
+      '/5.x/': [
+        {
+          text: 'Getting started',
+          collapsed: false,
+          items: [
+            { text: 'Intro', link: '/5.x/intro' },
+            { text: 'Installation', link: '/5.x/installation' },
+            { text: 'Configuration', link: '/5.x/configuration' },
+            { text: 'Upgrading', link: '/5.x/upgrading' },
+            { text: 'Deployment', link: '/5.x/deployment' },
+            { text: 'Faq', link: '/5.x/faq' },
+            { text: 'Troubleshooting', link: '/5.x/troubleshooting' },
+          ]
+        },
+        {
+          text: 'Development',
+          collapsed: false,
+          items: [
+            { text: 'Theming', link: '/5.x/theming' },
+            { text: 'Extending', link: '/5.x/extending' },
+            { text: 'Testing', link: '/5.x/testing' },
+            { text: 'GraphQL components', link: '/5.x/graphql-components' },
+            { text: 'Package development', link: '/5.x/package-development' },
+          ]
+        },
+        {
+          text: 'Components',
+          collapsed: false,
+          items: [
+            { text: 'Indexer', link: '/5.x/indexer' },
+            { text: 'Cache', link: '/5.x/cache' },
+            { text: 'Turbo', link: '/5.x/turbo' },
+          ]
+        },
+        {
+          text: 'Packages',
+          collapsed: false,
+          items: [
+            { text: 'Overview', link: '/5.x/packages' },
+            { text: 'Statamic', link: '/5.x/packages/statamic' },
+          ]
+        },
+        {
+          text: 'Tutorials',
+          collapsed: false,
+          items: [
+            { text: 'Semantic Search', link: '/5.x/semantic-search' },
           ]
         },
       ],
