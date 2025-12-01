@@ -120,7 +120,7 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
 <form v-on:sumbit.prevent="(e) => {
     submitPartials(e.target?.form ?? e.target)
         .then((result) => window.Turbo.visit('/success'))
-        .catch()
+        .catch(() => {})
 }">
     <graphql ...>
         <fieldset partial-submit v-on:partial-submit="(ev) => mutate().then(ev.detail.resolve).catch(ev.detail.reject)">...</fieldset>
