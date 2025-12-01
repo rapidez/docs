@@ -7,7 +7,7 @@ In addition to the Rapidez Core, we've created some packages.
 [[toc]]
 
 ::: tip Created a package?
-[Edit this page](https://github.com/rapidez/docs/edit/master/src/4.x/packages.md) and add yours!
+[Edit this page](https://github.com/rapidez/docs/edit/master/src/5.x/packages.md) and add yours!
 :::
 
 ## Base
