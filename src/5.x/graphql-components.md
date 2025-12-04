@@ -123,10 +123,10 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
         .catch(() => {})
 }">
     <graphql ...>
-        <fieldset partial-submit v-on:partial-submit="(ev) => mutate().then(ev.detail.resolve).catch(ev.detail.reject)">...</fieldset>
+        <fieldset partial-submit v-on:partial-submit="(e) => mutate().then(e.detail.resolve).catch(e.detail.reject)">...</fieldset>
     </graphql>
     <graphql ...>
-        <fieldset partial-submit v-on:partial-submit="(ev) => mutate().then(ev.detail.resolve).catch(ev.detail.reject)">...</fieldset>
+        <fieldset partial-submit v-on:partial-submit="(e) => mutate().then(e.detail.resolve).catch(e.detail.reject)">...</fieldset>
     </graphql>
     <button type="submit">Save</button>
 </form>
