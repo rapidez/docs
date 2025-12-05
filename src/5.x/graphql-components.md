@@ -120,49 +120,14 @@ We also provide a `submitPartials()` helper which can be used to submit multiple
 <form v-on:sumbit.prevent="(e) => {
     submitPartials(e.target?.form ?? e.target)
         .then((result) => window.Turbo.visit('/success'))
-        .catch()
+        .catch(() => {})
 }">
     <graphql ...>
-        <fieldset partial-submit="mutate">...</fieldset>
+        <fieldset partial-submit v-on:partial-submit="(e) => mutate().then(e.detail.resolve).catch(e.detail.reject)">...</fieldset>
     </graphql>
     <graphql ...>
-        <fieldset partial-submit="mutate">...</fieldset>
+        <fieldset partial-submit v-on:partial-submit="(e) => mutate().then(e.detail.resolve).catch(e.detail.reject)">...</fieldset>
     </graphql>
     <button type="submit">Save</button>
 </form>
 ```
-
-
-
-
-
-::: warning Keep in mind
-`partial-submit` **must** always be on the direct child of a Vue component and have its original function name.
-
-::: details Example
-```html
-<!-- Correct -->
-<graphql ...>
-    <div partial-submit="mutate">...</div>
-</graphql>
-
-<!-- Correct -->
-<graphql ...>
-    <fieldset partial-submit="mutate">...</fieldset>
-</graphql>
-
-<!-- Incorrect -->
-<graphql ...>
-    <fieldset>
-        <div partial-submit="mutate">
-            ...
-        </div>
-    </fieldset>
-</graphql>
-
-<!-- Incorrect -->
-<graphql ...>
-    <fieldset v-slot={ mutate: save } partial-submit="save">...</fieldset>
-</graphql>
-```
-:::

@@ -270,7 +270,7 @@ export default {
 <!-- Vue 2 -->
 <fieldset partial-submit="methodName">
 <!-- Vue 3 -->
-<fieldset partial-submit v-on:partial-submit="async () => await methodName()">
+<fieldset partial-submit v-on:partial-submit="(ev) => methodName().then(ev.detail.resolve).catch(ev.detail.reject)">
 ```
 
 ## 7. Reactive Data Updates
