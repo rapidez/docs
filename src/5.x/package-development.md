@@ -14,8 +14,7 @@ Filter | Explanation
 :--- | :---
 `*.scopes` | Add additional global scopes to every model available e.g. `product.scopes` or `category.scopes`
 `product.casts` | Add additional global product casts
-`product.children.select` | Manipulate the children select query
-`product.grouped.select` | Manipulate the grouped products select query
+`product.child.scopes` | Add product scopes to the product query when indexing
 `productpage.scopes` | Add product scopes only for the product page
 `productpage.frontend.attributes` | Add product attributes to the frontend
 `quote.items.select` | Manipulate the quote items select query
