@@ -29,6 +29,10 @@ Core Magento functionality but not installed by default.
 - [Login As Customer](https://github.com/rapidez/login-as-customer)
 - [MSI](https://github.com/rapidez/msi)
 
+## Account
+
+- [Custom Reorder](https://github.com/rapidez/custom-reorder)
+
 ## Checkout
 
 Opinionated checkout packages.
