@@ -118,7 +118,7 @@ If you do not have a Magento 2 installation yet, you want to test Rapidez, or li
 Make sure Docker can use at least 4GB of memory!
 :::
 
-If you have no web hosting running on your laptop (or simply want to use a self-contained version of the project) consider using `.env.example.traefik` as your `.env`.
+If you have no webserver running on your laptop (or simply want to use a self-contained version of the project) consider using `.env.example.traefik` as your `.env`.
 This will use [Traefik](https://traefik.io/traefik) to make [http://rapidez.localhost](http://rapidez.localhost) available without any configuration necessary.
 
 Otherwise opt for `.env.example.docker` for your `.env`.
