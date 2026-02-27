@@ -32,6 +32,7 @@ Core Magento functionality but not installed by default.
 ## Account
 
 - [Custom Reorder](https://github.com/rapidez/custom-reorder)
+- [Quick Order](https://github.com/rapidez/quick-order)
 
 ## Checkout
 
