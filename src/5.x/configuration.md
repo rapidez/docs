@@ -69,7 +69,10 @@ If you [set the store view "Base URL" to that of your Rapidez installation](conf
 
 ## Customer Token Lifetime
 
-By default, the customer token lifetime is set to 1 hour in Magento, so a customer needs to log in again when the token expires in Rapidez. It's recommended to raise the expiration to, for example, 24 hours. See: Stores > Configuration > Services > OAuth > Access Token Expiration.
+By default, the customer token lifetime is set to 1 hour in Magento, so a customer needs to log in again when the token expires in Rapidez. It's recommended to raise the expiration to, for example, 24 hours. See: 
+
+- Stores > Configuration > Services > OAuth > Access Token Expiration
+- Stores > Configuration > Services > Magento Web API > JWT Authentication > Customer JWT Expires In
 
 ## Customer Data Lifetime
 
