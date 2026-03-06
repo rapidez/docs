@@ -69,18 +69,24 @@ If you [set the store view "Base URL" to that of your Rapidez installation](conf
 
 ## Customer Token Lifetime
 
-By default, the customer token lifetime is set to 1 hour in Magento, so a customer needs to log in again when the token expires in Rapidez. It's recommended to raise the expiration to, for example, 24 hours. See: 
+By default, the customer token lifetime is set to 1 hour in Magento, so a customer needs to log in again when the token expires in Rapidez. It's recommended to raise the expiration to, for example, 24 hours. Check these settings in the store configuration:
 
-- Stores > Configuration > Services > OAuth > Access Token Expiration
-- Stores > Configuration > Services > Magento Web API > JWT Authentication > Customer JWT Expires In
+- Services > OAuth > Access Token Expiration
+- Services > Magento Web API > JWT Authentication > Customer JWT Expires In
 
 ## Customer Data Lifetime
 
-When using the Standalone Checkout the default Customer Data Lifetime of 1 hour may result in the customer and/or their cart being removed in Magento. It's recommended to raise the lifetime to, for example, 3 hours. See: Stores > Configuration > Customers > Customer configuration > Online Customers Options > Customer Data Lifetime
+When using the Standalone Checkout the default Customer Data Lifetime of 1 hour may result in the customer and/or their cart being removed in Magento. It's recommended to raise the lifetime to, for example, 3 hours. Check this setting in the store configuration:
+
+- Customers > Customer configuration > Online Customers Options > Customer Data Lifetime
 
 ## Enable Guest Checkout Login
 
-See: Stores > Configuration > Sales > Checkout > Checkout Options, but keep in mind as also mentioned there:
+You can find this setting in the store configuration:
+
+- Sales > Checkout > Checkout Options > Enable Guest Checkout Login
+
+But keep in mind as also mentioned there:
 
 > Enabling this setting will allow unauthenticated users to query if an e-mail address is already associated with a customer account. This can be used to enhance the checkout workflow for guests that do not realize they already have an account but comes at the cost of exposing information to unauthenticated users.
 
