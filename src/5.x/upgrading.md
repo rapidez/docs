@@ -6,9 +6,12 @@
 
 ## Rapidez v5
 
-In this release, we migrated from Vue 2 to Vue 3 🚀 And we're also removing the need for flat tables to be enabled!
+In this release, we removed the flat tables dependency! 🚀 And we also updated to Vue 3 and Tailwind 4 🤘🏻 We also added support for:
+- [Customer group pricing](https://github.com/rapidez/core/pull/1074)
+- [Product media videos](https://github.com/rapidez/core/pull/1128)
 
-
+Other changes included in this release:
+- [Drop support for Laravel 11](https://github.com/rapidez/core/pull/1096)
 
 You should review [all template/config changes](https://github.com/rapidez/core/compare/4.x..master)
 
@@ -43,27 +46,16 @@ yarn add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel
 
 4. **Upgrade your scripts and templates**
 
-This will require some work but we've got a list of things to check.
+This will require some work but we've got a list of things to check. Please read the [Vue 3 migration guide](https://v3-migration.vuejs.org/). Some of the themes we've ran into:
 
-Please read the [Vue 3 migration guide](https://v3-migration.vuejs.org/)
-
-Some of the themes we've ran into:
-
-[Dropped support for global $emit and $on](https://v3-migration.vuejs.org/breaking-changes/events-api#event-bus), For this we've [built a system on regular events](https://github.com/rapidez/core/blob/cecc136e5ef76dc4925186a332f875d3ffe658fe/resources/js/polyfills/emit.js#L18). You should replace `$root.$on`/`window.app.$on` with `window.$on`.
-
-Check for any `v-if`s in combination with `v-for` see: [If used on the same element, v-if will have higher precedence than v-for](https://v3-migration.vuejs.org/breaking-changes/v-if-v-for.html)
-
-Rename all `slot-scope` to `v-slot` and move them to the component in your template
-
-The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span>
-
-Any custom async components must be wrapped by `defineAsyncComponent`: `() => import('...')` to `defineAsyncComponent(() => import('...'))`
-
-`window.app` no longer contains the custom variables. Replace `window.app.<...>` e.g. `cart`  with `window.app.config.globalProperties.<...>` or if you’re within vue templates directly do `<...>`
-
-When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`
-
-All calls to `Vue.set` calls should be removed, and replaced by setting the variable directly.
+- [Dropped support for global $emit and $on](https://v3-migration.vuejs.org/breaking-changes/events-api#event-bus), For this we've [built a system on regular events](https://github.com/rapidez/core/blob/cecc136e5ef76dc4925186a332f875d3ffe658fe/resources/js/polyfills/emit.js#L18). You should replace `$root.$on`/`window.app.$on` with `window.$on`.
+- Check for any `v-if`s in combination with `v-for` see: [If used on the same element, v-if will have higher precedence than v-for](https://v3-migration.vuejs.org/breaking-changes/v-if-v-for.html)
+- Rename all `slot-scope` to `v-slot` and move them to the component in your template
+- The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span>
+- Any custom async components must be wrapped by `defineAsyncComponent`: `() => import('...')` to `defineAsyncComponent(() => import('...'))`
+- `window.app` no longer contains the custom variables. Replace `window.app.<...>` e.g. `cart`  with `window.app.config.globalProperties.<...>` or if you’re within vue templates directly do `<...>`
+- When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`
+- All calls to `Vue.set` calls should be removed, and replaced by setting the variable directly.
 
 ::: details Using AI? This prompt will give you a head start! Do still check everything manually.
 `````markdown

@@ -37,7 +37,7 @@ composer outdated
 ### Laravel 11
 
 With Laravel 11, a new application structure was introduced. Laravel doesn't recommend upgrading to the new structure, but since we are using the `redirectUsing()` within our new `MagentoCartTokenGuard`, you have to make 1 change; remove the `redirectTo()` method from `app/Http/Middleware/Authenticate.php`:
-```code
+```php
 <?php
 
 namespace App\Http\Middleware;

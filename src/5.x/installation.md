@@ -10,7 +10,7 @@
 - PHP >= 8.2
 - MySQL >= 8.0.28
 - Elasticsearch Basic >= 8.11, or OpenSearch ^2
-- Magento >= 2.4.7 installation with [flat tables enabled](#flat-tables) ([or use a demo shop](#demo-magento-2-webshop))
+- Magento >= 2.4.7 ([or use a demo shop](#demo-magento-2-webshop))
 
 ::: tip Elasticsearch Basic
 There are multiple Elasticsearch versions and licenses, see the [subscriptions page](https://www.elastic.co/subscriptions). Rapidez requires at least the basic version which is free but not always installed by default. Make sure you use the "full" or "non-OSS" version otherwise you'll get "no handler for type flattened" errors while [indexing](indexer.md).
@@ -20,7 +20,7 @@ There are multiple Elasticsearch versions and licenses, see the [subscriptions p
 
 1. **Start a fresh project**
 ```
-composer create-project rapidez/rapidez:^4.0 yourproject
+composer create-project rapidez/rapidez:^5.0 yourproject
 ```
 
 2. **Add the Magento 2 credentials**
@@ -76,20 +76,6 @@ If you're using your own Elasticsearch installation, you have to open CORS in `e
 ### OpenSearch
 
 If you're using your own OpenSearch installation you will have to open CORS in `opensearch.yml` see: [Secure OpenSearch](deployment.md#secure-opensearch).
-
-## Flat tables
-
-The flat tables need to be enabled in Magento because Rapidez needs them to easily query for products and categories. You can follow [this guide](https://docs.magento.com/user-guide/catalog/catalog-flat.html#step-1-enable-the-flat-catalog) to enable it. After that, you need to make sure the [Storefront Properties](https://docs.magento.com/user-guide/stores/attributes-product.html#storefront-properties) are configured correctly for all your attributes. You can validate the settings with `php artisan rapidez:validate`. If the result is that some attributes are not in the flat table, you can enable "Used in Product Listing" on them and validate again.
-
-::: warning Public attribute values
-All attributes with "Used in Product Listing" enabled will be indexed into Elasticsearch. As this index is publicly available, you should be careful with attributes that contain "sensitive" data (for example, sale counts).
-:::
-
-Finally, when your settings are validated, you should [run the Magento indexes](https://devdocs.magento.com/guides/v2.4/config-guide/cli/config-cli-subcommands-index.html#config-cli-subcommands-index-reindex). For example, with `bin/magento indexer:reindex` from your Magento installation.
-
-::: details Row size too large?
-If you run into "row size too large" MySQL errors when indexing in Magento, then you could install the [magento2-optimizeflattable](https://github.com/justbetter/magento2-optimizeflattable) module. If you're still running into errors, you should disable the "Used in Product Listing" on "Text field" and "Multiple Select" attributes, one by one until the index is running fine.
-:::
 
 ## Multistore
 
