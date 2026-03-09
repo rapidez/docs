@@ -42,6 +42,28 @@ yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compile
 yarn add -D @vitejs/plugin-vue vue3-click-away
 ```
 
+and update your vite.config.js
+
+```diff
+  import path from 'path'
+  import { defineConfig } from 'vite'
+  import laravel from 'laravel-vite-plugin'
+- import vue from '@vitejs/plugin-vue2'
++ import vue from '@vitejs/plugin-vue'
+  import { visualizer } from 'rollup-plugin-visualizer'
+
+  export default defineConfig({
+...
+          alias: {
+              '@': path.resolve(__dirname, './resources/js'),
+              Vendor: path.resolve(__dirname, './vendor'),
+-             vue: path.resolve(__dirname, './node_modules/vue/dist/vue.esm.js'),
++             vue: 'vue/dist/vue.esm-bundler.js',
+          },
+      },
+  })
+```
+
 3. **Upgrade the other dependencies**
 
 ```bash
