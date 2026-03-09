@@ -462,6 +462,9 @@ These specific variables have been removed and should be replaced like so:
 | `->upsell_ids` | `->upsells()->pluck('linked_product_id')` | Depending on the situation, using `->upsells->pluck('linked_product_id')` may be more fitting. |
 | `->relation_ids` | `->relationProducts()->pluck('linked_product_id')` | Same as above |
 | `->grouped` | `->children` | These returned the same list already, this is just for simplicity. |
+| `->images` | `->media` | This is no longer an array of image urls, but with an 'image' key. | 
+| `->reviews_count` | `->reviewSummary->reviews_count` | |
+| `->reviews_score` | `->reviewSummary->reviews_score` | |
 
 ### Translation strings
 
