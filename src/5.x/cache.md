@@ -45,3 +45,7 @@ With this Cloudflare will listen to the cache-control headers sent by your serve
 
 - [spatie/laravel-varnish](https://github.com/spatie/laravel-varnish)
 - [rapidez/statamic](packages/statamic.md) (see [Static Caching](packages/statamic.md#static-caching))
+
+::: tip
+You can use this package to make sure caches purged in Statamic also get purged in Cloudflare: [justbetter/statamic-cloudflare-purge](https://github.com/justbetter/statamic-cloudflare-purge).
+:::

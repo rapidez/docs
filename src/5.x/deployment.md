@@ -10,7 +10,6 @@
 - Make sure the server meets the [requirements](installation.md#requirements)
 - Check all [configurations](configuration.md)
 - [Configure CORS](installation.md#cors)
-- Make sure the [flat tables are enabled](installation.md#flat-tables)
 - If you're upgrading, check the [upgrade notes](upgrading.md)
 - Configure the [indexer](indexer.md) in the [scheduler](indexer.md#scheduler) or with [webhooks](indexer.md#webhook)
 - [Redirect Magento](#redirecting-magento)
@@ -22,19 +21,28 @@
     - `APP_DEBUG`
     - `VITE_DEBUG`
     - `DEBUGBAR_ENABLED`
+  - Make sure that your `CRYPT_KEY` is set to the same value as in your Magento installation
 - Optionally [configure your multistore](installation.md#multistore)
 - Optionally [setup full page caching](cache.md#full-page-caching)
-- Make sure `php artisan optimize` is within your deployment script
+- Make sure your deployment script is complete. You may need, for example (in this order):
+  - `php artisan migrate --force`
+  - `php artisan optimize:clear`
+  - `php artisan icons:cache`
+  - `php artisan optimize`
+  - If you're using Statamic with static caching, `php please static:clear` at the end
 - Issues? Check see [troubleshooting](troubleshooting.md)
 
 ## Redirecting Magento
 
 The Magento frontend should not be accessible anymore as you're using Rapidez. But GraphQL, media, admin, etc should be reachable. Create a redirect rule to accomplish that, for example with Nginx:
 ```nginx
-location ~* ^\/(?!(rest|graphql|static|media|admin)(\/|$)) {
+location ~* ^\/(?:index\.php\/)?(rest|graphql|oauth|pub|static|sales|media|admin)(\/|$)) {
     return 301 $scheme://your-rapidez-url.com$request_uri;
 }
 ```
+
+Some packages may require additional entries into this regex (for example, [rapidez/multisafepay](https://github.com/rapidez/multisafepay)), make sure to check the readme.
+
 Make sure to change the admin location and URL. Place this below the Magento location directives, for example [here in the sample Nginx config](https://github.com/magento/magento2/blob/203a44f9e755fa6d2e057f1b99efbaff17546a80/nginx.conf.sample#L222).
 
 ## Secure Elasticsearch
@@ -53,7 +61,7 @@ You have to secure your Elasticsearch instance so other people can't manipulate 
 - Add your credentials to `.env`
 ```dotenv
 ELASTICSEARCH_USER=elastic
-ELASTICSEARCH_PASS=YOUR-PASSWORD
+ELASTICSEARCH_PASSWORD=YOUR-PASSWORD
 ```
 - Create a proxy (with SSL) on a subdomain
 ```nginx

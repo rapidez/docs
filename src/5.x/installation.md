@@ -87,7 +87,7 @@ With Nginx, you could use a map, for example:
 map $http_host $MAGE_RUN_CODE {
     default default_store_code;
     second-store.com second_store_code;
-    thrid-store.com third_store_code;
+    third-store.com third_store_code;
 }
 ```
 
