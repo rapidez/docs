@@ -30,6 +30,14 @@ Alternatively, you could implement one of these packages with different strategi
 - [JosephSilber/page-cache](https://github.com/JosephSilber/page-cache)
 - [spatie/laravel-varnish](https://github.com/spatie/laravel-varnish)
 
+### Uncacheable
+
+To prevent a response from getting cached you should add the `uncacheable` middleware, or pass it through the `uncacheable.response` filter:
+
+```php
+$response = Eventy::filter('uncacheable.response', $response);
+```
+
 ### Cloudflare
 
 Using [Cloudflare's CDN edge](https://www.cloudflare.com/learning/cdn/glossary/edge-server/) you can speed up page responses even more (~30ms) by bringing the files closer to your customers. By default Cloudflare will not cache any pages, but you can configure it by [creating a cache rule in Cloudflare](https://developers.cloudflare.com/cache/how-to/cache-rules/create-dashboard/) with these settings:
