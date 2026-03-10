@@ -109,6 +109,14 @@ Alternatively, you can create a custom routes file if you have multiple routes s
 )
 ```
 
+Rapidez also adds a useful token guard for authenticated customers, called `magento-customer`. You can use this to create routes that require logging in:
+
+```php
+Route::middleware('auth:magento-customer')->get('customroute', function () {
+    // 
+});
+```
+
 ## Autocomplete
 
 The autocomplete can contain as many Elasticsearch/OpenSearch indexes as you wish. You can add these in the `frontend.php` config file. For example:

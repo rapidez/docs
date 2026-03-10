@@ -275,6 +275,10 @@ You should also set up exclusions for a few routes in your `config/statamic/stat
 
 You should add any other custom routes here that you don't want cached. Most importantly, any routes that will differ based on login state or cart state.
 
+:::tip
+You can use this package to make sure caches purged in Statamic also get purged in Cloudflare: [justbetter/statamic-cloudflare-purge](https://github.com/justbetter/statamic-cloudflare-purge).
+:::
+
 ## Indexing
 
 You can extend the `BaseEntry` model provided with this package to index your collection data into ElasticSearch. See the following example of a blog collection:

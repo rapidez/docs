@@ -126,10 +126,10 @@ You can also use classes instead of directly altering the arrays within your fil
 
 ```php
 // Simple without parameters
-Eventy::addFilter('index.product.settings', fn($filters) => array_merge($filters ?: [], [WithSynonyms::class]));
+Eventy::addFilter('index.product.settings', fn ($filters) => array_merge($filters ?: [], [WithSynonyms::class]));
 
 // With parameters
-Eventy::addFilter('index.product.mapping', fn($filters) => array_merge($filters ?: [], [
+Eventy::addFilter('index.product.mapping', fn ($filters) => array_merge($filters ?: [], [
     [WithSynonyms::class, 'fields' => $productSynonymFields]
 ]));
 ```

@@ -13,7 +13,13 @@ In this release, we removed the flat tables dependency! 🚀 And we also updated
 Other changes included in this release:
 - [Drop support for Laravel 11](https://github.com/rapidez/core/pull/1096)
 
+Some of these are quite substantially breaking changes. On this page we'll mention the most important things that you will need to do to upgrade.
+
 You should review [all template/config changes](https://github.com/rapidez/core/compare/4.x..master)
+
+:::tip
+For any major update, you should be aware that all overwritten Blade, Vue, and PHP files will need to be checked. Checking the above diff is the quickest way to tell where you need to make changes.
+:::
 
 ## Composer dependencies
 
@@ -22,9 +28,7 @@ Check all your dependencies one by one to see if they're compatible and what has
 composer outdated
 ```
 
-## Frontend changes
-
-With the Vue 3 upgrade many changes and breakages come with
+## Vue 3
 
 ### Dependencies
 
@@ -38,6 +42,28 @@ yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compile
 yarn add -D @vitejs/plugin-vue vue3-click-away
 ```
 
+and update your vite.config.js
+
+```diff
+  import path from 'path'
+  import { defineConfig } from 'vite'
+  import laravel from 'laravel-vite-plugin'
+- import vue from '@vitejs/plugin-vue2'
++ import vue from '@vitejs/plugin-vue'
+  import { visualizer } from 'rollup-plugin-visualizer'
+
+  export default defineConfig({
+...
+          alias: {
+              '@': path.resolve(__dirname, './resources/js'),
+              Vendor: path.resolve(__dirname, './vendor'),
+-             vue: path.resolve(__dirname, './node_modules/vue/dist/vue.esm.js'),
++             vue: 'vue/dist/vue.esm-bundler.js',
+          },
+      },
+  })
+```
+
 3. **Upgrade the other dependencies**
 
 ```bash
@@ -46,10 +72,10 @@ yarn add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel
 
 4. **Upgrade your scripts and templates**
 
-This will require some work but we've got a list of things to check. Please read the [Vue 3 migration guide](https://v3-migration.vuejs.org/). Some of the themes we've ran into:
+This will require some work but we've got a list of things to check. Please read the [Vue 3 migration guide](https://v3-migration.vuejs.org/). Some recurring themes we've run into:
 
 - [Dropped support for global $emit and $on](https://v3-migration.vuejs.org/breaking-changes/events-api#event-bus), For this we've [built a system on regular events](https://github.com/rapidez/core/blob/cecc136e5ef76dc4925186a332f875d3ffe658fe/resources/js/polyfills/emit.js#L18). You should replace `$root.$on`/`window.app.$on` with `window.$on`.
-- Check for any `v-if`s in combination with `v-for` see: [If used on the same element, v-if will have higher precedence than v-for](https://v3-migration.vuejs.org/breaking-changes/v-if-v-for.html)
+- Check for any `v-if`s in combination with `v-for`, see: [If used on the same element, v-if will have higher precedence than v-for](https://v3-migration.vuejs.org/breaking-changes/v-if-v-for.html)
 - Rename all `slot-scope` to `v-slot` and move them to the component in your template
 - The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span>
 - Any custom async components must be wrapped by `defineAsyncComponent`: `() => import('...')` to `defineAsyncComponent(() => import('...'))`
@@ -73,15 +99,15 @@ Ensure the Rapidez core package is updated to the Vue 3 compatible version befor
 ```vue
 <!-- Vue 2 -->
 <component>
-    <template slot-scope="{ data, loading }">
+    <div slot-scope="{ data, loading }">
         <!-- content -->
-    </template>
+    </div>
 </component>
 <!-- Vue 3 -->
 <component v-slot="{ data, loading }">
-    <template>
+    <div>
         <!-- content -->
-    </template>
+    </div>
 </component>
 ```
 
@@ -102,6 +128,23 @@ Ensure the Rapidez core package is updated to the Vue 3 compatible version befor
 ```
 
 Do not forget to move the v-slot onto the vue component, do not leave them on the slots (divs)
+
+But be careful with <template> tags, because the v-slot will have to stay in the same location:
+
+```vue
+<!-- Vue 2 -->
+<component>
+    <template slot-scope="{ data, loading }">
+        <!-- content -->
+    </template>
+</component>
+<!-- Vue 3 -->
+<component>
+    <template v-slot="{ data, loading }">
+        <!-- content -->
+    </template>
+</component>
+````
 
 ### Update render functions:
 ```vue
@@ -385,5 +428,79 @@ yarn build
 ```
 
 :::tip
-We recommend to double check all frontend dependencies with `yarn outdated`. But keep in mind that Rapidez doesn't support Vue 3 yet.
+We recommend to double check all frontend dependencies with `yarn outdated`.
 :::
+
+## Flat tables
+
+This update gets rid of the dependency on the Magento flat tables. This means that they can be disabled entirely (both the product and category tables) in your magento configuration, which should speed up the indexing process in magento substantially.
+
+However, this also means that any and all custom queries, scopes, relationships, custom attributes, and model overwrites may need to be upgraded.
+
+### Scopes
+
+Any custom scopes added to product or category models that affect the SQL query directly (e.g. with a join) will need to be checked. In some cases they will need to be completely refactored (For example: see [this package update](https://github.com/rapidez/amasty-automatic-related-products/compare/4.0.0...5.0.0)).
+
+### Relationships
+
+Relationships that relate to `entity_id` (or also `sku` on the Product model) will be unaffected.
+
+### Attribute changes
+
+The base Product and Category models now query the `catalog_product_entity` and `catalog_category_entity` tables. All of the attributes get added by using relations, which means you won't have direct access to attribute data in queries anymore. We have created a `whereAttribute` helper for this. For example:
+
+```diff
+-Product::where('color', 'red')->get();
++Product::whereAttribute('color', 'red')->get();
+```
+
+The way you retrieve attribute values from a product or category model has also changed somewhat. Where previously you would retrieve values directly from the object, you should now use one of the `->label()`, `->value()`, and `->raw()` functions. For product specifications, updating this may look something like:
+
+```diff
+-<dd>{{ $product->climate }}</dd>
++<dd>{{ $product->label('climate') }}</dd>
+```
+
+Note that the `->value()` function will be used by default, which will return the actual value as given in the database. This means that text attributes and numeric attributes will usually not need to be updated. For example, `$product->name` doesn't need to be changed. This change should only be relevant for attributes where the displayed value comes from the `eav_attribute_option_value` table.
+
+### Overwrites
+
+If you've overwritten any model classes that relate to products/categories or the ProductController class: these files have changed significantly. You should migrate these carefully by looking at the full diff of these models.
+
+Frontend overwrites will also need to be checked individually. You should look at the diff linked at the start of this page.
+
+## Other changes
+
+### Variables on the product model
+
+These specific variables have been removed and should be replaced like so:
+
+| Variable | Replacement | Extra info |
+|---|---|---|
+| `->min_sale_qty` | `->stock->min_sale_qty` | |
+| `->max_sale_qty` | `->stock->max_sale_qty` | |
+| `->qty_increments` | `->stock->qty_increments` | |
+| `->in_stock` | `->stock->is_in_stock` | |
+| `->upsell_ids` | `->upsells()->pluck('linked_product_id')` | Depending on the situation, using `->upsells->pluck('linked_product_id')` may be more fitting. |
+| `->relation_ids` | `->relationProducts()->pluck('linked_product_id')` | Same as above |
+| `->grouped` | `->children` | These returned the same list already, this is just for simplicity. |
+| `->images` | `->media` | This is no longer an array of image urls, but with an 'image' key. | 
+| `->reviews_count` | `->reviewSummary->reviews_count` | |
+| `->reviews_score` | `->reviewSummary->reviews_score` | |
+
+### Translation strings
+
+A few translations strings have been changed and added:
+
+| Old | New |
+|---|---|
+| Firstname | First name |
+| Middlename | Middle name |
+| Lastname | Last name |
+| Housenumber | House number |
+
+| Added |
+|---|
+| Show more |
+
+Translation files, as well as usage of these translations, should be changed accordingly.

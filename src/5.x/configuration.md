@@ -2,11 +2,15 @@
 
 ---
 
-Publish the Rapidez config files with:
+You can publish all of the Rapidez config files with:
 
 ```
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag="config"
 ```
+
+::: tip Note
+It's usually a good idea to only copy over the config files that you need to change. This can help with future updates that may end up changing things in these config files.
+:::
 
 After that, you'll find all configuration options in `config/rapidez/*.php` with comments explaining the options. Most of them use the `env()` function, so it's possible to have different configurations per environment in the `.env`.
 
@@ -42,7 +46,7 @@ If you need to access a Magento configuration, you can use the [`@config` Blade 
 
 ## Base URL
 
-Rapidez will become the frontend, Magento will only be used for the backend. Because of this, they'll need two different URLs. We suggest setting the `web/secure/base_url` differently per scope:
+Rapidez will become the frontend, Magento will only be used for the backend. Because of this, they'll need two different URLs. We suggest setting the `web/secure/base_url` differently per scope. The store scope should point to your Rapidez url, and the website scope should point to your Magento url:
 
 - **Store View:** `https://webshop.com`
 - **Website:** `https://magento.webshop.com`
