@@ -299,6 +299,7 @@ export default defineConfig({
             { text: 'Theming', link: '/5.x/theming' },
             { text: 'Extending', link: '/5.x/extending' },
             { text: 'Testing', link: '/5.x/testing' },
+            { text: 'Helper functions', link: '/5.x/helpers' },
             { text: 'GraphQL components', link: '/5.x/graphql-components' },
             { text: 'Package development', link: '/5.x/package-development' },
           ]
