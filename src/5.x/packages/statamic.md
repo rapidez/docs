@@ -226,6 +226,21 @@ rapidez-sitemaps/{store_id}/{sitemap_prefix}_taxonomy_{taxonomy_handle}.xml
 
 With the [default rapidez/sitemap config](https://github.com/rapidez/sitemap/blob/master/config/sitemap.php), the prefix default is `statamic_sitemap_` and can be configured within `config/rapidez/statamic.php`
 
+## Meta title and description
+
+If you want to use Statamic for managing your meta title and description you will have to add it to your templates.
+As an example, the category pages:
+`vendor/rapidez/core/resources/views/category/overview.blade.php`
+```diff
+ @extends('rapidez::layouts.app')
+ 
+- @section('title', $category->meta_title ?: $category->name)
+- @section('description', $category->meta_description)
++ @section('title', $content?->meta_title ?: $category->meta_title ?: $category->name)
++ @section('description', $content?->meta_description ?: $category->meta_description)
+ @section('canonical', url($category->url))
+```
+
 ## Static caching
 
 Statamic comes with [static caching](https://statamic.dev/static-caching) and with this packages we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
