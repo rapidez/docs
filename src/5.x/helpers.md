@@ -6,7 +6,7 @@
 
 ## Vue helpers
 
-To make using js variables in your blade files a bit easier, we've made some helper functions you can use for displaying content properly. You can also find these in `helpers.js`:
+Rapidez includes the following Javascript helpers to manipulate your data and content:
 
 | function | example output | description |
 |---|---|---|
@@ -20,7 +20,7 @@ To make using js variables in your blade files a bit easier, we've made some hel
 |`sumPrices(a, b)`||Sums two prices together, cutting off any excess decimals.|
 |`stripHtmlTags(html, safeTags)`||Strips any HTML tags from a string except for the "safe" tags (and only without any attributes) using regex. safeTags defaults to `['mark']`.|
 
-There are also some helpers on the global Vue object that are set in `package.js`:
+The following helpers are set on the global Vue object. Within javascript you may access them using the `window.app.config.globalProperties` object, inside of templates this is not necessary:
 
 | name | description |
 |---|---|
