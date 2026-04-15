@@ -431,6 +431,91 @@ yarn build
 We recommend to double check all frontend dependencies with `yarn outdated`.
 :::
 
+## Tailwind v4
+
+*Because the changes from Tailwind v3 to Tailwind v4 are breaking, we recommend that you make a new branch before starting the update.*
+
+1. **Migrate to Vite**
+
+If you are using Vite, we recommend migrating from the PostCSS plugin. Add this to your vite.config.js:
+```diff
++ import tailwindcss from "@tailwindcss/vite";
+  export default defineConfig({
+...
+    plugins: [
++       tailwindcss(),
+    ]
+  })
+```
+Then you need to install @tailwindcss/vite.
+```bash
+yarn add -D @tailwindcss/vite
+```
+
+2. **Update to Tailwind 4**
+
+Tailwind has a built-in upgrade tool that can be found in the [tailwind docs](https://tailwindcss.com/docs/upgrade-guide#using-the-upgrade-tool).
+```bash
+npx @tailwindcss/upgrade
+```
+It is still necessary to review the changes that are made when the upgrade is done. Check if all [deprecated utilities](https://tailwindcss.com/docs/upgrade-guide#removed-deprecated-utilities) are changed.
+```diff
+- class="bg-black bg-opacity-50 flex-shrink-0"
++ class="bg-black/50 shrink-0"
+```
+
+Also check the [renamed utilities](https://tailwindcss.com/docs/upgrade-guide#renamed-utilities)
+```diff
+- class="ring outline-none"
++ class="ring-3 outline-hidden"
+```
+
+3. **Custom classes**
+
+Since Rapidez v3, we have made changes to use [default colors](https://docs.rapidez.io/3.x/theming.html#colors). So we can use classes like `bg`, `text`, or `border`. To keep them working in Rapidez v5, make sure you add this to your app.css:
+```css
+...
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border, currentColor);
+  }
+}
+
+@utility text {
+    color: var(--text-color-default);
+}
+
+@utility bg {
+    background-color: var(--background-color-default);
+}
+```
+
+Also make the correct colors are inside your app.css
+```css
+@theme {
+    --border: #e4e5e7;
+    --foreground: #343846;
+    --background: #f6f7f9;
+
+    --text-color-default: var(--foreground);
+    --border-color-default: var(--border);
+    --background-color-default: var(--background);
+}
+```
+
+4. **Build**
+```bash
+yarn build
+```
+
+:::tip
+We recommend to double check all changes that are made after the update.
+:::
+
 ## Flat tables
 
 This update gets rid of the dependency on the Magento flat tables. This means that they can be disabled entirely (both the product and category tables) in your magento configuration, which should speed up the indexing process in magento substantially.
