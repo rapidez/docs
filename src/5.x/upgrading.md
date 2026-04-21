@@ -433,7 +433,6 @@ We recommend to double check all frontend dependencies with `yarn outdated`.
 
 ## Tailwind v4
 
-*Because the changes from Tailwind v3 to Tailwind v4 are breaking, we recommend that you make a new branch before starting the update.*
 
 1. **Migrate to Vite**
 
