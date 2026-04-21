@@ -494,7 +494,7 @@ Since Rapidez v3, we have made changes to use [default colors](https://docs.rapi
 }
 ```
 
-Also make the correct colors are inside your app.css
+Also make sure the expected colors are present in your app.css
 ```css
 @theme {
     --border: #e4e5e7;
