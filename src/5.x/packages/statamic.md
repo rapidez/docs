@@ -95,6 +95,18 @@ Make sure there is an assets disk within `config/filesystems.php`
 ],
 ```
 
+## Content migration
+
+The `statamic-content-migration:migrate-cms-pages` command is available to migrate your Magento 2 CMS pages to Statamic pages.
+You can use this command as inspiration to create your own content migrations, like blog pages, or FAQ pages.
+
+The ConvertField action will transform html into the bard component with the fieldName you pass.
+It will use the CleanHtml action to transform messy Magento templates with widgets, variables, nested cms blocks into plain html.
+
+:::tip
+Don't like what your html turned into? You can add or remove cleaning steps in `config/rapidez/statamic/migration.php`
+:::
+
 ## Runway / Magento data
 
 With [Runway](https://github.com/statamic-rad-pack/runway), you're able to display data from an Eloquent model within Statamic. We're using this to have all products, categories, and brands from Magento visible within Statamic, without the need of importing and syncing data. These Runway models can be used to link anything within Statamic to existing Magento data.
