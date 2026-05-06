@@ -431,6 +431,57 @@ yarn build
 We recommend to double check all frontend dependencies with `yarn outdated`.
 :::
 
+## Tailwind v4
+
+
+1. **Migrate to Vite**
+
+If you are using Vite, we recommend migrating from the PostCSS plugin. Add this to your vite.config.js:
+```diff
++ import tailwindcss from "@tailwindcss/vite";
+  export default defineConfig({
+...
+    plugins: [
++       tailwindcss(),
+    ]
+  })
+```
+Then you need to install @tailwindcss/vite.
+```bash
+yarn add -D @tailwindcss/vite
+```
+
+2. **Update to Tailwind 4**
+
+Tailwind has a built-in upgrade tool that can be found in the [tailwind docs](https://tailwindcss.com/docs/upgrade-guide#using-the-upgrade-tool).
+```bash
+npx @tailwindcss/upgrade
+```
+It is still necessary to review the changes that are made when the upgrade is done. Check if all [deprecated utilities](https://tailwindcss.com/docs/upgrade-guide#removed-deprecated-utilities) are changed.
+```diff
+- class="bg-black bg-opacity-50 flex-shrink-0"
++ class="bg-black/50 shrink-0"
+```
+
+Also check the [renamed utilities](https://tailwindcss.com/docs/upgrade-guide#renamed-utilities)
+```diff
+- class="ring outline-none"
++ class="ring-3 outline-hidden"
+```
+
+3. **Custom classes**
+
+Since Rapidez v3, we have made changes to use [default colors](https://docs.rapidez.io/3.x/theming.html#colors), so we can use classes like `bg`, `text`, or `border`. In Rapidez v5, we removed the colors from the `rapidez/core` and added them inside the [blade components](https://github.com/rapidez/blade-components/blob/master/resources/css/components/rapidez.css).
+
+4. **Build**
+```bash
+yarn build
+```
+
+:::tip
+We recommend to double check all changes that are made after the update.
+:::
+
 ## Flat tables
 
 This update gets rid of the dependency on the Magento flat tables. This means that they can be disabled entirely (both the product and category tables) in your magento configuration, which should speed up the indexing process in magento substantially.
