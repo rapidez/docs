@@ -471,40 +471,7 @@ Also check the [renamed utilities](https://tailwindcss.com/docs/upgrade-guide#re
 
 3. **Custom classes**
 
-Since Rapidez v3, we have made changes to use [default colors](https://docs.rapidez.io/3.x/theming.html#colors). So we can use classes like `bg`, `text`, or `border`. To keep them working in Rapidez v5, make sure you add this to your app.css:
-```css
-...
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--border, currentColor);
-  }
-}
-
-@utility text {
-    color: var(--text-color-default);
-}
-
-@utility bg {
-    background-color: var(--background-color-default);
-}
-```
-
-Also make sure the expected colors are present in your app.css
-```css
-@theme {
-    --border: #e4e5e7;
-    --foreground: #343846;
-    --background: #f6f7f9;
-
-    --text-color-default: var(--foreground);
-    --border-color-default: var(--border);
-    --background-color-default: var(--background);
-}
-```
+Since Rapidez v3, we have made changes to use [default colors](https://docs.rapidez.io/3.x/theming.html#colors), so we can use classes like `bg`, `text`, or `border`. In Rapidez v5, we removed the colors from the `rapidez/core` and added them inside the [blade components](https://github.com/rapidez/blade-components/blob/master/resources/css/components/rapidez.css).
 
 4. **Build**
 ```bash
