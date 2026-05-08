@@ -15,7 +15,7 @@ php artisan rapidez:index
 ```
 
 ::: warning
-The default chunk size for indexing is 500 products. If you have a lot of attributes and/or children on your products, you may run into out-of-memory issues during indexing. You can change the chunk size in the scout configuration file `config/scout.php`. It is **not** recommended to set this to very low number---if you're having memory issues, a chunk size of 100 should usually suffice.
+The default chunk size for indexing is 500 products. If you have a lot of attributes and/or children on your products, you may run into out-of-memory issues during indexing. You can change the chunk size in the scout configuration file `config/scout.php`. It is **not** recommended to set this to very low number. If you're having memory issues, a chunk size of 100 should usually suffice.
 :::
 
 This will reindex everything for all stores. With the `--store` and `--types` options you can be more specific, see: `php artisan rapidez:index --help`. Alternatively there is also: 

@@ -6,16 +6,19 @@
 
 ## Rapidez v5
 
-In this release, we removed the flat tables dependency! 🚀 And we also updated to Vue 3 and Tailwind 4 🤘🏻 We also added support for:
+In this release, we removed the [flat tables dependency](https://github.com/rapidez/core/pull/943)! 🚀 And we also updated to [Vue 3](https://github.com/rapidez/core/pull/951) and [Tailwind 4](https://github.com/rapidez/core/pull/1211) 🤘🏻 We also added support for:
+
 - [Customer group pricing](https://github.com/rapidez/core/pull/1074)
+- [Tier pricing](https://github.com/rapidez/core/pull/1205)
 - [Product media videos](https://github.com/rapidez/core/pull/1128)
+- [Cache tags](https://github.com/rapidez/core/pull/1103)
 
 Other changes included in this release:
 - [Drop support for Laravel 11](https://github.com/rapidez/core/pull/1096)
 
 Some of these are quite substantially breaking changes. On this page we'll mention the most important things that you will need to do to upgrade.
 
-You should review [all template/config changes](https://github.com/rapidez/core/compare/4.x..master)
+You should review [all template/config changes](https://github.com/rapidez/core/compare/5.x..master) and check the [full changelog](https://github.com/rapidez/core/releases).
 
 :::tip
 For any major update, you should be aware that all overwritten Blade, Vue, and PHP files will need to be checked. Checking the above diff is the quickest way to tell where you need to make changes.
@@ -42,7 +45,7 @@ yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compile
 yarn add -D @vitejs/plugin-vue vue3-click-away
 ```
 
-and update your vite.config.js
+And update your `vite.config.js`
 
 ```diff
   import path from 'path'
@@ -436,7 +439,7 @@ We recommend to double check all frontend dependencies with `yarn outdated`.
 
 1. **Migrate to Vite**
 
-If you are using Vite, we recommend migrating from the PostCSS plugin. Add this to your vite.config.js:
+If you are using Vite, we recommend migrating from the PostCSS plugin. Add this to your `vite.config.js`:
 ```diff
 + import tailwindcss from "@tailwindcss/vite";
   export default defineConfig({
@@ -446,14 +449,14 @@ If you are using Vite, we recommend migrating from the PostCSS plugin. Add this 
     ]
   })
 ```
-Then you need to install @tailwindcss/vite.
+Then you need to install `@tailwindcss/vite`:
 ```bash
 yarn add -D @tailwindcss/vite
 ```
 
-2. **Update to Tailwind 4**
+2. **Update to Tailwind CSS 4**
 
-Tailwind has a built-in upgrade tool that can be found in the [tailwind docs](https://tailwindcss.com/docs/upgrade-guide#using-the-upgrade-tool).
+Tailwind CSS has a built-in upgrade tool that can be found in the [Tailwind CSS docs](https://tailwindcss.com/docs/upgrade-guide#using-the-upgrade-tool).
 ```bash
 npx @tailwindcss/upgrade
 ```
@@ -484,7 +487,7 @@ We recommend to double check all changes that are made after the update.
 
 ## Flat tables
 
-This update gets rid of the dependency on the Magento flat tables. This means that they can be disabled entirely (both the product and category tables) in your magento configuration, which should speed up the indexing process in magento substantially.
+This update gets rid of the dependency on the Magento flat tables. This means that they can be disabled entirely (both the product and category tables) in your magento configuration, which should speed up the indexing process in Magento substantially.
 
 However, this also means that any and all custom queries, scopes, relationships, custom attributes, and model overwrites may need to be upgraded.
 
@@ -494,11 +497,11 @@ Any custom scopes added to product or category models that affect the SQL query 
 
 ### Relationships
 
-Relationships that relate to `entity_id` (or also `sku` on the Product model) will be unaffected.
+Relationships that relate to `entity_id` (or also `sku` on the product model) will be unaffected.
 
 ### Attribute changes
 
-The base Product and Category models now query the `catalog_product_entity` and `catalog_category_entity` tables. All of the attributes get added by using relations, which means you won't have direct access to attribute data in queries anymore. We have created a `whereAttribute` helper for this. For example:
+The base product and category models now query the `catalog_product_entity` and `catalog_category_entity` tables. All of the attributes get added by using relations, which means you won't have direct access to attribute data in queries anymore. We have created a `whereAttribute` helper for this. For example:
 
 ```diff
 -Product::where('color', 'red')->get();
@@ -516,7 +519,7 @@ Note that the `->value()` function will be used by default, which will return th
 
 ### Overwrites
 
-If you've overwritten any model classes that relate to products/categories or the ProductController class: these files have changed significantly. You should migrate these carefully by looking at the full diff of these models.
+If you've overwritten any model classes that relate to products/categories or the `ProductController` class: these files have changed significantly. You should migrate these carefully by looking at the full diff of these models.
 
 Frontend overwrites will also need to be checked individually. You should look at the diff linked at the start of this page.
 

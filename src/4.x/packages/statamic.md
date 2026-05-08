@@ -4,8 +4,8 @@
 
 The Rapidez with [Statamic](https://statamic.com/) integration! 🤝🚀
 
-::: info Version 5
-This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statamic) version 5
+::: info Version 6
+This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statamic) version 6
 :::
 
 [[toc]]
@@ -333,60 +333,13 @@ return [
 
 ## Upgrading
 
-### From 4.x to 5.x
+### From 5.x to 6.x
 
 :::: details
+
+Just run:
+
 ```bash
 composer update rapidez/statamic -W
 ```
-
-#### Remove blueprints and content
-
-::: danger
-Before removing the blueprint and content directories, ensure you have copied over any custom fields or configurations you need to retain!
-:::
-
-You can remove all these directories and files:
-
-- `resources/blueprints/collections/categories`
-- `resources/blueprints/collections/products`
-- `resources/blueprints/collections/brands`
-- `content/collections/categories`
-- `content/collections/products`
-- `content/collections/brands`
-- `content/collections/products.yaml`
-- `content/collections/categories.yaml`
-- `content/collections/brands.yaml`
-
-And clear the cache afterward: `php artisan cache:clear`
-
-#### Import the page builder fieldset
-
-Add this line:
-
-```yaml
-import: page_builder
-```
-
-In these Runway resource blueprints:
-
-- `resources/blueprints/vendor/runway/product.yaml`
-- `resources/blueprints/vendor/runway/category.yaml`
-- `resources/blueprints/vendor/runway/brand.yaml`
-
-#### Writable Runway resources
-
-Within the `config/rapidez/statamic.php` config, make the Runway resources writable by changing the `read_only` to `false`. Additionally, add `visibility: read_only` to the system fields of Magento in the Runway blueprints:
-
-- In `category.yaml`, the fields are: `entity_id`, `name`
-- In `brand.yaml`, the fields are: `option_id`, `sort_order`, `value_admin`, `value_store`
-- In `product.yaml`, the fields are: `entity_id`, `sku`, `name`
-
-#### ElasticSearch indexed collections
-
-> [!NOTE]
-> This is only relevant if you're also upgrading to Rapidez v4 at the same time.
-
-Because of the indexer refactor that this upgrade brings, you will need to upgrade any collections that you're indexing into ElasticSearch. See the [indexing](#indexing) section of this page.
-
 ::::

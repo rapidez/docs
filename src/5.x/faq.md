@@ -24,7 +24,7 @@
 
 > No, Vue is only used for some functional frontend components like the cart. All Vue components are "renderless", so most likely you never need to touch them because all the HTML is in the Blade files. But some basic knowledge of Vue could be useful.
 
-## TailwindCSS is used, do I need to use it?
+## Tailwind CSS is used, do I need to use it?
 
 > No, you do not need to use it. You are completely free to use whatever you want. We like it, so we use it for basic styling.
 

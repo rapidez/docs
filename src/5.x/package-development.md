@@ -30,7 +30,7 @@ Every model extends the [base model](https://github.com/rapidez/core/blob/master
 
 ## Vue Events
 
-Rapidez emits some custom Vue events you can hook into with [`$on`](https://vuejs.org/v2/api/#vm-on). This is used for example within the [Rapidez GTM](https://github.com/rapidez/gtm) package, have a look at the [`gtm.js`](https://github.com/rapidez/gtm/blob/master/resources/js/gtm.js) file.
+Rapidez emits some custom Vue events you can hook into with [`on()`](https://github.com/rapidez/core/blob/master/resources/js/polyfills/emit.js). This is used for example within the [Rapidez GTM](https://github.com/rapidez/gtm) package, have a look at the [`gtm.js`](https://github.com/rapidez/gtm/blob/master/resources/js/gtm.js) file.
 
 Event | Explanation
 :--- | :---

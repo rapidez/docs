@@ -30,7 +30,7 @@ It's recommended to only add the views you've changed into your source control f
 
 ## CSS
 
-We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/12.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js).
+We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/12.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). This file will be overwritten with the [install command](installation.html#install-rapidez) with the [`app.css` from the core](https://github.com/rapidez/core/blob/master/resources/publishables/resources/css/app.css).
 
 ::: details But... I don't like Tailwind CSS
 If you don't like Tailwind CSS you *can* use anything else. But it's widely used in Rapidez packages, so we don't recommend it. Just clear out the [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css) and write your own.
@@ -38,9 +38,9 @@ If you don't like Tailwind CSS you *can* use anything else. But it's widely used
 
 ### Colors
 
-Colors can be configured from [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css) and all colors used by Rapidez can be found within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js). This is just a starting point to easily change the whole look and feel with some variables. We advice you to use those variables / classes as much as possible but you're free to use anything else.
+Colors can be configured from `resources/css/app.css` and all colors used by Rapidez can be found within the [`rapidez/blade-components` package](https://github.com/rapidez/blade-components/blob/master/resources/css/components/rapidez.css). This is just a starting point to easily change the whole look and feel with some variables. We advice you to use those variables / classes as much as possible but you're free to use anything else.
 
-The colors variables are inspired by [GitHub Primer](https://primer.style/) where Tailwind CSS provides the "base color tokens", see: [design token categories](https://primer.style/foundations/color/overview#design-token-categories) and within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js) we're just "aliasing" those to "functional color tokens". More information with examples on color naming can be found in the [color names refactor pull request](https://github.com/rapidez/core/pull/622).
+The colors variables are inspired by [GitHub Primer](https://primer.style/) where Tailwind CSS provides the "base color tokens", see: [design token categories](https://primer.style/foundations/color/overview#design-token-categories) and within the [`rapidez/blade-components` package](https://github.com/rapidez/blade-components/blob/master/resources/css/components/rapidez.css) we're just "aliasing" those to "functional color tokens". More information about the color naming can be found in the [color names refactor pull request](https://github.com/rapidez/core/pull/622).
 
 #### Semantic colors
 
@@ -52,7 +52,7 @@ Color name | CSS variable | Default color | |
 `primary-text` | `--primary-text` | `white` | <colorTile color="white"/>{.np}
 `secondary` | `--secondary` | `#202F60` | <colorTile color="#202F60"/>{.np}
 `secondary-text` | `--secondary-text` | `white` | <colorTile color="white"/>{.np}
-`conversion` | `--conversion` | `green-700` | <colorTile color="#15803D"/>{.np}
+`conversion` | `--conversion` | `green-700` | <colorTile color="oklch(52.7% 0.154 150.069)"/>{.np}
 `conversion-text` | `--conversion-text` | `white` | <colorTile color="white"/>{.np}
 
 These color names work the same as Tailwind colors. You can use them for anything, for exmaple: `bg-primary`, `border-primary`, `text-primary`, etc.
@@ -65,18 +65,18 @@ Used for the text color, borders, backgrounds, rings and outlines to give some d
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`text-emphasis` | `--foreground-emphasis` | `slate-900` | <colorTile color="#0f172a"/>{.np}
-`text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="#1e293b"/>{.np}
-`text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="#475569"/>{.np}
+`text-emphasis` | `--foreground-emphasis` | `slate-900` | <colorTile color="oklch(20.8% 0.042 265.755)"/>{.np}
+`text` / `text-default` | `--foreground` | `slate-800` | <colorTile color="oklch(27.9% 0.041 260.031)"/>{.np}
+`text-muted` | `--foreground-muted` | `slate-600` | <colorTile color="oklch(44.6% 0.043 257.281)"/>{.np}
 
 ##### Border, ring and outline
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`border-active` | `--border-active` | `slate-800` | <colorTile color="#1e293b"/>{.np}
-`border-emphasis` | `--border-emphasis` | `slate-400` | <colorTile color="#94a3b8"/>{.np}
-`border` / `border-default` | `--border` | `slate-300` | <colorTile color="#cbd5e1"/>{.np}
-`border-muted` | `--border-muted` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
+`border-active` | `--border-active` | `slate-800` | <colorTile color="oklch(27.9% 0.041 260.031)"/>{.np}
+`border-emphasis` | `--border-emphasis` | `slate-400` | <colorTile color="oklch(70.4% 0.04 256.788)"/>{.np}
+`border` / `border-default` | `--border` | `slate-300` | <colorTile color="oklch(86.9% 0.022 252.894)"/>{.np}
+`border-muted` | `--border-muted` | `slate-100` | <colorTile color="oklch(96.8% 0.007 247.896)"/>{.np}
 
 > Ring and outline colors are the same as the border colors, you can use them like: `outline-emphasis` and `ring-emphasis`.
 
@@ -84,10 +84,10 @@ Class | CSS variable | Default color | |
 
 Class | CSS variable | Default color | |
 :--- | :--- | :--- | :---
-`bg-active` | `--background-active` | `slate-800` | <colorTile color="#1e293b"/>{.np}
-`bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="#e2e8f0"/>{.np}
-`bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="#f1f5f9"/>{.np}
-`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="#f8fafc"/>{.np}
+`bg-active` | `--background-active` | `slate-800` | <colorTile color="oklch(27.9% 0.041 260.031)"/>{.np}
+`bg-emphasis` | `--background-emphasis` | `slate-200` | <colorTile color="oklch(92.9% 0.013 255.508)"/>{.np}
+`bg` / `bg-default` | `--background` | `slate-100` | <colorTile color="oklch(96.8% 0.007 247.896)"/>{.np}
+`bg-muted` | `--background-muted` | `slate-50` | <colorTile color="oklch(98.4% 0.003 247.858)"/>{.np}
 
 ##### Backdrop
 
@@ -227,7 +227,7 @@ On top of Vue, we've added some extra directives.
 
 ### `v-blur`
 
-Just like [v-cloak](https://v2.vuejs.org/v2/api/#v-cloak), but instead of hiding, the element will be blurred. Useful if you don't like to have any layout shifts.
+Just like [v-cloak](https://vuejs.org/api/built-in-directives.html#v-cloak), but instead of hiding, the element will be blurred. Useful if you don't like to have any layout shifts.
 
 ### `v-on-click-away`
 
@@ -279,9 +279,9 @@ return [
 
 The structure of your theme folder will be the same as your views folder, so overriding the views folder is as simple as copying and pasting the file with the correct folder structure.
 
-### Tailwind & CSS
+### Tailwind CSS
 
-If you only want to change some Tailwind colors and styling in your multistore and do not need to overwrite any templates, it may be a good idea to only use a different Tailwind config. This can be done by editing your Vite config to generate different CSS files with different Tailwind configs.
+If you only want to change some Tailwind CSS colors and styling in your multistore and do not need to overwrite any templates, it may be a good idea to only use a different Tailwind CSS config. This can be done by editing your Vite config to generate different CSS files with different Tailwind CSS configs.
 
 1. **`vite.config.js`**
 ```js
@@ -298,30 +298,12 @@ export default defineConfig({
 
 2. **`resources/css/app.<store_code>.css`**
 ```css
-@import "./<store_code>/config.css";
 @import "./app.css";
+
+/* Store specific styles */
 ```
 
-3. **`resources/css/<store_code>/config.css`**
-```css
-@config "../../../tailwind.<store_code>.js";
-```
-
-4. **`tailwind.<store_code>.js`**
-```js
-module.exports = {
-    presets: [
-        require('./tailwind.config.js')
-    ],
-    theme: {
-        extend: {
-            // ...
-        }
-    }
-}
-```
-
-5. **`resources/views/layouts/app.blade.php`**
+3. **`resources/views/layouts/app.blade.php`**
 ```blade
 @vite([
     'resources/css/app.css',// [!code --]
