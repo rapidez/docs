@@ -96,7 +96,12 @@ But keep in mind as also mentioned there:
 
 ## Robots.txt
 
-By default, Rapidez will use the [robots.txt](https://github.com/rapidez/rapidez/blob/master/public/robots.txt) file. If you'd like to use the Magento configuration from `design/search_engine_robots/custom_instructions`, which gives you the flexibility to have a `robots.txt` per website, you need to remove that file from your repository. That way, it will fallback to the [`robots.txt` route](https://github.com/rapidez/core/blob/master/routes/web.php). Depending on your webserver configuration, you could get a 404 response. For example, [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/12.x/valet) do include a line causing this as the file could not be found:
+Rapidez handles the `robots.txt` route through Laravel, and can be edited by overwriting the `resources/views/robots.blade.php` view. Because this is a Laravel Blade file, you can use blade logic to do anything you want.
+
+You can also manage part of the content through Magento. Rapidez includes the Magento robots.txt instructions by default.
+
+::: warning 404 response
+Depending on your webserver configuration, this route could end up returning a 404 response. For example, [Laravel Forge](https://forge.laravel.com/) and [Laravel Valet](https://laravel.com/docs/12.x/valet) do include a line causing this as the file could not be found:
 ```
 location = /robots.txt  { access_log off; log_not_found off; }
 ```
@@ -104,6 +109,11 @@ The trick is to remove this line or extend it, depending on if you want the othe
 ```
 location = /robots.txt  { access_log off; log_not_found off; try_files $uri $uri/ /index.php?$query_string; }
 ```
+:::
+
+::: tip
+Make sure you double check what's in Magento's robots.txt instructions on your site. There may be a bunch of `disallow` routes that are no longer necessary! 
+:::
 
 ## Elasticsearch
 
