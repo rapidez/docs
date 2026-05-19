@@ -97,7 +97,7 @@ Make sure there is an assets disk within `config/filesystems.php`
 
 ## Content migration
 
-The `statamic-content-migration:migrate-cms-pages` command is available to migrate your Magento 2 CMS pages to Statamic pages.
+The `statamic-content-migration:migrate-cms-pages` command is available to migrate your Magento 2 CMS pages to Statamic pages since rapidez/statamic V8.
 You can use this command as inspiration to create your own content migrations, like blog pages, or FAQ pages.
 
 The ConvertField action will transform html into the bard component with the fieldName you pass.
