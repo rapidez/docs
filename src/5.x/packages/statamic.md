@@ -13,7 +13,7 @@ This documentation is for [`rapidez/statamic`](https://github.com/rapidez/statam
 ## Features
 
 - Products, categories, and read-only product attributes (plus attribute options) are integrated through [Runway](https://github.com/statamic-rad-pack/runway)
-- Brand landing pages use Statamic's **`brands` collection** (page builder and SEO), still tied to Magento brand options for listings and filters; the Runway brands resource is hidden in the control panel so you edit brands in one place
+- Brand landing pages use a regular Statamic collection named `brands` (with page builder and SEO) that is linked to the Runway resource, which is unlike other Runway resources. The Runway resource itself is hidden.
 - Automatic site registration based on Magento stores
 - Routing: Statamic routes are the fallback
 - Page builder fieldset with multiple components:
