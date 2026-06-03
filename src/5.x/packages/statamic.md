@@ -264,7 +264,7 @@ As an example, the category pages:
 
 ## Static caching
 
-Statamic comes with [static caching](https://statamic.dev/static-caching) and with this package we're adding the middleware that handles that from Statamic to all Rapidez web routes. When you configure static caching with Statamic it will also be applied to all Rapidez routes!
+Statamic comes with [static caching](https://statamic.dev/static-caching) and this package adds the middleware for that. This means that when you configure static caching with Statamic, it will also be applied to all Rapidez routes.
 
 ::: details I'm using multiple stores
 When using Statamic Static caching in a multisite setup, you typically need to [manually configure](https://statamic.dev/static-caching#paths) a path for each site for the static files to be stored. However, with Rapidez Statamic, this manual step isn't necessary. The integration automatically sets the correct paths based on the store definitions in the Magento database, saving you time and reducing potential errors.
