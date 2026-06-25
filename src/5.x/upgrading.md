@@ -86,345 +86,6 @@ This will require some work but we've got a list of things to check. Please read
 - When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`
 - All calls to `Vue.set` calls should be removed, and replaced by setting the variable directly.
 
-::: details Using AI? This prompt will give you a head start! Do still check everything manually.
-`````markdown
-# Vue 2 to Vue 3 Upgrade Prompt for Rapidez Projects
-
-You are an expert Vue.js developer tasked with upgrading a Vue 2 project that uses the Rapidez core package to Vue 3. The Rapidez core package has already been updated to Vue 3, so you can leverage its existing infrastructure.
-
-## Prerequisites
-
-Ensure the Rapidez core package is updated to the Vue 3 compatible version before proceeding.
-
-## 1. Template Syntax Updates
-
-### Update Slot Syntax:
-```vue
-<!-- Vue 2 -->
-<component>
-    <div slot-scope="{ data, loading }">
-        <!-- content -->
-    </div>
-</component>
-<!-- Vue 3 -->
-<component v-slot="{ data, loading }">
-    <div>
-        <!-- content -->
-    </div>
-</component>
-```
-
-### Update Scoped Slots:
-```vue
-<!-- Vue 2 -->
-<my-component>
-    <div slot-scope="scopeProps">
-        {{ scopeProps.value }}
-    </div>
-</my-component>
-<!-- Vue 3 -->
-<my-component v-slot="scopeProps">
-    <div>
-        {{ scopeProps.value }}
-    </div>
-</my-component>
-```
-
-Do not forget to move the v-slot onto the vue component, do not leave them on the slots (divs)
-
-But be careful with <template> tags, because the v-slot will have to stay in the same location:
-
-```vue
-<!-- Vue 2 -->
-<component>
-    <template slot-scope="{ data, loading }">
-        <!-- content -->
-    </template>
-</component>
-<!-- Vue 3 -->
-<component>
-    <template v-slot="{ data, loading }">
-        <!-- content -->
-    </template>
-</component>
-````
-
-### Update render functions:
-```vue
-<!-- Vue 2 -->
-render() {
-    return this.$scopedSlots.default(this)
-},
-<!-- Vue 3 -->
-render() {
-    return this?.$slots?.default(this)
-},
-```
-
-### Update v-text and v-html directive calls
-v-text and v-html no longer support values inside of the element having v-text or v-html as props.
-When an element with v-text or v-html has values inside of the element they should be replaced by v-txt and v-htm
-```vue
-<!-- Vue 2 -->
-<my-component v-slot="scopeProps">
-    <div v-text="scopeProps.value">
-        Default value
-    </div>
-</my-component>
-<!-- Vue 3 -->
-<my-component v-slot="scopeProps">
-    <div v-txt="scopeProps.value">
-        Default value
-    </div>
-</my-component>
-```
-
-```vue
-<!-- Vue 2 -->
-<my-component v-slot="scopeProps">
-    <div v-html="scopeProps.value">
-        Default value
-    </div>
-</my-component>
-<!-- Vue 3 -->
-<my-component v-slot="scopeProps">
-    <div v-htm="scopeProps.value">
-        Default value
-    </div>
-</my-component>
-```
-
-## 2. Event System Migration
-
-The Rapidez core provides `window.$emit` and `window.$on` functions. Replace Vue instance event calls:
-
-```javascript
-// Vue 2
-this.$root.$emit('event-name', data)
-this.$root.$on('event-name', handler)
-// Vue 3 (using Rapidez core event system)
-window.$emit('rapidez:event-name', data)
-window.$on('rapidez:event-name', handler)
-```
-
-### Event Naming Convention:
-- Prefix custom events with `rapidez:` for consistency
-- Example: `rapidez:cart-updated`, `rapidez:user-login`, `rapidez:notification-message`
-
-## 3. Component Property Access Updates
-
-### Global Properties:
-```javascript
-// Vue 2
-this.$root.property
-this.loggedIn
-// Vue 3
-window.app.config.globalProperties.property
-window.app.config.globalProperties.loggedIn.value
-```
-
-### Reactive References:
-```javascript
-// Vue 2
-this.cart
-this.user
-// Vue 3 (accessing reactive refs)
-this.cart.value
-this.user.value
-```
-
-## 4. Component Instance and Element Access
-
-### Element References:
-```vue
-<!-- Add ref attribute to root elements -->
-<template>
-    <div ref="root">
-        <!-- content -->
-    </div>
-</template>
-```
-
-```javascript
-// Vue 2
-this.$el.querySelector(...)
-// Vue 3
-this.$refs.root.querySelector(...)
-// or
-this.$el.nextSibling.querySelector(...) // for render functions
-```
-
-### Component Instance Access:
-```javascript
-// Vue 2
-element.__vue__
-// Vue 3
-element.__vnode.props
-element.__vnode.ctx
-```
-
-## 5. Props and Emits Updates
-
-### v-model Updates:
-```javascript
-// Vue 2
-props: {
-    value: {
-        default: 1,
-    },
-},
-// Vue 3
-props: {
-    modelValue: {
-        default: 1,
-    },
-},
-emits: ['update:modelValue', 'input', 'change'],
-computed: {
-    value: {
-        get() {
-            return this.modelValue
-        },
-        set(value) {
-            this.$emit('update:modelValue', value)
-        }
-    }
-}
-```
-
-### Add emits option to components:
-```javascript
-// Vue 3 - Required for components that emit events
-export default {
-    emits: ['change', 'input', 'click', 'custom-event'],
-    // ... rest of component
-}
-```
-
-## 6. Form Handling Updates
-
-### Partial Submit Pattern:
-```vue
-<!-- Vue 2 -->
-<fieldset partial-submit="methodName">
-<!-- Vue 3 -->
-<fieldset partial-submit v-on:partial-submit="(ev) => methodName().then(ev.detail.resolve).catch(ev.detail.reject)">
-```
-
-## 7. Reactive Data Updates
-
-### Direct Property Assignment:
-```javascript
-// Vue 2
-Vue.set(this.object, key, value)
-// Vue 3 (direct assignment works)
-this.object[key] = value
-```
-
-## 8. Filter Usage Migration
-
-Filters are removed in Vue 3. Replace with method calls or computed properties:
-
-```vue
-<!-- Vue 2 -->
-{{ value | price }}
-{{ url | url }}
-<!-- Vue 3 -->
-{{ window.price(value) }}
-{{ window.url(url) }}
-```
-
-## 9. Component Registration
-
-Use the Vue 3 event system for component registration:
-
-```javascript
-// Listen for vue:loaded event
-document.addEventListener('vue:loaded', function (event) {
-    const vue = event.detail.vue
-    vue.component('my-component', MyComponent)
-})
-```
-
-## 10. Lifecycle and Watchers
-
-### Event Listeners with VueUse:
-```javascript
-// Import useEventListener from @vueuse/core
-import { useEventListener } from '@vueuse/core'
-// In mounted/setup
-useEventListener(this.$refs.element, 'event', handler)
-```
-
-## 11. Common Patterns to Update
-
-### GraphQL Components:
-```vue
-<!-- Vue 2 -->
-<graphql query="...">
-    <div slot-scope="{ data, loading }">
-        <!-- content -->
-    </div>
-</graphql>
-<!-- Vue 3 -->
-<graphql query="..." v-slot="{ data, loading }">
-    <div>
-        <!-- content -->
-    </div>
-</graphql>
-```
-
-Do not forget to move the v-slot onto the vue component, do not leave them on the slots (divs)
-
-### Conditional Rendering:
-```vue
-<!-- Ensure v-if, v-else work with proper template structure -->
-<template v-if="condition">
-    <!-- content -->
-</template>
-```
-
-## 12. Testing and Validation
-
-After making changes:
-
-1. **Test Event Communication**: Verify all custom events work with the new `window.$emit`/`window.$on` system
-2. **Check Reactive Data**: Ensure `.value` is used where needed for reactive references
-3. **Validate Form Submissions**: Test partial-submit patterns work correctly
-4. **Verify Component Communication**: Check parent-child component data flow
-5. **Test Third-party Integrations**: Ensure external libraries still work correctly
-
-## 13. Common Gotchas for Rapidez Projects
-
-1. **Cart and User Data**: These are reactive refs, access with `.value`
-2. **Global Properties**: Access through `window.app.config.globalProperties`
-3. **Slot Props**: May need destructuring in v-slot
-4. **Element Queries**: Use `nextSibling` in render functions or add `ref` attributes
-
-## 14. Rapidez-Specific Patterns
-
-### Checkout Steps:
-```vue
-<!-- Update form submissions -->
-<form v-on:submit.prevent="(e) => {
-    window.app.config.globalProperties.submitPartials(e.target?.form ?? e.target)
-        .then(() => window.$emit('checkout-step-completed'))
-}">
-```
-
-### Cart Operations:
-```javascript
-// Access cart data
-this.cart.value.items
-this.hasCart.value
-// Emit cart events
-window.$emit('cart-updated', { cart: this.cart })
-```
-
-This focused approach leverages the Rapidez core infrastructure while updating your project-specific components to be Vue 3 compatible.
-`````
-:::
-
 5. **Build**
 ```bash
 yarn build
@@ -558,3 +219,421 @@ A few translations strings have been changed and added:
 | Show more |
 
 Translation files, as well as usage of these translations, should be changed accordingly.
+
+## Using AI?
+
+::: details Using AI? This prompt will give you a head start! Do still check everything manually.
+`````markdown
+# Rapidez v5 Upgrade Prompt
+
+You are an expert Laravel, Magento, Vue, and Tailwind developer tasked with upgrading a Rapidez project to v5.
+
+Use this as a strict migration checklist and implementation guide. Favor concrete code changes over high-level advice.
+
+## Goal
+
+Upgrade a Rapidez project to v5, including:
+
+- Vue 2 to Vue 3 migration
+- Tailwind CSS v4 migration
+- Flat table removal compatibility updates
+- Product model API changes
+- Translation string updates
+
+## Important Context
+
+- Rapidez v5 removes dependency on Magento flat tables
+- Rapidez v5 uses Vue 3
+- Rapidez v5 uses Tailwind CSS 4
+- All overwritten Blade, Vue, and PHP files must be reviewed
+- Review template/config diff: https://github.com/rapidez/core/compare/4.x..master
+- Review full releases/changelog (for 5.x versions): https://github.com/rapidez/core/releases
+
+## 1. Dependency Upgrade Sequence
+
+### 1.1 Composer dependencies
+
+Run and evaluate all incompatible packages:
+
+```bash
+composer outdated
+```
+
+### 1.2 Frontend dependencies for Vue 3
+
+Remove Vue 2 packages:
+
+```bash
+yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compiler
+```
+
+Install Vue 3 packages:
+
+```bash
+yarn add -D @vitejs/plugin-vue vue3-click-away
+```
+
+Upgrade related frontend dependencies:
+
+```bash
+yarn add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel-vite-plugin vite vue
+```
+
+## 2. Vite Configuration Changes
+
+Update `vite.config.js` for Vue 3 and Tailwind v4.
+
+```diff
+  import path from 'path'
+  import { defineConfig } from 'vite'
+  import laravel from 'laravel-vite-plugin'
+- import vue from '@vitejs/plugin-vue2'
++ import vue from '@vitejs/plugin-vue'
++ import tailwindcss from '@tailwindcss/vite'
+  import { visualizer } from 'rollup-plugin-visualizer'
+
+  export default defineConfig({
+      plugins: [
++         tailwindcss(),
+          laravel({
+              input: [...],
+              refresh: true,
+          }),
+          vue(),
+      ],
+      resolve: {
+          alias: {
+              '@': path.resolve(__dirname, './resources/js'),
+              Vendor: path.resolve(__dirname, './vendor'),
+-             vue: path.resolve(__dirname, './node_modules/vue/dist/vue.esm.js'),
++             vue: 'vue/dist/vue.esm-bundler.js',
+          },
+      },
+  })
+```
+
+Install Tailwind Vite plugin:
+
+```bash
+yarn add -D @tailwindcss/vite
+```
+
+## 3. Vue 2 to Vue 3 Migration Rules
+
+Apply these across all Blade and Vue customizations.
+
+### 3.1 Slots: `slot-scope` to `v-slot`
+
+```vue
+<!-- Vue 2 -->
+<graphql query="...">
+    <div slot-scope="{ data, loading }">
+        <!-- content -->
+    </div>
+</graphql>
+
+<!-- Vue 3 -->
+<graphql query="..." v-slot="{ data, loading }">
+    <div>
+        <!-- content -->
+    </div>
+</graphql>
+```
+
+If a `<template>` tag is used, keep `v-slot` on that template:
+
+```vue
+<!-- Vue 2 -->
+<component>
+    <template slot-scope="{ data }">
+        <!-- content -->
+    </template>
+</component>
+
+<!-- Vue 3 -->
+<component>
+    <template v-slot="{ data }">
+        <!-- content -->
+    </template>
+</component>
+```
+
+### 3.2 Filters are removed
+
+```blade
+{{-- Vue 2 (invalid in Vue 3) --}}
+@{{ final_price | price }}
+@{{ product.url | url }}
+
+{{-- Vue 3 --}}
+@{{ price(final_price) }}
+@{{ url(product.url) }}
+```
+
+Also replace `truncate` filter usage with a helper/function call.
+
+### 3.3 Event bus migration
+
+Global Vue instance events are removed.
+
+```javascript
+// Vue 2
+this.$root.$on('event-name', handler)
+window.app.$on('event-name', handler)
+
+// Vue 3 in Rapidez
+window.$on('event-name', handler)
+window.$emit('event-name', payload)
+```
+
+Recommended convention for custom events:
+
+- Prefix custom events with `rapidez:`
+- Example: `rapidez:cart-updated`
+
+### 3.4 Global properties and refs
+
+```javascript
+// Vue 2
+window.app.cart
+this.cart
+
+// Vue 3
+window.app.config.globalProperties.cart
+this.cart.value
+```
+
+In JS functions, refs must use `.value` (for example `cart.value`, `user.value`, `token.value`).
+
+### 3.5 Async components
+
+```javascript
+// Vue 2
+() => import('./MyComponent.vue')
+
+// Vue 3
+import { defineAsyncComponent } from 'vue'
+defineAsyncComponent(() => import('./MyComponent.vue'))
+```
+
+### 3.6 Remove `Vue.set`
+
+```javascript
+// Vue 2
+Vue.set(this.object, key, value)
+
+// Vue 3
+this.object[key] = value
+```
+
+### 3.7 `v-if` and `v-for` precedence changed
+
+`v-if` now has higher precedence than `v-for`.
+
+```vue
+<!-- risky pattern -->
+<div v-for="item in items" v-if="item.active">
+
+<!-- safer Vue 3 pattern -->
+<template v-for="item in items" :key="item.id">
+    <div v-if="item.active">
+        ...
+    </div>
+</template>
+```
+
+### 3.8 Render functions and slots
+
+```javascript
+// Vue 2
+render() {
+    return this.$scopedSlots.default(this)
+}
+
+// Vue 3
+render() {
+    return this?.$slots?.default(this)
+}
+```
+
+### 3.9 `v-text` and `v-html` with fallback content
+
+If elements with `v-text` or `v-html` contain inner fallback content, replace with `v-txt` and `v-htm` patterns used by Rapidez migration tooling.
+
+```vue
+<!-- before -->
+<div v-text="scopeProps.value">Default value</div>
+
+<!-- after -->
+<div v-txt="scopeProps.value">Default value</div>
+```
+
+```vue
+<!-- before -->
+<div v-html="scopeProps.value">Default value</div>
+
+<!-- after -->
+<div v-htm="scopeProps.value">Default value</div>
+```
+
+### 3.10 Component emits and v-model
+
+For components that emit events, add explicit `emits` declarations and migrate `value` props to `modelValue` where applicable.
+
+```javascript
+export default {
+    props: {
+        modelValue: {
+            default: 1,
+        },
+    },
+    emits: ['update:modelValue', 'input', 'change'],
+    computed: {
+        value: {
+            get() {
+                return this.modelValue
+            },
+            set(value) {
+                this.$emit('update:modelValue', value)
+            },
+        },
+    },
+}
+```
+
+## 4. Tailwind CSS v4 Migration
+
+Run official upgrade tool:
+
+```bash
+npx @tailwindcss/upgrade
+```
+
+Then manually review deprecated and renamed utility classes.
+
+Examples:
+
+```diff
+- class="bg-black bg-opacity-50 flex-shrink-0"
++ class="bg-black/50 shrink-0"
+```
+
+```diff
+- class="ring outline-none"
++ class="ring-3 outline-hidden"
+```
+
+Also verify custom color classes. Rapidez v5 moved colors out of core and into blade components CSS.
+
+Verify all steps from https://tailwindcss.com/docs/upgrade-guide have been executed and run any other checks that need to be done.
+
+## 5. Flat Table Removal Migration
+
+Rapidez v5 queries `catalog_product_entity` and `catalog_category_entity` directly through attribute relations.
+
+### 5.1 Query constraints on attributes
+
+Direct `where` on EAV attributes may no longer work in custom scopes.
+
+```php
+// before
+Product::where('color', 'red')->get();
+
+// after
+Product::whereAttribute('color', 'red')->get();
+```
+
+### 5.2 Attribute value access
+
+Use `label()`, `value()`, and `raw()` when needed.
+
+```php
+// before
+$product->climate
+
+// after (for option labels)
+$product->label('climate')
+```
+
+Keep simple text/number attributes as-is if they map correctly via default `value()` behavior.
+
+### 5.3 Scopes and relationships
+
+- Revisit custom scopes that used joins against flat tables
+- Relationships on `entity_id` (and `sku` on products) are generally unaffected
+- Carefully review all product/category model overrides and any `ProductController` overrides
+
+## 6. Product Model API Replacements
+
+Replace removed product properties with new equivalents:
+
+| Removed | Replacement |
+|---|---|
+| `->min_sale_qty` | `->stock->min_sale_qty` |
+| `->max_sale_qty` | `->stock->max_sale_qty` |
+| `->qty_increments` | `->stock->qty_increments` |
+| `->in_stock` | `->stock->is_in_stock` |
+| `->upsell_ids` | `->upsells()->pluck('linked_product_id')` |
+| `->relation_ids` | `->relationProducts()->pluck('linked_product_id')` |
+| `->grouped` | `->children` |
+| `->images` | `->media` |
+| `->reviews_count` | `->reviewSummary->reviews_count` |
+| `->reviews_score` | `->reviewSummary->reviews_score` |
+
+Note: `->media` is not the old plain URL array shape and now includes richer media data (including video support).
+
+## 7. Translation String Updates
+
+Update both translation files and template usage:
+
+| Old | New |
+|---|---|
+| Firstname | First name |
+| Middlename | Middle name |
+| Lastname | Last name |
+| Housenumber | House number |
+
+Also add:
+
+- `Show more`
+
+## 8. Validation and Build Checklist
+
+Run and fix issues iteratively:
+
+```bash
+yarn outdated
+yarn build
+```
+
+Manual validation checklist:
+
+1. Verify all overridden Blade/Vue/PHP files against v5 core diff
+2. Test custom events migrated to `window.$on`/`window.$emit`
+3. Verify all ref access in JS uses `.value`
+4. Check all migrated slots render correctly
+5. Verify Tailwind class updates and custom theme behavior
+6. Test product/category custom queries and scopes
+7. Verify media rendering (images and videos)
+8. Validate pricing (including customer group and tier pricing)
+9. Run checkout and cart interaction smoke tests
+
+## 9. Execution Rules for the AI
+
+When performing the migration:
+
+1. Make minimal, targeted changes
+2. Preserve project-specific conventions
+3. Prefer mechanical, auditable diffs
+4. Flag uncertainty explicitly (do not silently guess)
+5. Always provide a final list of changed files and why each was changed
+6. After code edits, provide a focused manual QA checklist based on touched areas
+
+## 10. Refinement
+
+### Blade overrides
+
+Compare the resources/views/vendor folder with their vendor/rapidez/*/resources/views counterparts.
+And place a comment at the top of the blade files we have overwritten describing what has been overwritten.
+`````
+:::
