@@ -83,7 +83,7 @@ This will require some work but we've got a list of things to check. Please read
 - The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span>
 - Any custom async components must be wrapped by `defineAsyncComponent`: `() => import('...')` to `defineAsyncComponent(() => import('...'))`
 - `window.app` no longer contains the custom variables. Replace `window.app.<...>` e.g. `cart`  with `window.app.config.globalProperties.<...>` or if you’re within vue templates directly do `<...>`
-- When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`
+- When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`, `mask.value`, `loading.value`
 - All calls to `Vue.set` calls should be removed, and replaced by setting the variable directly.
 
 5. **Build**
@@ -403,7 +403,7 @@ window.app.config.globalProperties.cart
 this.cart.value
 ```
 
-In JS functions, refs must use `.value` (for example `cart.value`, `user.value`, `token.value`).
+In JS functions, refs must use `.value` (for example `cart.value`, `user.value`, `token.value`, `mask.value`, `loading.value`).
 
 ### 3.5 Async components
 
@@ -500,6 +500,10 @@ export default {
     },
 }
 ```
+
+# 3.11 Check the migration docs
+
+When in doubt view the [Vue 3 migration guide](https://v3-migration.vuejs.org/)
 
 ## 4. Tailwind CSS v4 Migration
 
