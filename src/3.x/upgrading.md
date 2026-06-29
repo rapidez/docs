@@ -16,7 +16,7 @@ In this release, we [refactored the checkout](#checkout-changes) from the Magent
 And a lot of frontend changes:
 
 - [Extracted and refactored components](#components)
-- [Product gallery](https://github.com/rapidez/core/pull/624) (Ask to remove custom content if necessary)
+- [Product gallery](https://github.com/rapidez/core/pull/624)
 - [Autocomplete](https://github.com/rapidez/core/pull/670)
 - [Quantity input](https://github.com/rapidez/core/pull/645)
 - [Color names](#colors)
@@ -730,6 +730,8 @@ If you override `resources/views/product/partials/images.blade.php`, update to u
     </div>
 </images>
 ```
+
+Double check the changes in [Product gallery](https://github.com/rapidez/core/pull/624) (Ask to remove custom content if necessary)
 
 ---
 
