@@ -23,9 +23,9 @@ There are multiple Elasticsearch versions and licenses, see the [subscriptions p
 composer create-project rapidez/rapidez:^5.0 yourproject
 ```
 
-2. **Add the Magento 2 and ElasticSearch credentials**
+2. **Add the Magento 2 and search credentials**
 
-When you have a Magento 2 installation running, add the URL and database credentials to the `.env`. You may also need to set your ElasticSearch URL and credentials. Have a look at the [configuration docs](configuration.md) for all options. If you don't have a Magento installation running yet, we'll set one up for you with Docker from the install command. This will also set up an ElasticSearch container for you.
+When you have a Magento 2 installation running, add the URL and database credentials to the `.env`. You may also need to set your ElasticSearch/OpenSearch URL and credentials. Have a look at the [configuration docs](configuration.md) for all options. If you don't have a Magento installation running yet, we'll set one up for you with Docker from the install command. This will also set up an ElasticSearch container for you.
 
 3. **Run the install command**
 
