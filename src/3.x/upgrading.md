@@ -160,6 +160,12 @@ You are a Laravel and Vue expert, use these instructions to upgrade a Rapidez pr
 11. [Address Defaults — field rename](#11-address-defaults--field-rename)
 12. [Global Utility Functions](#12-global-utility-functions)
 13. [Frontend Build Configuration](#13-frontend-build-configuration)
+14. [Refinement](#14-refinement)
+
+## Important Context
+
+- Review template/config diff: https://github.com/rapidez/core/compare/2.x..3.x
+- Review full releases/changelog (for 3.x versions): https://github.com/rapidez/core/releases
 
 ---
 
@@ -412,22 +418,24 @@ The Blade wrapper `<x-rapidez::slideover.global>` handles this automatically.
 
 | Removed | Use instead |
 |---|---|
-| `<x-rapidez::button>` (index) | `<x-rapidez::button.outline>` or `<x-rapidez::button.conversion>` |
-| `<x-rapidez::button.primary>` | `<x-rapidez::button.conversion>` |
+| `<x-rapidez::button.primary>` | `<x-rapidez::button.primary>` |
 | `<x-rapidez::button.outline>` | `<x-rapidez::button.outline>` *(new file, different styles)* |
 | `<x-rapidez::button.slider>` | `<x-rapidez::button.slider>` *(new file, different styles)* |
 | `<x-rapidez::checkbox>` | `<x-rapidez::input.checkbox>` |
 | `<x-rapidez::radio>` | `<x-rapidez::input.radio>` |
 | `<x-rapidez::select>` | `<x-rapidez::input.select>` |
+| `<x-rapidez::input>` (with password type and name) | `<x-rapidez::input.password>` |
 | `<x-rapidez::input>` (with label) | `<label>` + `<x-rapidez::label>` + `<x-rapidez::input>` separately |
+| `<x-rapidez-ct::input>` (with label) | `<label>` + `<x-rapidez::label>` + `<x-rapidez::input>` separately |
 | `<x-rapidez::textarea>` | `<x-rapidez::input.textarea>` |
 | `<x-rapidez::label>` | `<x-rapidez::label>` *(still exists, no change)* |
 | `<x-rapidez::country-select>` | `<x-rapidez::input.select.country>` |
-| `<x-rapidez::slideover>` (index) | *(removed — use `<x-rapidez::slideover.global>`)* |
-| `<x-rapidez::slideover.mobile>` | *(removed)* |
-| `<x-rapidez-ct::input>` | `<x-rapidez::input>` |
+| `<x-rapidez-ct::input>`  | `<x-rapidez::input>` |
 | `<x-rapidez-ct::input.country-select>` | `<x-rapidez::input.select.country>` |
 | `<x-rapidez-ct::input.region-select>` | `<x-rapidez::input.select.region>` |
+| `<x-rapidez-ct::button.outline>` | `<x-rapidez::button.outline>` |
+| `<x-rapidez-ct::button.enhanced>` | `<x-rapidez::button.conversion>` |
+| `<x-rapidez-ct::button.accent>` | `<x-rapidez::button.secondary>` |
 
 ### `<x-rapidez::input>` label handling changed
 In v2, `<x-rapidez::input name="foo" label="Bar">` rendered a `<label>` automatically.
@@ -723,6 +731,8 @@ If you override `resources/views/product/partials/images.blade.php`, update to u
 </images>
 ```
 
+Double check the changes in [Product gallery](https://github.com/rapidez/core/pull/624) (Ask to remove custom content if necessary)
+
 ---
 
 ## 10. JavaScript API Changes
@@ -860,13 +870,19 @@ The color system has been completely reworked. The old approach used raw CSS var
 
 | v2 token | v3 replacement | Notes |
 |---|---|---|
-| `text-neutral` / `bg-neutral` | `text-foreground` / `bg-foreground` | Default text |
-| `text-inactive` / `bg-inactive` | `text-foreground-muted` / `bg-foreground-muted` | Muted/inactive text |
-| `bg-highlight` | `bg-background-emphasis` | Background highlight |
-| `border-border` / `border` | `border-border` (unchanged key, now an object) | Default border |
-| `bg-secondary` (conversion use) | `bg-conversion` | Separate conversion color token |
+| `text-neutral` / `bg-neutral` | `text` / `bg` | Default text |
+| `text-inactive` / `bg-inactive` | `text-muted` / `bg-muted` | Muted/inactive text |
+| `bg-highlight` | `bg-emphasis` | Background highlight |
+| `border-border` / `border` | `border-default` (unchanged key, now an object) | Default border |
 
 **New color tokens added:**
+
+For this the color function is required
+```js
+function color(variable, fallback) {
+    return 'color-mix(in srgb, var(' + variable + ', ' + fallback + ') calc(100% * <alpha-value>), transparent)'
+}
+```
 
 ```js
 colors: {
@@ -936,6 +952,44 @@ If your project overrides `tailwind.config.js` (common when publishing vendor as
 }
 ```
 
+## 14. Refinement
+
+### Overwritten components
+
+Check for the following components and ask the user wether to replace them with Rapidez defaults.
+
+| Overwritten | Use instead |
+|---|---|
+| `<x-button.primary>` | `<x-rapidez::button.primary>` |
+| `<x-button.secondary>` | `<x-rapidez::button.secondary>` |
+| `<x-button.outline>` | `<x-rapidez::button.outline>` |
+| `<x-button.slider>` | `<x-rapidez::button.slider>` |
+| `<x-checkbox>` | `<x-rapidez::input.checkbox>` |
+| `<x-radio>` | `<x-rapidez::input.radio>` |
+| `<x-select>` | `<x-rapidez::input.select>` |
+| `<x-input>` (without label) | `<x-rapidez::input>` |
+| `<x-input>` (with label) | `<label>` + `<x-rapidez::label>` + `<x-rapidez::input>` separately |
+| `<x-textarea>` | `<x-rapidez::input.textarea>` |
+| `<x-label>` | `<x-rapidez::label>` |
+| `<x-country-select>` | `<x-rapidez::input.select.country>` |
+| `<x-input>` | `<x-rapidez::input>` |
+| `<x-input.country-select>` | `<x-rapidez::input.select.country>` |
+| `<x-input.region-select>` | `<x-rapidez::input.select.region>` |
+| `<x-accordion>` | `<x-rapidez::accordion>` |
+| `<x-slideover>` | `<x-rapidez::slideover>` |
+
+When these are migrated, remove the migrated files from the components folder.
+
+### Reviews
+
+if `rapidez/reviews` is in use, ask the user wether custom code concerning reviews to be removed.
+Check the diff to see what can be removed or needs to be renamed in templates https://github.com/rapidez/reviews/compare/1.2.0...3.0.0
+
+### Blade overrides
+
+Compare the resources/views/vendor folder with their vendor/rapidez/*/resources/views counterparts.
+And place a comment at the top of the blade files we have overwritten describing what has been overwritten.
+
 ---
 
 ## Quick Search: What to look for in overridden files
@@ -962,7 +1016,6 @@ When scanning overridden views and JS files, search for these patterns that need
 | `x-rapidez::button ` (not subcomponent) | `x-rapidez::button.outline` or `.conversion` |
 | `address_defaults.country_id` | `address_defaults.country_code` |
 | `user?.id` | `user?.is_logged_in` or `user?.email` |
-| `loggedIn` | `loggedIn()` (method, not property) |
 | `cart.taxTotal.value` | `cart.taxTotal` |
 | `cart.virtualItems` | `cart.is_virtual` |
 | `cart.hasOnlyVirtualItems` | `cart.is_virtual` |

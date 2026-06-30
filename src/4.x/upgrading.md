@@ -139,6 +139,12 @@ You are a Laravel and Vue expert, use these instructions to upgrade a Rapidez pr
 9. [Configuration File Changes](#9-configuration-file-changes)
 10. [Language / Translation Changes](#10-language--translation-changes)
 11. [Frontend Build Configuration](#11-frontend-build-configuration)
+12. [Refinement](#12-refinement)
+
+## Important Context
+
+- Review template/config diff: https://github.com/rapidez/core/compare/3.x..4.x
+- Review full releases/changelog (for 4.x versions): https://github.com/rapidez/core/releases
 
 ---
 
@@ -777,4 +783,11 @@ input[type='search']::-webkit-search-cancel-button {
     @apply bg-primary;
 }
 ```
+
+## 12. Refinement
+
+### Blade overrides
+
+Compare the resources/views/vendor folder with their vendor/rapidez/*/resources/views counterparts.
+And place a comment at the top of the blade files we have overwritten describing what has been overwritten.
 ````
