@@ -229,7 +229,8 @@ After (v4):
 </x-rapidez::listing>
 ```
 
-The `<x-rapidez::productlist>` component has been completely rewritten. The props `dslQuery` and `limit` are removed. The `value` prop now filters by `sku` (or another field via `field`). `field` defaults to `sku` (not `sku.keyword`).
+The `<x-rapidez::productlist>` component has been completely rewritten. The prop `limit` has been removed, The `value` prop now filters by `sku` (or another field via `field`). `field` defaults to `sku` (not `sku.keyword`).
+The prop `dslQuery` can be replaced by `filterQueryString`. The format has changed from [Elasticsearch Query DSL](https://www.elastic.co/docs/explore-analyze/query-filter/languages/querydsl) to [Elasticsearch Query string query](https://www.elastic.co/docs/reference/query-languages/query-dsl/query-dsl-query-string-query).
 
 Before (v3):
 ```blade
@@ -299,6 +300,8 @@ If this is all correct, no custom commands will be necessary anymore, as the `ra
     </template>
 </ais-hits>
 ```
+
+References to `item.thumbnail` within `<add-to-cart>`, can be replaced with `addToCart.currentThumbnail` in `resources/views/listing/partials/item.blade.php`
 
 The `<x-rapidez::listing>` slot syntax changed from `$slot->isEmpty()` checks to `@slotdefault`:
 
@@ -538,6 +541,8 @@ this.currencySymbolLocation // e.g. 'before'
 ---
 
 ## 9. Configuration File Changes
+
+Compare the `./config/rapidez/*.php` with `./vendor/rapidez/*/config/rapidez/*.php` and add any missing entries in the overwritten config files.
 
 ### `config/rapidez/frontend.php`
 
