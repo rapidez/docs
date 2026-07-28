@@ -18,7 +18,7 @@ Other changes included in this release:
 
 Some of these are quite substantially breaking changes. On this page we'll mention the most important things that you will need to do to upgrade.
 
-You should review [all template/config changes](https://github.com/rapidez/core/compare/5.x..master) and check the [full changelog](https://github.com/rapidez/core/releases).
+You should review [all template/config changes](https://github.com/rapidez/core/compare/4.x..master) and check the [full changelog](https://github.com/rapidez/core/releases).
 
 :::tip
 For any major update, you should be aware that all overwritten Blade, Vue, and PHP files will need to be checked. Checking the above diff is the quickest way to tell where you need to make changes.
@@ -80,7 +80,7 @@ This will require some work but we've got a list of things to check. Please read
 - [Dropped support for global $emit and $on](https://v3-migration.vuejs.org/breaking-changes/events-api#event-bus), For this we've [built a system on regular events](https://github.com/rapidez/core/blob/cecc136e5ef76dc4925186a332f875d3ffe658fe/resources/js/polyfills/emit.js#L18). You should replace `$root.$on`/`window.app.$on` with `window.$on`.
 - Check for any `v-if`s in combination with `v-for`, see: [If used on the same element, v-if will have higher precedence than v-for](https://v3-migration.vuejs.org/breaking-changes/v-if-v-for.html)
 - Rename all `slot-scope` to `v-slot` and move them to the component in your template
-- The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span>
+- The `price`, `truncate` and `url` filters no longer work, replace <span v-pre>`@{{ final_price | price }}` with `@{{ price(final_price) }}`</span> as well as `$options.filters.price(final_price)` with `price(final_price)`
 - Any custom async components must be wrapped by `defineAsyncComponent`: `() => import('...')` to `defineAsyncComponent(() => import('...'))`
 - `window.app` no longer contains the custom variables. Replace `window.app.<...>` e.g. `cart`  with `window.app.config.globalProperties.<...>` or if you’re within vue templates directly do `<...>`
 - When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`, `mask.value`, `loading.value`
@@ -203,6 +203,8 @@ These specific variables have been removed and should be replaced like so:
 | `->reviews_count` | `->reviewSummary->reviews_count` | |
 | `->reviews_score` | `->reviewSummary->reviews_score` | |
 
+Also check these values in javascript syntax (instead of `->` checking `.`).
+
 ### Translation strings
 
 A few translations strings have been changed and added:
@@ -223,6 +225,7 @@ Translation files, as well as usage of these translations, should be changed acc
 ## Using AI?
 
 ::: details Using AI? This prompt will give you a head start! Do still check everything manually.
+This is a large prompt, we suggest using tools like [Chief](https://chiefloop.com/) to turn it into separate tasks so AI has a smaller chance of making mistakes.
 `````markdown
 # Rapidez v5 Upgrade Prompt
 
@@ -501,7 +504,12 @@ export default {
 }
 ```
 
-# 3.11 Check the migration docs
+# 3.11 Check blade components
+
+On any blade component (`<x-*>`) it is no longer possible to add `v-*` attributes without value and must be replaced with empty values `v-*=""`.
+For example attributes like `<x-heroicon-o-chevron-down v-else />` must be changed to `<x-heroicon-o-chevron-down v-else="" />`.
+
+# 3.12 Check the migration docs
 
 When in doubt view the [Vue 3 migration guide](https://v3-migration.vuejs.org/)
 
@@ -534,6 +542,7 @@ Verify all steps from https://tailwindcss.com/docs/upgrade-guide have been execu
 ## 5. Flat Table Removal Migration
 
 Rapidez v5 queries `catalog_product_entity` and `catalog_category_entity` directly through attribute relations.
+Compare the `./config/rapidez/*.php` with `./vendor/rapidez/*/config/rapidez/*.php` and add any missing entries in the overwritten config files.
 
 ### 5.1 Query constraints on attributes
 
