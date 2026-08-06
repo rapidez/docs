@@ -10,3 +10,19 @@
 .np {
   padding-bottom: 0 !important;
 }
+
+.Layout.old-version-page {
+  --vp-layout-top-height: 42px;
+}
+
+@media (max-width: 539px) {
+  .Layout.old-version-page {
+    --vp-layout-top-height: 64px;
+  }
+}
+
+@media (max-width: 340px) {
+  .Layout.old-version-page {
+    --vp-layout-top-height: 84px;
+  }
+}

@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { isOldVersion } from './versions.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -14,6 +15,14 @@ export default defineConfig({
 
   sitemap: {
     hostname: 'https://docs.rapidez.io',
+  },
+
+  transformPageData(pageData) {
+    if (isOldVersion(pageData.relativePath)) {
+      pageData.frontmatter.pageClass = [pageData.frontmatter.pageClass, 'old-version-page']
+        .filter(Boolean)
+        .join(' ')
+    }
   },
 
   themeConfig: {
