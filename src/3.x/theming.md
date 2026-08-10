@@ -28,6 +28,18 @@ After that, you'll find all the Rapidez Core views in `resources/views/vendor/ra
 It's recommended to only add the views you've changed into your source control for upgradability. To keep track of what you've changed in a view, it's a good idea to add the unchanged version to version control before you make any changes.
 :::
 
+### Update vendor hashes
+
+Rapidez comes bundled with a template diff composer plugin. It will automatically add and update the following line in vendor templates you overwrite:
+
+```blade
+{{-- vendor-hash:VENDOR_FILE_MD5_HASH --}}
+```
+
+It runs on every `composer update`. If this hash changes you know the file you have overwritten has been changed upstream and should be checked.
+Since it only runs on `composer update` it may not run when first publishing the views.
+You can run `composer update-vendor-hashes` to manually trigger updating the vendor hashes.
+
 ## CSS
 
 We're using [Tailwind CSS](https://tailwindcss.com) with [Vite](https://laravel.com/docs/11.x/vite), so probably you don't need to touch the CSS, but if you need to add a simple class, the "starting point" is [`resources/css/app.css`](https://github.com/rapidez/rapidez/blob/master/resources/css/app.css). From there, we include the core styling and that's where the color variables can be defined. For any Tailwind changes, you'll need to be within the [`tailwind.config.js`](https://github.com/rapidez/core/blob/master/tailwind.config.js).
