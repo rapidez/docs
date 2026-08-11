@@ -10,7 +10,7 @@
 - PHP >= 8.2
 - MySQL >= 8.0.28
 - Elasticsearch Basic >= 8.11, or OpenSearch ^2
-- Magento >= 2.4.7 ([or use a demo shop](#demo-magento-2-webshop))
+- Magento >= 2.4.8 ([or use a demo shop](#demo-magento-2-webshop))
 
 ::: tip Elasticsearch Basic
 There are multiple Elasticsearch versions and licenses, see the [subscriptions page](https://www.elastic.co/subscriptions). Rapidez requires at least the basic version which is free but not always installed by default. Make sure you use the "full" or "non-OSS" version otherwise you'll get "no handler for type flattened" errors while [indexing](indexer.md).
