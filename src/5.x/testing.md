@@ -1,5 +1,5 @@
 ---
-description: Everything about testing with Rapidez with PHPunit, Playwright, Static analysis and Continuous Integration
+description: Everything about testing with Rapidez with PHPUnit, Playwright, Static analysis and Continuous Integration
 ---
 
 # Testing

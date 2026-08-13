@@ -1,5 +1,5 @@
 ---
-description: A list of all Rapidez packages, but for most things Laravel packages can be used. If Statamic is installed; Statamic addons.
+description: A list of all Rapidez packages, but for most things Laravel packages can be used, and if Statamic is installed, Statamic addons can be used too.
 ---
 
 # Packages
@@ -9,7 +9,7 @@ description: A list of all Rapidez packages, but for most things Laravel package
 In addition to the Rapidez Core, we've created some packages listed here. They're just Laravel packages, see: [package development](package-development.md).
 
 ::: tip Laravel packages
-All Laravel packages can be used with Rapidez, [that's 50.000+ packages available!](https://packagist.org/search/?query=laravel)
+All Laravel packages can be used with Rapidez, [that's 50,000+ packages available!](https://packagist.org/search/?query=laravel)
 :::
 
 ::: tip Use a proper CMS

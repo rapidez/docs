@@ -1,5 +1,5 @@
 ---
-description: How to configure Rapidez, where can de configuration be found and how the configuration works with the Magento config.
+description: How to configure Rapidez, where the configuration can be found and how the configuration works with the Magento config.
 ---
 
 # Configuration

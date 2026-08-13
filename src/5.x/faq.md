@@ -1,5 +1,5 @@
 ---
-description: Some non technical questions and answers.
+description: Some non-technical questions and answers.
 ---
 
 # FAQ
