@@ -1,3 +1,7 @@
+---
+description: The first thing to check when there are issues.
+---
+
 # Troubleshooting
 
 ---

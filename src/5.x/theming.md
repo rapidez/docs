@@ -1,3 +1,7 @@
+---
+description: Everything about Rapidez views, CSS, Tailwind CSS, color variables, Javascript, Blade Directives, Blade Components, Blade Icons, Vue Directives, Vue helpers, multistore setup and translations.
+---
+
 <script setup>
 import ColorTile from '../.vitepress/theme/ColorTile.vue'
 </script>

@@ -1,8 +1,20 @@
+---
+description: A list of all Rapidez packages, but for most things Laravel packages can be used. If Statamic is installed; Statamic addons.
+---
+
 # Packages
 
 ---
 
-In addition to the Rapidez Core, we've created some packages.
+In addition to the Rapidez Core, we've created some packages listed here. They're just Laravel packages, see: [package development](package-development.md).
+
+::: tip Laravel packages
+All Laravel packages can be used with Rapidez, [that's 50.000+ packages available!](https://packagist.org/search/?query=laravel)
+:::
+
+::: tip Use a proper CMS
+Magento isn't a CMS! We recommend [Statamic](https://statamic.com/) ([with our Statamic integration](packages/statamic.md)) so you can just configure some collections for pages, blogs, FAQs, etc with a really good block-based editor. Also configure your navigations and forms in your CMS.
+:::
 
 [[toc]]
 

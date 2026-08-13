@@ -1,3 +1,7 @@
+---
+description: Need an even better search experience? Use Semantic search!
+---
+
 # Semantic Search
 
 ---
