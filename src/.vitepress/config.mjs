@@ -1,5 +1,54 @@
+import { copyFile, readFile, readdir, writeFile } from 'node:fs/promises'
+import path from 'node:path'
 import { defineConfig } from 'vitepress'
-import { isOldVersion } from './versions.mjs'
+import { isOldVersion, LATEST_VERSION } from './versions.mjs'
+import llmstxt, { copyOrDownloadAsMarkdownButtons } from 'vitepress-plugin-llms'
+
+// `experimental.depth: 2` makes vitepress-plugin-llms also generate a scoped
+// llms.txt/llms-full.txt per top-level directory, e.g. /5.x/llms.txt,
+// /2.x/llms.txt, ... Root's llms.txt/llms-full.txt always aggregate every
+// version though, so this plugin overwrites the root files with the current
+// version's ones once the build has written them.
+//
+// It also squashes stray blank lines in the generated llms.txt files: the
+// plugin builds each one from the *entire* multi-version sidebar and only
+// filters which files match, so every section belonging to another version
+// resolves to an empty string, and those empty strings still get joined with
+// newlines — leaving a run of blank lines before the current version's content.
+function scopeRootLlmsTxtToLatestVersion() {
+  let outDir
+  let isSsr
+  return {
+    name: 'rapidez-scope-root-llms-txt',
+    apply: 'build',
+    configResolved(config) {
+      outDir = config.build.outDir
+      isSsr = Boolean(config.build.ssr)
+    },
+    async closeBundle() {
+      if (isSsr) return
+
+      const entries = await readdir(outDir, { withFileTypes: true })
+      const llmsTxtPaths = [path.resolve(outDir, 'llms.txt')]
+      for (const entry of entries) {
+        if (entry.isDirectory()) {
+          llmsTxtPaths.push(path.resolve(outDir, entry.name, 'llms.txt'))
+        }
+      }
+      await Promise.all(
+        llmsTxtPaths.map(async (llmsTxtPath) => {
+          const content = await readFile(llmsTxtPath, 'utf8').catch(() => null)
+          if (content === null) return
+          await writeFile(llmsTxtPath, content.replace(/\n{3,}/g, '\n\n'))
+        })
+      )
+
+      for (const file of ['llms.txt', 'llms-full.txt']) {
+        await copyFile(path.resolve(outDir, LATEST_VERSION, file), path.resolve(outDir, file))
+      }
+    },
+  }
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,6 +64,24 @@ export default defineConfig({
 
   sitemap: {
     hostname: 'https://docs.rapidez.io',
+  },
+
+  markdown: {
+    config(md) {
+      md.use(copyOrDownloadAsMarkdownButtons)
+    },
+  },
+
+  vite: {
+    plugins: [
+      llmstxt({
+        experimental: {
+          // Also generate a scoped llms.txt/llms-full.txt per version, e.g. /5.x/llms.txt.
+          depth: 2,
+        },
+      }),
+      scopeRootLlmsTxtToLatestVersion(),
+    ],
   },
 
   transformPageData(pageData) {

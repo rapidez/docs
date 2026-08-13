@@ -1,3 +1,7 @@
+---
+description: The Rapidez requirements and install instructions including info on CORS in Magento/Elasticsearch/OpenSearch, Multistore Nginx configuration, Magento 2 demo shop in Docker and the Rapidez checkout standalone.
+---
+
 # Installation
 
 ---

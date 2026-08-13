@@ -1,3 +1,7 @@
+---
+description: The Rapidez indexer containing product and category information using Laravel Scout and Elasticsearch/OpenSearch index for InstantSearch. Everything about reindexing and extending the indexer.
+---
+
 # Indexer
 
 ---

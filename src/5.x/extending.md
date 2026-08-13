@@ -1,3 +1,7 @@
+---
+description: Adding models, controllers, widgets, routes and extending the autocomplete.
+---
+
 # Extending
 
 ---

@@ -1,3 +1,7 @@
+---
+description: How to develop packages for Rapidez with info about Eventy filters, Vue events, Javascript events, fallback routing, extending models and notifications.
+---
+
 # Packages
 
 ---

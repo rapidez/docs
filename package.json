@@ -5,7 +5,8 @@
     "preview": "vitepress preview src"
   },
   "devDependencies": {
-    "vitepress": "^1.4.0"
+    "vitepress": "^1.4.0",
+    "vitepress-plugin-llms": "^1.13.5"
   },
   "volta": {
     "node": "18.20.4",

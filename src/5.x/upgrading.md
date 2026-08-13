@@ -1,3 +1,7 @@
+---
+description: Upgrade info from Rapidez v4 to Rapidez v5 including all changes like the removal of the Magento flat tables dependency, the Vue 3 and Tailwind 4 upgrade, new features like customer group pricing, tier pricing, product media videos and cache tags with step-by-step info on how to upgrade. There is also a prompt to automate the upgrade.
+---
+
 # Upgrading
 
 ---

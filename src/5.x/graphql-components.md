@@ -1,3 +1,7 @@
+---
+description: Everything about the Rapidez `<graphql>` and `<graphql-mutation>` renderless Vue components.
+---
+
 # GraphQL
 
 ---

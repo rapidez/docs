@@ -1,3 +1,7 @@
+---
+description: How caching works, can be used and cleared with Rapidez.
+---
+
 # Cache
 
 ---
