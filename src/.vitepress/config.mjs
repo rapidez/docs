@@ -377,6 +377,7 @@ export default defineConfig({
             { text: 'Testing', link: '/5.x/testing' },
             { text: 'GraphQL components', link: '/5.x/graphql-components' },
             { text: 'Package development', link: '/5.x/package-development' },
+            { text: 'AI / Laravel Boost', link: '/5.x/ai' },
           ]
         },
         {
