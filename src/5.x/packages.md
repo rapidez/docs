@@ -74,6 +74,13 @@ Opinionated checkout packages.
 - [OpenReplay](https://github.com/rapidez/openreplay)
 - [Sentry](https://github.com/rapidez/sentry)
 
+## Postcode providers
+
+- [Generic postcode package](https://github.com/rapidez/postcode), supporting:
+  - Postcode.nl
+  - Postcodeservice
+  - Pro6pp
+
 ## Social Login
 
 - [Social login](https://github.com/rapidez/social-login)
@@ -83,12 +90,6 @@ Opinionated checkout packages.
 - [Default](https://github.com/rapidez/wishlist)
 - [Guest Wishlist](https://github.com/rapidez/guest-wishlist)
 - [Multiple Wishlists](https://github.com/rapidez/multiple-wishlists)
-
-## Zipcode providers
-
-- [Postcode.nl](https://github.com/rapidez/experius-postcode-nl)
-- [Postcodeservice](https://github.com/rapidez/postcodeservice)
-- [Pro6pp](https://github.com/rapidez/pro6pp-postcode)
 
 ## Vendors
 
