@@ -12,64 +12,89 @@ description: Rapidez is using Turbo, but you can make things even faster with Tu
 
 ## Turbo Frames
 
-[Turbo Frames](https://turbo.hotwired.dev/handbook/frames) makes it possible to load parts of a page via AJAX. This could also be used to reduce the initial DOM size, for example by loading the content of a mega menu with it when the menu opens. Note that Vue doesn't normally work within the `<turbo-frame>` component; for this purpose we've made a `<vue-turbo-frame>` Vue component.
+[Turbo Frames](https://turbo.hotwired.dev/handbook/frames) makes it possible to load parts of a page via AJAX. This could also be used to reduce the initial DOM size, for example, by loading the content of a mega menu with it when the menu opens.
+
+To make usage simpleRapidez provides a directive for this purpose.
+
+### How It Works
+
+When you render a turbo frame:
+1. The intended view is rendered with `$complete = false` directly in the DOM
+2. A turbo frame element is lazily created
+3. The turbo frame loads the same view via AJAX, but with `$complete = true`
+4. Once loaded, the turbo frame replaces the initial placeholder with the complete view
 
 ### Usage
 
-The component works similarly to a regular `<turbo-frame>`, but includes pre-configured performance optimizations. An example with a menu that loads fully when it's visible within the browser:
+#### Step 1
 
-```html
-<vue-turbo-frame src="/menu-with-submenus" id="menu">
-    <ul>
-        <li>Just the top level menu items</li>
-        <li>Those which should be visible directly</li>
-    </ul>
-</vue-turbo-frame>
-```
-
-And the route that is just serving a Blade template:
+Define the turbo frame in your `frontend.php` config:
 
 ```php
-Route::view('/menu-with-submenus', 'turbo-frames.menu');
+'turbo_frames' => [
+    'navigation' => 'header.navigation.index',
+],
 ```
 
-And the `resources/views/turbo-frames/menu.blade.php` content:
+The first part is the frame ID, and the second part is the view path as you would use it in blade.
 
-```html
-<turbo-frame id="menu">
-    <ul>
-        <li>Just the mega menu top level items
-            <ul>
-                <li>But now with all sub levels</li>
-            </ul>
-        </li>
-        <li>Those which should be visible directly
-            <any-vue-component>
-                Vue Components do work!
-            </any-vue-component>
-        </li>
-    </ul>
-</turbo-frame>
+#### Step 2
+
+Use the `@turboframe` directive to render the frame in your blade file:
+
+```blade
+@turboframe('navigation')
 ```
 
----
+This renders the intended view with the `$complete` variable set to `false` directly on the page, and creates a turbo frame that will lazily overwrite this with the same view, but with `$complete` set to `true`. **In other words, you should show a placeholder when `$complete` is set to false, and the real thing when `$complete` is true.**
 
-Another example where the whole menu is behind a toggle:
+#### Step 3
 
-```html
-<details>
-    <summary>Menu</summary>
-    <vue-turbo-frame id="menu" src="/menu-with-submenus">
-        Loading...
-    </vue-turbo-frame>
-</details>
+Separate the heave content out of your blade file and add a placeholder.
+
+For example, if your view looks like this, with one heavy query or section that generates a lot of HTML:
+
+```blade
+<div class="...">
+    Lorem ipsum dolor sit amet...
+    @foreach (config('rapidez.models.category')::all() as $category)
+        <div>{{ $category->name }}</div>
+        @include('category.index', ['category' => $category])
+    @endforeach
+</div>
 ```
 
-### Default attributes
+You could modify the view like so:
 
-The component adds these defaults:
+```blade
+<div class="...">
+    Lorem ipsum dolor sit amet...
+    @if ($complete)
+        @foreach (config('rapidez.models.category')::all() as $category)
+            <div>{{ $category->name }}</div>
+            @include('category.index', ['category' => $category])
+        @endforeach
+    @else
+        {{-- You can also add a loading state if necessary! --}}
+        <div>Loading...</div>
+    @endif
+</div>
+```
 
-| Attribute | Value | Description |
-|------|-------|-------------|
-| `loading` | `lazy` | Content only loads when it scrolls into view, improving initial page load performance |
-| `target` | `_top` | Ensures links navigate the whole page instead of staying within the frame |
+::: tip $complete variable
+The `$complete` variable will always be set in the turbo frame context, but if you ever include this view manually this variable will not exist.
+:::
+
+### Caching
+
+Turbo frames use the following cache control middleware:
+
+```
+cache.headers:public;max_age=3600;stale_while_revalidate=3600;etag
+```
+
+Since these are standard GET request routes, any sort of static caching will also apply.
+
+::: note Cache key
+The Rapidez cache key is part of the route path. This means that clearing the cache will generate a new route for all turbo frames. This ensures that any other caching can be worked around when the content of the turbo frame changes.
+:::
