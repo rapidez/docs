@@ -12,8 +12,8 @@ Listings in Rapidez, like the category pages and productlists, are rendered in t
 
 ## How it works
 
-1. The first visit of a page with a listing renders the listing client side, as usual, and queues a job
-2. The job opens the same page with a headless Chrome browser using [spatie/browsershot](https://github.com/spatie/browsershot) and [Puppeteer](https://pptr.dev/), waits until the listing is loaded and saves the listing HTML in the cache
+1. The first visit of a page with a listing renders the listing client side, as usual, and queues a job after the response
+2. The job opens the same page with a headless Chrome browser using [spatie/browsershot](https://github.com/spatie/browsershot) and [Puppeteer](https://pptr.dev/), waits until the listing is loaded and saves the listing HTML in the cache. When a page has multiple listings, like a product page with some productlists, they're captured together
 3. The next visit renders the HTML from the cache directly in the response
 4. Once Vue is ready and the listing has loaded its results, the snapshot is replaced by the real listing
 
@@ -62,6 +62,26 @@ Puppeteer has to be installed on the server where the queue worker runs, not onl
 Snapshots are generated with a queued job. Without a queue worker (`QUEUE_CONNECTION=sync`) the job runs after the response is sent, which still works but keeps that PHP process busy while Chrome is rendering the page. We recommend running a [queue worker](https://laravel.com/docs/master/queues#running-the-queue-worker), optionally with a dedicated queue using `RAPIDEZ_SSR_QUEUE`.
 :::
 
+### Checklist
+
+Before enabling it on production, check these things:
+
+- Chrome can be started by the user running the queue worker, see [Browsershot](#browsershot)
+- The server is able to open the pages itself, see [troubleshooting](#troubleshooting)
+- When you've overridden the listing or productlist component, these need some changes, see [overriding the components](#overriding-the-components)
+- When you're enabling it for productlists, disable it for productlists that depend on the visitor, see [productlist](#productlist)
+- CSS or JavaScript doesn't use the removed `id`, `for`, `name` and `data-testid` attributes as selector within a listing, see [how it works](#how-it-works)
+
+### Verify
+
+Open a category page, wait a few seconds for the snapshot to be generated and reload the page. The HTML of the response should now contain `data-testid="listing-ssr"`. Check the page source or use `curl`, as the developer tools only show the current HTML where the snapshot is already replaced:
+
+```bash
+curl -s https://example.com/some-category | grep -c 'data-testid="listing-ssr"'
+```
+
+When it's not there, see [troubleshooting](#troubleshooting).
+
 ## Configuration
 
 All options can be found in `config/rapidez/ssr.php`:
@@ -69,7 +89,7 @@ All options can be found in `config/rapidez/ssr.php`:
 | Option | `.env` | Default | Description |
 | --- | --- | --- | --- |
 | `enabled` | `RAPIDEZ_SSR` | `false` | Enable the SSR snapshots |
-| `productlists` | `RAPIDEZ_SSR_PRODUCTLISTS` | `false` | Also use snapshots for [productlists](#productlist) by default |
+| `productlists` | `RAPIDEZ_SSR_PRODUCTLISTS` | `false` | Also use snapshots for [productlists](#productlist) |
 | `ttl` | `RAPIDEZ_SSR_TTL` | `60` | Minutes a snapshot is considered fresh |
 | `stale_ttl` | `RAPIDEZ_SSR_STALE_TTL` | `1440` | Minutes a snapshot is still served after the `ttl`, while a new one is generated |
 | `filters` | `RAPIDEZ_SSR_FILTERS` | `false` | Also save snapshots for URLs with filters, sorting, pagination, etc. |
@@ -118,7 +138,7 @@ When running Chrome as root, for example within Docker, you may need to disable 
 
 ## Usage
 
-Out of the box the category listing uses SSR snapshots once it's enabled. Productlists are opt-in, see [productlist](#productlist).
+Out of the box the category listing uses SSR snapshots once it's enabled. Productlists only when `RAPIDEZ_SSR_PRODUCTLISTS` is enabled as well, see [productlist](#productlist).
 
 ### Listing
 
@@ -145,22 +165,24 @@ The listing template of [rapidez/statamic-query-builder](https://github.com/rapi
 
 ### Productlist
 
-Snapshots for the `x-rapidez::productlist` component are disabled by default. You can enable them for all productlists with `RAPIDEZ_SSR_PRODUCTLISTS=true`, or per productlist with the `snapshot` attribute:
+Snapshots for the `x-rapidez::productlist` component are disabled by default. You can enable them for all productlists with:
 
-```blade
-<x-rapidez::productlist :value="['MS04', 'MS05']" :snapshot="true"/>
+```dotenv
+RAPIDEZ_SSR_PRODUCTLISTS=true
 ```
 
 The ID is based on the definition, so the same productlist on different pages shares the snapshot. Unique values per request, like a generated UUID or `uniqid()`, are ignored. When the `value` is a Vue expression, the snapshot is also per page as the result probably depends on the page, like the related products.
 
-When a productlist depends on the visitor you should disable the snapshot, which is already done for the cart crosssells and the recently viewed products:
+When a productlist depends on the visitor you should disable the snapshot with the `snapshot` attribute, which is already done for the cart crosssells and the recently viewed products:
 
 ```blade
 <x-rapidez::productlist value="cart.items" :snapshot="false"/>
 ```
 
+With `RAPIDEZ_SSR_PRODUCTLISTS=false` none of the productlists get a snapshot, regardless of the `snapshot` attribute.
+
 ::: warning Amount of snapshots
-Every snapshot is generated with a headless browser, which takes a few seconds. Keep in mind that productlists on the product page, like the related products and upsells, result in a snapshot per product. You may want to disable the snapshot for those, or use a dedicated queue with `RAPIDEZ_SSR_QUEUE` and enough workers.
+Every page with snapshots to generate is opened with a headless browser, which takes a few seconds. All listings on that page are captured at once. Keep in mind that productlists on the product page, like the related products and upsells, result in snapshots per product. You may want to disable the snapshot for those, or use a dedicated queue with `RAPIDEZ_SSR_QUEUE` and enough workers.
 :::
 
 ### Custom listing slot
@@ -258,10 +280,15 @@ The browser renders the HTML while it's coming in. When the parts are in another
 
 When overriding `components/productlist.blade.php`, compare it with the one from the core. In short:
 
-1. Accept the `snapshot` prop and generate the ID based on the definition with `ListingSnapshotStore::id()`, which ignores unique values per request. When you've added props that change the HTML, like a tile variant, add those to the ID as well. Otherwise productlists with the same products but different HTML share the snapshot:
+1. Accept the `snapshot` prop, with `true` as default, and only generate a snapshot ID when it's enabled for productlists:
     ```blade
-    app(\Rapidez\Core\Search\ListingSnapshotStore::class)->id('productlist', $value, $field, ..., $productTileVariant)
+    @props([..., 'snapshot' => true])
+
+    $snapshotId = config('rapidez.ssr.enabled') && config('rapidez.ssr.productlists') && $snapshot
+        ? app(\Rapidez\Core\Search\ListingSnapshotStore::class)->id('productlist', $value, $field, ...)
+        : null;
     ```
+    The ID is based on the definition with `ListingSnapshotStore::id()`, which ignores unique values per request. When you've added props that change the HTML, like a tile variant, add those to the ID as well. Otherwise productlists with the same products but different HTML share the snapshot
 2. Get the snapshot parts and pass `snapshot-id` and `has-snapshot` to the `<listing>`, like the [listing component](#listing-component)
 3. Mark `<ais-hits>` with `v-show="listingSlotProps.rendered"` and `v-bind="listingSlotProps.snapshotAttributes()"`
 4. Render the snapshot with `x-rapidez::listing-snapshot` and the `id` **after** the `<lazy>` component and wrap both in a `div`. Before it, the lazy component would move when the snapshot is replaced
@@ -270,6 +297,7 @@ When overriding `components/productlist.blade.php`, compare it with the one from
 
 - The snapshot is captured as a guest, so prices of customer groups, the wishlist state, etc. are the guest version until the real listing replaces it
 - The first visitor, and the first one after the `ttl` and `stale_ttl` have passed, doesn't get a snapshot yet
+- With [full page caching](/5.x/cache#full-page-caching) the cached page contains the snapshot as it was when the page was cached, or no snapshot at all when it was cached on the first visit. Snapshots are only generated when the page is rendered by PHP
 - The snapshot isn't interactive until it's replaced; links work, add to cart buttons link to the product page, the rest does nothing
 - When the same productlist is used twice on a page, both snapshots are hidden as soon as the first one has loaded
 - The snapshot makes the listing visible much earlier, but it's part of the HTML Vue compiles as template when it starts. So big snapshots, like a listing with a lot of filter options, delay the moment Vue is ready on slow devices. Measure it with a throttled CPU
