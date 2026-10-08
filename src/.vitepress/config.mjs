@@ -387,6 +387,7 @@ export default defineConfig({
             { text: 'Indexer', link: '/5.x/indexer' },
             { text: 'Cache', link: '/5.x/cache' },
             { text: 'Turbo', link: '/5.x/turbo' },
+            { text: 'SSR', link: '/5.x/ssr' },
           ]
         },
         {
