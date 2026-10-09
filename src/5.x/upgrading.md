@@ -35,18 +35,30 @@ Check all your dependencies one by one to see if they're compatible and what has
 composer outdated
 ```
 
+## pnpm
+
+Since [5.7.0](https://github.com/rapidez/core/pull/1405) Rapidez uses [pnpm](https://pnpm.io) instead of Yarn. After [installing pnpm](https://pnpm.io/installation), copy the `pnpm-workspace.yaml` from the core and replace the Yarn files:
+
+```bash
+cp vendor/rapidez/core/pnpm-workspace.yaml .
+rm -rf node_modules yarn.lock
+pnpm install
+```
+
+Don't forget to replace `yarn` with `pnpm` in your deployment and CI pipelines.
+
 ## Vue 3
 
 ### Dependencies
 
 1. **Remove**
 ```bash
-yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compiler
+pnpm remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compiler
 ```
 
 2. **Install**
 ```bash
-yarn add -D @vitejs/plugin-vue vue3-click-away
+pnpm add -D @vitejs/plugin-vue vue3-click-away
 ```
 
 And update your `vite.config.js`
@@ -74,7 +86,7 @@ And update your `vite.config.js`
 3. **Upgrade the other dependencies**
 
 ```bash
-yarn add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel-vite-plugin vite vue
+pnpm add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel-vite-plugin vite vue
 ```
 
 4. **Upgrade your scripts and templates**
@@ -92,11 +104,11 @@ This will require some work but we've got a list of things to check. Please read
 
 5. **Build**
 ```bash
-yarn build
+pnpm run build
 ```
 
 :::tip
-We recommend to double check all frontend dependencies with `yarn outdated`.
+We recommend to double check all frontend dependencies with `pnpm outdated`.
 :::
 
 ## Tailwind v4
@@ -116,7 +128,7 @@ If you are using Vite, we recommend migrating from the PostCSS plugin. Add this 
 ```
 Then you need to install `@tailwindcss/vite`:
 ```bash
-yarn add -D @tailwindcss/vite
+pnpm add -D @tailwindcss/vite
 ```
 
 2. **Update to Tailwind CSS 4**
@@ -143,7 +155,7 @@ Since Rapidez v3, we have made changes to use [default colors](https://docs.rapi
 
 4. **Build**
 ```bash
-yarn build
+pnpm run build
 ```
 
 :::tip
@@ -266,24 +278,28 @@ Run and evaluate all incompatible packages:
 composer outdated
 ```
 
-### 1.2 Frontend dependencies for Vue 3
+### 1.2 Switch from Yarn to pnpm
+
+Rapidez uses pnpm since 5.7.0. Add a `pnpm-workspace.yaml` to the project root (copy it from `vendor/rapidez/core/pnpm-workspace.yaml`), remove `node_modules` and `yarn.lock`, run `pnpm install` and replace `yarn` with `pnpm` in deployment and CI scripts.
+
+### 1.3 Frontend dependencies for Vue 3
 
 Remove Vue 2 packages:
 
 ```bash
-yarn remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compiler
+pnpm remove @vitejs/plugin-vue2 vue-clickaway vue2-teleport vue-template-compiler
 ```
 
 Install Vue 3 packages:
 
 ```bash
-yarn add -D @vitejs/plugin-vue vue3-click-away
+pnpm add -D @vitejs/plugin-vue vue3-click-away
 ```
 
 Upgrade related frontend dependencies:
 
 ```bash
-yarn add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel-vite-plugin vite vue
+pnpm add -D @vueuse/core @vueuse/integrations cross-env instantsearch.js laravel-vite-plugin vite vue
 ```
 
 ## 2. Vite Configuration Changes
@@ -322,7 +338,7 @@ Update `vite.config.js` for Vue 3 and Tailwind v4.
 Install Tailwind Vite plugin:
 
 ```bash
-yarn add -D @tailwindcss/vite
+pnpm add -D @tailwindcss/vite
 ```
 
 ## 3. Vue 2 to Vue 3 Migration Rules
@@ -619,8 +635,8 @@ Also add:
 Run and fix issues iteratively:
 
 ```bash
-yarn outdated
-yarn build
+pnpm outdated
+pnpm run build
 ```
 
 Manual validation checklist:
