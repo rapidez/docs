@@ -94,6 +94,7 @@ All options can be found in `config/rapidez/ssr.php`:
 | `stale_ttl` | `RAPIDEZ_SSR_STALE_TTL` | `1440` | Minutes a snapshot is still served after the `ttl`, while a new one is generated |
 | `filters` | `RAPIDEZ_SSR_FILTERS` | `false` | Also save snapshots for URLs with filters, sorting, pagination, etc. |
 | `queue` | `RAPIDEZ_SSR_QUEUE` | `null` | Queue to generate the snapshots on, as it uses a headless browser you may want a dedicated worker for it |
+| `cache_wait` | `RAPIDEZ_SSR_CACHE_WAIT` | `120` | Seconds a [full page cache](#full-page-caching) waits for the snapshots, `0` to disable |
 
 ### Lifetime
 
@@ -112,6 +113,24 @@ A category snapshot can be around 100KB, or a few hundred KB with a lot of filte
 ### Filters
 
 By default only listings without any listing parameters in the URL get a snapshot. With `RAPIDEZ_SSR_FILTERS=true` every combination of filters, sorting, pagination, etc. gets its own snapshot. Keep in mind this can result in a lot of snapshots and jobs! Query parameters that don't affect the listing, like `utm_source`, are ignored.
+
+### Full page caching
+
+When you're using [full page caching](/5.x/cache#full-page-caching), like the [static caching](/5.x/packages/statamic#static-caching) of Statamic, the snapshot is cached within the page. As long as the page is cached, the snapshot isn't regenerated; that only happens when the page is rendered by PHP again, for example after the cache is invalidated.
+
+To make sure the snapshot is included, a page isn't cached while its snapshots are being generated:
+
+1. The first visit renders the page without snapshot, queues the job and the response is marked as uncacheable
+2. Once the job is done, the next visit renders the page with the snapshot, which is cached
+3. The visits after that get the cached page, including the snapshot
+
+The response is marked as uncacheable with the `uncacheable.response` filter, see [uncacheable](/5.x/cache#uncacheable). With [rapidez/statamic](/5.x/packages/statamic) this adds the `X-Statamic-Uncacheable` header, so Statamic doesn't cache it. When you're using another full page cache, make sure it respects this filter. The page captured by the headless browser is never cached, as it doesn't contain any snapshots.
+
+A page is only kept uncached for the `cache_wait` (120 seconds by default). When generating the snapshot fails, or takes longer, for example because the queue is busy, the page is cached without the snapshot, so the full page cache keeps working. A page with a stale snapshot is cached as well, while a new snapshot is generated in the background.
+
+::: tip Warming
+When you're warming the cache, for example with `php artisan statamic:static:warm`, pages without snapshots aren't cached. They are when you warm it again after the snapshots are generated.
+:::
 
 ### Browsershot
 
@@ -297,7 +316,7 @@ When overriding `components/productlist.blade.php`, compare it with the one from
 
 - The snapshot is captured as a guest, so prices of customer groups, the wishlist state, etc. are the guest version until the real listing replaces it
 - The first visitor, and the first one after the `ttl` and `stale_ttl` have passed, doesn't get a snapshot yet
-- With [full page caching](/5.x/cache#full-page-caching) the cached page contains the snapshot as it was when the page was cached, or no snapshot at all when it was cached on the first visit. Snapshots are only generated when the page is rendered by PHP
+- With [full page caching](#full-page-caching) the cached page contains the snapshot as it was when the page was cached. It's replaced by the real listing, but crawlers see the products as they were at that moment
 - The snapshot isn't interactive until it's replaced; links work, add to cart buttons link to the product page, the rest does nothing
 - When the same productlist is used twice on a page, both snapshots are hidden as soon as the first one has loaded
 - The snapshot makes the listing visible much earlier, but it's part of the HTML Vue compiles as template when it starts. So big snapshots, like a listing with a lot of filter options, delay the moment Vue is ready on slow devices. Measure it with a throttled CPU
