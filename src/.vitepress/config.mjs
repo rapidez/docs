@@ -1,4 +1,4 @@
-import { copyFile, readFile, readdir, writeFile } from 'node:fs/promises'
+import { access, copyFile, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { defineConfig } from 'vitepress'
 import { isOldVersion, LATEST_VERSION } from './versions.mjs'
@@ -50,6 +50,42 @@ function scopeRootLlmsTxtToLatestVersion() {
   }
 }
 
+// Writes a small redirect page for every page of the latest version at its
+// unversioned path, e.g. /intro.html redirects to /5.x/intro.html. These are
+// plain static files so it works on any host; the query string and hash are
+// kept and the meta refresh is a fallback for when JavaScript is disabled.
+// Existing files are never overwritten, so the root index.html stays as is.
+async function writeUnversionedRedirects(siteConfig) {
+  const prefix = `${LATEST_VERSION}/`
+  const pages = siteConfig.pages.filter((page) => page.startsWith(prefix))
+
+  await Promise.all(
+    pages.map(async (page) => {
+      const file = page.slice(prefix.length).replace(/\.md$/, '.html')
+      const target = `${siteConfig.site.base}${LATEST_VERSION}/${file}`
+      const outFile = path.resolve(siteConfig.outDir, file)
+
+      if (await access(outFile).then(() => true, () => false)) return
+
+      await mkdir(path.dirname(outFile), { recursive: true })
+      await writeFile(outFile, `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting to ${target}</title>
+<script>location.replace(${JSON.stringify(target)} + location.search + location.hash)</script>
+<meta http-equiv="refresh" content="0;url=${target}">
+<link rel="canonical" href="${target}">
+</head>
+<body>
+<a href="${target}">${target}</a>
+</body>
+</html>
+`)
+    })
+  )
+}
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Rapidez",
@@ -83,6 +119,8 @@ export default defineConfig({
       scopeRootLlmsTxtToLatestVersion(),
     ],
   },
+
+  buildEnd: writeUnversionedRedirects,
 
   transformPageData(pageData) {
     if (isOldVersion(pageData.relativePath)) {
