@@ -6,7 +6,9 @@ import { getVersionFromPath, isOldVersion as checkOldVersion } from '../versions
 const { page } = useData()
 
 const currentVersion = computed(() => getVersionFromPath(page.value.relativePath))
-const isOldVersion = computed(() => checkOldVersion(page.value.relativePath))
+// On a 404 the relativePath is the requested url, but the layout doesn't get the
+// old-version-page class from transformPageData, so the banner would cover the nav.
+const isOldVersion = computed(() => !page.value.isNotFound && checkOldVersion(page.value.relativePath))
 </script>
 
 <template>
