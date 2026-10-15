@@ -319,6 +319,14 @@ You should add any other custom routes here that you don't want cached. Most imp
 You can use this package to make sure caches purged in Statamic also get purged in Cloudflare: [justbetter/statamic-cloudflare-purge](https://github.com/justbetter/statamic-cloudflare-purge).
 :::
 
+### Scoped nocache
+
+Statamic's [`@nocache`](https://statamic.dev/static-caching) directive stores _all_ defined variables in the database. With Rapidez product or category data available, this can make your tables explode and cause memory errors. Use `@nocacheScoped` instead to pass only the variables you need:
+
+```blade
+@nocacheScoped('partials.stock', ['sku' => $product->sku])
+```
+
 ## Indexing
 
 You can extend the `BaseEntry` model provided with this package to index your collection data into ElasticSearch. See the following example of a blog collection:
