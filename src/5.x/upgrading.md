@@ -101,6 +101,7 @@ This will require some work but we've got a list of things to check. Please read
 - `window.app` no longer contains the custom variables. Replace `window.app.<...>` e.g. `cart`  with `window.app.config.globalProperties.<...>` or if you’re within vue templates directly do `<...>`
 - When inside js functions all computed (refs) must be retrieved with `.value`. Examples are: `cart.value`, `user.value`, `token.value`, `mask.value`, `loading.value`
 - All calls to `Vue.set` calls should be removed, and replaced by setting the variable directly.
+- Double check if calls to `this.$el` still work or need alternative solutions.
 
 5. **Build**
 ```bash
