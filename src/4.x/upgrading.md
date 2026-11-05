@@ -791,6 +791,13 @@ input[type='search']::-webkit-search-cancel-button {
 
 ## 12. Refinement
 
+### Custom Elasticsearch indexes
+
+In some projects extra Elasticsearch indexes are created with custom indexers, for example Categories, Downloads, Pages, Stores. This could be in an index:additionals command or an event. In the frontend there is usually an additional template and Javascript file in the resources folder, and an extra Controller.
+
+These can be replaced with Scout indexing (See: \Rapidez\Core\Models\Category as an example)
+The controller will not be necessary anymore, nor will the custom Javascript, once the project is updated to Rapidez V4+ the Listing Vue & Instantsearch components can be used to also render these custom indexed classes.
+
 ### Blade overrides
 
 Compare the resources/views/vendor folder with their vendor/rapidez/*/resources/views counterparts.
