@@ -374,6 +374,8 @@ return [
 
 ::: details
 
+#### Statamic 6
+
 Version 8 upgrades the integration to [Statamic 6](https://statamic.dev/) (and related dependencies such as Runway 9 and the Glide directive v4). Make sure your stack meets PHP 8.4, then run:
 
 ```bash
@@ -381,4 +383,15 @@ composer update rapidez/statamic -W
 ```
 
 Follow Statamic's own upgrade guide for any control panel or content changes required by Statamic 6.
+
+#### Product lists
+
+Runway now uses `entity_id` instead of `sku` for product lists. This change will require a migration. To migrate the data, you can run the following command:
+
+```bash
+php artisan rapidez-statamic:migrate-product-skus
+```
+
+You will also have to make sure that your product lists in the frontend now use `entity_id` as their field.
+
 :::
