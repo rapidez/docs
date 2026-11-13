@@ -8,7 +8,7 @@ description: How to configure Rapidez, where the configuration can be found and 
 
 You can publish all of the Rapidez config files with:
 
-```
+```bash
 php artisan vendor:publish --provider="Rapidez\Core\RapidezServiceProvider" --tag="config"
 ```
 
